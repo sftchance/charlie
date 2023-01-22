@@ -1,15 +1,27 @@
-import { useEffect } from "react";
+import { useMemo } from "react";
+
+import { useAccount } from 'wagmi'
+
+import { DisconnectButton } from '../components'
+import { getBalances } from '../utils'
 
 const Dashboard = () => {
-    // const tokens held 
-    const tokens = []
+    const { address } = useAccount()
+
+    const balances = useMemo(async () => {
+        if (!address) return [];
+
+        return await getBalances(address);
+    }, [address])
 
     return (
         <div className="App">
-            <h1>Wagmi bb</h1>
+            <DisconnectButton />
 
-            <h2>Your tokens</h2>
+            <h3>Tokens for {address}</h3>
+
             <ul>
+                {/* TODO: Show balances here */}
             </ul>
         </div>
     )
