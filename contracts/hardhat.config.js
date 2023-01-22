@@ -1,7 +1,16 @@
 require("@nomicfoundation/hardhat-toolbox");
+require("@nomiclabs/hardhat-etherscan");
 require("hardhat-gas-reporter");
 
 require("dotenv").config();
+
+task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
+  const accounts = await hre.ethers.getSigners();
+
+  for (const account of accounts) {
+      console.log(account.address);
+  }
+});
 
 task("deploy", "Deploys Charlie to the network")
   .addOptionalParam("verify", "Verify the deployed contracts on Etherscan", false, types.boolean)
