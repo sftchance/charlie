@@ -2,7 +2,16 @@ import { ethers } from "ethers";
 
 import { providers, tokens, ERC20_ABI, MULTICALL_ABI } from "./config";
 
+import { getMultiCall } from "./getMultiCall";
+
+// TODO PERSONAL NOTE: Right now there are so few delegatable tokens that we can just check 
+// the balance of each token using multicall without worrying about a crazy architecture
+// or the user of another tool. If we ever get to a point where we have a lot of tokens
+// we should consider using a subgraph to get the balances of all tokens at once.
+
 const getBalances = async (address: String) => {
+    const balances = [];
+
     for (const chainId of Object.keys(providers)) {
         const multiCallsTargets: `0x${string}`[] = []
         const multiCallsDatas: string[] = []
@@ -18,19 +27,45 @@ const getBalances = async (address: String) => {
 
         if (multiCallsTargets.length + multiCallsDatas.length == 0) continue;
 
-        await getMultiCall(multiCallsTargets, multiCallsDatas, provider);
+        const multiCallResult = await submitStaticMultiCall(multiCallsTargets, multiCallsDatas, provider);
+
+        for (let i = 0; i < multiCallResult.length; i++) {
+            const token = tokens.find(token => token.address === multiCallsTargets[i]);
+            const balance = multiCallResult[i];
+
+            if (token === undefined || balance === "0x") continue;
+
+            balances.push({
+                chainId: Number(chainId),
+                name: token.name,
+                symbol: token.symbol,
+                address: token.address,
+                balance: ethers.utils.formatUnits(balance, 18),
+            });
+        }
     }
 
-    return [];
+    return balances;
 }
 
-const getMultiCall = async (multiCallsTargets: `0x${string}`[], multiCallsData: string[], provider: ethers.providers.AlchemyProvider) => {
+const submitStaticMultiCall = async (
+    multiCallsTargets: `0x${string}`[],
+    multiCallsData: string[],
+    provider: ethers.providers.AlchemyProvider
+) => {
     console.log('multi', multiCallsTargets, multiCallsData);
 
-    const multiCallContractAddress = "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441"
-    const multiCallContract = new ethers.Contract(multiCallContractAddress, MULTICALL_ABI, provider);
+    const multiCallContract = await getMultiCall(provider.network.chainId);
+    const blocking = false;
 
-    const multiCallResult = await multiCallContract.aggregate(multiCallsTargets, multiCallsData);
+    const submit = false;
+    if (!submit) [];
+
+    const multiCallResult = await multiCallContract.callStatic.aggregate(multiCallsTargets, multiCallsData, blocking);
+
+    console.log('multiCallResult', multiCallResult);
+
+    return multiCallResult;
 }
 
 export { getBalances }

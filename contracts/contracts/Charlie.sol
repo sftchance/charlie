@@ -2,7 +2,8 @@
 
 pragma solidity ^0.8.17;
 
-import {Auth, Authority} from "solmate/src/auth/Auth.sol";
+/// @dev Core dependencies.
+import {CharlieHelpers} from "./CharlieHelpers.sol";
 
 /**
  * @title Charlie
@@ -13,19 +14,9 @@ import {Auth, Authority} from "solmate/src/auth/Auth.sol";
  *         Because reads are free, and could be done anywhere, there is no limit on who can call
  *         a read. However, writes are limited to users that meet the authority requirements.
  */
-contract Charlie is Auth {
-    /// @dev The shape of the response.
-    struct Response {
-        bool success;
-        uint256 blockNumber;
-        bytes result;
-    }
-
-    /// @dev Event used to track when a user calls a function.
-    event CharlieCalled(address indexed caller, Response[] results);
-
-    /// @dev Instantiate the contract with the authority.
-    constructor() Auth(msg.sender, Authority(address(0))) {}
+contract Charlie is CharlieHelpers {
+    /// @dev Load the backend of Charlie.
+    constructor() CharlieHelpers() {}
 
     /**
      * @dev Primary controller function of Charlie that allows users to bundle
@@ -34,13 +25,13 @@ contract Charlie is Auth {
      * @param _targets The targets to call.
      * @param _calls The calls to make.
      * @param _blocking Whether or not to block on a failed call.
-     * @return The responses from the calls.
+     * @return responses The responses from the calls.
      */
     function aggregate(
         address[] calldata _targets,
         bytes[] calldata _calls,
         bool _blocking
-    ) external payable requiresAuth returns (Response[] memory) {
+    ) external payable requiresAuth returns (Response[] memory responses) {
         /// @dev Ensure that the targets and calls are the same length.
         require(
             _targets.length == _calls.length,
@@ -49,7 +40,7 @@ contract Charlie is Auth {
 
         /// @dev Instantiate the array used to store whether it was a success,
         ///      the block number, and the result.
-        Response[] memory responses = new Response[](_calls.length);
+        responses = new Response[](_calls.length);
 
         /// @dev Loop through the calls and make them.
         for (uint256 i = 0; i < _calls.length; i++) {
@@ -58,7 +49,7 @@ contract Charlie is Auth {
 
             /// @dev If the call was not successful and is blocking, revert.
             require(
-                _blocking && success || !_blocking,
+                (_blocking && success) || !_blocking,
                 "Charlie: call failed"
             );
 
@@ -68,8 +59,5 @@ contract Charlie is Auth {
 
         /// @dev Announce the use of Charlie.
         emit CharlieCalled(msg.sender, responses);
-
-        /// @dev Return the responses.
-        return responses;
     }
 }

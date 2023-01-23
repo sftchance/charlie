@@ -31,7 +31,52 @@ const tokens: {
 }]
 
 const MULTICALL_ABI = [
-    "function aggregate((address, bytes)[] calls) view returns (uint256 blockNumber, bytes[] returnData)",
+    {
+        "inputs": [
+            {
+                "internalType": "address[]",
+                "name": "_targets",
+                "type": "address[]"
+            },
+            {
+                "internalType": "bytes[]",
+                "name": "_calls",
+                "type": "bytes[]"
+            },
+            {
+                "internalType": "bool",
+                "name": "_blocking",
+                "type": "bool"
+            }
+        ],
+        "name": "aggregate",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "bool",
+                        "name": "success",
+                        "type": "bool"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "blockNumber",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "bytes",
+                        "name": "result",
+                        "type": "bytes"
+                    }
+                ],
+                "internalType": "struct Charlie.Response[]",
+                "name": "",
+                "type": "tuple[]"
+            }
+        ],
+        "stateMutability": "payable",
+        "type": "function"
+    }
 ]
 
 const ERC20_ABI = [
