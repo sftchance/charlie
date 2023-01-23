@@ -16,72 +16,10 @@ const multiCalls = {
     10: "0x42ad527de7d4e9d9d011ac45b31d8551f8fe9821",
 }
 
-// TODO: Implement the use of the allow list of tokens
-
-const tokens: {
-    address: `0x${string}`,
-    chainId: number,
-    name: string,
-    symbol: string,
-}[] = [{
-    address: "0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2",
-    chainId: 1,
-    name: "Maker",
-    symbol: "MKR",
-}]
-
-const MULTICALL_ABI = [
-    {
-        "inputs": [
-            {
-                "internalType": "address[]",
-                "name": "_targets",
-                "type": "address[]"
-            },
-            {
-                "internalType": "bytes[]",
-                "name": "_calls",
-                "type": "bytes[]"
-            },
-            {
-                "internalType": "bool",
-                "name": "_blocking",
-                "type": "bool"
-            }
-        ],
-        "name": "aggregate",
-        "outputs": [
-            {
-                "components": [
-                    {
-                        "internalType": "bool",
-                        "name": "success",
-                        "type": "bool"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "blockNumber",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "bytes",
-                        "name": "result",
-                        "type": "bytes"
-                    }
-                ],
-                "internalType": "struct Charlie.Response[]",
-                "name": "",
-                "type": "tuple[]"
-            }
-        ],
-        "stateMutability": "payable",
-        "type": "function"
-    }
-]
+const MULTICALL_ABI = [{"constant":true,"inputs":[],"name":"getCurrentBlockTimestamp","outputs":[{"name":"timestamp","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"components":[{"name":"target","type":"address"},{"name":"callData","type":"bytes"}],"name":"calls","type":"tuple[]"}],"name":"aggregate","outputs":[{"name":"blockNumber","type":"uint256"},{"name":"returnData","type":"bytes[]"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getLastBlockHash","outputs":[{"name":"blockHash","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"addr","type":"address"}],"name":"getEthBalance","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getCurrentBlockDifficulty","outputs":[{"name":"difficulty","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getCurrentBlockGasLimit","outputs":[{"name":"gaslimit","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getCurrentBlockCoinbase","outputs":[{"name":"coinbase","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"blockNumber","type":"uint256"}],"name":"getBlockHash","outputs":[{"name":"blockHash","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"}]
 
 const ERC20_ABI = [
     "function balanceOf(address owner) view returns (uint)",
-    "function transfer(address to, uint amount)",
 ]
 
-export { providers, multiCalls, tokens, MULTICALL_ABI, ERC20_ABI }
+export { providers, multiCalls, MULTICALL_ABI, ERC20_ABI }
