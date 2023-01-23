@@ -6,7 +6,6 @@ const DisconnectButton = () => {
 
     return (
         <div>
-            Connected to {address}
             <button onClick={() => disconnect()}>Disconnect</button>
         </div>
     )

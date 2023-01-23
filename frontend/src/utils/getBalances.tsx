@@ -11,7 +11,7 @@ import { Balance } from "../types";
 // or the user of another tool. If we ever get to a point where we have a lot of tokens
 // we should consider using a subgraph to get the balances of all tokens at once.
 
-const getBalances = async (address: String, size: number = 200, offset: number = 0): Promise<{
+const getBalances = async (address: String, size: number = 200, offset: number = 0, includeZeros: boolean = false): Promise<{
     results: Balance[],
     hasNextPage: boolean,
 }> => {
@@ -26,7 +26,7 @@ const getBalances = async (address: String, size: number = 200, offset: number =
         for (const token of tokens.filter(token => token.chainId === Number(chainId))) {
             const tokenContract = new ethers.Contract(token.address, ERC20_ABI, provider);
 
-            if (token.symbol === 'null' || token.symbol === null) continue;
+            if (token.symbol === 'null' || token.symbol === null || token.decimals === null) continue;
 
             multiCallsTargets.push(token.address)
             multiCallsDatas.push(tokenContract.interface.encodeFunctionData("balanceOf", [address]))
@@ -43,16 +43,18 @@ const getBalances = async (address: String, size: number = 200, offset: number =
         for (let i = 0; i < multiCallResult.returnData.length; i++) {
             const token = tokens.find(token => token.address === multiCallsTargets[i]);
 
-            if (token === undefined) continue;
+            if (token === undefined || token.decimals === null) continue;
 
             const balance = parseInt(multiCallResult.returnData[i].slice(2), 16);
+
+            if (!includeZeros && balance === 0) continue;
 
             balances.push({
                 chainId: Number(chainId),
                 name: token?.name,
                 symbol: token?.symbol,
                 address: token.address,
-                balance: ethers.utils.formatUnits(balance, 18),
+                balance: `${balance / 10 ** token.decimals}`,
             });
         }
     }

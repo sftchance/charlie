@@ -4,6 +4,8 @@ interface Balance {
     symbol: string | null;
     address: string;
     balance: string;
+    delegate: `0x${string}` | null;
+    delegated: string | null;
 }
 
 export type { Balance };

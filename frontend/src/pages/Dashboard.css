@@ -1,0 +1,88 @@
+.Dashboard {
+    min-height: 92vh;
+    display: grid;
+    grid-template-rows: min-content min-content auto;
+}
+
+.Dashboard .account {
+    display: grid;
+    grid-template-columns: min-content auto;
+    grid-gap: 1rem;
+    align-items: center;
+    margin-block: 20px;
+}
+
+.Dashboard .account img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.Dashboard .account div p {
+    color: rgba(0, 0, 0, 0.45);
+}
+
+.Dashboard .stats {
+    display: grid;
+    grid-template-columns: auto auto fit-content(100%);
+    grid-gap: 1rem;
+    margin-block: 20px;
+}
+
+.Dashboard .stats p {
+    color: rgba(0, 0, 0, 0.45);
+}
+
+.Dashboard .tokens {
+    display: grid;
+    grid-template-rows: auto min-content;
+    grid-gap: 1rem;
+    margin-block: 20px;
+}
+
+.Dashboard table {
+    display: block;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.Dashboard table thead {
+    border: 1px solid rgba(0, 0, 0, 0.45);
+    border-left: none;
+    border-right: none;
+}
+
+.Dashboard table thead,
+.Dashboard table tbody {
+    display: block;
+    width: 100%;
+}
+
+.Dashboard table thead th {
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.45);
+}
+
+.Dashboard table thead tr,
+.Dashboard table tbody tr {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 30px 3fr 1fr 2fr;
+}
+
+.Dashboard button.delegate {
+    cursor: pointer;
+    font-weight: 700;
+    padding: 0.5rem;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+@media (max-width: 375px) {
+    .Dashboard .stats {
+        grid-template-columns: auto auto;
+    }
+}
