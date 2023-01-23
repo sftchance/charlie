@@ -34,10 +34,6 @@ const getBalances = async (address: String, size: number = 200, offset: number =
 
         if (multiCallsTargets.length + multiCallsDatas.length == 0) continue;
 
-        // only use the first ten tokens for now
-        console.log('multiCallsTargets', multiCallsTargets);
-        console.log('multiCallsDatas', multiCallsDatas);
-
         const multiCallResult = await submitStaticMultiCall(
             multiCallsTargets.slice(offset, offset + size),
             multiCallsDatas.slice(offset, offset + size),
@@ -78,8 +74,6 @@ const submitStaticMultiCall = async (
             callData: multiCallsData[i],
         };
     });
-
-    console.log('calls', calls);
 
     const multiCallContract = await getMultiCall(provider.network.chainId);
 

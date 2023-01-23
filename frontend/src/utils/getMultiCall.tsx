@@ -10,8 +10,6 @@ const multiCallContracts: {
 }
 
 const getMultiCall = async (chainId: number) => {
-    console.log('getting multi call address', chainId)
-
     const provider: ethers.providers.AlchemyProvider = providers[Number(chainId)];
 
     const multiCallContractAddress = multiCallContracts[chainId];

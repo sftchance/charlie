@@ -8,7 +8,7 @@ const providers: {
     [chainId: number]: ethers.providers.AlchemyProvider
 } = {
     1: new ethers.providers.AlchemyProvider(1, "gXLumW8PNRWtrmcTIcMXSnMnQY_UnQpY"),
-    10: new ethers.providers.AlchemyProvider(10, "NAIFm3fALSbcksgIFr3P4Ku6_SqEeYQJ"),
+    // 10: new ethers.providers.AlchemyProvider(10, "NAIFm3fALSbcksgIFr3P4Ku6_SqEeYQJ"),
 }
 
 const multiCalls = {

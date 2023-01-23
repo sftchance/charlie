@@ -36,33 +36,27 @@ describe("Charlie", function () {
   });
 
   describe("Charlie", function () {
-    it("Should fail due to array length mismatch.", async function () {
-      const { charlie, mockTokens, owner, otherAccount } = await loadFixture(deployAggregator);
-
-      const targets = [mockTokens[0].address, mockTokens[1].address, mockTokens[2].address];
-      const calls = [
-        mockTokens[0].interface.encodeFunctionData("balanceOf", [otherAccount.address]),
-        mockTokens[1].interface.encodeFunctionData("balanceOf", [otherAccount.address]),
-        mockTokens[2].interface.encodeFunctionData("balanceOf", [otherAccount.address]),
-        mockTokens[0].interface.encodeFunctionData("balanceOf", [owner.address]),
-      ];
-
-      await expect(charlie.callStatic.aggregate(targets, calls, false)).to.be.revertedWith("Charlie: targets and calls must be the same length");
-    });
-
     it("Should check the balance of multiple tokens in one read.", async function () {
       const { charlie, mockTokens, owner, otherAccount } = await loadFixture(deployAggregator);
 
       const targets = [mockTokens[0].address, mockTokens[1].address, mockTokens[2].address, mockTokens[0].address];
-      const calls = [
+      const callDatas = [
         mockTokens[0].interface.encodeFunctionData("balanceOf", [otherAccount.address]),
         mockTokens[1].interface.encodeFunctionData("balanceOf", [otherAccount.address]),
         mockTokens[2].interface.encodeFunctionData("balanceOf", [otherAccount.address]),
         mockTokens[0].interface.encodeFunctionData("balanceOf", [owner.address]),
       ];
 
+      const calls = callDatas.map((callData, i) => {
+        return {
+          target: targets[i],
+          callData,
+          value: 0
+        };
+      });
+
       // we can use any provider for this on the front end
-      const result = await charlie.callStatic.aggregate(targets, calls, false);
+      const result = await charlie.callStatic.aggregate(calls, false);
 
       expect(parseInt(result[0].slice(2), 16)).to.equal(0);
       expect(parseInt(result[1].slice(2), 16)).to.equal(0);
@@ -83,7 +77,7 @@ describe("Charlie", function () {
       const delegate = otherAccount.address;
       const expiry = Math.floor(Date.now() / 1000) + 3600;
 
-      let calls = []
+      let callDatas = []
 
       for (let i = 0; i < delegations; i++) {
         const delegateSignature = await owner._signTypedData(
@@ -118,10 +112,18 @@ describe("Charlie", function () {
           s
         ]);
 
-        calls.push(call);
+        callDatas.push(call);
       }
 
-      await expect(charlie.callStatic.aggregate(targets, calls, true)).to.be.revertedWith("Charlie: call failed");
+      const calls = callDatas.map((callData, i) => {
+        return {
+          target: targets[i],
+          callData,
+          value: 0
+        };
+      });
+
+      await expect(charlie.callStatic.aggregate(calls, true)).to.be.revertedWith("Charlie: call failed");
     });
 
     it("Should delegate several tokens in one transaction.", async function () {
@@ -137,7 +139,7 @@ describe("Charlie", function () {
       const delegate = otherAccount.address;
       const expiry = Math.floor(Date.now() / 1000) + 3600;
 
-      let calls = []
+      let callDatas = []
 
       for (let i = 0; i < delegations; i++) {
         const delegateSignature = await owner._signTypedData(
@@ -172,16 +174,24 @@ describe("Charlie", function () {
           s
         ]);
 
-        calls.push(call);
+        callDatas.push(call);
       }
 
-      const result = await charlie.callStatic.aggregate(targets, calls, false);
+      const calls = callDatas.map((callData, i) => {
+        return {
+          target: targets[i],
+          callData,
+          value: 0
+        };
+      });
+
+      const result = await charlie.callStatic.aggregate(calls, false);
 
       expect(result[0].success).to.equal(true);
       expect(result[1].success).to.equal(true);
       expect(result[2].success).to.equal(true);
 
-      await charlie.aggregate(targets, calls, true);
+      await charlie.aggregate(calls, true);
     });
   });
 

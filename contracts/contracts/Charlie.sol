@@ -22,30 +22,30 @@ contract Charlie is CharlieHelpers {
      * @dev Primary controller function of Charlie that allows users to bundle
      *      multiple calls into a single transaction. The caller can choose to
      *      block on a failed call, or continue on.
-     * @param _targets The targets to call.
      * @param _calls The calls to make.
      * @param _blocking Whether or not to block on a failed call.
      * @return responses The responses from the calls.
      */
     function aggregate(
-        address[] calldata _targets,
-        bytes[] calldata _calls,
+        Call[] calldata _calls,
         bool _blocking
     ) external payable requiresAuth returns (Response[] memory responses) {
-        /// @dev Ensure that the targets and calls are the same length.
-        require(
-            _targets.length == _calls.length,
-            "Charlie: targets and calls must be the same length"
-        );
-
+        /// @dev The amount of ETH sent must be equal to the value of the calls.
+        uint256 sum;
+        
         /// @dev Instantiate the array used to store whether it was a success,
         ///      the block number, and the result.
         responses = new Response[](_calls.length);
 
         /// @dev Loop through the calls and make them.
         for (uint256 i = 0; i < _calls.length; i++) {
+            /// @dev Add the value of the call to the sum.
+            sum += _calls[i].value;
+
             /// @dev Make the call and store the response.
-            (bool success, bytes memory result) = _targets[i].call(_calls[i]);
+            (bool success, bytes memory result) = _calls[i].target.call{
+                value: _calls[i].value
+            }(_calls[i].callData);
 
             /// @dev If the call was not successful and is blocking, revert.
             require(
@@ -55,6 +55,14 @@ contract Charlie is CharlieHelpers {
 
             /// @dev Store the response.
             responses[i] = Response(success, block.number, result);
+        }
+
+        /// @dev The amount of ETH sent must be equal to the value of the calls.
+        require(msg.value >= sum, "Charlie: invalid ETH sent");
+
+        /// @dev If there is ETH left over, send it back.
+        if (msg.value > sum) {
+            payable(msg.sender).transfer(msg.value - sum);
         }
 
         /// @dev Announce the use of Charlie.

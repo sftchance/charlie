@@ -127,13 +127,6 @@ export const tokens: {
       {
          "blockchain": "ETH",
          "chainId": 1,
-         "address": "0xcc5a5de1b37a503c7943c8f261fb6b811c53aa81",
-         "symbol": "DiamondHand",
-         "name": "https://t.me/Diamond_Hand100X"
-      },
-      {
-         "blockchain": "ETH",
-         "chainId": 1,
          "address": "0x65b35d6eb7006e0e607bc54eb2dfd459923476fe",
          "symbol": "XINV",
          "name": "xINV"
@@ -1418,13 +1411,6 @@ export const tokens: {
          "address": "0xcdf7028ceab81fa0c6971208e83fa7872994bee5",
          "symbol": "T",
          "name": "Threshold Network Token"
-      },
-      {
-         "blockchain": "ETH",
-         "chainId": 1,
-         "address": "0xce7895c567dcf7b950890dea3360872524eeca41",
-         "symbol": "TRUMP",
-         "name": "trumpswap.finance"
       },
       {
          "blockchain": "AVA",

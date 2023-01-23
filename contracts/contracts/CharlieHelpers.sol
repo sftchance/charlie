@@ -6,6 +6,13 @@ pragma solidity ^0.8.17;
 import {Auth, Authority} from "solmate/src/auth/Auth.sol";
 
 contract CharlieHelpers is Auth {
+    /// @dev The shape of the call.
+    struct Call { 
+        address target;
+        bytes callData;
+        uint256 value;
+    }
+
     /// @dev The shape of the response.
     struct Response {
         bool success;

@@ -3,3 +3,9 @@
   margin: 0;
   padding: 0;
 }
+
+html, body {
+  background: #1a1919;
+  color: rgba(255, 255, 255, 0.85);
+  height: 100%;
+}
