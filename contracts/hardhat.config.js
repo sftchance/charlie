@@ -47,7 +47,6 @@ task("deploy", "Deploys Charlie to the network")
   });
 
 module.exports = {
-  defaultNetwork: "hardhat",
   solidity: {
     compilers: [
       {
@@ -65,6 +64,8 @@ module.exports = {
     apiKey: {
       sepolia: process.env.ETHERSCAN_API_KEY,
       mainnet: process.env.ETHERSCAN_API_KEY,
+      optimisticEthereum: process.env.OP_ETHERSCAN_API_KEY,
+      avalanche: process.env.AVA_ETHERSCAN_API_KEY,
     }
   },
   gasReporter: {
@@ -75,19 +76,21 @@ module.exports = {
     showMethodSig: true,
     showTimeSpent: true,
   },
-  sepolia: {
-    url: `https://rpc.sepolia.org/`,
-    accounts: [`0x${process.env.TEST_PRIVATE_KEY}`],
-    gasPrice: 50000000000, // 50 gwei
-  },
-  mainnet: {
-    url: `https://eth-mainnet.alchemyapi.io/v2/${process.env.ETH_ALCHEMY_KEY}`,
-    accounts: [`0x${process.env.PRIVATE_KEY}`],
-    gasPrice: 50000000000, // 50 gwei
-  },
-  optimism: {
-    url: `https://opt-mainnet.g.alchemy.com/v2/${process.env.OP_ALCHEMY_KEY}`,
-    accounts: [`0x${process.env.PRIVATE_KEY}`],
-    gasPrice: 15000000000, // 15 gwei
-  },
+  networks: {
+    sepolia: {
+      url: `https://rpc.sepolia.org/`,
+      accounts: [`0x${process.env.TEST_PRIVATE_KEY}`],
+      gasPrice: 30000000000,
+    },
+    mainnet: {
+      url: `https://eth-mainnet.alchemyapi.io/v2/${process.env.ETH_ALCHEMY_KEY}`,
+      accounts: [`0x${process.env.PRIVATE_KEY}`],
+      gasPrice: 30000000000,
+    },
+    optimism: {
+      url: `https://opt-mainnet.g.alchemy.com/v2/${process.env.OP_ALCHEMY_KEY}`,
+      accounts: [`0x${process.env.PRIVATE_KEY}`],
+      gasPrice: 15000000000,
+    },
+  }
 };
