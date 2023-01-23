@@ -2,21 +2,13 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Space Mono', sans-serif;
 }
 
 html,
 body {
   color: rgba(0, 0, 0, 0.87);
   height: 100%;
-}
-
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 0;
-  background-color: #fff;
 }
 
 table {
@@ -38,6 +30,11 @@ button {
   font-weight: 700;
   padding: 0.5rem;
   text-transform: uppercase;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
 }
 
 .container {

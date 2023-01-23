@@ -50,7 +50,7 @@
 }
 
 .Dashboard table thead {
-    border: 1px solid rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(0, 0, 0, 0.15);
     border-left: none;
     border-right: none;
 }

@@ -6,7 +6,10 @@ const DisconnectButton = () => {
 
     return (
         <div>
-            <button onClick={() => disconnect()}>Disconnect</button>
+            <button onClick={() => {
+                disconnect()
+                window.location.href = '/'
+            }}>Disconnect</button>
         </div>
     )
 }

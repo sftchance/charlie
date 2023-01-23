@@ -1,19 +1,11 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useAccount, useEnsAvatar, useEnsName } from 'wagmi'
 
-import { useAccount, useEnsName } from 'wagmi'
-
-import { DisconnectButton } from '../components'
 import { getBalances } from '../utils'
-
 import { Balance } from '../types'
 
-import charlie from "../assets/charlie.svg";
-
 import "./Dashboard.css"
-
-const rightAlign = {
-    alignText: 'right'
-}
 
 const formatAddress = (address: `0x${string}`) => {
     return `${address.slice(0, 6)}...${address.slice(-4)}`
@@ -34,11 +26,25 @@ const formatBalance = (balance: string) => {
 }
 
 const Dashboard = () => {
-    const { address } = useAccount()
+    const { address: paramAddress } = useParams<{ address: `0x${string}` }>();
+    const { address: connectedAddress } = useAccount()
+
+    if(paramAddress && paramAddress === connectedAddress) window.location.href = '/account';
+
+    const address = paramAddress || connectedAddress;
+
     const { data: ensName } = useEnsName({ address })
+    const { data: avatar } = useEnsAvatar({ address })
 
     const [balances, setBalances] = useState<Balance[] | null>(null);
     const [selected, setSelected] = useState<Balance[]>([]);
+
+    const balanceTotal = balances?.reduce((acc, balance) => acc + Number(balance.balance), 0) || 0;
+    const percentDelegated = balances?.reduce((acc, balance) => {
+        if (balance.balance === '0.0') return acc;
+
+        return 0;
+    }, 0) || 0;
 
     const hasTokens = balances?.some(balance => balance.balance !== '0.0');
 
@@ -74,17 +80,12 @@ const Dashboard = () => {
 
     return (
         <div className="App container">
-            <nav>
-                <img src={charlie} alt="Charlie" />
-                <DisconnectButton />
-            </nav>
-
             <div className="Dashboard">
                 <div className="account">
-                    <img src="https://avatars.dicebear.com/api/avataaars/:seed.svg" alt="avatar" />
+                    <img src={avatar || "https://via.placeholder.com/150"} alt={`Avatar for ${ensName || formatAddress(address)}`}/>
                     <div>
                         <h3>{ensName || formatAddress(address)}</h3>
-                        <p>50% Delegated</p>
+                        <p>{percentDelegated}% Delegated</p>
                     </div>
                 </div>
 
@@ -94,11 +95,11 @@ const Dashboard = () => {
                         <p>Delegates</p>
                     </div>
                     <div>
-                        <h3>0 / $0.00</h3>
+                        <h3>$0.00</h3>
                         <p>Delegated</p>
                     </div>
                     <div>
-                        <h3>218 / $3.50</h3>
+                        <h3>$3.50</h3>
                         <p>Loose</p>
                     </div>
                 </div>

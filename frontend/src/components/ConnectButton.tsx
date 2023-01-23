@@ -6,7 +6,10 @@ const ConnectButton = () => {
         connector: new InjectedConnector(),
     })
 
-    return <button onClick={() => connect()}>Connect Wallet</button>
+    return <button onClick={() => {
+        connect();
+        window.location.href = "/account";
+    }}>Connect Wallet</button>
 }
 
 export { ConnectButton }
