@@ -61,7 +61,7 @@ contract Charlie is CharlieHelpers {
         require(msg.value >= sum, "Charlie: invalid ETH sent");
 
         /// @dev If there is ETH left over, send it back.
-        if (msg.value > sum) {
+        if (msg.value >= sum) {
             payable(msg.sender).transfer(msg.value - sum);
         }
 
