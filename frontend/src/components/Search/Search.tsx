@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react"
 
+import { ethers } from "ethers";
+
 import "./Search.css"
 
 const Search = ({ placeholder = "Wallet address...", icon = "🔍" }) => {
     const [search, setSearch] = useState("");
 
-    const validSearch = search.length === 42 && search.startsWith("0x")
+    const searchIsAddress = ethers.utils.isAddress(search)  
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value)
@@ -27,7 +29,7 @@ const Search = ({ placeholder = "Wallet address...", icon = "🔍" }) => {
     return (
         <div className="search">
             <form onSubmit={handleSearch}>
-                <div className={`status ${search.length === 0 ? "empty" : validSearch ? "valid" : "invalid"}`}></div>
+                <div className={`status ${search.length === 0 ? "empty" : searchIsAddress ? "valid" : "invalid"}`}></div>
                 <input type="text" placeholder={placeholder} value={search} onChange={handleChange} />
                 <button type="submit">
                     <span className="icon">{icon}</span>

@@ -1,0 +1,18 @@
+.footer { 
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    padding: 1rem 0;
+    gap: 20px;
+}
+
+.footer img { 
+    height: 32px;
+}
+
+.copyright { 
+    display: grid;
+    grid-template-columns: auto max-content;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

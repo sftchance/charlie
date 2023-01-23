@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { useAccount } from 'wagmi';
@@ -28,7 +28,7 @@ const Navbar = () => {
                 </div>
 
                 <div className="links">
-                    <Link to="/recent">Recent</Link>
+                    <Link to="/discover">Discover</Link>
                 </div>
 
                 <div className="links right">

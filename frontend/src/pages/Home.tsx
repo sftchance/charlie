@@ -21,7 +21,7 @@ const Home = () => {
                             <Search />
                         </div>
 
-                        <Link to={`/account/${exampleAddress}`} className="example">View example wallet</Link>
+                        <small><Link to={`/account/${exampleAddress}`} className="example">View example wallet</Link></small>
                     </div>
                 </div>
             </div>
@@ -30,22 +30,22 @@ const Home = () => {
                 <div className="benefits">
                     <div className="card benefit">
                         <h3>Make holding governance tokens worth it</h3>
-                        <p>Unlock the full power of the network around governance tokens with the ability to delegate all your voting power - no coding needed.</p>
+                        <p>Forget the days of holding governance tokens that don't get any use.</p>
                     </div>
 
                     <div className="card benefit">
                         <h3>Delegate your tokens in one click</h3>
-                        <p>Delegate your tokens across every chain in one click. No coding needed.</p>
+                        <p>Throw away your scratch notes and spreadsheets. Delegate your tokens in one click.</p>
                     </div>
 
                     <div className="card benefit">
-                        <h3>Manage your tokens across every chain</h3>
-                        <p>Manage your tokens across every chain in one place. No coding needed.</p>
+                        <h3>Manage your tokens across every key chain</h3>
+                        <p>Manage your tokens across every key chain, including Ethereum, Optimism, and more.</p>
                     </div>
 
                     <div className="card benefit">
                         <h3>Unlock the full power of the network</h3>
-                        <p>Unlock the full power of the network around governance tokens with the ability to delegate all your voting power - no coding needed.</p>
+                        <p>Lower the dormant voting power by promoting better personal governance practices.</p>
                     </div>
                 </div>
             </div>

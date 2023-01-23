@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 
-import { Navbar } from './components'
-import { Home, Dashboard, Recent } from './pages'
+import { Navbar, Footer } from './components'
+import { Home, Dashboard, Discover } from './pages'
 
 import { WagmiConfig, createClient } from 'wagmi'
 import { getDefaultProvider } from 'ethers'
@@ -21,12 +21,12 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/recent" element={<Recent />} />
+          <Route path="/discover" element={<Discover />} />
           <Route path="/account" element={<Dashboard />} />
           <Route path="/account/:address" element={<Dashboard />} />
         </Routes>
 
-        {/* {isConnected ? <Dashboard /> : <Home />} */}
+        <Footer />
       </div>
     </WagmiConfig>
   )

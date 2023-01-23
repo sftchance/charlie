@@ -28,6 +28,7 @@
     display: grid;
     grid-template-columns: 3fr 3fr 3fr 3fr;
     gap: 10px;
+    margin-block: 40px;
 }
 
 .home .benefits .benefit {
@@ -37,8 +38,18 @@
 }
 
 .home .benefits .benefit h3 { 
-    max-width: 75%;
+    max-width: 200px;
     margin-bottom: 10px;
+}
+
+@media (max-width: 900px) {
+    .home .hero .content { 
+        max-width: 80%;
+    }
+
+    .home .benefits {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 @media (max-width: 768px) {
@@ -53,12 +64,6 @@
 
     .home .hero .buttons .search {
         grid-column: 1 / span 2;
-    }
-}
-
-@media (max-width: 900px) {
-    .home .hero .content { 
-        max-width: 80%;
     }
 
     .home .benefits {
