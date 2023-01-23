@@ -28,7 +28,9 @@ contract Charlie is Auth {
     constructor() Auth(msg.sender, Authority(address(0))) {}
 
     /**
-     * @dev This function is used to make calls that do not require a successful response.
+     * @dev Primary controller function of Charlie that allows users to bundle
+     *      multiple calls into a single transaction. The caller can choose to
+     *      block on a failed call, or continue on.
      * @param _targets The targets to call.
      * @param _calls The calls to make.
      * @param _blocking Whether or not to block on a failed call.
@@ -55,7 +57,10 @@ contract Charlie is Auth {
             (bool success, bytes memory result) = _targets[i].call(_calls[i]);
 
             /// @dev If the call was not successful and is blocking, revert.
-            require(success || !_blocking, "Charlie: call failed");
+            require(
+                _blocking && success || !_blocking,
+                "Charlie: call failed"
+            );
 
             /// @dev Store the response.
             responses[i] = Response(success, block.number, result);

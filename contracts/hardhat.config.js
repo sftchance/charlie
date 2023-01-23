@@ -1,5 +1,6 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("@nomiclabs/hardhat-etherscan");
+require('hardhat-deploy');
 require("hardhat-gas-reporter");
 
 require("dotenv").config();
@@ -8,7 +9,7 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
   const accounts = await hre.ethers.getSigners();
 
   for (const account of accounts) {
-      console.log(account.address);
+    console.log(account.address);
   }
 });
 
@@ -46,6 +47,7 @@ task("deploy", "Deploys Charlie to the network")
   });
 
 module.exports = {
+  defaultNetwork: "hardhat",
   solidity: {
     compilers: [
       {
@@ -59,6 +61,12 @@ module.exports = {
       }
     ],
   },
+  etherscan: {
+    apiKey: {
+      sepolia: process.env.ETHERSCAN_API_KEY,
+      mainnet: process.env.ETHERSCAN_API_KEY,
+    }
+  },
   gasReporter: {
     enabled: true,
     currency: 'USD',
@@ -69,12 +77,17 @@ module.exports = {
   },
   sepolia: {
     url: `https://rpc.sepolia.org/`,
-    accounts: [`0x${process.env.SEPOLIA_PRIVATE_KEY}`],
+    accounts: [`0x${process.env.TEST_PRIVATE_KEY}`],
     gasPrice: 50000000000, // 50 gwei
   },
   mainnet: {
-    url: `https://eth-mainnet.alchemyapi.io/v2/${process.env.ALCHEMY_KEY}`,
-    accounts: [`0x${process.env.ETHEREUM_PRIVATE_KEY}`],
+    url: `https://eth-mainnet.alchemyapi.io/v2/${process.env.ETH_ALCHEMY_KEY}`,
+    accounts: [`0x${process.env.PRIVATE_KEY}`],
     gasPrice: 50000000000, // 50 gwei
+  },
+  optimism: {
+    url: `https://opt-mainnet.g.alchemy.com/v2/${process.env.OP_ALCHEMY_KEY}`,
+    accounts: [`0x${process.env.PRIVATE_KEY}`],
+    gasPrice: 15000000000, // 15 gwei
   },
 };

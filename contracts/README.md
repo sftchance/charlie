@@ -12,6 +12,7 @@ Charlie aims to fix this and included in the repository is the very basic smart 
 npm i
 npx hardhat test
 npx hardhat accounts
+npx hardhat coverage --network hardhat
 npx hardhat deploy --network <network_name>
 ```
 
@@ -22,4 +23,3 @@ While it would be ideal to support all EVM chains, Charlie is in the MVP phase a
 - [x] Sepolia
 - [x] Ethereum
 - [x] Optimism
-- [x] Avalanche

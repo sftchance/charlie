@@ -70,6 +70,60 @@ describe("Charlie", function () {
       expect(parseInt(result[3].slice(2), 16)).to.equal(1000000);
     });
 
+    it("Should fail due to invalid signature and blocking.", async function () {
+      const { charlie, mockTokens, owner, otherAccount } = await loadFixture(deployAggregator);
+
+      mockTokens[0].approve(charlie.address, 1000000);
+      mockTokens[1].approve(charlie.address, 1000000);
+      mockTokens[2].approve(charlie.address, 1000000);
+
+      const targets = [mockTokens[0].address, mockTokens[1].address, mockTokens[2].address];
+
+      const delegations = 3;
+      const delegate = otherAccount.address;
+      const expiry = Math.floor(Date.now() / 1000) + 3600;
+
+      let calls = []
+
+      for (let i = 0; i < delegations; i++) {
+        const delegateSignature = await owner._signTypedData(
+          {
+            name: "Charlie",
+            version: "1",
+            chainId: 31337,
+            verifyingContract: charlie.address,
+          },
+          {
+            Delegation: [
+              { name: "delegatee", type: "address" },
+              { name: "nonce", type: "uint256" },
+              { name: "expiry", type: "uint256" },
+            ],
+          },
+          {
+            delegatee: delegate,
+            nonce: i,
+            expiry,
+          }
+        );
+
+        const { v, r, s } = ethers.utils.splitSignature(delegateSignature);
+
+        const call = mockTokens[i].interface.encodeFunctionData("delegateBySig", [
+          delegate,
+          0,
+          1,
+          v,
+          r,
+          s
+        ]);
+
+        calls.push(call);
+      }
+
+      await expect(charlie.callStatic.aggregate(targets, calls, true)).to.be.revertedWith("Charlie: call failed");
+    });
+
     it("Should delegate several tokens in one transaction.", async function () {
       const { charlie, mockTokens, owner, otherAccount } = await loadFixture(deployAggregator);
 
@@ -127,7 +181,7 @@ describe("Charlie", function () {
       expect(result[1].success).to.equal(true);
       expect(result[2].success).to.equal(true);
 
-      await charlie.aggregate(targets, calls, false);
+      await charlie.aggregate(targets, calls, true);
     });
   });
 
