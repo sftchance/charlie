@@ -37,8 +37,11 @@ contract Charlie is CharlieHelpers {
         ///      the block number, and the result.
         responses = new Response[](_calls.length);
 
+        /// @dev Load the for loop counter.
+        uint256 i;
+
         /// @dev Loop through the calls and make them.
-        for (uint256 i = 0; i < _calls.length; i++) {
+        for (i; i < _calls.length; i++) {
             /// @dev Add the value of the call to the sum.
             sum += _calls[i].value;
 
@@ -49,7 +52,7 @@ contract Charlie is CharlieHelpers {
 
             /// @dev If the call was not successful and is blocking, revert.
             require(
-                (_blocking && success) || !_blocking,
+                !_blocking || (_blocking && success),
                 "Charlie: call failed"
             );
 
