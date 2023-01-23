@@ -1,19 +1,22 @@
-.hero {
+.home .hero {
     padding-block: 40px;
 }
 
-.hero .container {
-    max-width: 65%;
+.home .hero .content {
+    max-width: 55%;
     margin-left: 0;
+    min-height: 600px;
+    display: grid;
+    align-content: center;
 }
 
-.hero p.lead {
+.home .hero p.lead {
     font-size: 1.25rem;
     margin-bottom: 40px;
     margin-top: 20px;
 }
 
-.hero .buttons {
+.home .hero .buttons {
     display: grid;
     grid-template-columns: max-content min-content auto;
     column-gap: 1rem;
@@ -21,17 +24,44 @@
     margin-bottom: 20px;
 }
 
+.home .benefits { 
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr 3fr;
+    gap: 10px;
+}
+
+.home .benefits .benefit {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.home .benefits .benefit h3 { 
+    max-width: 75%;
+    margin-bottom: 10px;
+}
+
 @media (max-width: 768px) {
-    .hero .container {
+    .home .hero .content {
         max-width: 100%;
     }
 
-    .hero .buttons {
+    .home .hero .buttons {
         grid-template-columns: auto auto;
         row-gap: 1rem;
     }
 
-    .hero .buttons input {
+    .home .hero .buttons .search {
         grid-column: 1 / span 2;
+    }
+}
+
+@media (max-width: 900px) {
+    .home .hero .content { 
+        max-width: 80%;
+    }
+
+    .home .benefits {
+        grid-template-columns: 1fr;
     }
 }

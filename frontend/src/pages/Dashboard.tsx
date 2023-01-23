@@ -14,8 +14,11 @@ const formatAddress = (address: `0x${string}`) => {
 const formatBalance = (balance: string) => {
     const number = Number(balance);
 
+    const sigFigs = `${number.toFixed(18)}`.split('.')[1];
+    const fixed = 1 + sigFigs?.split('').findIndex(char => char !== '0') || 0;
+
     if (number < 1000)
-        return number.toFixed(1);
+        return number.toFixed(fixed);
     else if (number < 1000000)
         return `${(number / 1000).toFixed(1)}k`;
     else if (number < 1000000000)
@@ -29,7 +32,7 @@ const Dashboard = () => {
     const { address: paramAddress } = useParams<{ address: `0x${string}` }>();
     const { address: connectedAddress } = useAccount()
 
-    if(paramAddress && paramAddress === connectedAddress) window.location.href = '/account';
+    if (paramAddress && paramAddress === connectedAddress) window.location.href = '/account';
 
     const address = paramAddress || connectedAddress;
 
@@ -39,14 +42,17 @@ const Dashboard = () => {
     const [balances, setBalances] = useState<Balance[] | null>(null);
     const [selected, setSelected] = useState<Balance[]>([]);
 
-    const balanceTotal = balances?.reduce((acc, balance) => acc + Number(balance.balance), 0) || 0;
     const percentDelegated = balances?.reduce((acc, balance) => {
         if (balance.balance === '0.0') return acc;
 
         return 0;
     }, 0) || 0;
 
-    const hasTokens = balances?.some(balance => balance.balance !== '0.0');
+    const copy = () => {
+        if (!address) return;
+
+        navigator.clipboard.writeText(address);
+    }
 
     const toggleAll = () => {
         if (!balances || selected.length === balances.length) {
@@ -82,9 +88,11 @@ const Dashboard = () => {
         <div className="App container">
             <div className="Dashboard">
                 <div className="account">
-                    <img src={avatar || "https://via.placeholder.com/150"} alt={`Avatar for ${ensName || formatAddress(address)}`}/>
+                    <img src={avatar || "https://via.placeholder.com/150"} alt={`Avatar for ${ensName || formatAddress(address)}`} />
                     <div>
-                        <h3>{ensName || formatAddress(address)}</h3>
+                        <h3>
+                            <button className="link" onClick={copy}>{ensName || formatAddress(address)}</button>
+                        </h3>
                         <p>{percentDelegated}% Delegated</p>
                     </div>
                 </div>
@@ -104,10 +112,7 @@ const Dashboard = () => {
                     </div>
                 </div>
 
-                {/* {hasTokens === false && <p>This address does not hold any governance tokens.</p>} */}
-
                 <div className="tokens">
-                    {/* Instead of using a list, use a table that has a checkbox to select multiple items at once */}
                     <table>
                         <thead>
                             <tr>
@@ -124,7 +129,7 @@ const Dashboard = () => {
                         </thead>
                         <tbody>
                             {balances
-                                ? balances?.map((balance, i) => (
+                                ? balances.length > 0 ? balances?.map((balance, i) => (
                                     <tr key={balance.address}>
                                         <td className="checkbox">
                                             <input type="checkbox"
@@ -139,6 +144,9 @@ const Dashboard = () => {
                                         </td>
                                     </tr>
                                 )) :
+                                    <tr>
+                                        <td className="none">No tokens found.</td>
+                                    </tr> :
                                 <tr>
                                     <td colSpan={4}>Loading...</td>
                                 </tr>
@@ -146,11 +154,15 @@ const Dashboard = () => {
                         </tbody>
                     </table>
 
-                    <button
-                        className="delegate"
-                        onClick={delegate}
-                        disabled={selected.length === 0}
-                    >Delegate</button>
+                    <div className="controls">
+                        {<p>{selected.length} selected</p>}
+
+                        <button
+                            className="delegate"
+                            onClick={delegate}
+                            disabled={selected.length === 0}
+                        >Delegate</button>
+                    </div>
                 </div>
             </div>
         </div>

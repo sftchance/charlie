@@ -33,6 +33,20 @@ button {
   text-transform: uppercase;
 }
 
+button.link { 
+  background: none;
+  color: #000;
+  font-size: inherit;
+  padding: 0;
+}
+
+button.link:active,
+button.link:focus,
+button.link:hover {
+  background: none;
+  color: rgba(0, 0, 0, 0.75);
+}
+
 a {
   text-decoration: none;
   color: #000;

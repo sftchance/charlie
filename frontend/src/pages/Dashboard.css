@@ -73,6 +73,15 @@
     grid-template-columns: 30px 3fr 1fr 2fr;
 }
 
+.Dashboard table tbody tr td.none { 
+    grid-column: 1 / span 4;
+}
+
+.Dashboard .controls p { 
+    margin-bottom: 10px;
+    color:rgba(0, 0, 0, 0.45);
+}
+
 .Dashboard button.delegate {
     cursor: pointer;
     font-weight: 700;

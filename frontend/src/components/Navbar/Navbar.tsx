@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { useAccount } from 'wagmi';
 
-import { ConnectButton, DisconnectButton } from '../'
+import { ConnectButton, DisconnectButton, Search } from '../'
 
 import charlie from "../../assets/charlie.svg";
 
@@ -13,6 +13,8 @@ const Navbar = () => {
     const { address } = useAccount()
 
     const [collapsed, setCollapsed] = useState(false);
+
+
 
     return (
         <div className="container">
@@ -30,6 +32,8 @@ const Navbar = () => {
                 </div>
 
                 <div className="links right">
+                    <Search />
+
                     {address && <Link to="account/">
                         <button>
                             {address.slice(0, 6) + "..." + address.slice(-4)}
