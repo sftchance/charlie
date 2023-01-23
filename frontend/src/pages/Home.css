@@ -1,0 +1,37 @@
+.hero {
+    padding-block: 40px;
+}
+
+.hero .container {
+    max-width: 65%;
+    margin-left: 0;
+}
+
+.hero p.lead {
+    font-size: 1.25rem;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+.hero .buttons {
+    display: grid;
+    grid-template-columns: max-content min-content auto;
+    column-gap: 1rem;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .hero .container {
+        max-width: 100%;
+    }
+
+    .hero .buttons {
+        grid-template-columns: auto auto;
+        row-gap: 1rem;
+    }
+
+    .hero .buttons input {
+        grid-column: 1 / span 2;
+    }
+}

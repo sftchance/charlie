@@ -135,7 +135,7 @@ const Dashboard = () => {
                                         <td>{balance.name} ({balance.symbol})</td>
                                         <td>{balance?.delegate ? balance.delegate : '-'}</td>
                                         <td style={{ textAlign: "right" }}>
-                                            {balance.delegate ? formatBalance(balance.balance) : '0.0'} / {formatBalance(balance.balance)}
+                                            {formatBalance(balance.balance)}
                                         </td>
                                     </tr>
                                 )) :

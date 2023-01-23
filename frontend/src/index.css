@@ -9,6 +9,7 @@ html,
 body {
   color: rgba(0, 0, 0, 0.87);
   height: 100%;
+  width: 100vw;
 }
 
 table {
@@ -35,6 +36,13 @@ button {
 a {
   text-decoration: none;
   color: #000;
+}
+
+input {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+  outline: none;
+  padding: 0.5rem;
 }
 
 .container {
