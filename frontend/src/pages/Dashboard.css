@@ -1,7 +1,7 @@
 .Dashboard {
     min-height: 92vh;
     display: grid;
-    grid-template-rows: min-content min-content auto;
+    grid-template-rows: min-content auto;
 }
 
 .Dashboard .account {
@@ -12,14 +12,14 @@
     margin-block: 20px;
 }
 
-.Dashboard .account .avatar { 
+.Dashboard .account .avatar {
     width: 65px;
     height: 65px;
     border-radius: 50%;
     position: relative;
 }
 
-.Dashboard .account img.blur { 
+.Dashboard .account img.blur {
     filter: blur(20px);
     position: absolute;
     width: 100%;
@@ -40,17 +40,6 @@
 }
 
 .Dashboard .account div p {
-    color: rgba(0, 0, 0, 0.45);
-}
-
-.Dashboard .stats {
-    display: grid;
-    grid-template-columns: auto auto fit-content(100%);
-    grid-gap: 1rem;
-    margin-block: 20px;
-}
-
-.Dashboard .stats p {
     color: rgba(0, 0, 0, 0.45);
 }
 
@@ -90,16 +79,29 @@
 .Dashboard table tbody tr {
     align-items: center;
     display: grid;
-    grid-template-columns: 30px 3fr 1fr 2fr;
+    grid-template-columns: 0px 3fr 1fr 2fr;
 }
 
-.Dashboard table tbody tr td.none { 
+.Dashboard table tbody tr td.none {
     grid-column: 1 / span 4;
 }
 
-.Dashboard .controls p { 
+.Dashboard .tokens.mine table thead tr,
+.Dashboard .tokens.mine table tbody tr {
+    grid-template-columns: 30px 3fr 1fr 2fr;
+}
+
+.Dashboard .tokens input {
+    display: none;
+}
+
+.Dashboard .tokens.mine input {
+    display: block;
+}
+
+.Dashboard .controls p {
     margin-bottom: 10px;
-    color:rgba(0, 0, 0, 0.45);
+    color: rgba(0, 0, 0, 0.45);
 }
 
 .Dashboard button.delegate {
@@ -109,10 +111,4 @@
     padding: 0.5rem;
     text-transform: uppercase;
     width: 100%;
-}
-
-@media (max-width: 375px) {
-    .Dashboard .stats {
-        grid-template-columns: auto auto;
-    }
 }

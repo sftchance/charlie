@@ -42,6 +42,7 @@ const Dashboard = () => {
     const [balances, setBalances] = useState<Balance[] | null>(null);
     const [selected, setSelected] = useState<Balance[]>([]);
 
+    const mine = !paramAddress || paramAddress === connectedAddress;
     const avatarURL = avatar || "https://via.placeholder.com/150";
 
     const percentDelegated = balances?.reduce((acc, balance) => {
@@ -102,22 +103,7 @@ const Dashboard = () => {
                     </div>
                 </div>
 
-                <div className="stats">
-                    <div>
-                        <h3>12</h3>
-                        <p>Delegates</p>
-                    </div>
-                    <div>
-                        <h3>$0.00</h3>
-                        <p>Delegated</p>
-                    </div>
-                    <div>
-                        <h3>$3.50</h3>
-                        <p>Loose</p>
-                    </div>
-                </div>
-
-                <div className="tokens">
+                <div className={`tokens ${mine ? 'mine' : ''}`}>
                     <table>
                         <thead>
                             <tr>
@@ -160,13 +146,17 @@ const Dashboard = () => {
                     </table>
 
                     <div className="controls">
-                        {<p>{selected.length} selected</p>}
+                        {mine && <>
+                            {<p>{selected.length} selected</p>}
 
-                        <button
-                            className="primary delegate"
-                            onClick={delegate}
-                            disabled={selected.length === 0}
-                        ><span className="content">Delegate</span></button>
+                            <input placeholder="Delegate to" />
+
+                            <button
+                                className="primary delegate"
+                                onClick={delegate}
+                                disabled={selected.length === 0}
+                            ><span className="content">Delegate</span></button>
+                        </>}
                     </div>
                 </div>
             </div>
