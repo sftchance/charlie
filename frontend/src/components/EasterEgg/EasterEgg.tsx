@@ -24,7 +24,7 @@ const EasterEgg = ({ found, toggle }: { found: boolean, toggle: () => void }) =>
 
             <div className="container">
                 <h1><span>"</span>{quote}<span>"</span></h1>
-                <h4>- ChapGPT (<em>maybe</em>)</h4>
+                <h4>- ChatGPT (<em>maybe</em>)</h4>
 
                 <a href={twitter} target="_blank" rel="noreferrer">
                     <button className="twitter">
