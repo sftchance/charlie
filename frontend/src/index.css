@@ -91,7 +91,7 @@ button.primary:focus::before {
   opacity: 0.75;
 }
 
-button.primary.secondary { 
+button.primary.secondary {
   background: linear-gradient(-37deg, #5243f9, #43f9e1);
   color: #fff;
 }
@@ -101,11 +101,11 @@ button.primary.secondary:focus {
   background: linear-gradient(-37deg, #5243f9, #43f9e1);
 }
 
-button.primary.secondary::after { 
+button.primary.secondary::after {
   background: linear-gradient(-37deg, #5243f9, #43f9e1);
 }
 
-button:disabled { 
+button:disabled {
   cursor: auto !important;
   filter: saturate(0.1);
 }
@@ -137,7 +137,51 @@ input {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 0 1rem;
 }
+
+.gradient {
+  background: linear-gradient(-37deg, #ff6804, #ff04c9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+
+  /* Add the noise texture to text with the gradient effect and mask it to the text */
+  background-image: url('/noise.png');
+  background-blend-mode: overlay;
+  background-size: 200px 200px;
+
+  opacity: 0.75;
+}
+
+.gradient::before {
+  content: 'one place';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(-37deg, #ff6804, #ff04c9);
+  z-index: -1;
+
+  background-blend-mode: screen;
+  -webkit-background-clip: text;
+} 
+
+.gradient::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  background: linear-gradient(-37deg, #ff6804, #ff04c9);
+  z-index: -1;
+  filter: blur(50px);
+  opacity: .35;
+}
+
+
+

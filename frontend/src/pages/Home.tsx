@@ -1,18 +1,27 @@
+import { useState } from "react"
 import { Link } from "react-router-dom"
 
-import { ConnectButton, Search } from "../components"
+import { ConnectButton, Search, EasterEgg } from "../components"
 
 import "./Home.css"
 
 const Home = () => {
     const exampleAddress = "0x5e349eca2dc61aBCd9dD99Ce94d04136151a09Ee"
 
+    const [easterEggFound, setEasterEggFound] = useState(false)
+
+    const toggleEasterEgg = () => {
+        setEasterEggFound(!easterEggFound)
+    }
+
     return (
         <div className="home">
+            <EasterEgg found={easterEggFound} toggle={toggleEasterEgg} />
+
             <div className="hero">
                 <div className="container">
                     <div className="content">
-                        <h1>Manage and delegate your governance tokens across every chain in one click.</h1>
+                        <h1>Manage and delegate your governance tokens across every chain in <span className="gradient" onClick={toggleEasterEgg}>one place</span>.</h1>
                         <p className="lead">Unlock the full power of the network around governance tokens with the ability to delegate all your voting power - no coding needed.</p>
 
                         <div className="buttons">
@@ -34,8 +43,8 @@ const Home = () => {
                     </div>
 
                     <div className="card benefit">
-                        <h3>Delegate your tokens in one click</h3>
-                        <p>Throw away your scratch notes and spreadsheets. Delegate your tokens in one click.</p>
+                        <h3>Delegate your tokens through one platform</h3>
+                        <p>Throw away your scratch notes and spreadsheets. Manage tokens in 1 simple interface.</p>
                     </div>
 
                     <div className="card benefit">

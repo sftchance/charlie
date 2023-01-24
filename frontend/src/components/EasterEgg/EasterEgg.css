@@ -1,0 +1,108 @@
+.easteregg { 
+    display: none;
+    cursor: pointer;
+    color: #fff;
+    align-items: center;
+    padding-bottom: 80px;
+    padding-top: 120px;
+}
+
+.home .easteregg.found {
+    display: grid;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(-37deg, #ff6804, #ff04c9);  
+    z-index: 99;
+}
+
+.easteregg .tag {
+    position: fixed;
+    opacity: 0.15;
+    top: 80px;
+    left: 80px;
+    font-size: 1.25rem;
+    max-width: 150px;
+    transform: rotate(-18deg);
+}
+
+.easteregg .container { 
+    margin-left: 0px;
+    max-width: 768px;
+    margin: auto;
+}
+
+.easteregg h1,
+.easteregg h2,
+.easteregg h3,
+.easteregg h4,
+.easteregg h5 {
+    font-style: italic;
+    max-width: 800px;
+}
+
+.easteregg h1 {
+    font-size: 2.5rem;
+    opacity: 1;
+}
+
+.easteregg h1 span { 
+    font-size: 9rem;
+    font-style: normal;
+    line-height: 0.25rem;
+    opacity: 0.15;
+}
+
+.easteregg h4 {
+    font-size: 24px;
+    font-style: italic;
+    opacity: 0.45;
+}
+
+.easteregg button { 
+    margin-top: 80px;
+}
+
+.easteregg hr { 
+    border: 1px solid #fff;
+    opacity: 0.15;
+    margin-block: 40px;
+}
+
+.easteregg p.lead { 
+    font-size: 1.25rem;
+    opacity: 0.85;
+    margin-top: 20px;
+    font-style: italic;
+}
+
+.easteregg .progress {
+    position: relative;
+    margin-top: 40px;
+    height: 60px;
+}
+
+.easteregg .progress h1 {
+    margin-left: 20px;
+    position: absolute;
+    top: 0;
+}
+
+.easteregg .progress .bar {
+    position: absolute;
+    top: 0;
+    background: #fff;
+    height: 60px;
+    opacity: 0.15;
+}
+
+.easteregg .progress::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 60px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+}
