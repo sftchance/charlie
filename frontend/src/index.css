@@ -32,9 +32,85 @@ button {
   font-weight: 700;
   padding: 0.5rem;
   text-transform: uppercase;
+  transition: all .15s ease-in-out;
 }
 
-button.link { 
+button.primary {
+  background: linear-gradient(-37deg, #ff6804, #ff04c9);
+  position: relative;
+  background-position: 0 0;
+}
+
+button.primary .content {
+  position: relative;
+  color: #fff;
+  z-index: 5;
+  height: initial;
+}
+
+button.primary:hover,
+button.primary:focus {
+  background: linear-gradient(-37deg, #ff6804, #ff04c9);
+}
+
+button.primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('/noise.png') repeat;
+  background-blend-mode: overlay;
+  background-size: 200px 200px;
+  transition: all .15s ease-in-out;
+}
+
+button.primary::after {
+  /* Set background of button as soft gradient with white noise on top */
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  background: linear-gradient(-37deg, #ff6804, #ff04c9);
+  z-index: -1;
+  filter: blur(10px);
+  opacity: .25;
+  transition: all .15s ease-in-out;
+}
+
+button.primary:hover::after,
+button.primary:focus::after {
+  opacity: 0.35;
+}
+
+button.primary:hover::before,
+button.primary:focus::before {
+  opacity: 0.75;
+}
+
+button.primary.secondary { 
+  background: linear-gradient(-37deg, #5243f9, #43f9e1);
+  color: #fff;
+}
+
+button.primary.secondary:hover,
+button.primary.secondary:focus {
+  background: linear-gradient(-37deg, #5243f9, #43f9e1);
+}
+
+button.primary.secondary::after { 
+  background: linear-gradient(-37deg, #5243f9, #43f9e1);
+}
+
+button:disabled { 
+  cursor: auto !important;
+  filter: saturate(0.1);
+}
+
+button.link {
   background: none;
   color: #000;
   font-size: inherit;

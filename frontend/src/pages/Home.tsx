@@ -16,7 +16,7 @@ const Home = () => {
                         <p className="lead">Unlock the full power of the network around governance tokens with the ability to delegate all your voting power - no coding needed.</p>
 
                         <div className="buttons">
-                            <ConnectButton />
+                            <ConnectButton className="primary" />
                             <p>or</p>
                             <Search />
                         </div>

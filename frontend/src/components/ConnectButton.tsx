@@ -1,15 +1,17 @@
 import { useAccount, useConnect, useDisconnect } from 'wagmi'
 import { InjectedConnector } from 'wagmi/connectors/injected'
 
-const ConnectButton = () => {
+const ConnectButton = (props) => {
     const { connect } = useConnect({
         connector: new InjectedConnector(),
     })
 
-    return <button onClick={() => {
-        connect();
-        window.location.href = "/account";
-    }}>Connect Wallet</button>
+    return <button
+        {...props}
+        onClick={() => {
+            connect();
+            window.location.href = "/account";
+        }}><span className="content">Connect Wallet</span></button>
 }
 
 export { ConnectButton }

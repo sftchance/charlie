@@ -42,6 +42,8 @@ const Dashboard = () => {
     const [balances, setBalances] = useState<Balance[] | null>(null);
     const [selected, setSelected] = useState<Balance[]>([]);
 
+    const avatarURL = avatar || "https://via.placeholder.com/150";
+
     const percentDelegated = balances?.reduce((acc, balance) => {
         if (balance.balance === '0.0') return acc;
 
@@ -88,7 +90,10 @@ const Dashboard = () => {
         <div className="App container">
             <div className="Dashboard">
                 <div className="account">
-                    <img src={avatar || "https://via.placeholder.com/150"} alt={`Avatar for ${ensName || formatAddress(address)}`} />
+                    <div className="avatar">
+                        <img src={avatarURL} alt={`Avatar for ${ensName || formatAddress(address)}`} />
+                        <img src={avatar || "https://via.placeholder.com/150"} alt={`Background avatar blur for ${ensName || formatAddress(address)}`} className="blur" />
+                    </div>
                     <div>
                         <h3>
                             <button className="link" onClick={copy}>{ensName || formatAddress(address)}</button>
@@ -158,10 +163,10 @@ const Dashboard = () => {
                         {<p>{selected.length} selected</p>}
 
                         <button
-                            className="delegate"
+                            className="primary delegate"
                             onClick={delegate}
                             disabled={selected.length === 0}
-                        >Delegate</button>
+                        ><span className="content">Delegate</span></button>
                     </div>
                 </div>
             </div>

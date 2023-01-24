@@ -35,8 +35,10 @@ const Navbar = () => {
                     <Search />
 
                     {address && <Link to="account/">
-                        <button>
-                            {address.slice(0, 6) + "..." + address.slice(-4)}
+                        <button className="primary">
+                            <span className="content">
+                                {address.slice(0, 6) + "..." + address.slice(-4)}
+                            </span>
                         </button>
                     </Link>}
 

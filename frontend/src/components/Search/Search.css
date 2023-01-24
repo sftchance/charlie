@@ -37,10 +37,8 @@
 }
 
 .search button {
-    border: 1px solid rgba(0, 0, 0, 0.15);
+    border: 1px solid #d9d9d9;
     border-left: none;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
 }
-
-.search button .icon {}

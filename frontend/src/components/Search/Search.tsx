@@ -31,8 +31,8 @@ const Search = ({ placeholder = "Wallet address...", icon = "🔍" }) => {
             <form onSubmit={handleSearch}>
                 <div className={`status ${search.length === 0 ? "empty" : searchIsAddress ? "valid" : "invalid"}`}></div>
                 <input type="text" placeholder={placeholder} value={search} onChange={handleChange} />
-                <button type="submit">
-                    <span className="icon">{icon}</span>
+                <button className="primary secondary" type="submit">
+                    <span className="content"><span className="icon">Go</span></span>
                 </button>
             </form>
         </div>

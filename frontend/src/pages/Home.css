@@ -2,7 +2,7 @@
     padding-block: 40px;
 }
 
-.home .hero .content {
+.home .hero div.content {
     max-width: 55%;
     margin-left: 0;
     min-height: 600px;
