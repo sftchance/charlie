@@ -44,8 +44,15 @@ task("deploy", "Deploys Charlie to the network")
 
     await new Promise(r => setTimeout(r, 30000));
     await hre.run("verify:verify", {
-      address: charlie.address,
+      address: charlieAuthority.address,
       constructorArguments: [],
+    });
+    console.log("✅ CharlieAuthority verified.")
+
+    await new Promise(r => setTimeout(r, 30000));
+    await hre.run("verify:verify", {
+      address: charlie.address,
+      constructorArguments: [charlieAuthority.address],
     });
 
     console.log("✅ Charlie Verified.")
