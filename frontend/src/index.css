@@ -136,12 +136,29 @@ input {
   border-radius: 3px;
   outline: none;
   padding: 0.5rem;
+  width: 100%;
 }
 
 .container {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 1rem;
+}
+
+.card {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+  margin-bottom: 1rem;
+  margin: 1rem;
+}
+
+.card .card-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 1rem;
+}
+
+.card .card-body {
+  padding: 1rem;
 }
 
 .gradient {

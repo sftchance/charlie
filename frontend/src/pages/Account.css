@@ -1,25 +1,30 @@
-.Dashboard {
+.Account {
+    display: grid;
+    grid-template-columns: 1fr;
     min-height: 92vh;
+}
+
+.Account .content {
     display: grid;
     grid-template-rows: min-content auto;
 }
 
-.Dashboard .account {
+.Account .account {
     display: grid;
-    grid-template-columns: min-content auto;
+    grid-template-columns: min-content auto min-content;
     grid-gap: 1rem;
     align-items: center;
     margin-block: 20px;
 }
 
-.Dashboard .account .avatar {
+.Account .account .avatar {
     width: 65px;
     height: 65px;
     border-radius: 50%;
     position: relative;
 }
 
-.Dashboard .account img.blur {
+.Account .account img.blur {
     filter: blur(20px);
     position: absolute;
     width: 100%;
@@ -28,7 +33,7 @@
     opacity: 0.5;
 }
 
-.Dashboard .account img {
+.Account .account img {
     width: 50px;
     height: 50px;
     object-fit: cover;
@@ -39,18 +44,40 @@
     transform: translate(-50%, -50%);
 }
 
-.Dashboard .account div p {
+.Account .account div p {
     color: rgba(0, 0, 0, 0.45);
 }
 
-.Dashboard .tokens {
+.Account .account .actions {}
+
+.Account .tabs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+    margin-block: 20px;
+    padding-bottom: 10px;
+}
+
+.Account .tabs h4 {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    padding-bottom: 10px;
+    transition: all 0.15s ease-in-out;
+}
+
+.Account .tabs h4.active,
+.Account .tabs h4:hover {
+    border-bottom: 1px solid #000;
+}
+
+.Account .tokens {
     display: grid;
     grid-template-rows: auto min-content;
     grid-gap: 1rem;
     margin-block: 20px;
 }
 
-.Dashboard table {
+.Account table {
     display: block;
     height: 100%;
     width: 100%;
@@ -58,57 +85,62 @@
     margin-bottom: 20px;
 }
 
-.Dashboard table thead {
+.Account table thead {
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-left: none;
     border-right: none;
 }
 
-.Dashboard table thead,
-.Dashboard table tbody {
+.Account table thead,
+.Account table tbody {
     display: block;
     width: 100%;
 }
 
-.Dashboard table thead th {
+.Account table thead th {
     font-weight: 400;
     color: rgba(0, 0, 0, 0.45);
 }
 
-.Dashboard table thead tr,
-.Dashboard table tbody tr {
+.Account table thead tr,
+.Account table tbody tr {
     align-items: center;
     display: grid;
     grid-template-columns: 0px 3fr 1fr 2fr;
 }
 
-.Dashboard table tbody tr td.none {
+.Account table tbody tr td.none {
     grid-column: 1 / span 4;
 }
 
-.Dashboard .tokens.mine table thead tr,
-.Dashboard .tokens.mine table tbody tr {
-    grid-template-columns: 30px 3fr 1fr 2fr;
+.Account .tokens.mine table thead tr,
+.Account .tokens.mine table tbody tr {
+    grid-template-columns: 30px 1fr 3fr 2fr 1fr;
 }
 
-.Dashboard .tokens input {
+.Account .tokens input {
     display: none;
 }
 
-.Dashboard .tokens.mine input {
+.Account .tokens.mine input {
     display: block;
 }
 
-.Dashboard .controls p {
+.Account .controls p {
     margin-bottom: 10px;
     color: rgba(0, 0, 0, 0.45);
 }
 
-.Dashboard button.delegate {
+.Account button.delegate {
     cursor: pointer;
     color: #fff;
     font-weight: 700;
     padding: 0.5rem;
     text-transform: uppercase;
     width: 100%;
+    margin-top: 0.5rem;
+}
+
+.Account .sidebar .card {
+    margin-right: 0px;
 }

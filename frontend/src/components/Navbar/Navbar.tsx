@@ -14,8 +14,6 @@ const Navbar = () => {
 
     const [collapsed, setCollapsed] = useState(false);
 
-
-
     return (
         <div className="container">
             <nav className={`${collapsed ? "collapsed" : ""}`}>
@@ -28,7 +26,7 @@ const Navbar = () => {
                 </div>
 
                 <div className="links">
-                    <Link to="/discover">Discover</Link>
+                    {/* <Link to="/discover">Discover</Link> */}
                 </div>
 
                 <div className="links right">

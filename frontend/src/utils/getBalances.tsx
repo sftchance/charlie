@@ -55,7 +55,7 @@ const getBalances = async (address: String, size: number = 200, offset: number =
                 symbol: token?.symbol,
                 address: token.address,
                 balance: `${balance / 10 ** token.decimals}`,
-            });
+            } as Balance);
         }
     }
 

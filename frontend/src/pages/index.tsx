@@ -1,3 +1,3 @@
-export { Dashboard } from './Dashboard'
+export { Account } from './Account'
 export { Discover } from './Discover'
 export { Home } from './Home'
