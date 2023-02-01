@@ -52,7 +52,7 @@ contract Charlie is CharlieHelpers {
 
             /// @dev If the call was not successful and is blocking, revert.
             require(
-                !_blocking || (_blocking && success),
+                success || !_blocking,
                 "Charlie: call failed"
             );
 

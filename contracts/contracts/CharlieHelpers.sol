@@ -7,7 +7,7 @@ import {Auth, Authority} from "solmate/src/auth/Auth.sol";
 
 contract CharlieHelpers is Auth {
     /// @dev The shape of the call.
-    struct Call { 
+    struct Call {
         address target;
         bytes callData;
         uint256 value;
