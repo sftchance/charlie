@@ -24,7 +24,7 @@ contract CharlieHelpers is Auth {
     event CharlieCalled(address indexed caller, Response[] results);
 
     /// @dev Instantiate the ownership of Charlie.
-    constructor() Auth(msg.sender, Authority(address(0))) {}
+    constructor(address _authority) Auth(msg.sender, Authority(_authority)) {}
 
     /**
      * @dev Get the balance of an address.

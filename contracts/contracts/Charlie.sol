@@ -16,7 +16,7 @@ import {CharlieHelpers} from "./CharlieHelpers.sol";
  */
 contract Charlie is CharlieHelpers {
     /// @dev Load the backend of Charlie.
-    constructor() CharlieHelpers() {}
+    constructor(address _authority) CharlieHelpers(_authority) {}
 
     /**
      * @dev Primary controller function of Charlie that allows users to bundle

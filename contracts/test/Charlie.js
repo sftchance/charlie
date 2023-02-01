@@ -9,7 +9,7 @@ describe("Charlie", function () {
     const charlieAuthority = await CharlieAuthority.deploy();
 
     const Charlie = await ethers.getContractFactory("Charlie");
-    const charlie = await Charlie.deploy();
+    const charlie = await Charlie.deploy(charlieAuthority.address);
 
     const MockToken = await ethers.getContractFactory("MockToken");
     const mockTokens = [

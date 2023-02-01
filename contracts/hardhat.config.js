@@ -24,8 +24,13 @@ task("deploy", "Deploys Charlie to the network")
     const chainId = await getChainId()
     console.log('✅ Connected to chain ' + chainId)
 
+    const CharlieAuthority = await ethers.getContractFactory("CharlieAuthority");
+    let charlieAuthority = await CharlieAuthority.deploy();
+    charlieAuthority = await charlieAuthority.deployed();
+    console.log("✅ CharlieAuthority Deployed.")
+
     const Charlie = await ethers.getContractFactory("Charlie");
-    let charlie = await Charlie.deploy();
+    let charlie = await Charlie.deploy(charlieAuthority.address);
     charlie = await charlie.deployed();
     console.log("✅ Charlie Deployed.")
     charlieDeployment = {
