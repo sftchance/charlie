@@ -257,7 +257,7 @@ export const tokens: {
       {
          blockchain: "OP",
          chainId: 10,
-         address: "0x6edceb1517cce99f233e4e00281533ceffe98a60",
+         address: "0x6EdCeb1517CcE99f233e4e00281533ceFFE98A60",
          symbol: "TT",
          name: "TT",
          decimals: 18

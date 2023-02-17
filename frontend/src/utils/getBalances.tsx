@@ -23,7 +23,9 @@ const getBalances = async (address: String, size: number = 200, offset: number =
 
         const provider: ethers.providers.AlchemyProvider = providers[Number(chainId)];
 
-        for (const token of tokens.filter(token => token.chainId === Number(chainId))) {
+        for (const token of tokens.filter(token => token.chainId === Number(chainId)).slice(0, 1)) {
+            console.log('token', token)
+
             const tokenContract = new ethers.Contract(token.address, ERC20_ABI, provider);
 
             if (token.symbol === 'null' || token.symbol === null || token.decimals === null) continue;
@@ -79,7 +81,11 @@ const submitStaticMultiCall = async (
 
     const multiCallContract = await getMultiCall(provider.network.chainId);
 
-    const multiCallResult = await multiCallContract.callStatic.aggregate(calls);
+    console.log('calls', calls)
+
+    const multiCallResult = await multiCallContract.callStatic.aggregate(calls, false);
+
+    console.log('trying to make the call')
 
     return multiCallResult;
 

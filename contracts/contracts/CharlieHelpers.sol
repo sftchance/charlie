@@ -10,7 +10,6 @@ contract CharlieHelpers is Auth {
     struct Call {
         address target;
         bytes callData;
-        uint256 value;
     }
 
     /// @dev The shape of the response.

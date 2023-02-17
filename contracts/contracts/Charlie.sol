@@ -26,13 +26,10 @@ contract Charlie is CharlieHelpers {
      * @param _blocking Whether or not to block on a failed call.
      * @return responses The responses from the calls.
      */
-    function aggregate(
-        Call[] calldata _calls,
-        bool _blocking
-    ) external payable requiresAuth returns (Response[] memory responses) {
-        /// @dev The amount of ETH sent must be equal to the value of the calls.
-        uint256 sum;
-        
+    function aggregate(Call[] calldata _calls, bool _blocking)
+        public
+        returns (Response[] memory responses)
+    {
         /// @dev Instantiate the array used to store whether it was a success,
         ///      the block number, and the result.
         responses = new Response[](_calls.length);
@@ -42,33 +39,16 @@ contract Charlie is CharlieHelpers {
 
         /// @dev Loop through the calls and make them.
         for (i; i < _calls.length; i++) {
-            /// @dev Add the value of the call to the sum.
-            sum += _calls[i].value;
-
             /// @dev Make the call and store the response.
-            (bool success, bytes memory result) = _calls[i].target.call{
-                value: _calls[i].value
-            }(_calls[i].callData);
+            (bool success, bytes memory result) = _calls[i].target.call(
+                _calls[i].callData
+            );
 
             /// @dev If the call was not successful and is blocking, revert.
-            require(
-                success || !_blocking,
-                "Charlie: call failed"
-            );
+            require(success || !_blocking, "Charlie: call failed");
 
             /// @dev Store the response.
             responses[i] = Response(success, block.number, result);
         }
-
-        /// @dev The amount of ETH sent must be equal to the value of the calls.
-        require(msg.value >= sum, "Charlie: invalid ETH sent");
-
-        /// @dev If there is ETH left over, send it back.
-        if (msg.value > sum) {
-            payable(msg.sender).transfer(msg.value - sum);
-        }
-
-        /// @dev Announce the use of Charlie.
-        emit CharlieCalled(msg.sender, responses);
     }
 }

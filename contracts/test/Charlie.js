@@ -51,7 +51,6 @@ describe("Charlie", function () {
         return {
           target: targets[i],
           callData,
-          value: 0
         };
       });
 
@@ -63,7 +62,7 @@ describe("Charlie", function () {
       expect(parseInt(result[2].slice(2), 16)).to.equal(0);
       expect(parseInt(result[3].slice(2), 16)).to.equal(1000000);
     });
-
+    
     it("Should fail due to invalid signature and blocking.", async function () {
       const { charlie, mockTokens, owner, otherAccount } = await loadFixture(deployAggregator);
 
@@ -119,7 +118,6 @@ describe("Charlie", function () {
         return {
           target: targets[i],
           callData,
-          value: 0
         };
       });
 
@@ -181,7 +179,6 @@ describe("Charlie", function () {
         return {
           target: targets[i],
           callData,
-          value: 0
         };
       });
 
