@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { useAccount } from 'wagmi';
 
-import { ConnectButton, DisconnectButton, Search } from '../'
+import { ConnectButton, DisconnectButton} from '../'
 
 import charlie from "../../assets/charlie.svg";
 
@@ -30,8 +30,6 @@ const Navbar = () => {
                 </div>
 
                 <div className="links right">
-                    <Search />
-
                     {address && <Link to="account/">
                         <button className="primary">
                             <span className="content">

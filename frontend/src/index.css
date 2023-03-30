@@ -1,206 +1,201 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Space Mono', monospace;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
 }
 
 html,
 body {
-  color: rgba(0, 0, 0, 0.87);
-  height: 100%;
-  width: 100vw;
-  overflow-x: hidden;
+    color: rgba(0, 0, 0, 0.87);
+    height: 100%;
+    width: 100vw;
+    overflow-x: hidden;
 }
 
 table {
-  width: 100%;
-  border-collapse: collapse;
+    width: 100%;
+    border-collapse: collapse;
 }
 
 th,
 td {
-  padding: 0.5rem;
-  text-align: left;
+    padding: 0.5rem;
+    text-align: left;
 }
 
 button {
-  border: none;
-  border-radius: 3px;
-  outline: none;
-  cursor: pointer;
-  font-weight: 700;
-  padding: 0.5rem;
-  text-transform: uppercase;
-  transition: all .15s ease-in-out;
+    border: none;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+    font-weight: 700;
+    padding: 0.5rem;
+    text-transform: uppercase;
+    transition: all .15s ease-in-out;
 }
 
 button.primary {
-  background: linear-gradient(-37deg, #ff6804, #ff04c9);
-  position: relative;
-  background-position: 0 0;
+    background: linear-gradient(-37deg, #ff6804, #ff04c9);
+    position: relative;
+    background-position: 0 0;
 }
 
 button.primary .content {
-  position: relative;
-  color: #fff;
-  z-index: 5;
-  height: initial;
+    position: relative;
+    color: #fff;
+    z-index: 5;
+    height: initial;
 }
 
 button.primary:hover,
 button.primary:focus {
-  background: linear-gradient(-37deg, #ff6804, #ff04c9);
+    background: linear-gradient(-37deg, #ff6804, #ff04c9);
 }
 
 button.primary::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('/noise.png') repeat;
-  background-blend-mode: overlay;
-  background-size: 200px 200px;
-  transition: all .15s ease-in-out;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/noise.png') repeat;
+    background-blend-mode: overlay;
+    background-size: 200px 200px;
+    transition: all .15s ease-in-out;
 }
 
 button.primary::after {
-  /* Set background of button as soft gradient with white noise on top */
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  width: calc(100% + 4px);
-  height: calc(100% + 4px);
-  background: linear-gradient(-37deg, #ff6804, #ff04c9);
-  z-index: -1;
-  filter: blur(10px);
-  opacity: .25;
-  transition: all .15s ease-in-out;
+    /* Set background of button as soft gradient with white noise on top */
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    background: linear-gradient(-37deg, #ff6804, #ff04c9);
+    z-index: -1;
+    filter: blur(10px);
+    opacity: .25;
+    transition: all .15s ease-in-out;
 }
 
 button.primary:hover::after,
 button.primary:focus::after {
-  opacity: 0.35;
+    opacity: 0.35;
 }
 
 button.primary:hover::before,
 button.primary:focus::before {
-  opacity: 0.75;
+    opacity: 0.75;
 }
 
 button.primary.secondary {
-  background: linear-gradient(-37deg, #5243f9, #43f9e1);
-  color: #fff;
+    background: linear-gradient(-37deg, #5243f9, #43f9e1);
+    color: #fff;
 }
 
 button.primary.secondary:hover,
 button.primary.secondary:focus {
-  background: linear-gradient(-37deg, #5243f9, #43f9e1);
+    background: linear-gradient(-37deg, #5243f9, #43f9e1);
 }
 
 button.primary.secondary::after {
-  background: linear-gradient(-37deg, #5243f9, #43f9e1);
+    background: linear-gradient(-37deg, #5243f9, #43f9e1);
 }
 
 button:disabled {
-  cursor: auto !important;
-  filter: saturate(0.1);
+    cursor: auto !important;
+    filter: saturate(0.1);
 }
 
 button.link {
-  background: none;
-  color: #000;
-  font-size: inherit;
-  padding: 0;
+    background: none;
+    color: #000;
+    font-size: inherit;
+    padding: 0;
 }
 
 button.link:active,
 button.link:focus,
 button.link:hover {
-  background: none;
-  color: rgba(0, 0, 0, 0.75);
+    background: none;
+    color: rgba(0, 0, 0, 0.75);
 }
 
 a {
-  text-decoration: none;
-  color: #000;
+    text-decoration: none;
+    color: #000;
 }
 
 input {
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 3px;
-  outline: none;
-  padding: 0.5rem;
-  width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+    outline: none;
+    padding: 0.5rem;
+    width: 100%;
 }
 
 .container {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 1rem;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .card {
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 3px;
-  margin-bottom: 1rem;
-  margin: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+    margin-bottom: 1rem;
+    margin: 1rem;
 }
 
 .card .card-header {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-  padding: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    padding: 1rem;
 }
 
 .card .card-body {
-  padding: 1rem;
+    padding: 1rem;
 }
 
 .gradient {
-  background: linear-gradient(-37deg, #ff6804, #ff04c9);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  position: relative;
+    background: linear-gradient(-37deg, #ff6804, #ff04c9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
 
-  /* Add the noise texture to text with the gradient effect and mask it to the text */
-  background-image: url('/noise.png');
-  background-blend-mode: overlay;
-  background-size: 200px 200px;
+    /* Add the noise texture to text with the gradient effect and mask it to the text */
+    background-image: url('/noise.png');
+    background-blend-mode: overlay;
+    background-size: 200px 200px;
 
-  opacity: 0.75;
+    opacity: 0.75;
 }
 
 .gradient::before {
-  content: 'one place';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(-37deg, #ff6804, #ff04c9);
-  z-index: -1;
+    content: 'one place';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-37deg, #ff6804, #ff04c9);
+    z-index: -1;
 
-  background-blend-mode: screen;
-  -webkit-background-clip: text;
-} 
-
-.gradient::after {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  width: calc(100% + 4px);
-  height: calc(100% + 4px);
-  background: linear-gradient(-37deg, #ff6804, #ff04c9);
-  z-index: -1;
-  filter: blur(50px);
-  opacity: .35;
+    background-blend-mode: screen;
+    -webkit-background-clip: text;
 }
 
-
-
+.gradient::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    background: linear-gradient(-37deg, #ff6804, #ff04c9);
+    z-index: -1;
+    filter: blur(50px);
+    opacity: .35;
+}

@@ -3,7 +3,8 @@
 }
 
 .home .hero div.content {
-    max-width: 60%;
+    width: 100%;
+    max-width: 820px;
     margin-left: 0;
     min-height: 600px;
     display: grid;
@@ -22,13 +23,13 @@
 
 .home .hero .buttons {
     display: grid;
-    grid-template-columns: max-content min-content auto;
+    grid-template-columns: max-content max-content;
     column-gap: 1rem;
     align-items: center;
     margin-bottom: 20px;
 }
 
-.home .benefits { 
+.home .benefits {
     display: grid;
     grid-template-columns: 3fr 3fr 3fr 3fr;
     gap: 10px;
@@ -41,40 +42,13 @@
     padding: 20px;
 }
 
-.home .benefits .benefit h3 { 
+.home .benefits .benefit h3 {
     max-width: 270px;
     margin-bottom: 10px;
 }
 
-@media (max-width: 900px) {
-    .home .hero div.content {
-        max-width: 80%;
-    }
-
-    .home .hero .content { 
-        max-width: 80%;
-    }
-
-    .home .benefits {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
 @media (max-width: 768px) {
-    .home .hero .content {
-        max-width: 100%;
-    }
-
     .home .hero .buttons {
-        grid-template-columns: auto auto;
         row-gap: 1rem;
-    }
-
-    .home .hero .buttons .search {
-        grid-column: 1 / span 2;
-    }
-
-    .home .benefits {
-        grid-template-columns: 1fr;
     }
 }
