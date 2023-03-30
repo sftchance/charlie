@@ -14,3 +14,11 @@ Instead of having to delegate tokens for each protocol individually, users can d
 
 > **Note**
 > Coming soon. This repository is currently under development.
+
+## Adding a supported protocol
+
+By default Charlie operates by using an optimized set of governance tokens that are deployed on popular EVM chains. To avoid scams and malicious users, Charlie operates with a defined list of tokens that are supported by the system.
+
+1. Fork the repository.
+2. Add your token to the list of `api/erc20/fixtures/erc20.json` file.
+3. Submit a pull request containing your update.

@@ -1,2 +1,2 @@
-django==4.1.7
+django-rest-framework==0.1.0
 pip-chill==1.0.1
