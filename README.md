@@ -28,6 +28,7 @@ Charlie is the first delegation system that allows users to delegate tokens acro
 
 The current criteria is applied to all tokens in order to determine if they are eligible for delegation and is as follows:
 
+- The token must support `ERC20Votes`.
 - The token must have historical delegations.
   - Automated token detection for Charlie is not designed to seed new tokens, but rather to provide a fair and decentralized governance system for existing tokens.
 - The name and symbol of the token must have a length of 2 or more characters.
