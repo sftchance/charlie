@@ -22,7 +22,8 @@ const Buttons = () => {
 
     return (
         <>
-            <h2>Delegation Buttons
+            <h2>
+                Delegation Buttons
                 <Link to="/buttons/new/">New</Link>
             </h2>
 
