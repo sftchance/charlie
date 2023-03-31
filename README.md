@@ -1,5 +1,7 @@
 # Charlie: A Modern Delegation Approach
 
+![Charlie](/frontend/public/frame.png)
+
 Since the beginning of the onchain governance, delegation has remained underutilized resulting in centralized organizations that are controlled by a select few whales.
 
 Charlie is a modern delegation approach that aims to solve this problem by providing a decentralized and fair governance system by streamling the manner in which tokens are delegated to strong representatives.
