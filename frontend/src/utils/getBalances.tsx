@@ -3,19 +3,25 @@ import { ethers } from "ethers";
 import { providers, ERC20_ABI } from "./config";
 import { getMultiCall } from "./getMultiCall";
 
-import { tokens } from "./tokens";
 import { Balance } from "../types";
 
-// TODO PERSONAL NOTE: Right now there are so few delegatable tokens that we can just check 
-// the balance of each token using multicall without worrying about a crazy architecture
-// or the user of another tool. If we ever get to a point where we have a lot of tokens
-// we should consider using a subgraph to get the balances of all tokens at once.
-
-const getBalances = async (address: String, size: number = 200, offset: number = 0, includeZeros: boolean = false): Promise<{
+const getBalances = async ({
+    address,
+    tokens,
+    size,
+    offset,
+    includeZeros
+}: {
+    address: string,
+    tokens: any[],
+    size?: number,
+    offset?: number,
+    includeZeros?: boolean,
+}): Promise<{
     results: Balance[],
     hasNextPage: boolean,
 }> => {
-    const balances: Balance[] = [];
+    const balances: Balance[] = []
 
     for (const chainId of Object.keys(providers)) {
         const multiCallsTargets: `0x${string}`[] = []
@@ -23,31 +29,29 @@ const getBalances = async (address: String, size: number = 200, offset: number =
 
         const provider: ethers.providers.AlchemyProvider = providers[Number(chainId)];
 
-        for (const token of tokens.filter(token => token.chainId === Number(chainId)).slice(0, 1)) {
-            console.log('token', token)
+        for (const token of tokens.filter(token => token.chain_id === Number(chainId))) {
+            const tokenContract = new ethers.Contract(token.ethereum_address, ERC20_ABI, provider);
 
-            const tokenContract = new ethers.Contract(token.address, ERC20_ABI, provider);
+            // if (token.symbol === 'null' || token.symbol === null || token.decimals === null) continue;
 
-            if (token.symbol === 'null' || token.symbol === null || token.decimals === null) continue;
-
-            multiCallsTargets.push(token.address)
+            multiCallsTargets.push(token.ethereum_address)
             multiCallsDatas.push(tokenContract.interface.encodeFunctionData("balanceOf", [address]))
         }
 
         if (multiCallsTargets.length + multiCallsDatas.length == 0) continue;
 
         const multiCallResult = await submitStaticMultiCall(
-            multiCallsTargets.slice(offset, offset + size),
-            multiCallsDatas.slice(offset, offset + size),
+            multiCallsTargets,
+            multiCallsDatas,
             provider
         );
 
-        for (let i = 0; i < multiCallResult.returnData.length; i++) {
-            const token = tokens.find(token => token.address === multiCallsTargets[i]);
+        for (let i = 0; i < multiCallResult.length; i++) {
+            const token = tokens.find(token => token.ethereum_address === multiCallsTargets[i]);
 
-            if (token === undefined || token.decimals === null) continue;
+            // if (token === undefined || token.decimals === null) continue;
 
-            const balance = parseInt(multiCallResult.returnData[i].slice(2), 16);
+            const balance = parseInt(multiCallResult[i].returnData.slice(2), 16);
 
             if (!includeZeros && balance === 0) continue;
 
@@ -61,9 +65,11 @@ const getBalances = async (address: String, size: number = 200, offset: number =
         }
     }
 
+    const hasNextPage = offset && size ? offset + size < balances.length : false
+
     return {
         results: balances,
-        hasNextPage: offset + size < balances.length,
+        hasNextPage
     }
 }
 
@@ -75,31 +81,16 @@ const submitStaticMultiCall = async (
     const calls = multiCallsTargets.map((target, i) => {
         return {
             target,
+            allowFailure: true,
             callData: multiCallsData[i],
         };
     });
 
     const multiCallContract = await getMultiCall(provider.network.chainId);
 
-    console.log('calls', calls)
-
-    const multiCallResult = await multiCallContract.callStatic.aggregate(calls, false);
-
-    console.log('trying to make the call')
+    const multiCallResult = await multiCallContract.callStatic.aggregate3(calls);
 
     return multiCallResult;
-
-    // const multiCallContract = await getMultiCall(provider.network.chainId);
-    // const blocking = false;
-
-    // const submit = false;
-    // if (!submit) [];
-
-    // const multiCallResult = await multiCallContract.callStatic.aggregate(multiCallsTargets, multiCallsData, blocking);
-
-    // console.log('multiCallResult', multiCallResult);
-
-    // return multiCallResult;
 }
 
 export { getBalances }

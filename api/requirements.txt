@@ -1,3 +1,4 @@
+django-cors-headers==3.14.0
 django-filter==23.1
 django-rest-framework==0.1.0
 markdown==3.4.3

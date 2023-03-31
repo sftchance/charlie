@@ -26,12 +26,11 @@ td {
 
 button {
     border: none;
-    border-radius: 3px;
+    border-radius: 2px;
     outline: none;
     cursor: pointer;
     font-weight: 700;
-    padding: 0.5rem;
-    text-transform: uppercase;
+    padding: 1rem;
     transition: all .15s ease-in-out;
 }
 

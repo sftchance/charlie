@@ -1,18 +1,11 @@
 import { ethers } from "ethers";
 
-import { providers, MULTICALL_ABI } from "./config";
-
-const multiCallContracts: {
-    [chainId: number]: `0x${string}`;
-} = {
-    1: "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441",
-    10: "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441",
-}
+import { providers, MULTICALL, MULTICALL_ABI } from "./config";
 
 const getMultiCall = async (chainId: number) => {
     const provider: ethers.providers.AlchemyProvider = providers[Number(chainId)];
 
-    const multiCallContractAddress = multiCallContracts[chainId];
+    const multiCallContractAddress = MULTICALL;
     const multiCallContract = new ethers.Contract(multiCallContractAddress, MULTICALL_ABI, provider);
 
     return multiCallContract;

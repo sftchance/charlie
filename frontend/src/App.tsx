@@ -1,35 +1,52 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route } from "react-router-dom";
 
-import { Navbar, Footer } from './components'
-import { Home, Account, Discover } from './pages'
+import { Navbar, Footer } from "./components";
+import { Home, Button, Account, Discover } from "./pages";
 
-import { WagmiConfig, createClient } from 'wagmi'
-import { getDefaultProvider } from 'ethers'
+import { WagmiConfig, configureChains, createClient } from "wagmi";
+import { avalanche, mainnet, polygon, optimism, arbitrum } from "wagmi/chains";
+import { publicProvider } from 'wagmi/providers/public';
 
-const client = createClient({
-  autoConnect: true,
-  provider: getDefaultProvider(),
+import { getDefaultWallets } from '@rainbow-me/rainbowkit';
+
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+import "./App.css";
+
+const queryClient = new QueryClient();
+
+const { chains, provider } = configureChains(
+    [mainnet, polygon, avalanche, optimism, arbitrum],
+    [publicProvider()],
+);
+
+const { connectors } = getDefaultWallets({
+    appName: 'Charlie',
+    chains
+});
+
+const wagmiClient = createClient({
+    autoConnect: true,
+    connectors,
+    provider
 })
 
-import './App.css'
-
 function App() {
-  return (
-    <WagmiConfig client={client}>
-      <div className="App">
-        <Navbar />
-
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/discover" element={<Discover />} />
-          <Route path="/account" element={<Account />} />
-          <Route path="/account/:address" element={<Account />} />
-        </Routes>
-
-        <Footer />
-      </div>
-    </WagmiConfig>
-  )
+    return (
+        <QueryClientProvider client={queryClient}>
+            <WagmiConfig client={wagmiClient}>
+                <div className="App">
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/button" element={<Button />} />
+                        <Route path="/discover" element={<Discover />} />
+                        <Route path="/account" element={<Account />} />
+                        <Route path="/account/:address" element={<Account />} />
+                    </Routes>
+                </div>
+            </WagmiConfig>
+        </QueryClientProvider>
+    );
 }
 
-export default App
+export default App;
