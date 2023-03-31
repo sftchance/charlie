@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { Link } from "react-router-dom";
 
 import { useQuery } from "@tanstack/react-query";
@@ -18,17 +16,6 @@ const Buttons = () => {
         queryFn: () => fetch(`http://localhost:8000/buttons/`).then((res) => res.json())
     });
 
-    const handleDelete = (buttonId: number) => {
-        fetch(`http://localhost:8000/buttons/${buttonId}/`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        }).then(() => {
-            console.log(`Deleted button ${buttonId}`)
-        })
-    }
-
     if (isLoading) return <p>Loading...</p>;
 
     if (error) return <p>Error: {error.message}</p>;
@@ -46,7 +33,7 @@ const Buttons = () => {
                     <li key={button.id}>
                         <Link to={`/button/${button.id}/edit/`}>{button.text}</Link>
                         <Link to={`/button/${button.id}/`}>View</Link>
-                        <button onClick={() => handleDelete(button.id)}>Delete</button>
+                        <Link to={`/button/${button.id}/embed/`}>Embed</Link>
                     </li>
                 )) : <p>No buttons yet!</p>}
             </ul>
