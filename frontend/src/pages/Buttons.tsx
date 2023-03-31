@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 
 import { useQuery } from "@tanstack/react-query";
 
+import { Modal } from "../components"
+
 const Buttons = () => {
     const {
         isLoading,
@@ -22,21 +24,23 @@ const Buttons = () => {
 
     return (
         <>
-            <h2>Delegation Buttons
-                <Link to="/button/new/">New</Link>
-            </h2>
+            <Modal>
+                <h2>Delegation Buttons
+                    <Link to="/button/new/">New</Link>
+                </h2>
 
-            <hr />
+                <hr />
 
-            <ul>
-                {data?.length > 0 ? data.map((button: any) => (
-                    <li key={button.id}>
-                        <Link to={`/button/${button.id}/edit/`}>{button.text}</Link>
-                        <Link to={`/button/${button.id}/`}>View</Link>
-                        <Link to={`/button/${button.id}/embed/`}>Embed</Link>
-                    </li>
-                )) : <p>No buttons yet!</p>}
-            </ul>
+                <ul>
+                    {data?.length > 0 ? data.map((button: any) => (
+                        <li key={button.id}>
+                            <Link to={`/button/${button.id}/edit/`}>{button.text}</Link>
+                            <Link to={`/button/${button.id}/`}>View</Link>
+                            <Link to={`/button/${button.id}/embed/`}>Embed</Link>
+                        </li>
+                    )) : <p>No buttons yet!</p>}
+                </ul>
+            </Modal>
         </>
     )
 }
