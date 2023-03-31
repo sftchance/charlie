@@ -12,7 +12,7 @@ const getBalances = async ({
     offset,
     includeZeros
 }: {
-    address: string,
+    address: `0x${string}`
     tokens: any[],
     size?: number,
     offset?: number,

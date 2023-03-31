@@ -1,7 +1,7 @@
-import { useAccount, useConnect, useDisconnect } from 'wagmi'
+import { useConnect } from 'wagmi'
 import { InjectedConnector } from 'wagmi/connectors/injected'
 
-const ConnectButton = (props) => {
+const ConnectButton = (props: any) => {
     const { connect } = useConnect({
         connector: new InjectedConnector(),
     })
