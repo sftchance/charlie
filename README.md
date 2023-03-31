@@ -6,16 +6,11 @@ Charlie is a modern delegation approach that aims to solve this problem by provi
 
 ## How it works
 
-Charlie is a simple and intuitive delegation system that allows users to delegate tokens across a range of protocols and networks with the click of a button. 
+Charlie is a simple and intuitive delegation system that allows users to delegate tokens across a range of protocols and networks with the click of a button.
 
 Instead of having to delegate tokens for each protocol individually, users can delegate their tokens to a single representative who will serve as the best proxy ecosystem-wide.
 
-## How to use
-
-> **Note**
-> Coming soon. This repository is currently under development.
-
-## Adding a supported protocol
+## Adding a Governance Token to Charlie
 
 By default Charlie operates by using an optimized set of governance tokens that are deployed on popular EVM chains. To avoid scams and malicious users, Charlie operates with a defined list of tokens that are supported by the system.
 
