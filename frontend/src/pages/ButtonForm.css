@@ -1,0 +1,24 @@
+.button-details {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 16px;
+}
+
+.button-colors {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 8px;
+}
+
+.action-bar {
+    display: flex;
+    margin-top: 16px;
+}
+
+.action-bar button {
+    margin-left: auto;
+}
+
+.button-color {
+    padding: 0;
+}
