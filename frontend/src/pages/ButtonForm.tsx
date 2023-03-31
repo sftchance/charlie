@@ -131,7 +131,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                 />
 
                 {object?.tokens?.length > 0 ? object?.tokens?.map((token: any) =>
-                    <p key={token.id}>{JSON.stringify(token, null, 2)}</p>
+                    <p key={token.label}>{JSON.stringify(token, null, 2)}</p>
                 ) : <p>No tokens targeted...</p>}
 
                 {isEdit && <button
