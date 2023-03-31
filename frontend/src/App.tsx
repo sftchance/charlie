@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
 import { Navbar, Footer } from "./components";
-import { Home, Button, Account, Discover } from "./pages";
+import { Home, Button, ButtonForm, Account, Discover } from "./pages";
 
 import { WagmiConfig, configureChains, createClient } from "wagmi";
 import { avalanche, mainnet, polygon, optimism, arbitrum } from "wagmi/chains";
@@ -38,7 +38,9 @@ function App() {
                 <div className="App">
                     <Routes>
                         <Route path="/" element={<Home />} />
+                        <Route path="/button/new/" element={<ButtonForm />} />
                         <Route path="/button/:buttonId/" element={<Button />} />
+                        <Route path="/button/:buttonId/edit/" element={<ButtonForm isEdit={true} />} />
                         <Route path="/discover" element={<Discover />} />
                         <Route path="/account" element={<Account />} />
                         <Route path="/account/:address" element={<Account />} />

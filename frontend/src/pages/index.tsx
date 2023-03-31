@@ -1,4 +1,5 @@
 export { Account } from './Account'
 export { Button } from './Button'
+export { ButtonForm } from './ButtonForm'
 export { Discover } from './Discover'
 export { Home } from './Home'
