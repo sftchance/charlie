@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 
 import { useQuery } from "@tanstack/react-query";
 
+import Select from 'react-select'
+
 const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
     const { buttonId } = useParams<{ buttonId: string }>();
 
@@ -24,7 +26,20 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
         }
     });
 
-    const [object, setObject] = useState<any>(data);
+    const {
+        isLoading: isLoadingTokens,
+        error: errorTokens,
+        data: dataTokens,
+    }: {
+        isLoading: boolean;
+        error: any;
+        data: any;
+    } = useQuery({
+        queryKey: ["tokens"],
+        queryFn: () => fetch(`http://localhost:8000/erc20/`).then((res) => res.json())
+    });
+
+    const [object, setObject] = useState<any>(null);
 
     const handleDelete = () => {
         fetch(`http://localhost:8000/buttons/${buttonId}/`, {
@@ -34,7 +49,16 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
         })
     }
 
-    if (isEdit && isLoading) return <p>Loading...</p>;
+    const options = dataTokens?.map((token: any) => ({
+        value: token.id,
+        label: `${token.blockchain} - ${token.name} - ${token.symbol}`
+    }))
+
+    useEffect(() => {
+        setObject(data)
+    }, [data])
+
+    if (isEdit && isLoading || object === null) return <p>Loading...</p>;
 
     if (isEdit && error) return <p>Error: {error.message}</p>;
 
@@ -49,8 +73,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                     name="name"
                     id="name"
                     placeholder="Name..."
-                    defaultValue={data?.name}
-                    value={object?.name}
+                    value={object?.name || "Untitled"}
                     onChange={(e) => setObject({ ...object, name: e.target.value })}
                 />
 
@@ -59,8 +82,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                     name="description"
                     id="description"
                     placeholder="Description..."
-                    defaultValue={data?.description}
-                    value={object?.description}
+                    value={object?.description || ""}
                     onChange={(e) => setObject({ ...object, description: e.target.value })}
                 />
 
@@ -69,8 +91,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                     name="buttonText"
                     id="buttonText"
                     placeholder="Button text..."
-                    defaultValue={data?.text}
-                    value={object?.text}
+                    value={object?.text || "Delegate"}
                     onChange={(e) => setObject({ ...object, text: e.target.value })}
                 />
 
@@ -81,8 +102,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                             name="primaryColor"
                             id="primaryColor"
                             placeholder="Primary color..."
-                            defaultValue={data?.primary_color}
-                            value={object?.primary_color}
+                            value={object?.primary_color || "#000000"}
                             onChange={(e) => setObject({ ...object, primary_color: e.target.value })}
                         />
                     </div>
@@ -93,8 +113,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                             name="secondaryColor"
                             id="secondaryColor"
                             placeholder="Secondary color..."
-                            defaultValue={data?.secondary_color}
-                            value={object?.secondary_color}
+                            value={object?.secondary_color || "#FFFFFF"}
                             onChange={(e) => setObject({ ...object, secondary_color: e.target.value })}
                         />
                     </div>
@@ -104,15 +123,15 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
 
                 <hr />
 
-                <div className="input-append">
-                    <input type="text" name="search" id="search" placeholder="Search..." />
-                    <button type="button">Search</button>
-                </div>
+                <Select
+                    options={options || []}
+                    isMulti
+                    onChange={(e: any) => setObject({ ...object, tokens: e })}
+                />
 
-                {data?.tokens?.length > 0 ? data?.tokens?.map((token: any) => (
+                {object?.tokens?.length > 0 ? object?.tokens?.map((token: any) => (
                     <div key={token.id}>
-                        <input type="checkbox" name="token" id={`token-${token.id}`} />
-                        <label htmlFor={`token-${token.id}`}>{token.name}</label>
+                        <p>{JSON.stringify(token, null, 2)}</p>
                     </div>
                 )) : <p>No tokens targeted...</p>}
 
