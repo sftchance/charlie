@@ -34,12 +34,12 @@ The current criteria is applied to all tokens in order to determine if they are 
   - This is to avoid tokens that are not intended for governance, such as test tokens.
 - The token must be deployed on one of the supported networks.
 
-The full list of tokens supported by automated aggregation can be found at [api/](/api/erc20/fixtures/erc20.auto.json).
+The full list of tokens supported by automated aggregation can be found at [/api/erc20/fixtures/erc20.auto.json](/api/erc20/fixtures/erc20.auto.json).
 
 ## Adding a Governance Token to Charlie
 
-By default Charlie operates by using an optimized set of governance tokens that are deployed on popular EVM chains. To avoid scams and malicious users, Charlie operates with a defined list of tokens that are supported by the system.
+While Charlie operates with automated aggregation, there may be certain circumstances where a token is not automatically detected. In these cases, you can add the token to the list of supported tokens by following the steps below:
 
 1. Fork the repository.
-2. Add your token to the list of `api/erc20/fixtures/erc20.json` file.
+2. Add your token to the list at [/api/erc20/fixtures/erc20.manual.json](/api/erc20/fixtures/erc20.manual.json).
 3. Submit a pull request containing your update.
