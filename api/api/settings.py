@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "button",
-    "erc20"
+    "erc20",
 ]
 
 MIDDLEWARE = [
@@ -111,3 +111,7 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# ShroomDKL settings enabling Blockchain data fixtures
+
+SHROOMDK_API_KEY = "7736f412-5e7b-4c43-8360-3e2231a24e69"

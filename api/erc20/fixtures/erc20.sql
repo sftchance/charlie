@@ -1,4 +1,3 @@
-
 -- !!! DO NOT EDIT DIRECTLY !!!
 
 -- This query has been auto-generated following established guildelines 
@@ -22,10 +21,10 @@ WITH
             FROM avalanche.core.fact_event_logs
             WHERE TOPICS[0] IN ('0x3134e8a2e6d97e929a7e54011ea5485d7d196dd5f0ba4d4ef95803e8e3fc257f')
         ), 
-    optimism_contracts AS
+    polygon_contracts AS
         (
             SELECT  DISTINCT CONTRACT_ADDRESS
-            FROM optimism.core.fact_event_logs
+            FROM polygon.core.fact_event_logs
             WHERE TOPICS[0] IN ('0x3134e8a2e6d97e929a7e54011ea5485d7d196dd5f0ba4d4ef95803e8e3fc257f')
         ), 
     arbitrum_contracts AS
@@ -34,70 +33,75 @@ WITH
             FROM arbitrum.core.fact_event_logs
             WHERE TOPICS[0] IN ('0x3134e8a2e6d97e929a7e54011ea5485d7d196dd5f0ba4d4ef95803e8e3fc257f')
         ), 
-    polygon_contracts AS
+    optimism_contracts AS
         (
             SELECT  DISTINCT CONTRACT_ADDRESS
-            FROM polygon.core.fact_event_logs
+            FROM optimism.core.fact_event_logs
             WHERE TOPICS[0] IN ('0x3134e8a2e6d97e929a7e54011ea5485d7d196dd5f0ba4d4ef95803e8e3fc257f')
         )
 SELECT * FROM (
     SELECT  'ethereum' AS BLOCKCHAIN
-            ,address
-            ,REPLACE(symbol, chr(0), '') AS symbol
-            ,REPLACE(name, chr(0), '') AS name
-            ,decimals
+           ,1 AS CHAIN_ID
+           ,address
+           ,REPLACE(REPLACE(symbol, chr(0), ''), '$', '') AS symbol
+           ,REPLACE(name, chr(0), '') AS name
+           ,decimals
     FROM ethereum.core.dim_contracts 
     WHERE ADDRESS IN ( SELECT * FROM ethereum_contracts )
-    AND REPLACE(name, chr(0), '') IS NOT NULL
-    AND REPLACE(name, chr(0), '') != ''
-    AND REPLACE(symbol, chr(0), '') IS NOT NULL
+    AND LEN(REPLACE(name, chr(0), '')) > 1
+    AND LEN(REPLACE(REPLACE(symbol, '$', ''), chr(0), '')) > 1
     AND decimals IS NOT NULL
+    AND decimals <> 0
  UNION ALL 
     SELECT  'avalanche' AS BLOCKCHAIN
-            ,address
-            ,REPLACE(symbol, chr(0), '') AS symbol
-            ,REPLACE(name, chr(0), '') AS name
-            ,decimals
+           ,43114 AS CHAIN_ID
+           ,address
+           ,REPLACE(REPLACE(symbol, chr(0), ''), '$', '') AS symbol
+           ,REPLACE(name, chr(0), '') AS name
+           ,decimals
     FROM avalanche.core.dim_contracts 
     WHERE ADDRESS IN ( SELECT * FROM avalanche_contracts )
-    AND REPLACE(name, chr(0), '') IS NOT NULL
-    AND REPLACE(name, chr(0), '') != ''
-    AND REPLACE(symbol, chr(0), '') IS NOT NULL
+    AND LEN(REPLACE(name, chr(0), '')) > 1
+    AND LEN(REPLACE(REPLACE(symbol, '$', ''), chr(0), '')) > 1
     AND decimals IS NOT NULL
- UNION ALL 
-    SELECT  'optimism' AS BLOCKCHAIN
-            ,address
-            ,REPLACE(symbol, chr(0), '') AS symbol
-            ,REPLACE(name, chr(0), '') AS name
-            ,decimals
-    FROM optimism.core.dim_contracts 
-    WHERE ADDRESS IN ( SELECT * FROM optimism_contracts )
-    AND REPLACE(name, chr(0), '') IS NOT NULL
-    AND REPLACE(name, chr(0), '') != ''
-    AND REPLACE(symbol, chr(0), '') IS NOT NULL
-    AND decimals IS NOT NULL
- UNION ALL 
-    SELECT  'arbitrum' AS BLOCKCHAIN
-            ,address
-            ,REPLACE(symbol, chr(0), '') AS symbol
-            ,REPLACE(name, chr(0), '') AS name
-            ,decimals
-    FROM arbitrum.core.dim_contracts 
-    WHERE ADDRESS IN ( SELECT * FROM arbitrum_contracts )
-    AND REPLACE(name, chr(0), '') IS NOT NULL
-    AND REPLACE(name, chr(0), '') != ''
-    AND REPLACE(symbol, chr(0), '') IS NOT NULL
-    AND decimals IS NOT NULL
+    AND decimals <> 0
  UNION ALL 
     SELECT  'polygon' AS BLOCKCHAIN
-            ,address
-            ,REPLACE(symbol, chr(0), '') AS symbol
-            ,REPLACE(name, chr(0), '') AS name
-            ,decimals
+           ,137 AS CHAIN_ID
+           ,address
+           ,REPLACE(REPLACE(symbol, chr(0), ''), '$', '') AS symbol
+           ,REPLACE(name, chr(0), '') AS name
+           ,decimals
     FROM polygon.core.dim_contracts 
     WHERE ADDRESS IN ( SELECT * FROM polygon_contracts )
-    AND REPLACE(name, chr(0), '') IS NOT NULL
-    AND REPLACE(name, chr(0), '') != ''
-    AND REPLACE(symbol, chr(0), '') IS NOT NULL
+    AND LEN(REPLACE(name, chr(0), '')) > 1
+    AND LEN(REPLACE(REPLACE(symbol, '$', ''), chr(0), '')) > 1
     AND decimals IS NOT NULL
+    AND decimals <> 0
+ UNION ALL 
+    SELECT  'arbitrum' AS BLOCKCHAIN
+           ,42161 AS CHAIN_ID
+           ,address
+           ,REPLACE(REPLACE(symbol, chr(0), ''), '$', '') AS symbol
+           ,REPLACE(name, chr(0), '') AS name
+           ,decimals
+    FROM arbitrum.core.dim_contracts 
+    WHERE ADDRESS IN ( SELECT * FROM arbitrum_contracts )
+    AND LEN(REPLACE(name, chr(0), '')) > 1
+    AND LEN(REPLACE(REPLACE(symbol, '$', ''), chr(0), '')) > 1
+    AND decimals IS NOT NULL
+    AND decimals <> 0
+ UNION ALL 
+    SELECT  'optimism' AS BLOCKCHAIN
+           ,10 AS CHAIN_ID
+           ,address
+           ,REPLACE(REPLACE(symbol, chr(0), ''), '$', '') AS symbol
+           ,REPLACE(name, chr(0), '') AS name
+           ,decimals
+    FROM optimism.core.dim_contracts 
+    WHERE ADDRESS IN ( SELECT * FROM optimism_contracts )
+    AND LEN(REPLACE(name, chr(0), '')) > 1
+    AND LEN(REPLACE(REPLACE(symbol, '$', ''), chr(0), '')) > 1
+    AND decimals IS NOT NULL
+    AND decimals <> 0
 )

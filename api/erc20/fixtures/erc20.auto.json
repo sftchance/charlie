@@ -1,0 +1,3265 @@
+[
+{
+  "ethereum_address": "0xfcb7354e543786ec4ff005d4101f8ab9a398872c",
+  "blockchain": "avalanche",
+  "chain_id": 43114,
+  "symbol": "MUSH",
+  "name": "Mushroom Tokens",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xcfb54a6d2da14abecd231174fc5735b4436965d8",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "CYC",
+  "name": "Cyclone Protocol",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xcc2f1d827b18321254223df4e84de399d9ff116c",
+  "blockchain": "avalanche",
+  "chain_id": 43114,
+  "symbol": "SMRT",
+  "name": "SmartCoin",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x8729438eb15e2c8b576fcc6aecda6a148776c0f5",
+  "blockchain": "avalanche",
+  "chain_id": 43114,
+  "symbol": "QI",
+  "name": "BENQI",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x3df307e8e9a897da488211682430776cdf0f17cc",
+  "blockchain": "avalanche",
+  "chain_id": 43114,
+  "symbol": "gREKT",
+  "name": "Governance REKT",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xda7d21566ea8699805e2401503a3654ce569727d",
+  "blockchain": "avalanche",
+  "chain_id": 43114,
+  "symbol": "THEMIS",
+  "name": "Themis",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x6d923f688c7ff287dc3a5943caeefc994f97b290",
+  "blockchain": "avalanche",
+  "chain_id": 43114,
+  "symbol": "SMRTr",
+  "name": "SmarterCoin",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x1259f3357d8224fd9e0ad12dc658867ea7e22e95",
+  "blockchain": "avalanche",
+  "chain_id": 43114,
+  "symbol": "SNOWCAKE",
+  "name": "SnowcakeToken",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x60781c2586d68229fde47564546784ab3faca982",
+  "blockchain": "avalanche",
+  "chain_id": 43114,
+  "symbol": "PNG",
+  "name": "Pangolin",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x488f73cddda1de3664775ffd91623637383d6404",
+  "blockchain": "avalanche",
+  "chain_id": 43114,
+  "symbol": "YTS",
+  "name": "YetiSwap",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x9696fea1121c938c861b94fcbee98d971de54b32",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "KPR",
+  "name": "Keep3r",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x7a452c1f6f2d8c755fa884c0488f6aacfc1a702a",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "gAMP",
+  "name": "gAMP",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xeeab15f5268923b0e8b286ccc78986366a54c99f",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "BAAL",
+  "name": "Baal",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x65b35d6eb7006e0e607bc54eb2dfd459923476fe",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "XINV",
+  "name": "xINV",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x15b7c0c907e4c6b9adaaaabc300c08991d6cea05",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "GEL",
+  "name": "Gelato Network Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x1637e4e9941d55703a7a5e7807d6ada3f7dcd61b",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "XINV",
+  "name": "xINV",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x9ca263b68eddae9729d951d63cffa52b791d0aa1",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "TAUSCM3",
+  "name": "AUSCM TEST DEPL3",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xf77b59a2fd8ea0ded3ee72a2942c298de8a3e802",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "EPIC",
+  "name": "Orbital Epic",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xab39224e53b05725abadc34251e8757349a8af5e",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "PSY",
+  "name": "PSY",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xcc5a5de1b37a503c7943c8f261fb6b811c53aa81",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "DiamondHand",
+  "name": "https://t.me/Diamond_Hand100X",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xcd668b44c7cf3b63722d5ce5f655de68dd8f2750",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "SELFI",
+  "name": "StakedElyfiToken",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xf702f9fddff0988ce1b792e0d72ad3d3b9b480de",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "PSY",
+  "name": "BASTARD GAN PUNK V2 #386",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x3108ccfd96816f9e663baa0e8c5951d229e8c6da",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "DARK",
+  "name": "DarkToken",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x0954906da0bf32d5479e25f46056d22f08464cab",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "INDEX",
+  "name": "Index",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x5f2080542ab6ae7e0b06778f0b2d263006297840",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "DFH",
+  "name": "DeFiHelper Governance Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x9dc123242f5d47df88853ebffca29be970c9b084",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "MRAI",
+  "name": "Mirror AI",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x22a259f8a78cf2d38dd5ff92ae9d1ae7bfff7419",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "GDAO",
+  "name": "Golff.finance DAO",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x22f68ae048b126ad76cd5dbc2c671603a188d6dc",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "GBiFi",
+  "name": "Governance BiFi Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xe0e05c43c097b0982db6c9d626c4eb9e95c3b9ce",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "USF",
+  "name": "Unslashed Finance Governance Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xe0e4839e0c7b2773c58764f9ec3b9622d01a0428",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "ENCORE",
+  "name": "EnCore",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xfe3b138879d6d0555be4132dcfe6e7424e257a2e",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "SOFT",
+  "name": "SoftDAO",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xf4dc48d260c93ad6a96c5ce563e70ca578987c74",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "BABL",
+  "name": "Babylon.Finance",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x5afedef11aa9cd7dae4023807810d97c20791dec",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "vARMOR",
+  "name": "Voting Armor Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xed913dd697491eb559608b7dcac1e6b75303d287",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "gAMP",
+  "name": "gAMPV2",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xa5c6232b29654404eec62198ff2810424e609942",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "TDAO",
+  "name": "Trading.eth Domain DAO",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xa5ec8b526d0c9205b97b93c7c08ffde5d40cbb66",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "UVZ",
+  "name": "Ubuntu Village Zanzibar",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xbdf3351564cc51163e3586972cc0a7dde577effb",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "MEOW",
+  "name": "Meowshi",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xd47ff7c7a40273fd62e0ee1ffe69eddb6124ec6d",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "TAKO",
+  "name": "Tako",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xd4b5f1c12b46447693ae5ec05880ffd117277d12",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "GSN",
+  "name": "GSN Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xf5c583affda8dfbefec2cd5c072dc78e9250cce5",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "YFLOW",
+  "name": "Yieldflow",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xf01c994e79586eeef069d3603abae385d64df0e6",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "stGPT",
+  "name": "Staked CryptoGPT Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x71921c08586295b0b68e44a78a2dca1e3f259721",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "PNYD",
+  "name": "PonyDAO",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x5283d291dbcf85356a21ba090e6db59121208b44",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "BLUR",
+  "name": "Blur",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x28a06c02287e657ec3f8e151a13c36a1d43814b0",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "BAG",
+  "name": "BondAppetit Governance",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x4853365bc81f8270d902076892e13f27c27e7266",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "FATE",
+  "name": "FATExFI",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x9e5cc3af2c87527fdb48eb783e84e0fd9a59918a",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "MBT",
+  "name": "Magic Ball Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x831ecee0ef97ace95d1f14ad122c0e9f8e5b36aa",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "SN0W",
+  "name": "Sn0w Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x799ebfabe77a6e34311eeee9825190b9ece32824",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "BTRST",
+  "name": "BTRST",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x0cec1a9154ff802e7934fc916ed7ca50bde6844e",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "POOL",
+  "name": "PoolTogether",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x31429d1856ad1377a8a0079410b297e1a9e214c2",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "ANGLE",
+  "name": "ANGLE",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xe50a259592d3babba4d874ca3ea87e88bc8b086f",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "MTEC",
+  "name": "MetaTec",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x4e44fe174e934ff78a77bee3c2b752fd1beefdef",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "GOKU",
+  "name": "GOKU",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xa4c3faee8cab2d3a6b87deaaaffb0d481c6bfa92",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "PUB",
+  "name": "Public",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x31c8eacbffdd875c74b94b077895bd78cf1e64a3",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "RAD",
+  "name": "Radicle",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x31de2088f38ed7f8a4231de03973814eda1f8773",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "INST",
+  "name": "Instadapp",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x0c4576ca1c365868e162554af8e385dc3e7c66d9",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "veOGV",
+  "name": "veOGV",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x7f4f0331af087a763445340873072ffd495ae4c2",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "MEOW",
+  "name": "Meowshi",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x650f44ed6f1fe0e1417cb4b3115d52494b4d9b6d",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "MEOW",
+  "name": "Meowshi",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x7a3d5d49d64e57dbd6fbb21df7202bd3ee7a2253",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "TCORE",
+  "name": "TornadoCORE",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x03a1da0425a4247957388364d18b08db2b13d633",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "RHADS0",
+  "name": "RHADS - Wind Energy",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x044f501d2b48cfd522699a88eab5ed8186b57a6f",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "GOV",
+  "name": "GOVERN",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x90de74265a416e1393a450752175aed98fe11517",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "UDT",
+  "name": "Unlock Discount Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xa9c44135b3a87e0688c41cf8c27939a22dd437c9",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "BOOB",
+  "name": "BooBank",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x0a16a0c5c95e4623c63d615fc238935a8221fc68",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "BDOJO",
+  "name": "BB DOJO",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x610210aa5d51bf26cbce146a5992d2feebc27db1",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "SECTOR3",
+  "name": "Sector#3",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x24ae124c4cc33d6791f8e8b63520ed7107ac8b3e",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "ESS",
+  "name": "Empty Set Share",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xa5c1940fa491e830a5a25bda04986f741f08fd26",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "DETF",
+  "name": "DETF token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xa5f2211b9b8170f694421f2046281775e8468044",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "THOR",
+  "name": "THORSwap Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x285209dd294fb6763740e1c92d654d92eaaadf22",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "OCTAGON",
+  "name": "Octagon",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xbf759d75967cab23ae67dd72d69f161f004afb0d",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "Ros",
+  "name": "Rose",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc57d533c50bc22247d49a368880fb49a1caa39f7",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "PTF",
+  "name": "PowerTrade Fuel Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xbc138bd20c98186cc0342c8e380953af0cb48ba8",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "CNDL",
+  "name": "Candle",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xe7a74474af2e28d921a15d1724ca66f55ae09119",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "SAHM",
+  "name": "Voting Shares",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xbbbbbbb5aa847a2003fbc6b5c16df0bd1e725f61",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "BPRO",
+  "name": "B.Protocol",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x1a4b46696b2bb4794eb3d4c26f1c55f9170fa4c5",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "BIT",
+  "name": "BitDAO",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x2e2364966267b5d7d2ce6cd9a9b5bd19d9c7c6a9",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "NBT",
+  "name": "NIX Bridge Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x2ebd53d035150f328bd754d6dc66b99b0edb89aa",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "MET",
+  "name": "Metronome2",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x27fa82b1bf97f2468d1b626ac7693c3643ae88de",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "Todi",
+  "name": "Todi",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x98b60038edadad66f6b44065851182b597e0c22e",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "Maia",
+  "name": "Maia",
+  "decimals": 9
+}, 
+{
+  "ethereum_address": "0x624d822934e87d3534e435b83ff5c19769efd9f6",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "hPAL",
+  "name": "Holy Paladin Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x92d46e15ab25d898a04ac71d7811096ed2d7b9db",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "TESLA",
+  "name": "Tesla",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x1ca14f9830292f5e0228fc20f17d11ae457f503f",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "OMETA",
+  "name": "Open Meta Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xd291e7a03283640fdc51b121ac401383a46cc623",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "RGT",
+  "name": "Rari Governance Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xd2f6ede48264ddc942056b64a3e9e3c2952fc907",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "MAHAXvp",
+  "name": "MAHAX Staked Voting Power",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xd313c06fa0e5d7286f28fa688e09248cb644295e",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "veOGV",
+  "name": "veOGV",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xfaba6f8e4a5e8ab82f62fe7c39859fa577269be3",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "ONDO",
+  "name": "Ondo",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x7afb39837fd244a651e4f0c5660b4037214d4adf",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "SODA",
+  "name": "SodaToken",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc7283b66eb1eb5fb86327f08e1b5816b0720212b",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "TRIBE",
+  "name": "Tribe",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc747f9d3e6b34596977e79f09a2ab122042673e1",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "sGF",
+  "name": "Staked GuildFi",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc79e405cfb37643100e08595dc022277a1c59a00",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "UNI",
+  "name": "Uniswap",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x3a880652f47bfaa771908c07dd8673a787daed3a",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "DDX",
+  "name": "DerivaDAO",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x3a8d5bc8a8948b68dfc0ce9c14ac4150e083518c",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "PARA",
+  "name": "Paralink Network",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x534d1f5e617e0f72a6b06a04aa599839af776a5e",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "BSN",
+  "name": "Blockswap Network",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x1c77d15857646687005dbbafff5873f4495a9731",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "MPond",
+  "name": "Marlin",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "INV",
+  "name": "Inverse DAO",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x42bbfa2e77757c645eeaad1655e0911a7553efbc",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "BOBA",
+  "name": "Boba Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x374cb8c27130e2c9e04f44303f3c8351b9de61c1",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "BAO",
+  "name": "BaoToken",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x0000a1c00009a619684135b824ba02f7fbf3a572",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "ALCH",
+  "name": "Alchemy",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x0018e66a1dea81fdd767cbb15673119b034b5cf2",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "BNSG",
+  "name": "BNS Governance",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x00a55375002f3cda400383f479e7cd57bad029a9",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "CNJ",
+  "name": "Conjure",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x00db339fa640303c2c0e9d1a69c8adff73a2f3e2",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "TT",
+  "name": "TEST",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xde30da39c46104798bb5aa3fe8b9e0e1f348163f",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "GTC",
+  "name": "Gitcoin",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xdeaba23593b50c1fce4fb9d9d345ee28763f1e67",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "WANT",
+  "name": "Want",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x961c8c0b1aad0c0b10a51fef6a867e3091bcef17",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "DYP",
+  "name": "DeFiYieldProtocol",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x6bba316c48b49bd1eac44573c5c871ff02958469",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "GAS",
+  "name": "Gas DAO",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc12ea096fba2fffc49cd2b091dd228f08bc56bb0",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "PNS",
+  "name": "PonySwap Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xd7f3aac7557c213b035c19bd89bd693396acccd6",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "ART",
+  "name": "Artizen Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xd6bcf34e74782d7851c1cfdae6400c5198212eaa",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "wKEY",
+  "name": "Wolfikey",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x382ec84a993291bd62e8990e51c0218d74d4d520",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "SNOF",
+  "name": "SNOFERS COIN",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xd04708968f775c4d0283345b293f3269c3ccdc4a",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "milk",
+  "name": "Milk",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x9c7305eb78a432ced5c4d14cac27e8ed569a2e26",
+  "blockchain": "optimism",
+  "chain_id": 10,
+  "symbol": "veNFT",
+  "name": "veNFT",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xac9ada9a0c53f7665ac55385defa17ab37429817",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "gMIC",
+  "name": "Governance MilkyIce",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x429b958f74810902d90ad85c5ff200feffcfdb08",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "BWP",
+  "name": "Brownie Points",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x5f81598d586ef048d8f3c81edf75efdc82a96def",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "WXTX",
+  "name": "Wxsted Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x7d9171c599dd3a73ea7ca68ef74db90f987e545d",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "NT",
+  "name": "NiumToken",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x4521b65bb2ac3ca4885947f0c7dfd42b4fa5b18a",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "J-SHARE",
+  "name": "JamonShare",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xd0f3121a190d85de0ab6131f2bcecdbfcfb38891",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "YELD",
+  "name": "PolyYeld Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x5373792573451b2b52bf4015c8e0a3e308b43e5f",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "tom",
+  "name": "tony",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x3446dd70b2d52a6bf4a5a192d9b0a161295ab7f9",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "SUDO",
+  "name": "SUDO GOVERNANCE TOKEN",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x8a727d058761f021ea100a1c7b92536ac27b762a",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "BENTO",
+  "name": "Sumo Protocol",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x88ccc5cde30a98804a5b8002bff55367ddd5b30d",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "BAKED",
+  "name": "KatNip",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x4d0f56d728c5232ab07faa0bdcba23670a35451f",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "AGFI",
+  "name": "Aggregated Finance",
+  "decimals": 9
+}, 
+{
+  "ethereum_address": "0x175840f5a4ce0bd99e1f27d01b0a1d18759dff2b",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "sREL",
+  "name": "Staked REL",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x30f3581ef6469334c8752d9b6ca3fb39c72f57f1",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "KPR",
+  "name": "Keep3r",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x054d64b73d3d8a21af3d764efd76bcaa774f3bb2",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "PPAY",
+  "name": "Plasma",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xcb4d749fd1ff081d6fea3bd978de87603e098e63",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "JENNY",
+  "name": "JENNY",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x5516ac1aaca7bb2fd5b7bdde1549ef1ea242953d",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "DETF",
+  "name": "DETF token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xf83ed9be1241e84e2fe8b6c9109e492103e5eb17",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "RING",
+  "name": "Ring",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x380291a9a8593b39f123cf39cc1cc47463330b1f",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "ELT",
+  "name": "Elite Swap",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x9813037ee2218799597d83d4a5b6f3b6778218d9",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "BONE",
+  "name": "BONE SHIBASWAP",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x8a3f511a654cb48fe49c0ba4caedd8fda40306a6",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "ATY",
+  "name": "Assetify",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x3e5d9d8a63cc8a88748f229999cf59487e90721e",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "XMT",
+  "name": "MetalSwap",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x431b366be6069ae62f8121a901c6160b34af7f80",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "GDAX",
+  "name": "GoldDAX",
+  "decimals": 8
+}, 
+{
+  "ethereum_address": "0x0a7ebdd08fce771c2c4d1d0539addb81baf0897f",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "WORK",
+  "name": "Slack",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x0aacfbec6a24756c20d41914f2caba817c0d8521",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "YAM",
+  "name": "YAM",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x0ab87046fbb341d058f17cbc4c1133f25a20a52f",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "gOHM",
+  "name": "Governance OHM",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xe0ce4d39c95ebededeb2624948c8c25657650d0e",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "FREAK",
+  "name": "SIN CITY FREAKS",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x38e4adb44ef08f22f5b5b76a8f0c2d0dcbe7dca1",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "CVP",
+  "name": "Concentrated Voting Power",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x321c2fe4446c7c963dc41dd58879af648838f98d",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "CTX",
+  "name": "Cryptex",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc8d2ab2a6fdebc25432e54941cb85b55b9f152db",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "GRAP",
+  "name": "GRAP",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xd9fcd98c322942075a5c3860693e9f4f03aae07b",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "EUL",
+  "name": "Euler",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x84008e4ca753ad89a773ca19a171caccdb0ffae3",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "MEOW",
+  "name": "Meowshi",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xd0137bac0d2332bf9b41242537c03d8813b1f03f",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "Taiwan",
+  "name": "Taiwan",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x41545f8b9472d758bb669ed8eaeeecd7a9c4ec29",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "FORT",
+  "name": "Forta",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x532f1d48d1b6fb704087df04cf1a1cc9eddfb596",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "TT2",
+  "name": "TEST2",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x54736eaffb11ac8eb9690dbb7ce00a3e0c215445",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "TS02",
+  "name": "Test02",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x9834f8e231bc9eaf306947689dc7104096ae15cf",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "SRMb",
+  "name": "SRMboost.org",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x98ad9b32dd10f8d8486927d846d4df8baf39abe2",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "VLO",
+  "name": "VELO Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x993864e43caa7f7f12953ad6feb1d1ca635b875f",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "SDAO",
+  "name": "Singularity Dao",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x76e63a3e7ba1e2e61d3da86a87479f983de89a7e",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "OMEN",
+  "name": "Augury Finance",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x6edceb1517cce99f233e4e00281533ceffe98a60",
+  "blockchain": "optimism",
+  "chain_id": 10,
+  "symbol": "TT",
+  "name": "TT",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xcdbc1408abecf6175ee4fee5a4f189ced632883c",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "TEST",
+  "name": "test",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xce7895c567dcf7b950890dea3360872524eeca41",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "TRUMP",
+  "name": "trumpswap.finance",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x8eb18b8a20ff8cbec648dbe01457f4c77e320598",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "BCDAO",
+  "name": "BCDAOToken",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x8df586aa346c3d9d1c99a21316a2735d71355ec8",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "WSB",
+  "name": "Wallstreetbets",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x8e84ee8b28ddbe2b1d5e204e674460835d298815",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "TDAO",
+  "name": "Contribute DAO",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x1dafac57c2f74cbc2736486309a009880ce4cbfc",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "SLS",
+  "name": "Slicer.Finance",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x49411930ac0c14713e36db62700fbe31017acc9a",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "YAM2",
+  "name": "YAM2",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x49428f057dd9d20a8e4c6873e98afd8cd7146e3b",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "dSATA",
+  "name": "Signata DAO",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x4b9278b94a1112cad404048903b8d343a810b07e",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "HIFI",
+  "name": "Hifi Finance",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x0e2298e3b3390e3b945a5456fbf59ecc3f55da16",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "YAM",
+  "name": "YAM",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xb41ec2c036f8a42da384dde6ada79884f8b84b26",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "TIDAL",
+  "name": "Tidal Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x8c9aaca6e712e2193acccbac1a024e09fb226e51",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "GBNT",
+  "name": "GammaBountyToken",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x7c009f092395c35bdd87c74d2a907b0e3115026a",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "FUN",
+  "name": "Faux Union",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x22d5df224348321b65dcb14ff2bed72d4b6e5634",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "ELCT",
+  "name": "Electron Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x93810fe228fa8c69b08c2d8df3ec05357c00c625",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "ARABELLA",
+  "name": "ARABELLA Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x94788309d420ad9f9f16d79fc13ab74de83f85f7",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "SROCKET",
+  "name": "Stable One Rocket",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xd125443f38a69d776177c2b9c041f462936f8218",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "FBX",
+  "name": "FireBotToken",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x1037c355d3e729a6a3cae771b7417134dd842a9f",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "mVMT",
+  "name": "Veriprise Motors Token ",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x87f654c4b347230c60cad8d7ea9cf0d7238bcc79",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "YAMP",
+  "name": "YAMP.FINANCE",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x04b33078ea1aef29bf3fb29c6ab7b200c58ea126",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "SAFLE",
+  "name": "Safle",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x3a3df212b7aa91aa0402b9035b098891d276572b",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "FISH",
+  "name": "Fish",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xe0f463832295adf63eb6ca053413a3f9cd8bf685",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "SNOW",
+  "name": "Snowflake",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xef4e7c78c69de8b96a480cbc453e109b79fc8d41",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "FCK",
+  "name": "Fake",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x48469a0481254d5945e7e56c1eb9861429c02f44",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "PROFIT",
+  "name": "Stability",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xe3300e21c7fe91aafcae5234e5dc7b4e9e17d0f7",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "FTN",
+  "name": "Fortuna",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x2e2dde47952b9c7defde7424d00dd2341ad927ca",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "CHUM",
+  "name": "ChumHum",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x5fef39b578deeefa4485a7e5944c7691677d5dd4",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "MOBL",
+  "name": "Mobula",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x4d0b6356605e6fa95c025a6f6092eccf0cf4317b",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "EURO",
+  "name": "Euro Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x9ff62d1fc52a907b6dcba8077c2ddca6e6a9d3e1",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "FORT",
+  "name": "Forta",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc68e83a305b0fad69e264a1769a0a070f190d2d6",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "ROLL",
+  "name": "Polyroll Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x56ba9a2f00a4f581a05bfe9fd0b16277ed130349",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "veETHA",
+  "name": "Vote Escrow ETHA",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x34c1b299a74588d6abdc1b85a53345a48428a521",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "EZ",
+  "name": "EASY V2",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x81e741da85a74baad1769ef4439c2107e10c03b9",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "JSTAK",
+  "name": "Jigstack Ecosystem Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xd4945a3d0de9923035521687d4bf18cc9b0c7c2a",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "LUXY",
+  "name": "LUXY",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xf0f9d895aca5c8678f706fb8216fa22957685a13",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "RVLT",
+  "name": "Revolt 2 Earn",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x1e3a1edd81ff576bf9f71c3806293cdadec057c1",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "AUT",
+  "name": "Autonomies",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x0be3afd0a28f0aa787d113c08d1d8a903cf6eee9",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "FESW@M",
+  "name": "FeSwap DAO",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xe261d618a959afffd53168cd07d12e37b26761db",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "DIMO",
+  "name": "Dimo",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x980aaae430a47ee3f5f6dade7c5395dc262f0177",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "COP",
+  "name": "Copra",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xe46b4a950c389e80621d10dfc398e91613c7e25e",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "pFi",
+  "name": "PartyFinance",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x969d08daa45663b6066a172b8ea57cd1f9d5a3c9",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "HST",
+  "name": "HashStratDAOToken",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xced6411f44e931b0717ba81eb0b2183a679fa7cb",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "SIGMA2",
+  "name": "SigmaSquared",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x69bde563680f580a2da5b5d4e202eca4fdf35664",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "LOVE",
+  "name": "Love",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x0b68782eff3177f1f9240b64a7e2f8e0497e2454",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "ATLX",
+  "name": "Atlantis",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc00f77673b8e7acda57eae4589b76c4866a61436",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "GFRY",
+  "name": "Governance FRY",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x0d4686ba79d13557132f2fb73291ace0afbc905b",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "veCRS",
+  "name": "veCRS",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x7ed3e61e6b1779ad4694c58a920f4d819634c19a",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "gGOGO",
+  "name": "GOGO Governance",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc2a45fe7d40bcac8369371b08419ddafd3131b4a",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "LCD",
+  "name": "Lucidao",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xa9b8e4be7e4fc1b1d28b396af7c4cba37979bc0f",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "ATSX",
+  "name": "AllTurn.Space",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x91c5a5488c0decde1eacd8a4f10e0942fb925067",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "AUDT",
+  "name": "Auditchain",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xb63e54f16600b356f6d62ddd43fca5b43d7c66fd",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "pPEGG",
+  "name": "Parrot Egg",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x45d89820cdc0c4010af63563e2b5b53474fa0e77",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "BIBLE",
+  "name": "Bible Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x854c503f75b6308238bde632fe72fadda581248a",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "ARTHUM",
+  "name": "Art For Humans",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x831753dd7087cac61ab5644b308642cc1c33dc13",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "QUICK",
+  "name": "Quickswap",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc87d8ce7d5b41a2b93e873dd543f2ce9c7fb3d01",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "J-SHARE",
+  "name": "JamonShare",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x80244c2441779361f35803b8c711c6c8fc6054a3",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "BONE",
+  "name": "Bone Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x38440c9799e19503cd1a45b56a380abdf111d106",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "GWOP",
+  "name": "GWOP",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xf3064d73087cccb079bf806c37c7107364995b54",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "WEAV",
+  "name": "Weavr Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x351020abd77303fd2e8774cfcad9b4fb82b573d3",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "WEAV",
+  "name": "Weavr Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x2cab3abfc1670d1a452df502e216a66883cdf079",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "L2DAO",
+  "name": "Layer2DAO",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x1467ad80699cbee7a2a20657319f66ea3853c54d",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "WEAV",
+  "name": "Weavr Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x40eafec3c261f7e706289d3b3afef812a6ca10cd",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "sASCEND",
+  "name": "Staked Ascension Protocol",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x6275a0a6063c27565e90d2758d0896f58a685ccb",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "FRBC",
+  "name": "Frabric Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x3aeae7195d197231db072c3cb37b910f224a26b1",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "WEAV",
+  "name": "Weavr Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x8d1d5df9e62dc95be3e429eb4973a39fa21f5779",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "WEAV",
+  "name": "Weavr Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xb22e6ae314ce794fbdcf7f35332a9be5855c47ba",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "WEAV",
+  "name": "Weavr Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x90be6f8f30931322e60b913ece49d1724d996054",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "WEAV",
+  "name": "Weavr Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xdbd4715aa64b6de60bee631cae1eba488a5b46c7",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "WEAV",
+  "name": "Weavr Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x95647d47875f54c102790f42465089659572402c",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "WEAV",
+  "name": "Weavr Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc606157cdbeb8e0bdb273e40d6ee96e151083194",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "MPond",
+  "name": "Marlin MPond",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x7db8675f518448db8fdf52370e50658a9ef02ac0",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "MGT",
+  "name": "MyGovernorTest",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x73908e9cde73fde9a6967756bc194266ae9b04fa",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "WEAV",
+  "name": "Weavr Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x3541dd97e7920db879e26c6c3fba5c41e5ccdb5f",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "WEAV",
+  "name": "Weavr Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x9e724698051da34994f281bd81c3e7372d1960ae",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "ASCEND",
+  "name": "Ascension Protocol",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x4ce5597ebe0da8f976328f5864d9c91365b9cba1",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "WEAV",
+  "name": "Weavr Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xedc9b50bb4058a73a07c8289acbe4fe424fbd834",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "WEAV",
+  "name": "Weavr Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc43848ccda7dcda61e0583b9923de2b34fae985c",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "WEAV",
+  "name": "Weavr Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xb2d7b1e9c9143d7888814dc80c3d0e2684d59268",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "GT",
+  "name": "GovernanceToken",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xb84071d486812baf5288da229f1b39d4713fc5cd",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "MT",
+  "name": "Member Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x5cb7a31990df966fa29ce1318699113c11ebcc2e",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "WEAV",
+  "name": "Weavr Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xd2c82493e33966db138597f6b25915604b9233e7",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "SUP",
+  "name": "SuperToken",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xe7fdfd284424a5a34958e24b5976afc6b3e98e12",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "WEAV",
+  "name": "Weavr Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x1513bf884c5ddaf2b3b3a206e35a8d6d5831b84a",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "WEAV",
+  "name": "Weavr Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x75732032d9f945e6e416537ea06d3cee26d64e5c",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "SHIT",
+  "name": "Shit",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x8026335a35e470acdcfe6f4371c31f8634d5fe4b",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "WEAV",
+  "name": "Weavr Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x0b0aa52fa95a51d0b4fe0447051c689666c49c96",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "WEAV",
+  "name": "Weavr Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x0d281885b24861d5faa328355850946c44f01787",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "BD",
+  "name": "Baiden",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc94f5c4a091418d03ff1989b48db3139d1af0d25",
+  "blockchain": "avalanche",
+  "chain_id": 43114,
+  "symbol": "BUCKS",
+  "name": "Brain Bucks",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x8b21e9b7daf2c4325bf3d18c1beb79a347fe902a",
+  "blockchain": "optimism",
+  "chain_id": 10,
+  "symbol": "COLLAB",
+  "name": "Collab.Land",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x7feb754c1e917432782add836fed0100fd63f8bc",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "T000A",
+  "name": "Thread #1, $100 Bill",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x617768241137431d8d415460ab3cb2f142549a1a",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "CF-T000A",
+  "name": "Crowdfund Thread #1, $100 Bill",
+  "decimals": 6
+}, 
+{
+  "ethereum_address": "0x2a45b0cf266f355675471819432f7b6126c7e8da",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "STT",
+  "name": "SenseiTestToken",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x2930e431da7ffa9f44bf64c5ce9618db96e3d87a",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "TESTSHIT",
+  "name": "TestShit",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x00828f5238d04a2fd7526380b3abec5090976bb7",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "ARB",
+  "name": "Arbitrum",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xac7ec2ca5d8176e0d2704b3771d5ca76010644db",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "ARB",
+  "name": "Arbitrum",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xb39c9383b56356ef9a5c8d35e8fee26f40b5de7f",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "PNS V2",
+  "name": "PonySwap Token V2",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x50aa7a13b28eea97dc6c3f5e8aaa7fe512e7306d",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "XB",
+  "name": "X Blue",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xa032082b08b2ef5a6c3ea80daeac58300f68fb73",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "veFCTR",
+  "name": "veFCTR",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x912ce59144191c1204e64559fe8253a0e49e6548",
+  "blockchain": "arbitrum",
+  "chain_id": 42161,
+  "symbol": "ARB",
+  "name": "Arbitrum",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x4a4a00865a847ae8bd758fd1b43c32c3a5d3dc63",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "OIL",
+  "name": "Insane Oil Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xba3335588d9403515223f109edc4eb7269a9ab5d",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "GEAR",
+  "name": "Gearbox",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc5102fe9359fd9a28f877a67e36b0f050d81a3cc",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "HOP",
+  "name": "Hop",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x77a0164e2b77445c0ecf48ee7fb045bbadb94ead",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "WDGT",
+  "name": "Widget",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xba0ef82a023de4223fd44b97f497ba2a89f28ac3",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "CRT",
+  "name": "CRT Finance",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x9631eb0d6092904dfcd8ba2f9a173e0c3fec1c7f",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "veMAYC12796",
+  "name": "veM12796",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x66c0dded8433c9ea86c8cf91237b14e10b4d70b7",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "Mars",
+  "name": "MarsToken",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x66e7ce35578a37209d01f99f3d2ff271f981f581",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "PACT",
+  "name": "PACT community token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x8f2326316ec696f6d023e37a9931c2b2c177a3d7",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "stkMTA",
+  "name": "Staked MTA",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xf334dfc61ec055647543e5e35577c70789278079",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "NSC",
+  "name": "Nautilus Stable Coin",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x18ba6e33ceb80f077deb9260c9111e62f21ae7b8",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "eusdRSR",
+  "name": "eusdRSR Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x875773784af8135ea0ef43b5a374aad105c5d39e",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "IDLE",
+  "name": "Idle",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x3fa73f1e5d8a792c80f426fc8f84fbf7ce9bbcac",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "vlAURA",
+  "name": "Vote Locked Aura",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xefbe22085d9f29863cfb77eed16d3cc0d927b011",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "stkBPT",
+  "name": "Staked Token BPT",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x2d77b594b9bbaed03221f7c63af8c4307432daf1",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "dCULT",
+  "name": "dCULT",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x2d94aa3e47d9d5024503ca8491fce9a2fb4da198",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "BANK",
+  "name": "Bankless Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc3d05443416946a0df99da9d8a67955e926d24eb",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "TEST4",
+  "name": "Test4",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "UNI",
+  "name": "Uniswap",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x201850680b79bbeff4e00684248b237a77bded0c",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "NERDLING",
+  "name": "Nerdling Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc120dbb74a1f9764d46de19fb5c70ce71317cbeb",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "MTE",
+  "name": "Meteorite Token",
+  "decimals": 8
+}, 
+{
+  "ethereum_address": "0x7611674336151835403c4db867fdd30782073c65",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "UNIS",
+  "name": "UniSlurm",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xa76552b40e0ae344002193e360f89db4a87db7cb",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "Ramen",
+  "name": "Sumo Protocol",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xb24cd494fae4c180a89975f1328eab2a7d5d8f11",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "CODE",
+  "name": "Developer DAO",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xdb27da48027062b4035fb5991660f12df1d553f1",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "MEOW",
+  "name": "Meowshi",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc13a4c6a69eda428197a6ae52256c6ffccd24177",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "SOS",
+  "name": "SoarsFinance",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc1582b6d559bdf7a45b4071c8e2ee662edd56df8",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "BAAL",
+  "name": "Baal Labs",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc177f93be371cdb3e42a48858121fc4bd2f5960c",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "MEOW",
+  "name": "Meowshi",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc18360217d8f7ab5e7c516566761ea12ce7f9d72",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "ENS",
+  "name": "Ethereum Name Service",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xb3999f658c0391d94a37f7ff328f3fec942bcadc",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "HFT",
+  "name": "Hashflow",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xed91879919b71bb6905f23af0a68d231ecf87b14",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "DMG",
+  "name": "DMM: Governance",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x80d290a6fdce62709e17669af8affb0d77c6edb8",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "PACT",
+  "name": "PACT community token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x819d7901ccb7689a6d87dfe37e6f4946d71345fc",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "LEVELS",
+  "name": "Levels",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc00e94cb662c3520282e6f5717214004a7f26888",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "COMP",
+  "name": "Compound",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x67447cf30a976b57e36b36a014e282a1b26ac757",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "FDAO",
+  "name": "ForTube DAO",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x6f40d4a6237c257fff2db00fa0510deeecd303eb",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "INST",
+  "name": "Instadapp",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x86772b1409b61c639eaac9ba0acfbb6e238e5f83",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "NDX",
+  "name": "Indexed",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x04ccf15af43ed28241c5042f4cbdcd692753095b",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "DETF",
+  "name": "DETF Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "SUSHI",
+  "name": "SushiToken",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xe16dcb979b5431be8e5b7d96f8f80b771bac2281",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "TS03",
+  "name": "Test03",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x23696914ca9737466d8553a2d619948f548ee424",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "stkTRU",
+  "name": "Staked TrueFi",
+  "decimals": 8
+}, 
+{
+  "ethereum_address": "0x51502f03311b050696297318a35ceafb8f255085",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "NHAM-DAO-Test",
+  "name": "NHAM-DAO-Test",
+  "decimals": 9
+}, 
+{
+  "ethereum_address": "0x5158fdacaf987b6b0b76ea23ac28eb5cd946a65f",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "VZ1",
+  "name": "VZHUH FIRST EDITION",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x5aaef4659c683d2b00ef86aa70c6ab2e5a00bcc7",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "RICH",
+  "name": "RICH",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x51b5bb678e594536d394612f464f94dd87b5289f",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "NEKO",
+  "name": "NekoToken",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x4a3e164684812dfb684ac36457e7fa805087c68e",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "YUAN",
+  "name": "YUAN",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x57d43cfe565a2e6c181662ae73a9f1ec6a830351",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "GFOOD",
+  "name": "GourmetFood",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc5102fe9359fd9a28f877a67e36b0f050d81a3cc",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "HOP",
+  "name": "Hop",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x6847d3a4c80a82e1fb26f1fc6f09f3ad5beb5222",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "ARENA",
+  "name": "Code4rena",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xa0d2c3d528c51f0c4b3e7d6d4abfe7ebf3b68019",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "ERBW",
+  "name": "Escrowed RBW",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x448e87779345cc2a4b3772dfd0f63200837b2615",
+  "blockchain": "optimism",
+  "chain_id": 10,
+  "symbol": "OVN",
+  "name": "OvnToken",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x8fd0195469b51a935dc3c48617ced6b400e38c9c",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "C4C",
+  "name": "Crypto 4 A Cause Fund",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xb5c064f955d8e7f38fe0460c556a72987494ee17",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "QUICK",
+  "name": "QuickSwap",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xca14007eff0db1f8135f4c25b34de49ab0d42766",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "STRK",
+  "name": "StarkNet Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x62359ed7505efc61ff1d56fef82158ccaffa23d7",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "CORE",
+  "name": "cVault.finance",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x6243d8cea23066d098a15582d81a598b4e8391f4",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "FLX",
+  "name": "Flex Ungovernance Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xd8e3fb3b08eba982f2754988d70d57edc0055ae6",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "ZORA",
+  "name": "Zoracles",
+  "decimals": 9
+}, 
+{
+  "ethereum_address": "0x5dfe42eea70a3e6f93ee54ed9c321af07a85535c",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "UNION",
+  "name": "Union Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x096bd9a7a2e703670088c05035e23c7a9f428496",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "veRARI",
+  "name": "Rarible Vote-Escrow",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x449e59b2a2064014cd4ed359c397153ab8f8ffaf",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "ONDOTEST",
+  "name": "OndoTest",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc9d2c87b5a9edf41f2ed4ea7217de44646bf636d",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "WAAMI",
+  "name": "WAAMI DAO",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xd909c5862cdb164adb949d92622082f0092efc3d",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "IPT",
+  "name": "Interest Protocol",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x1ceb5cb57c4d4e2b2433641b95dd330a33185a44",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "KP3R",
+  "name": "Keep3rV1",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x19f6afe15c7fd8a900dbc86623b0d36912a2af1f",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "PASTA",
+  "name": "Pasta DAO \ud83c\udf5d",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xb5fe6946836d687848b5abd42dabf531d5819632",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "TLC",
+  "name": "Liquid Collective",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x6050b7040cf4ae3e60c3c1a5d0367b565a1460c1",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "veDF",
+  "name": "dForce Vote Escrow Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x608917f8392634428ec71c6766f3ec3f5cc8f421",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "MAHAXvp",
+  "name": "MAHAX Staked Voting Power",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xf0f9d895aca5c8678f706fb8216fa22957685a13",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "CULT",
+  "name": "Cult DAO",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xab846fb6c81370327e784ae7cbb6d6a6af6ff4bf",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "PAL",
+  "name": "Paladin Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x630d98424efe0ea27fb1b3ab7741907dffeaad78",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "PEAK",
+  "name": "PEAKDEFI",
+  "decimals": 8
+}, 
+{
+  "ethereum_address": "0xf5d59957d61287936904d2428c6417d53bd1073a",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "CIWYL",
+  "name": "Call it what you like",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xa49d7499271ae71cd8ab9ac515e6694c755d400c",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "MUTE",
+  "name": "Mute.io",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xa54d2ebfd977ad836203c85f18db2f0a0cf88854",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "BACON",
+  "name": "BaconCoin",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x91d8085ed42ab2b838111489286c760a14c83da1",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "gAMP",
+  "name": "gAMP",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x91ecd3a89fb0608aff141bbc4659a1ca048518ae",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "EDEN",
+  "name": "EDEN",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x77b8ae2e83c7d044d159878445841e2a9777af38",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "WSE",
+  "name": "WhiteSwap",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x77fba179c79de5b7653f68b5039af940ada60ce0",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "FORTH",
+  "name": "Ampleforth Governance",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xf344b01da08b142d2466dae9e47e333f22e64588",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "FEM",
+  "name": "FemboyDAO",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xf418588522d5dd018b425e472991e52ebbeeeeee",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "PUSH",
+  "name": "Ethereum Push Notification Service",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x2b7018fca0eccfbc738828e1e8f1c7038ebbcaa8",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "EGG",
+  "name": "Eggy.Finance",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x2ba592f78db6436527729929aaf6c908497cb200",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "CREAM",
+  "name": "Cream",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x2bfc1d3aba5bc82ed3f0ad668fe497f655a7ba50",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "ISWAP",
+  "name": "iswap.money",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x1326163c22857cf7f7eeda026a0a0fe9412d198b",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "ZONE",
+  "name": "GridZone.io",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x138cfc76f0dd29c47e025eef722d78650f478b01",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "BNSG",
+  "name": "BNS Governance",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x6f80310ca7f2c654691d1383149fa1a57d8ab1f8",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "Silo",
+  "name": "Silo Governance Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x3e3cda3218212503883c79f6d2feef29e6bbb87d",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "GPYX",
+  "name": "GpyxToken",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xdcd2b58585df999dd145e529f09e8acafa6cd244",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "veAGT",
+  "name": "Voting Escrow Antfarm Governance",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x6803c357fb329755f906839d800617a93d61c202",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "LBD",
+  "name": "Liquidity Income Delegate",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x68481f2c02be3786987ac2bc3327171c5d05f9bd",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "BLO",
+  "name": "Based Loans Ownership",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x685d939c8fe6cce02f3c7cbc37d024e99570812c",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "HAT",
+  "name": "hats.finance",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x74232704659ef37c08995e386a2e26cc27a8d7b1",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "STRK",
+  "name": "Strike Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x4d21351469a6728043cacf89ecb4d1e8ec20a70c",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "YFLOW",
+  "name": "Yieldflow",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x6396cad9f2fc1e3e52ad838200f623ab2048fdd6",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "MIND",
+  "name": "Mind Uploading DAO",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x639ae8f3eed18690bf451229d14953a5a5627b72",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "GNBU",
+  "name": "Nimbus Governance Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x644f9a9041318c78f49246745dbdec09769070a1",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "TDAO",
+  "name": "Trading.eth Domain DAO",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc1d9b5a0776d7c8b98b8a838e5a0dd1bc5fdd53c",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "ZONE",
+  "name": "GridZone.io",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x39795344cbcc76cc3fb94b9d1b15c23c2070c66d",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "SHARE",
+  "name": "Seigniorage Shares",
+  "decimals": 9
+}, 
+{
+  "ethereum_address": "0xe29f1241e6015a4949cb7e3f07234ba794006181",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "BIGCAP",
+  "name": "BIGCAP",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x4ff7c227e1e7bd59351de8635381c379750a8040",
+  "blockchain": "ethereum",
+  "chain_id": 1,
+  "symbol": "HYPE",
+  "name": "HYPE",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x4200000000000000000000000000000000000042",
+  "blockchain": "optimism",
+  "chain_id": 10,
+  "symbol": "OP",
+  "name": "Optimism",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x43a437bc921e2a139f7af336f81ec6b1b7c0cb2e",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "GFOOD",
+  "name": "GourmetFood",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x2cd61969944514b17b0c927baa136ab65e217337",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "ODPT",
+  "name": "Open Delivery Platform Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x54a87cefe348a907f112d7eac6efd12c5c5825c7",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "MUFI",
+  "name": "Muse Defi",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xde6073aebdbfb1eadf727e907b9341bd44a88aa4",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "BRC",
+  "name": "Bear Coin",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xa156a1eaa59379fe63350724fc422331a0110c01",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "Nike",
+  "name": "Nike Ape",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xed722704ce1094e21b3a04b66235f4538261462c",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "GPT",
+  "name": "GoodPeopleToken",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x4dfe8e37ad66979612ca0d575b77309cfc174aa0",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "BWB",
+  "name": "Bwhale Club",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x7224c3c6b8c2815ed12d0436ba3650f3e5476531",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "MAHAXvp",
+  "name": "MAHAX Staked Voting Power",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x41c546862a32f897d20053a45b77ff711bae6e07",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "NI",
+  "name": "Neural Internet DAO Token ",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x08808b80b0ca32a4200265d61ca7cad00ba8f08a",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "HCCT",
+  "name": "The Hobby Cartel Community Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x75317cc4848542df1cb0e2c98df8720cec104d36",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "YT",
+  "name": "YMC_TOKEN",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x023d7505b15f15e1d33b77c171f870fd5445f35a",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "PWR",
+  "name": "PoemWikiReputation",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc4115adc5fd6ce23919bdd599d00c5a1048d0deb",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "GIMMO",
+  "name": "Brautwiesenstrasse",
+  "decimals": 2
+}, 
+{
+  "ethereum_address": "0xea4d6e2255a454c7c1be0e436d7ddd470cbf380c",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "FCK",
+  "name": "Fake",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x599dc93e0793b7da876b0aa244e110dd97442285",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "OG",
+  "name": "Omega Gaming",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xdb8557a7e6d6deb8094fd83907500956fa2fa59c",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "SPOL",
+  "name": "Spinel Pol",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x42b128aa903f489eac49a12f5d5d6465915865ee",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "NTARTKIDS",
+  "name": "NTARTKIDS",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x4f5ed96bec1ccd36f249c607b7284aa6e060652a",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "TW",
+  "name": "Token Wand",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc1d2300f0065fc076c36f6d414a31a2949ca3027",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "ARENA",
+  "name": "Code4rena",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xd82f89a16bf2decc0d6cb96ca12f1306fb623d42",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "COGz",
+  "name": "COG COIN",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xa79b052bb548d9cde9150688dbb5eddd5ddf8a54",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "PRTS",
+  "name": "Pirate Share",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xac647249635228ddec64ea3dcdf83b034f0c3771",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "TD",
+  "name": "TDTT",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x453b051d2bc5edcf8182e6694d7547e426104e42",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "YT",
+  "name": "YMC_TOKEN",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xcc2b657882b2f8244e327bcaa256de40cdf2d962",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "EP",
+  "name": "entrypoint",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x5a7eb58bae51ecbb05baae5d450f4d77003d0035",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "BLU",
+  "name": "Blue",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x07833afe46e945296e842e295dc6fcb329e38899",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "INC",
+  "name": "Incentive",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x3f0ed4324052196930bbee42746c63a6cffb5a20",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "Halo",
+  "name": "Halo",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x9d0f36c43e6a678cae0e8d95cb5097d51a58c2fd",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "CTDL",
+  "name": "Cypherpunk Citadel DAO",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc4c4f19e0c807081e9c18c64484b800fd7cd08c7",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "OVN",
+  "name": "OvnToken",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x428388068e41babf70c4d2b872dc0ecf8ca83b76",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "U3G",
+  "name": "U3Gov",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x0a1e4f74051a013f7d32e1d4f817a745bba01415",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "YT",
+  "name": "YMC_TOKEN",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xd590b1d2246965a4ab9ef65a5417fa9b9b4a17f0",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "DDAO",
+  "name": "DiscDAO",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xf3618bd3070d7d3ddf12d3937d8fd43406272ac2",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "YT",
+  "name": "YMC_TOKEN",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xed90d920895b6ffff593438d723349dfb867a56f",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "ALPHA",
+  "name": "Alpha DAO",
+  "decimals": 6
+}, 
+{
+  "ethereum_address": "0xb580a3f0bf565e6ded148cfc4343409b475e0201",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "REKTAGAIN",
+  "name": "REKTFRENS 2: THE FLIPPENING",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x645168bba0acdd0dbb38f4852bba2524b7f6467c",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "agrit",
+  "name": "SUICA-test",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x11f06b5e9c47cc3e7535c8a4370e4426abb14dcc",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "LSPVOTE",
+  "name": "LSP-VOTE",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x231488b1a01a379b2dcd66c524e0da8ff13d7824",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "FCK",
+  "name": "Fake",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x37fb45ecc93928ef29f545153971a0669bddbfff",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "COMP",
+  "name": "Compound",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x81c7286cf2b2449192c2da6dd3a46ca8359122d4",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "KITMD",
+  "name": "KITM DAO",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x2f106058e3130a7a146f7d26fd582ebb883c3839",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "POWER",
+  "name": "Power Coin",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xe1983507f050918f75d2b7f4d69cf0f7aa461ada",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "SPOL",
+  "name": "Spinel Pol",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x6ff3215ef4b104be9e1971e09ce205fe645a0d51",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "pPIE",
+  "name": "DeFiPie PIE",
+  "decimals": 8
+}, 
+{
+  "ethereum_address": "0xa02b56b8138fb27f6b3cce8cdf35f3e5103ba96a",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "SPOL",
+  "name": "Spinel Pol",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xcb15448c91c4c1915b34b8f9f9f78e67d4c9c8a6",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "YT",
+  "name": "YMC_TOKEN",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x022bf743b5a8889d1799d64c397051e6a9cb3644",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "CRYVI",
+  "name": "CryVi DAO Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc46488c3b6e2547636a60daecbef880ba054d0a2",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "YT",
+  "name": "YMC_TOKEN",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xe8504e3b854940818c8f3d61dc155fa9919dd10f",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "IPT",
+  "name": "Interest Protocol",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x8868ddf0f14041881e48c7b29029bb77bc6c5eae",
+  "blockchain": "polygon",
+  "chain_id": 137,
+  "symbol": "PLVTest",
+  "name": "PLVTest",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xa6ef3cca07ea7ac29167d4d2fd7713794fc6731e",
+  "blockchain": "avalanche",
+  "chain_id": 43114,
+  "symbol": "LQFD",
+  "name": "Liquified Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x449674b82f05d498e126dd6615a1057a9c088f2c",
+  "blockchain": "avalanche",
+  "chain_id": 43114,
+  "symbol": "LOST",
+  "name": "LostToken",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x7758611926139704d49009c3613724b4e104b892",
+  "blockchain": "avalanche",
+  "chain_id": 43114,
+  "symbol": "DEGEN",
+  "name": "DEGEN  Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x9ba70a199083f59e935c30f524a7927f6b488bbd",
+  "blockchain": "avalanche",
+  "chain_id": 43114,
+  "symbol": "xLEO",
+  "name": "LEO MirrorWorld",
+  "decimals": 5
+}, 
+{
+  "ethereum_address": "0x3db63bffd31476cd0b1c05e8bf9420daf8269814",
+  "blockchain": "avalanche",
+  "chain_id": 43114,
+  "symbol": "OVN",
+  "name": "OvnToken",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x84828b86ac05dcb5afb680d19feb515a51fbc5c2",
+  "blockchain": "avalanche",
+  "chain_id": 43114,
+  "symbol": "NOMAD",
+  "name": "Nomad investment DAO token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xbe6d6323ea233fd1dbe1ff66c5252170c69fb6c7",
+  "blockchain": "avalanche",
+  "chain_id": 43114,
+  "symbol": "ZUBAX",
+  "name": "ZUBAX Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x093783055f9047c2bff99c4e414501f8a147bc69",
+  "blockchain": "avalanche",
+  "chain_id": 43114,
+  "symbol": "ALOT",
+  "name": "Dexalot Token",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0x51e48670098173025c477d9aa3f0eff7bf9f7812",
+  "blockchain": "avalanche",
+  "chain_id": 43114,
+  "symbol": "DGNX",
+  "name": "DegenX",
+  "decimals": 18
+}, 
+{
+  "ethereum_address": "0xc5102fe9359fd9a28f877a67e36b0f050d81a3cc",
+  "blockchain": "optimism",
+  "chain_id": 10,
+  "symbol": "HOP",
+  "name": "Hop",
+  "decimals": 18
+}]
