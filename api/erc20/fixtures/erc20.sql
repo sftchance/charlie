@@ -1,0 +1,103 @@
+
+-- !!! DO NOT EDIT DIRECTLY !!!
+
+-- This query has been auto-generated following established guildelines 
+-- by and for Charlie. No one is to make changes to the criteria without 
+-- first consulting the Charlie team, no exceptions will be made.
+
+-- Streamlining the processes that governance tokens are managed with, 
+-- Charlie aims to bring a more efficient approach to Delegates amassing 
+-- social voting power by providing a more effective consumer-framework to delegate.
+
+WITH 
+    ethereum_contracts AS
+        (
+            SELECT  DISTINCT CONTRACT_ADDRESS
+            FROM ethereum.core.fact_event_logs
+            WHERE TOPICS[0] IN ('0x3134e8a2e6d97e929a7e54011ea5485d7d196dd5f0ba4d4ef95803e8e3fc257f')
+        ), 
+    avalanche_contracts AS
+        (
+            SELECT  DISTINCT CONTRACT_ADDRESS
+            FROM avalanche.core.fact_event_logs
+            WHERE TOPICS[0] IN ('0x3134e8a2e6d97e929a7e54011ea5485d7d196dd5f0ba4d4ef95803e8e3fc257f')
+        ), 
+    optimism_contracts AS
+        (
+            SELECT  DISTINCT CONTRACT_ADDRESS
+            FROM optimism.core.fact_event_logs
+            WHERE TOPICS[0] IN ('0x3134e8a2e6d97e929a7e54011ea5485d7d196dd5f0ba4d4ef95803e8e3fc257f')
+        ), 
+    arbitrum_contracts AS
+        (
+            SELECT  DISTINCT CONTRACT_ADDRESS
+            FROM arbitrum.core.fact_event_logs
+            WHERE TOPICS[0] IN ('0x3134e8a2e6d97e929a7e54011ea5485d7d196dd5f0ba4d4ef95803e8e3fc257f')
+        ), 
+    polygon_contracts AS
+        (
+            SELECT  DISTINCT CONTRACT_ADDRESS
+            FROM polygon.core.fact_event_logs
+            WHERE TOPICS[0] IN ('0x3134e8a2e6d97e929a7e54011ea5485d7d196dd5f0ba4d4ef95803e8e3fc257f')
+        )
+SELECT * FROM (
+    SELECT  'ethereum' AS BLOCKCHAIN
+            ,address
+            ,REPLACE(symbol, chr(0), '') AS symbol
+            ,REPLACE(name, chr(0), '') AS name
+            ,decimals
+    FROM ethereum.core.dim_contracts 
+    WHERE ADDRESS IN ( SELECT * FROM ethereum_contracts )
+    AND REPLACE(name, chr(0), '') IS NOT NULL
+    AND REPLACE(name, chr(0), '') != ''
+    AND REPLACE(symbol, chr(0), '') IS NOT NULL
+    AND decimals IS NOT NULL
+ UNION ALL 
+    SELECT  'avalanche' AS BLOCKCHAIN
+            ,address
+            ,REPLACE(symbol, chr(0), '') AS symbol
+            ,REPLACE(name, chr(0), '') AS name
+            ,decimals
+    FROM avalanche.core.dim_contracts 
+    WHERE ADDRESS IN ( SELECT * FROM avalanche_contracts )
+    AND REPLACE(name, chr(0), '') IS NOT NULL
+    AND REPLACE(name, chr(0), '') != ''
+    AND REPLACE(symbol, chr(0), '') IS NOT NULL
+    AND decimals IS NOT NULL
+ UNION ALL 
+    SELECT  'optimism' AS BLOCKCHAIN
+            ,address
+            ,REPLACE(symbol, chr(0), '') AS symbol
+            ,REPLACE(name, chr(0), '') AS name
+            ,decimals
+    FROM optimism.core.dim_contracts 
+    WHERE ADDRESS IN ( SELECT * FROM optimism_contracts )
+    AND REPLACE(name, chr(0), '') IS NOT NULL
+    AND REPLACE(name, chr(0), '') != ''
+    AND REPLACE(symbol, chr(0), '') IS NOT NULL
+    AND decimals IS NOT NULL
+ UNION ALL 
+    SELECT  'arbitrum' AS BLOCKCHAIN
+            ,address
+            ,REPLACE(symbol, chr(0), '') AS symbol
+            ,REPLACE(name, chr(0), '') AS name
+            ,decimals
+    FROM arbitrum.core.dim_contracts 
+    WHERE ADDRESS IN ( SELECT * FROM arbitrum_contracts )
+    AND REPLACE(name, chr(0), '') IS NOT NULL
+    AND REPLACE(name, chr(0), '') != ''
+    AND REPLACE(symbol, chr(0), '') IS NOT NULL
+    AND decimals IS NOT NULL
+ UNION ALL 
+    SELECT  'polygon' AS BLOCKCHAIN
+            ,address
+            ,REPLACE(symbol, chr(0), '') AS symbol
+            ,REPLACE(name, chr(0), '') AS name
+            ,decimals
+    FROM polygon.core.dim_contracts 
+    WHERE ADDRESS IN ( SELECT * FROM polygon_contracts )
+    AND REPLACE(name, chr(0), '') IS NOT NULL
+    AND REPLACE(name, chr(0), '') != ''
+    AND REPLACE(symbol, chr(0), '') IS NOT NULL
+    AND decimals IS NOT NULL
+)
