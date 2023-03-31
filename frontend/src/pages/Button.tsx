@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import { useParams } from "react-router-dom";
+
 import { useQuery } from "@tanstack/react-query";
 
 import { TokenRow } from "../components";
@@ -11,6 +13,8 @@ import { getBalances } from "../utils";
 import "./Button.css";
 
 const Button = () => {
+    const { buttonId } = useParams<{ buttonId: string }>();
+
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     const [balances, setBalances] = useState<any>(null);
@@ -26,7 +30,7 @@ const Button = () => {
     } = useQuery({
         queryKey: ["button"],
         queryFn: () =>
-            fetch("http://localhost:8000/buttons/1/").then((res) => res.json()),
+            fetch(`http://localhost:8000/buttons/${buttonId}/`).then((res) => res.json()),
     });
 
     const textColor = useColor(data?.hex_color);

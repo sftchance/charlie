@@ -38,7 +38,7 @@ function App() {
                 <div className="App">
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        <Route path="/button" element={<Button />} />
+                        <Route path="/button/:buttonId/" element={<Button />} />
                         <Route path="/discover" element={<Discover />} />
                         <Route path="/account" element={<Account />} />
                         <Route path="/account/:address" element={<Account />} />

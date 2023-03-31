@@ -64,12 +64,6 @@ const Account = () => {
         console.log(selected);
     }
 
-    useEffect(() => {
-        if (!address) return;
-
-        getBalances(address).then(balances => setBalances(balances.results));
-    }, [address])
-
     if (!address) return (<div className="App Account container">Loading...</div>)
 
     return (
