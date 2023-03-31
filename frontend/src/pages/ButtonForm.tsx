@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
 
@@ -24,11 +24,13 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
         }
     });
 
+    const [object, setObject] = useState<any>(data);
+
     if (isEdit && isLoading) return <p>Loading...</p>;
 
     if (isEdit && error) return <p>Error: {error.message}</p>;
 
-    console.log(data)
+    console.log(object);
 
     return (
         <>
@@ -36,24 +38,51 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
             <p>{JSON.stringify(data, null, 2)}</p>
 
             <form>
-                <input type="text" name="name" id="name" placeholder="Name..." />
+                <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    placeholder="Name..."
+                    defaultValue={data?.name}
+                    value={object?.name}
+                    onChange={(e) => setObject({ ...object, name: e.target.value })}
+                />
 
-                <input type="text" name="description" id="description" placeholder="Description..." />
+                <input
+                    type="text"
+                    name="description"
+                    id="description"
+                    placeholder="Description..."
+                    defaultValue={data?.description}
+                    value={object?.description}
+                    onChange={(e) => setObject({ ...object, description: e.target.value })}
+                />
 
-                <input type="text" name="buttonText" id="buttonText" placeholder="Button text..." />
+                <input
+                    type="text"
+                    name="buttonText"
+                    id="buttonText"
+                    placeholder="Button text..."
+                    defaultValue={data?.text}
+                    value={object?.text}
+                    onChange={(e) => setObject({ ...object, text: e.target.value })}
+                />
 
                 <div>
                     <div>
-                        <input type="text" name="primaryColor" id="primaryColor" placeholder="Primary color..." />
+                        <input
+                            type="text"
+                            name="primaryColor"
+                            id="primaryColor"
+                            placeholder="Primary color..."
+                            defaultValue={object?.primaryColor}
+                        />
                     </div>
 
                     <div>
                         <input type="text" name="secondaryColor" id="secondaryColor" placeholder="Secondary color..." />
                     </div>
                 </div>
-
-                <input type="checkbox" name="includeZeros" id="includeZeros" />
-                <label htmlFor="includeZeros">Include zeros</label>
 
                 <h2>Targeted Tokens</h2>
 
