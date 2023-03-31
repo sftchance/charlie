@@ -39,9 +39,9 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/buttons/" element={<Buttons />} />
-                        <Route path="/button/new/" element={<ButtonForm />} />
-                        <Route path="/button/:buttonId/" element={<Button />} />
-                        <Route path="/button/:buttonId/edit/" element={<ButtonForm isEdit={true} />} />
+                        <Route path="/buttons/new/" element={<ButtonForm />} />
+                        <Route path="/buttons/:buttonId/" element={<Button />} />
+                        <Route path="/buttons/:buttonId/edit/" element={<ButtonForm isEdit={true} />} />
                     </Routes>
                 </div>
             </WagmiConfig>

@@ -23,7 +23,7 @@ const Buttons = () => {
     return (
         <>
             <h2>Delegation Buttons
-                <Link to="/button/new/">New</Link>
+                <Link to="/buttons/new/">New</Link>
             </h2>
 
             <hr />
@@ -31,9 +31,9 @@ const Buttons = () => {
             <ul>
                 {data?.length > 0 ? data.map((button: any) => (
                     <li key={button.id}>
-                        <Link to={`/button/${button.id}/edit/`}>{button.text}</Link>
-                        <Link to={`/button/${button.id}/`}>View</Link>
-                        <Link to={`/button/${button.id}/embed/`}>Embed</Link>
+                        <Link to={`/buttons/${button.id}/edit/`}>{button.text}</Link>
+                        <Link to={`/buttons/${button.id}/`}>View</Link>
+                        <Link to={`/buttons/${button.id}/embed/`}>Embed</Link>
                     </li>
                 )) : <p>No buttons yet!</p>}
             </ul>

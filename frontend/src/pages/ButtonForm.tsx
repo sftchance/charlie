@@ -10,7 +10,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
     const { buttonId } = useParams<{ buttonId: string }>();
 
     const {
-        isLoading,
+        isLoading: isLoadingButtons,
         error,
         data,
     }: {
@@ -58,9 +58,11 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
         setObject(data)
     }, [data])
 
-    if (isEdit && isLoading || object === null) return <p>Loading...</p>;
+    if (isEdit && ((isLoadingButtons || isLoadingTokens) || object === null)) return <p>Loading...</p>;
 
-    if (isEdit && error) return <p>Error: {error.message}</p>;
+    if (error) return <p>Error: {error.message}</p>;
+
+    if (errorTokens) return <p>Error: {errorTokens.message}</p>;
 
     return (
         <>
@@ -120,7 +122,6 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                 </div>
 
                 <h2>Targeted Tokens</h2>
-
                 <hr />
 
                 <Select
@@ -129,11 +130,9 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                     onChange={(e: any) => setObject({ ...object, tokens: e })}
                 />
 
-                {object?.tokens?.length > 0 ? object?.tokens?.map((token: any) => (
-                    <div key={token.id}>
-                        <p>{JSON.stringify(token, null, 2)}</p>
-                    </div>
-                )) : <p>No tokens targeted...</p>}
+                {object?.tokens?.length > 0 ? object?.tokens?.map((token: any) =>
+                    <p key={token.id}>{JSON.stringify(token, null, 2)}</p>
+                ) : <p>No tokens targeted...</p>}
 
                 {isEdit && <button
                     type="button"
