@@ -20,8 +20,8 @@ const Account = () => {
 
     const address = paramAddress || connectedAddress;
 
-    const { data: ensName } = useEnsName({ address })
-    const { data: avatar } = useEnsAvatar({ address })
+    const { data: ensName } = useEnsName({ address, chainId: 1 })
+    const { data: avatar } = useEnsAvatar({ address, chainId: 1 })
 
     const [balances, setBalances] = useState<Balance[] | null>(null);
     const [selected, setSelected] = useState<Balance[]>([]);
