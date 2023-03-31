@@ -1,104 +1,129 @@
-import { useState } from "react"
+import { useEffect, useState } from "react";
 
-import { Balance } from "../types"
+import { useParams } from "react-router-dom";
 
-import "./ButtonForm.css"
+import { useQuery } from "@tanstack/react-query";
 
-const ButtonForm = () => {
-    const [nameField, setNameField] = useState<string>("Flipside Homepage");
-    const [description, setDescription] = useState<string>("");
-    const [buttonText, setButtonText] = useState<string>("");
-    const [hexColorPrimary, setHexColorPrimary] = useState<string>("#000000");
-    const [hexColorSecondary, setHexColorSecondary] = useState<string>("#FFFFFF");
-    const [tokens, setTokens] = useState<Balance[]>([]);
+const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
+    const { buttonId } = useParams<{ buttonId: string }>();
 
-    const onAddToken = () => {
-
-    }
-
-    const onDelete = () => {
-
-    }
-
-    const onSave = async () => {
-        const obj = {
-            ethereum_address: "0x123",
-            name: nameField,
-            description: description,
-            button_text: buttonText,
-            hex_color_primary: hexColorPrimary,
-            hex_color_secondary: hexColorSecondary,
-            tokens: tokens,
+    const {
+        isLoading,
+        error,
+        data,
+    }: {
+        isLoading: boolean;
+        error: any;
+        data: any;
+    } = useQuery({
+        queryKey: ["button"],
+        queryFn: () => {
+            if (isEdit == true) {
+                return fetch(`http://localhost:8000/buttons/${buttonId}/`).then((res) => res.json())
+            } return null
         }
+    });
 
-        const res = await fetch("http://localhost:8000/buttons/", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(obj),
+    const [object, setObject] = useState<any>(data);
+
+    const handleDelete = () => {
+        fetch(`http://localhost:8000/buttons/${buttonId}/`, {
+            method: "DELETE",
+        }).then(() => {
+            console.log("Deleted!")
         })
-
-        console.log("res", res)
-
-        console.log("Saved!")
     }
+
+    if (isEdit && isLoading) return <p>Loading...</p>;
+
+    if (isEdit && error) return <p>Error: {error.message}</p>;
 
     return (
-        <div className="button-form">
-            <h1>{nameField}</h1>
-            <div className="button-details">
+        <>
+            <h1>Button Form</h1>
+            <p>{JSON.stringify(data, null, 2)}</p>
+
+            <form>
                 <input
-                    className="description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
+                    type="text"
+                    name="name"
+                    id="name"
+                    placeholder="Name..."
+                    defaultValue={data?.name}
+                    value={object?.name}
+                    onChange={(e) => setObject({ ...object, name: e.target.value })}
+                />
+
+                <input
+                    type="text"
+                    name="description"
+                    id="description"
                     placeholder="Description..."
-                    type="text"
+                    defaultValue={data?.description}
+                    value={object?.description}
+                    onChange={(e) => setObject({ ...object, description: e.target.value })}
                 />
+
                 <input
-                    value={buttonText}
-                    onChange={(e) => setButtonText(e.target.value)}
-                    placeholder="Button Text..."
                     type="text"
+                    name="buttonText"
+                    id="buttonText"
+                    placeholder="Button text..."
+                    defaultValue={data?.text}
+                    value={object?.text}
+                    onChange={(e) => setObject({ ...object, text: e.target.value })}
                 />
-                <div className="button-colors">
-                    <input
-                        className="button-color"
-                        value={hexColorPrimary}
-                        onChange={(e) => setHexColorPrimary(e.target.value)}
-                        placeholder="Hex Color Primary..."
-                        type="color"
-                    />
-                    <input
-                        className="button-color"
-                        value={hexColorSecondary}
-                        onChange={(e) => setHexColorSecondary(e.target.value)}
-                        placeholder="Hex Color Secondary..."
-                        type="color"
-                    />
-                </div>
-            </div>
 
-            <div className="tokens">
-                <div className="action-bar">
-                    <h2>Allowed Tokens</h2>
-                    <button onClick={onAddToken}>Add</button>
-                </div>
-
-                <hr/>
-                {tokens && tokens.map((token, index) => (
-                    <div key={index} className="token">
-                        {token.name} {token.symbol}
+                <div>
+                    <div>
+                        <input
+                            type="text"
+                            name="primaryColor"
+                            id="primaryColor"
+                            placeholder="Primary color..."
+                            defaultValue={data?.primary_color}
+                            value={object?.primary_color}
+                            onChange={(e) => setObject({ ...object, primary_color: e.target.value })}
+                        />
                     </div>
-                ))}
-            </div>
-            
-            <div className="actions">
-                <button onClick={onDelete}>Delete</button>
-                <button onClick={onSave}>Save button</button>
-            </div>
 
-        </div>
+                    <div>
+                        <input
+                            type="text"
+                            name="secondaryColor"
+                            id="secondaryColor"
+                            placeholder="Secondary color..."
+                            defaultValue={data?.secondary_color}
+                            value={object?.secondary_color}
+                            onChange={(e) => setObject({ ...object, secondary_color: e.target.value })}
+                        />
+                    </div>
+                </div>
+
+                <h2>Targeted Tokens</h2>
+
+                <hr />
+
+                <div className="input-append">
+                    <input type="text" name="search" id="search" placeholder="Search..." />
+                    <button type="button">Search</button>
+                </div>
+
+                {data?.tokens?.length > 0 ? data?.tokens?.map((token: any) => (
+                    <div key={token.id}>
+                        <input type="checkbox" name="token" id={`token-${token.id}`} />
+                        <label htmlFor={`token-${token.id}`}>{token.name}</label>
+                    </div>
+                )) : <p>No tokens targeted...</p>}
+
+                {isEdit && <button
+                    type="button"
+                    onClick={handleDelete}
+                >Delete</button>}
+
+                <button type="submit">Save</button>
+            </form>
+        </>
     )
 }
 

@@ -1,0 +1,15 @@
+.input-append {
+    display: inline-grid;
+    grid-template-columns: auto max-content;
+    width: 100%;
+}
+
+.input-append input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-append button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
