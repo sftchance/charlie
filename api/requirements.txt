@@ -3,4 +3,5 @@ django-filter==23.1
 django-rest-framework==0.1.0
 markdown==3.4.3
 pip-chill==1.0.1
+pyyaml==6.0
 shroomdk==1.0.2
