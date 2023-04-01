@@ -2,6 +2,7 @@ require("@nomicfoundation/hardhat-toolbox");
 require("@nomiclabs/hardhat-etherscan");
 require('hardhat-deploy');
 require("hardhat-gas-reporter");
+require("hardhat-abi-exporter");
 
 require("dotenv").config();
 
@@ -104,5 +105,13 @@ module.exports = {
       accounts: [`0x${process.env.PRIVATE_KEY}`],
       gasPrice: 15000000000,
     },
-  }
+  },
+  abiExporter: [{
+    path: '../frontend/src/abis/',
+    runOnCompile: true,
+    clear: true,
+    flat: true,
+    spacing: 4,
+    format: "json"
+  }], 
 };
