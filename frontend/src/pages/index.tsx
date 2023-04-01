@@ -1,4 +1,4 @@
-export { Account } from './Account'
 export { Button } from './Button'
-export { Discover } from './Discover'
+export { ButtonForm } from './ButtonForm'
+export { Buttons } from './Buttons'
 export { Home } from './Home'

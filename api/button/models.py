@@ -25,6 +25,21 @@ def validate_hex_color(value):
 class Button(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
+    name = models.CharField(
+        max_length=256,
+        blank=True,
+        null=True,
+        help_text="Name of button",
+        default="Untitled",
+    )
+
+    description = models.TextField(
+        max_length=256,
+        blank=True,
+        null=True,
+        help_text="Description of button",
+    )
+
     ethereum_address = models.CharField(
         max_length=256,
         blank=False,
@@ -40,12 +55,21 @@ class Button(models.Model):
         help_text="Text to display on button",
     )
 
-    hex_color = models.CharField(
+    primary_color = models.CharField(
         max_length=7,
         default="#000000",
         blank=True,
         null=True,
         help_text="Hex color code, e.g. #000000",
+        validators=[validate_hex_color],
+    )
+
+    secondary_color = models.CharField(
+        max_length=7,
+        default="#FFFFFF",
+        blank=True,
+        null=True,
+        help_text="Hex color code, e.g. #FFFFFF",
         validators=[validate_hex_color],
     )
 
