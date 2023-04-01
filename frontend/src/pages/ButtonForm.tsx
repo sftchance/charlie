@@ -58,7 +58,15 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
         queryFn: () => fetch(`http://localhost:8000/erc20/`).then((res) => res.json())
     });
 
-    const [object, setObject] = useState<any>(null);
+    const [object, setObject] = useState<any>({
+        ethereum_address: "0x62180042606624f02d8a130da8a3171e9b33894d",
+        name: "Untitled",
+        description: "Button description...",
+        text: "Delegate",
+        primary_color: "#000000",
+        secondary_color: "#FFFFFF",
+        tokens: []
+    });
 
     const options = [...withTokens({ tokens: dataTokens }, object?.tokens || [])?.tokens]
 
@@ -90,13 +98,22 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
             body
         })
 
+        console.log(body)
+
         response
+            .then((res) => {
+                if (!res.ok) {
+                    throw Error(res.statusText);
+                }
+
+                return res;
+            })
             .then((res) => res.json())
             .then((data) => navigate(`/buttons/${data.id}/edit/`))
     }
 
     useEffect(() => {
-        if (!data) return;
+        if (!data) return
 
         setObject(withTokens({
             ethereum_address: data.ethereum_address,
@@ -115,6 +132,8 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
 
     if (errorTokens) return <p>Error: {errorTokens.message}</p>;
 
+    console.log('object', object)
+
     return (
         <>
             <h1>Button Form</h1>
@@ -127,7 +146,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                     name="name"
                     id="name"
                     placeholder="Name..."
-                    value={object?.name || "Untitled"}
+                    value={object.name}
                     onChange={(e) => setObject({ ...object, name: e.target.value })}
                     required
                 />
@@ -138,7 +157,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                     name="description"
                     id="description"
                     placeholder="Description..."
-                    value={object?.description || ""}
+                    value={object.description}
                     onChange={(e) => setObject({ ...object, description: e.target.value })}
                 />
 
@@ -148,7 +167,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                     name="buttonText"
                     id="buttonText"
                     placeholder="Button text..."
-                    value={object?.text || "Delegate"}
+                    value={object.text}
                     onChange={(e) => setObject({ ...object, text: e.target.value })}
                     required
                 />
@@ -161,7 +180,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                             name="primaryColor"
                             id="primaryColor"
                             placeholder="Primary color..."
-                            value={object?.primary_color || "#000000"}
+                            value={object.primary_color}
                             onChange={(e) => setObject({ ...object, primary_color: e.target.value })}
                             required
                         />
@@ -174,7 +193,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                             name="secondaryColor"
                             id="secondaryColor"
                             placeholder="Secondary color..."
-                            value={object?.secondary_color || "#FFFFFF"}
+                            value={object.secondary_color}
                             onChange={(e) => setObject({ ...object, secondary_color: e.target.value })}
                             required
                         />
@@ -186,7 +205,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
 
                 <Select
                     options={options || []}
-                    value={object?.tokens || []}
+                    value={object.tokens}
                     isMulti
                     onChange={(e: any) => setObject({ ...object, tokens: e })}
                 />
