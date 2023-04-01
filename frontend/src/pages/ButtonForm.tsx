@@ -6,6 +6,20 @@ import { useQuery } from "@tanstack/react-query";
 
 import Select from 'react-select'
 
+const withToken = (token: any) => ({
+    ...token,
+    value: token.id,
+    label: `${token.blockchain} - ${token.name} - ${token.symbol}`
+})
+
+const withTokens = (button: any, excludeTokens: any) => ({
+    ...button,
+    tokens: button.tokens
+        ?.map((token: any) => withToken(token))
+        ?.filter((token: any) => !excludeTokens?.find((activeToken: any) => activeToken.label === token.label))
+        || []
+})
+
 const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
     const navigate = useNavigate();
 
@@ -24,9 +38,10 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
     } = useQuery({
         queryKey: ["buttons", buttonId],
         queryFn: () => {
-            if (isEdit == true) {
+            if (isEdit == true)
                 return fetch(API_URL).then((res) => res.json())
-            } return null
+
+            return null
         }
     });
 
@@ -45,18 +60,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
 
     const [object, setObject] = useState<any>(null);
 
-    const objectToken = (token: any) => ({
-        ...token,
-        value: token.id,
-        label: `${token.blockchain} - ${token.name} - ${token.symbol}`
-    })
-
-    const objectWithTokens = (button: any) => ({
-        ...button,
-        tokens: button.tokens.map((token: any) => objectToken(token))
-    })
-
-    const options = dataTokens?.map((token: any) => objectToken(token))
+    const options = [...withTokens({ tokens: dataTokens }, object?.tokens || [])?.tokens]
 
     const handleDelete = () => {
         fetch(API_URL, {
@@ -72,7 +76,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
     useEffect(() => {
         if (!data) return;
 
-        setObject(objectWithTokens(data))
+        setObject(withTokens(data, []))
     }, [data])
 
     if (isEdit && ((isLoadingButtons || isLoadingTokens) || object === null)) return <p>Loading...</p>;
