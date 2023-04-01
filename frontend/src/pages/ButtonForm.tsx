@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { useQuery } from "@tanstack/react-query";
 
 import Select from 'react-select'
 
 const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
+    const navigate = useNavigate();
+
     const { buttonId } = useParams<{ buttonId: string }>();
+
+    const API_URL = `http://localhost:8000/buttons/${buttonId}/`
 
     const {
         isLoading: isLoadingButtons,
@@ -21,7 +25,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
         queryKey: ["button"],
         queryFn: () => {
             if (isEdit == true) {
-                return fetch(`http://localhost:8000/buttons/${buttonId}/`).then((res) => res.json())
+                return fetch(API_URL).then((res) => res.json())
             } return null
         }
     });
@@ -41,28 +45,34 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
 
     const [object, setObject] = useState<any>(null);
 
+    const objectToken = (token: any) => ({
+        ...token,
+        value: token.id,
+        label: `${token.blockchain} - ${token.name} - ${token.symbol}`
+    })
+
+    const objectWithTokens = (button: any) => ({
+        ...button,
+        tokens: button.tokens.map((token: any) => objectToken(token))
+    })
+
+    const options = dataTokens?.map((token: any) => objectToken(token))
+
     const handleDelete = () => {
-        fetch(`http://localhost:8000/buttons/${buttonId}/`, {
+        fetch(API_URL, {
             method: "DELETE",
-        }).then(() => {
-            console.log("Deleted!")
-        })
+        }).then(() => navigate("/buttons"))
     }
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-
         console.log('object', object)
     }
 
-    const options = dataTokens?.map((token: any) => ({
-        value: token.id,
-        label: `${token.blockchain} - ${token.name} - ${token.symbol}`
-    }))
-
     useEffect(() => {
-        console.log('setting object')
-        setObject(data)
+        if (!data) return;
+
+        setObject(objectWithTokens(data))
     }, [data])
 
     if (isEdit && ((isLoadingButtons || isLoadingTokens) || object === null)) return <p>Loading...</p>;
@@ -71,13 +81,13 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
 
     if (errorTokens) return <p>Error: {errorTokens.message}</p>;
 
-    console.log(object)
-
     return (
         <>
             <h1>Button Form</h1>
 
             <form onSubmit={handleSubmit}>
+
+                <label htmlFor="name">Name</label>
                 <input
                     type="text"
                     name="name"
@@ -85,8 +95,10 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                     placeholder="Name..."
                     value={object?.name || "Untitled"}
                     onChange={(e) => setObject({ ...object, name: e.target.value })}
+                    required
                 />
 
+                <label htmlFor="description">Description</label>
                 <input
                     type="text"
                     name="description"
@@ -96,6 +108,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                     onChange={(e) => setObject({ ...object, description: e.target.value })}
                 />
 
+                <label htmlFor="buttonText">Button text</label>
                 <input
                     type="text"
                     name="buttonText"
@@ -103,10 +116,12 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                     placeholder="Button text..."
                     value={object?.text || "Delegate"}
                     onChange={(e) => setObject({ ...object, text: e.target.value })}
+                    required
                 />
 
                 <div>
                     <div>
+                        <label htmlFor="primaryColor">Primary color</label>
                         <input
                             type="text"
                             name="primaryColor"
@@ -114,10 +129,12 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                             placeholder="Primary color..."
                             value={object?.primary_color || "#000000"}
                             onChange={(e) => setObject({ ...object, primary_color: e.target.value })}
+                            required
                         />
                     </div>
 
                     <div>
+                        <label htmlFor="secondaryColor">Secondary color</label>
                         <input
                             type="text"
                             name="secondaryColor"
@@ -125,6 +142,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                             placeholder="Secondary color..."
                             value={object?.secondary_color || "#FFFFFF"}
                             onChange={(e) => setObject({ ...object, secondary_color: e.target.value })}
+                            required
                         />
                     </div>
                 </div>
@@ -134,6 +152,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
 
                 <Select
                     options={options || []}
+                    value={object?.tokens || []}
                     isMulti
                     onChange={(e: any) => setObject({ ...object, tokens: e })}
                 />
