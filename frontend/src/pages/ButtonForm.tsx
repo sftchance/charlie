@@ -98,8 +98,6 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
             body
         })
 
-        console.log(body)
-
         response
             .then((res) => {
                 if (!res.ok) {
@@ -131,8 +129,6 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
     if (error) return <p>Error: {error.message}</p>;
 
     if (errorTokens) return <p>Error: {errorTokens.message}</p>;
-
-    console.log('object', object)
 
     return (
         <>
