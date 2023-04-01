@@ -11,16 +11,16 @@ import { DelegationCall, DelegatedCall } from "../types";
 import ERC20Votes from "../abis/ERC20Votes.json";
 
 const useDelegate = (calls: DelegationCall[], blocking: boolean) => {
-    const [signedTransactions, setSignedTransactions] = useState<DelegatedCall[]>([]);
+    const [delegatedCalls, setDelegatedCalls] = useState<DelegatedCall[]>([]);
 
-    const isReady = signedTransactions.length > 0 && signedTransactions.length === calls.length;
+    const isReady = delegatedCalls.length > 0 && delegatedCalls.length === calls.length;
 
     const { config, isSuccess: isPrepared } = usePrepareContractWrite({
         enabled: isReady,
         address: "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2", // TODO: Contract addresses
         abi: ERC20Votes,
         functionName: "aggregate",
-        args: [signedTransactions, blocking],
+        args: [delegatedCalls, blocking],
     });
 
     const { writeAsync } = useContractWrite(config);
@@ -47,7 +47,7 @@ const useDelegate = (calls: DelegationCall[], blocking: boolean) => {
                 callData,
             }
 
-            setSignedTransactions((prev) => [...prev, call]);
+            setDelegatedCalls((prev) => [...prev, call]);
         });
 
         console.log(signatures);
@@ -68,7 +68,8 @@ const useDelegate = (calls: DelegationCall[], blocking: boolean) => {
     }
 
     return { 
-        signedTransactions, 
+        isPrepared,
+        delegatedCalls,
         openDelegationSignatures,
         openDelegationTx,
     }
