@@ -22,7 +22,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
         error: any;
         data: any;
     } = useQuery({
-        queryKey: ["button"],
+        queryKey: ["buttons", buttonId],
         queryFn: () => {
             if (isEdit == true) {
                 return fetch(API_URL).then((res) => res.json())
