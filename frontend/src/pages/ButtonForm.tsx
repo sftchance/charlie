@@ -49,12 +49,19 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
         })
     }
 
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
+
+        console.log('object', object)
+    }
+
     const options = dataTokens?.map((token: any) => ({
         value: token.id,
         label: `${token.blockchain} - ${token.name} - ${token.symbol}`
     }))
 
     useEffect(() => {
+        console.log('setting object')
         setObject(data)
     }, [data])
 
@@ -64,12 +71,13 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
 
     if (errorTokens) return <p>Error: {errorTokens.message}</p>;
 
+    console.log(object)
+
     return (
         <>
             <h1>Button Form</h1>
-            <p>{JSON.stringify(data, null, 2)}</p>
 
-            <form>
+            <form onSubmit={handleSubmit}>
                 <input
                     type="text"
                     name="name"
