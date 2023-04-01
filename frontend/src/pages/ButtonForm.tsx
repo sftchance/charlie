@@ -70,13 +70,43 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        console.log('object', object)
+
+        const headers = {
+            "Content-Type": "application/json"
+        }
+
+        const body = JSON.stringify({
+            ...object,
+            tokens: object.tokens.map((token: any) => token.value)
+        })
+
+        const response = isEdit ? fetch(API_URL, {
+            method: "PUT",
+            headers,
+            body
+        }) : fetch(`http://localhost:8000/buttons/`, {
+            method: "POST",
+            headers,
+            body
+        })
+
+        response
+            .then((res) => res.json())
+            .then((data) => navigate(`/buttons/${data.id}/edit/`))
     }
 
     useEffect(() => {
         if (!data) return;
 
-        setObject(withTokens(data, []))
+        setObject(withTokens({
+            ethereum_address: data.ethereum_address,
+            name: data.name,
+            description: data.description,
+            text: data.text,
+            primary_color: data.primary_color,
+            secondary_color: data.secondary_color,
+            tokens: data.tokens
+        }, []))
     }, [data])
 
     if (isEdit && ((isLoadingButtons || isLoadingTokens) || object === null)) return <p>Loading...</p>;
