@@ -75,7 +75,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
     const handleDelete = () => {
         fetch(API_URL, {
             method: "DELETE",
-        }).then(() => navigate("/buttons"))
+        }).then(() => navigate("/account/"))
     }
 
     const handleSubmit = (e: any) => {
@@ -112,7 +112,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
             })
             .then((res) => res.json())
             .then((data) => {
-                navigate(`/buttons/${data.id}/edit/`)
+                navigate(`/account/buttons/${data.id}/edit/`)
             })
             .catch((errors) => {
                 setErrors(errors)
@@ -142,6 +142,8 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
     return (
         <>
             <h1>Button Form</h1>
+
+            {isEdit && <button onClick={() => navigate(`/account/`)}>Back</button>}
 
             <form onSubmit={handleSubmit}>
                 <p>{JSON.stringify(errors)}</p>
