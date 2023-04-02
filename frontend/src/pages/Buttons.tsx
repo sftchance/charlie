@@ -32,9 +32,9 @@ const Buttons = () => {
             <ul>
                 {data?.length > 0 ? data.map((button: any) => (
                     <li key={button.id}>
-                        <Link to={`/buttons/${button.id}/edit/`}>{button.text}</Link>
-                        <Link to={`/buttons/${button.id}/`}>View</Link>
-                        <Link to={`/buttons/${button.id}/embed/`}>Embed</Link>
+                        <Link to={`/account/buttons/${button.id}/edit/`}>{button.text}</Link>
+                        <Link to={`/hosted/buttons/${button.id}/`}>View</Link>
+                        <Link to={`/account/buttons/${button.id}/embed/`}>Embed</Link>
                     </li>
                 )) : <p>No buttons yet!</p>}
             </ul>
