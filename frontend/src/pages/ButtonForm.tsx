@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
 import { Error, Input, MultiSelect } from "../components";
+import { useAccount } from "wagmi";
 
 const withToken = (token: any) => ({
     ...token,
@@ -24,6 +25,8 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
     const navigate = useNavigate();
 
     const { buttonId } = useParams<{ buttonId: string }>();
+
+    const { address } = useAccount();
 
     const API_URL = `http://localhost:8000/buttons/${buttonId}/`
 
@@ -59,7 +62,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
     });
 
     const [object, setObject] = useState<any>({
-        ethereum_address: "0x62180042606624f02d8a130da8a3171e9b33894d",
+        ethereum_address: address,
         name: "Untitled",
         description: "Button description...",
         text: "Delegate",
@@ -147,6 +150,12 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
 
             <form onSubmit={handleSubmit}>
                 <p>{JSON.stringify(errors)}</p>
+
+                <Input
+                    label="Delegate Ethereum Address"
+                    value={object.ethereum_address}
+                    onChange={(e: any) => setObject({ ...object, ethereum_address: e.target.value.trim() })}
+                    error={errors?.ethereum_address} />
 
                 <Input
                     label="Name"
