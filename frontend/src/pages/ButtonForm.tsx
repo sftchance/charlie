@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { useQuery } from "@tanstack/react-query";
 
-import Select from 'react-select'
+import { Error, Input, MultiSelect } from "../components";
 
 const withToken = (token: any) => ({
     ...token,
@@ -68,6 +68,8 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
         tokens: []
     });
 
+    const [errors, setErrors] = useState<any>([]);
+
     const options = [...withTokens({ tokens: dataTokens }, object?.tokens || [])?.tokens]
 
     const handleDelete = () => {
@@ -99,15 +101,22 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
         })
 
         response
-            .then((res) => {
-                if (!res.ok) {
-                    throw Error(res.statusText);
+            .then((res): any => {
+                if (res.status >= 400) {
+                    return res.json().then((data) => {
+                        return Promise.reject(data)
+                    })
                 }
 
-                return res;
+                return res
             })
             .then((res) => res.json())
-            .then((data) => navigate(`/buttons/${data.id}/edit/`))
+            .then((data) => {
+                navigate(`/buttons/${data.id}/edit/`)
+            })
+            .catch((errors) => {
+                setErrors(errors)
+            })
     }
 
     useEffect(() => {
@@ -135,80 +144,52 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
             <h1>Button Form</h1>
 
             <form onSubmit={handleSubmit}>
+                <p>{JSON.stringify(errors)}</p>
 
-                <label htmlFor="name">Name</label>
-                <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder="Name..."
+                <Input
+                    label="Name"
                     value={object.name}
-                    onChange={(e) => setObject({ ...object, name: e.target.value })}
-                    required
-                />
+                    onChange={(e: any) => setObject({ ...object, name: e.target.value.trim() })}
+                    error={errors?.name} />
 
-                <label htmlFor="description">Description</label>
-                <input
-                    type="text"
-                    name="description"
-                    id="description"
-                    placeholder="Description..."
+                <Input
+                    label="Description"
                     value={object.description}
-                    onChange={(e) => setObject({ ...object, description: e.target.value })}
-                />
+                    onChange={(e: any) => setObject({ ...object, description: e.target.value.trim() })}
+                    error={errors?.description} />
 
-                <label htmlFor="buttonText">Button text</label>
-                <input
-                    type="text"
-                    name="buttonText"
-                    id="buttonText"
-                    placeholder="Button text..."
+                <Input
+                    label="Button text"
                     value={object.text}
-                    onChange={(e) => setObject({ ...object, text: e.target.value })}
-                    required
-                />
+                    onChange={(e: any) => setObject({ ...object, text: e.target.value.trim() })}
+                    error={errors?.text} />
 
                 <div>
-                    <div>
-                        <label htmlFor="primaryColor">Primary color</label>
-                        <input
-                            type="text"
-                            name="primaryColor"
-                            id="primaryColor"
-                            placeholder="Primary color..."
-                            value={object.primary_color}
-                            onChange={(e) => setObject({ ...object, primary_color: e.target.value })}
-                            required
-                        />
-                    </div>
+                    <Input
+                        label="Primary color"
+                        value={object.primary_color}
+                        onChange={(e: any) => setObject({ ...object, primary_color: e.target.value.trim() })}
+                        error={errors?.primary_color} />
 
-                    <div>
-                        <label htmlFor="secondaryColor">Secondary color</label>
-                        <input
-                            type="text"
-                            name="secondaryColor"
-                            id="secondaryColor"
-                            placeholder="Secondary color..."
-                            value={object.secondary_color}
-                            onChange={(e) => setObject({ ...object, secondary_color: e.target.value })}
-                            required
-                        />
-                    </div>
+                    <Input
+                        label="Secondary color"
+                        value={object.secondary_color}
+                        onChange={(e: any) => setObject({ ...object, secondary_color: e.target.value.trim() })}
+                        error={errors?.secondary_color} />
                 </div>
 
-                <h2>Targeted Tokens</h2>
-                <hr />
-
-                <Select
-                    options={options || []}
+                <MultiSelect
+                    label="Targeted Tokens"
                     value={object.tokens}
-                    isMulti
                     onChange={(e: any) => setObject({ ...object, tokens: e })}
-                />
+                    options={options}
+                    error={errors?.tokens} />
 
                 {object?.tokens?.length > 0 ? object?.tokens?.map((token: any) =>
                     <p key={token.label}>{JSON.stringify(token, null, 2)}</p>
                 ) : <p>No tokens targeted...</p>}
+
+                <Error error={errors?.detail} />
 
                 {isEdit && <button
                     type="button"
