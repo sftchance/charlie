@@ -1,18 +1,46 @@
 import uuid
 
+from web3 import Web3
+
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
 
 from erc20.models import ERC20
+from api.utils import ENSCache
+
+ns = ENSCache()
 
 
 def validate_ethereum_address(value):
-    if not value.startswith("0x") or len(value) != 42:
+    if not Web3.is_address(value):
+        try:
+            ens_address = ns.address(value)
+
+            if ens_address is None:
+                raise ValidationError(
+                    _("%(value)s is not a valid Ethereum address or ENS name"),
+                    params={"value": value},
+                )
+
+            return ens_address
+        except ValueError:
+            raise ValidationError(
+                _("%(value)s is not a valid Ethereum address"),
+                params={"value": value},
+            )
+
+    try:
+        Web3.to_checksum_address(value)
+    except ValueError:
         raise ValidationError(
             _("%(value)s is not a valid Ethereum address"),
             params={"value": value},
         )
+
+    return value
 
 
 def validate_hex_color(value):
@@ -79,3 +107,11 @@ class Button(models.Model):
 
     class Meta:
         ordering = ["-created"]
+
+
+@receiver(post_save, sender=Button)
+def button_post_save(sender, instance, **kwargs):
+    if ".eth" in instance.ethereum_address:
+        instance.ethereum_address = validate_ethereum_address(instance.ethereum_address)
+
+        instance.save()

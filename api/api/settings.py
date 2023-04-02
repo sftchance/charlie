@@ -1,4 +1,9 @@
+import os
+
+from dotenv import load_dotenv
 from pathlib import Path
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -118,6 +123,15 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# ShroomDKL settings enabling Blockchain data fixtures
+# ShroomDK settings enabling Blockchain data fixtures
 
-SHROOMDK_API_KEY = "7736f412-5e7b-4c43-8360-3e2231a24e69"
+SHROOMDK_KEY = os.environ.get("SHROOMDK_KEY")
+
+# Blockchain Data Providers
+
+PROVIDERS = {
+    "1": f"https://eth-mainnet.g.alchemy.com/v2/{os.environ.get('ETH_ALCHEMY_KEY')}",
+    "10": f"https://opt-mainnet.g.alchemy.com/v2/{os.environ.get('OPTIMISM_ALCHEMY_KEY')}",
+    "42161": f"https://arb-mainnet.g.alchemy.com/v2/{os.environ.get('ARBITRUM_ALCHEMY_KEY')}",
+    "137": f"https://polygon-mainnet.g.alchemy.com/v2/{os.environ.get('POLYGON_ALCHEMY_KEY')}",
+}

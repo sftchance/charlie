@@ -7,7 +7,7 @@ from django.conf import settings
 
 from erc20.models import ERC20
 
-SHROOM = ShroomDK(settings.SHROOMDK_API_KEY)
+SHROOM = ShroomDK(settings.SHROOMDK_KEY)
 
 DELEGATION_TOPICS = [
     "'0x3134e8a2e6d97e929a7e54011ea5485d7d196dd5f0ba4d4ef95803e8e3fc257f'"
