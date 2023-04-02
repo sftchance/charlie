@@ -34,10 +34,12 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
         isLoading: isLoadingButtons,
         error,
         data,
+        refetch,
     }: {
         isLoading: boolean;
         error: any;
         data: any;
+        refetch: any;
     } = useQuery({
         queryKey: ["buttons", buttonId],
         queryFn: () => {
@@ -45,7 +47,11 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                 return fetch(API_URL).then((res) => res.json())
 
             return null
-        }
+        },
+        refetchOnWindowFocus: true,
+        staleTime: 0,
+        cacheTime: 0,
+        refetchInterval: 0,
     });
 
     const {
@@ -115,11 +121,8 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
             })
             .then((res) => res.json())
             .then((data) => {
-                setErrors([])
-                setObject((object: any) => ({
-                    ...object,
-                    ethereum_address: data.ethereum_address,
-                }));
+                refetch()
+
                 navigate(`/account/buttons/${data.id}/edit/`)
             })
             .catch((errors) => {
@@ -130,6 +133,8 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
     useEffect(() => {
         if (!data) return
 
+        setErrors([])
+
         setObject(withTokens({
             ethereum_address: data.ethereum_address,
             name: data.name,
@@ -139,7 +144,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
             secondary_color: data.secondary_color,
             tokens: data.tokens
         }, []))
-    }, [data])
+    }, [data, refetch])
 
     if (isEdit && ((isLoadingButtons || isLoadingTokens) || object === null)) return <p>Loading...</p>;
 
