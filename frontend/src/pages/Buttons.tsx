@@ -24,7 +24,7 @@ const Buttons = () => {
         <>
             <h2>
                 Delegation Buttons
-                <Link to="/buttons/new/">New</Link>
+                <Link to="/account/buttons/new/">New</Link>
             </h2>
 
             <hr />
