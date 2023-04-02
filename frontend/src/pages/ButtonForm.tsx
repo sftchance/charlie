@@ -115,6 +115,11 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
             })
             .then((res) => res.json())
             .then((data) => {
+                setErrors([])
+                setObject((object: any) => ({
+                    ...object,
+                    ethereum_address: data.ethereum_address,
+                }));
                 navigate(`/account/buttons/${data.id}/edit/`)
             })
             .catch((errors) => {
