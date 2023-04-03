@@ -27,7 +27,7 @@ const getBalances = async ({
         const multiCallsTargets: `0x${string}`[] = []
         const multiCallsDatas: string[] = []
 
-        const provider: ethers.providers.AlchemyProvider = providers[Number(chainId)];
+        const provider: ethers.providers.JsonRpcProvider = providers[Number(chainId)];
 
         for (const token of tokens.filter(token => token.chain_id === Number(chainId))) {
             const tokenContract = new ethers.Contract(token.ethereum_address, ERC20_ABI, provider);
@@ -76,7 +76,7 @@ const getBalances = async ({
 const submitStaticMultiCall = async (
     multiCallsTargets: `0x${string}`[],
     multiCallsData: string[],
-    provider: ethers.providers.AlchemyProvider
+    provider: ethers.providers.JsonRpcProvider
 ) => {
     const calls = multiCallsTargets.map((target, i) => {
         return {
