@@ -4,7 +4,7 @@ const ConnectButton = (props: any) => {
     const { login } = useAuthentication();
 
     return <button {...props} onClick={login}>
-        <span className="content">Connect Wallet</span>
+        <span className="content">Sign in</span>
     </button>
 }
 

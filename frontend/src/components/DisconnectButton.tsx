@@ -1,9 +1,11 @@
 import { useAuthentication } from '../hooks'
 
 const DisconnectButton = () => {
-    const { logout } = useAuthentication();
+    const { logout, isAuthenticated } = useAuthentication();
 
-    return <button onClick={logout}>Log out</button>
+    const buttonText = isAuthenticated ? "Log out" : "Disconnect";
+
+    return <button onClick={logout}>{buttonText}</button>
 }
 
 export { DisconnectButton }
