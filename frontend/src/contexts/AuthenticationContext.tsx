@@ -26,16 +26,6 @@ const AuthenticationContext = createContext<AuthenticationContextType>({
 });
 
 const AuthenticationProvider = ({ children }: any) => {
-    const [user, setUser] = useState(null);
-
-    const [isLoading, setIsLoading] = useState(false);
-
-    // const { connect: login } = useConnect({
-    //     connector: new InjectedConnector(),
-    //     onSuccess: (response: any) => {
-    //         setUser(response.address);
-    //     }
-    // })
 
     const { openConnectModal: login } = useConnectModal()
 
@@ -51,10 +41,14 @@ const AuthenticationProvider = ({ children }: any) => {
 
     const { disconnect: logout } = useDisconnect({
         onSuccess: () => {
-            setUser(null);
+            setUser(undefined);
             setIsLoading(false)
         }
     });
+
+    const [user, setUser] = useState(address);
+
+    const [isLoading, setIsLoading] = useState(false);
 
     const isAuthenticated = !isLoading && user === address;
 

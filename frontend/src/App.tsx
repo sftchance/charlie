@@ -36,7 +36,6 @@ const queryClient = new QueryClient();
 const { chains, provider } = configureChains(
     [mainnet, polygon, avalanche, optimism, arbitrum],
     [
-        alchemyProvider({ apiKey: process.env.VITE_MAINNET || "" }),
         publicProvider()
     ],
 );
