@@ -1,4 +1,4 @@
-import { SignatureType, SiweMessage } from "siwe";
+import { SiweMessage } from "siwe";
 
 import { getCSRFToken } from "../utils";
 
@@ -50,7 +50,6 @@ const useAuthenticationMessage = ({ signer }: { signer: any }) => {
             uri: document.location.origin,
             version: '1',
             statement: statement,
-            // type: SignatureType.PERSONAL_SIGNATURE,
             nonce: nonce.nonce,
         });
 
