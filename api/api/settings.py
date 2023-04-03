@@ -22,6 +22,8 @@ ALLOWED_HOSTS = ["*"]
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_ALL_ORIGINS = True
 
+CSRF_TRUSTED_ORIGINS = ["http://localhost:5173"]
+
 # Application definition
 INSTALLED_APPS = [
     "siwe_auth.apps.SiweAuthConfig",

@@ -50,7 +50,7 @@ const useAuthenticationMessage = ({ signer }: { signer: any }) => {
             uri: document.location.origin,
             version: '1',
             statement: statement,
-            type: SignatureType.PERSONAL_SIGNATURE,
+            // type: SignatureType.PERSONAL_SIGNATURE,
             nonce: nonce.nonce,
         });
 
