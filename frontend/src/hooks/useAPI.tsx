@@ -4,7 +4,7 @@ import { getCSRFToken } from "../utils";
 
 const useNonce = () => {
     const get = async () => {
-        return fetch(`http://localhost:8000/api/auth/nonce/`, {
+        return fetch(`http://10.0.0.95:8000/api/auth/nonce/`, {
             method: "GET",
             headers: {},
             credentials: 'include',
@@ -67,7 +67,7 @@ const useAuthenticate = () => {
         success: boolean;
         message: `0x${string}`
     }> => {
-        return fetch(`http://localhost:8000/api/auth/login`, {
+        return fetch(`http://10.0.0.95:8000/api/auth/login`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',

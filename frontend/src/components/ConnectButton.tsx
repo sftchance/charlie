@@ -5,9 +5,11 @@ const ConnectButton = (props: any) => {
 
     const buttonText = address ? "Sign In" : "Connect Wallet";
 
-    return <button {...props} onClick={login}>
-        <span className="content">{buttonText}</span>
-    </button>
+    return <>
+        <button {...props} onClick={login}>
+            <span className="content">{buttonText}</span>
+        </button>
+    </>
 }
 
 export { ConnectButton }

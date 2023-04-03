@@ -29,7 +29,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
 
     const { address } = useAccount();
 
-    const API_URL = `http://localhost:8000/buttons/${buttonId}/`
+    const API_URL = `http://10.0.0.95:8000/buttons/${buttonId}/`
 
     const {
         isLoading: isLoadingButtons,
@@ -73,7 +73,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
         data: any;
     } = useQuery({
         queryKey: ["tokens"],
-        queryFn: () => fetch(`http://localhost:8000/erc20/`).then((res) => res.json())
+        queryFn: () => fetch(`http://10.0.0.95:8000/erc20/`).then((res) => res.json())
     });
 
     const [object, setObject] = useState<any>({
@@ -113,7 +113,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
             method: "PUT",
             headers,
             body
-        }) : fetch(`http://localhost:8000/buttons/`, {
+        }) : fetch(`http://10.0.0.95:8000/buttons/`, {
             method: "POST",
             headers,
             credentials: 'include',

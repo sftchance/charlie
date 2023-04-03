@@ -30,7 +30,7 @@ const Button = () => {
     } = useQuery({
         queryKey: ["button"],
         queryFn: () =>
-            fetch(`http://localhost:8000/buttons/${buttonId}/`, {
+            fetch(`http://10.0.0.95:8000/buttons/${buttonId}/`, {
                 method: "GET",
                 headers: {},
                 credentials: 'include',

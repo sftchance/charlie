@@ -1,15 +1,14 @@
 import { createContext, useState } from "react";
 
-import { useConnect, useDisconnect } from "wagmi";
-
-import { InjectedConnector } from 'wagmi/connectors/injected'
+import { useDisconnect } from "wagmi";
+import { useConnectModal } from "@rainbow-me/rainbowkit"
 
 import { useAuthenticationSignature } from "../hooks";
 
 interface AuthenticationContextType {
     address: `0x${string}` | undefined;
     user: any;
-    login: (user: any) => void;
+    login: ((() => void) | undefined);
     authenticate: () => void;
     logout: () => void;
     isLoading: boolean;
@@ -31,12 +30,14 @@ const AuthenticationProvider = ({ children }: any) => {
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const { connect: login } = useConnect({
-        connector: new InjectedConnector(),
-        onSuccess: (response: any) => {
-            setUser(response.address);
-        }
-    })
+    // const { connect: login } = useConnect({
+    //     connector: new InjectedConnector(),
+    //     onSuccess: (response: any) => {
+    //         setUser(response.address);
+    //     }
+    // })
+
+    const { openConnectModal: login } = useConnectModal()
 
     const { address, authenticate } = useAuthenticationSignature({
         onLoading: () => setIsLoading(true),
