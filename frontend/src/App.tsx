@@ -88,7 +88,6 @@ function App() {
                     }}
                     modalSize="compact"
                     chains={chains}
-                    showRecentTransactions={true}
                     children={<Routes>
                         <Route path="/hosted/*" element={<Hosted />} />
                         <Route path="*" element={<Static />} />
