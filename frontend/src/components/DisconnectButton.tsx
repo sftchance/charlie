@@ -1,17 +1,9 @@
-import { useAccount, useDisconnect } from 'wagmi'
+import { useAuthentication } from '../hooks'
 
 const DisconnectButton = () => {
-    const { address } = useAccount()
-    const { disconnect } = useDisconnect()
+    const { logout } = useAuthentication();
 
-    return (
-        <div>
-            <button onClick={() => {
-                disconnect()
-                window.location.href = '/'
-            }}>Disconnect</button>
-        </div>
-    )
+    return <button onClick={logout}>Log out</button>
 }
 
 export { DisconnectButton }

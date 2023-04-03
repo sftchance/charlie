@@ -1,8 +1,24 @@
 import { Routes, Route } from 'react-router-dom'
 
-import { Button, ButtonForm, Buttons } from './'
+import { useAuthentication } from '../hooks'
+
+import { ButtonForm, Buttons } from './'
 
 const Account = () => {
+    const {
+        address,
+        user,
+        isAuthenticated,
+    } = useAuthentication()
+
+    if (!address) {
+        return <div>Not connected</div>
+    }
+
+    if (!isAuthenticated) {
+        return <div>Not authenticated</div>
+    }
+
     return <Routes>
         <Route path="/" element={<Buttons />} />
         <Route path="/buttons/new/" element={<ButtonForm />} />
