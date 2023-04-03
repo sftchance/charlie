@@ -43,12 +43,14 @@ const AuthenticationProvider = ({ children }: any) => {
         onSuccess: ({ address }) => {
             setUser(address);
             setIsLoading(false)
-        }
+        },
+        onError: () => setIsLoading(false)
     });
 
     const { disconnect: logout } = useDisconnect({
         onSuccess: () => {
             setUser(null);
+            setIsLoading(false)
         }
     });
 

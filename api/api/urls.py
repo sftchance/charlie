@@ -8,6 +8,8 @@ from django.views.generic import TemplateView
 from button.urls import router as button_router
 from erc20.urls import router as erc20_router
 
+from .views import get_nonce
+
 router = routers.DefaultRouter()
 router.registry.extend(button_router.registry)
 router.registry.extend(erc20_router.registry)
@@ -23,6 +25,7 @@ urlpatterns = router.urls + [
     path("admin/", admin.site.urls),
     # Authentication urls
     path("api-auth/", include("rest_framework.urls")),
+    path("api/auth/nonce/", get_nonce, name="nonce"),
     path("api/auth/", include("siwe_auth.urls")),
     # Documentation urls
     path(

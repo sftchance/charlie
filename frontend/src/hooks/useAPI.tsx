@@ -35,10 +35,6 @@ const useAuthenticationMessage = ({ signer }: { signer: any }) => {
         chainId: number;
         address: `0x${string}`;
     }): Promise<{ message: SiweMessage, signature: `0x${string}` }> => {
-        const csrfToken = getCSRFToken();
-
-        if (!csrfToken) throw new Error("CSRF Token not found.");
-
         const nonce = await getNonce();
 
         const statement = `Valid for 3 hours.`;
@@ -62,6 +58,8 @@ const useAuthenticationMessage = ({ signer }: { signer: any }) => {
 }
 
 const useAuthenticate = () => {
+    const csrfToken = getCSRFToken();
+
     const post = async ({ message, signature }: {
         message: SiweMessage;
         signature: `0x${string}`
@@ -73,7 +71,7 @@ const useAuthenticate = () => {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRFToken': getCSRFToken(),
+                'X-CSRFToken': csrfToken
             },
             body: JSON.stringify({ message, signature }),
             credentials: 'include'
@@ -88,6 +86,10 @@ const useAuthenticate = () => {
                 return res
             })
             .then((res) => res.json())
+            .then((res) => {
+
+                return res
+            })
             .catch((errors) => {
                 console.log(errors)
             })
