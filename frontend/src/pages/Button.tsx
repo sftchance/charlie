@@ -4,20 +4,34 @@ import { useParams } from "react-router-dom";
 
 import { useQuery } from "@tanstack/react-query";
 
+import { useAccount } from "wagmi";
+
 import { TokenRow } from "../components";
 
-import { useColor } from "../hooks";
+import { useColor, useDelegate } from "../hooks";
 
 import { getBalances } from "../utils";
+
+import { Token } from "../types";
 
 import "./Button.css";
 
 const Button = () => {
+    const { address } = useAccount();
+
     const { buttonId } = useParams<{ buttonId: string }>();
 
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     const [balances, setBalances] = useState<any>(null);
+
+    const [selected, setSelected] = useState<Token[]>([]);
+
+    const { 
+        isPrepared, 
+        openDelegationSignatures, 
+        openDelegationTx 
+    } = useDelegate(selected, false);
 
     const {
         isLoading,
@@ -35,11 +49,17 @@ const Button = () => {
 
     const textColor = useColor(data?.hex_color);
 
+    const onSelect = (token: any) => {
+        setSelected(selected => (
+            selected.indexOf(token) === -1 ? [...selected, token] : selected.filter((t) => t !== token)
+        ))
+    }
+
     useEffect(() => {
         if (!data) return;
 
         getBalances({
-            address: "0x62180042606624f02d8a130da8a3171e9b33894d",
+            address: address as `0x${string}`,
             tokens: data.tokens,
             includeZeros: true
         }).then(({ results }) => {
@@ -51,11 +71,14 @@ const Button = () => {
 
     if (error) return <>{"An error has occurred: " + error.message}</>;
 
+    console.log('selected', selected)
+
     return (
         <>
             <div
                 className={isModalOpen ? "modal" : "modal hidden"}
-                onClick={() => setIsModalOpen(false)}>
+                // onClick={() => setIsModalOpen(false)}
+            >
                 <div className="modal-content">
                     <span className="close">
                         &times;
@@ -72,12 +95,14 @@ const Button = () => {
                             const previousChainId = data.tokens[data.tokens.indexOf(token) - 1]?.chain_id;
 
                             return (
-                                <TokenRow
-                                    key={`${token.ethereum_address}-${token.chain_id}`}
-                                    token={token}
-                                    balance={balance}
-                                    first={chainId !== previousChainId}
-                                />
+                                <div key={`${token.ethereum_address}-${token.chain_id}`} style={{ display: "flex", flexDirection: "row"}}>
+                                    <input type="checkbox" onClick={() => onSelect(token)}/>
+                                    <TokenRow
+                                        token={token}
+                                        balance={balance}
+                                        first={chainId !== previousChainId}
+                                    />
+                                </div>
                             )
                         })}
 

@@ -4,16 +4,16 @@ import { useState } from "react";
 
 import { usePrepareContractWrite, useContractWrite } from "wagmi";
 
-import { getSignedTransactions } from "../utils"
+import { getSignedTransactions } from "../utils";
 
-import { DelegationCall, DelegatedCall } from "../types";
+import { Token, DelegatedCall } from "../types";
 
 import ERC20Votes from "../abis/ERC20Votes.json";
 
-const useDelegate = (calls: DelegationCall[], blocking: boolean) => {
+const useDelegate = (delegate: string, tokens: Token[], blocking: boolean) => {
     const [delegatedCalls, setDelegatedCalls] = useState<DelegatedCall[]>([]);
 
-    const isReady = delegatedCalls.length > 0 && delegatedCalls.length === calls.length;
+    const isReady = delegatedCalls.length > 0 && delegatedCalls.length === tokens.length;
 
     const { config, isSuccess: isPrepared } = usePrepareContractWrite({
         enabled: isReady,
@@ -23,9 +23,21 @@ const useDelegate = (calls: DelegationCall[], blocking: boolean) => {
         args: [delegatedCalls, blocking],
     });
 
+    const calls = tokens.map((token) => ({
+        chainId: token.chain_id,
+        contractAddress: token.ethereum_address as `0x${string}`,
+        nonce: 0,
+        delegatee: delegate as `0x${string}`,
+        expiry: 0,
+    }));
+
     const { writeAsync } = useContractWrite(config);
 
-    const openDelegationSignatures = async (calls: DelegationCall[]) => {
+    const openDelegationSignatures = async ({
+        onError = (e: any) => { console.error(e) },
+        onLoading = () => { },
+        onSuccess = () => { }
+    }) => {
         const votesInterface = new ethers.utils.Interface(ERC20Votes);
 
         const signatures = await getSignedTransactions(calls);
@@ -53,17 +65,28 @@ const useDelegate = (calls: DelegationCall[], blocking: boolean) => {
         console.log(signatures);
     }
 
-    const openDelegationTx = async () => {
+    const openDelegationTx = async ({
+        onError = (e: any) => { console.error(e) },
+        onStart = () => { },
+        onSign = () => { },
+        onSuccess = () => { }
+    }) => {
         if (!writeAsync) return;
         
         try {
-            const tx = await writeAsync();
+            onStart();
 
+            const tx = await writeAsync();
+            onSign();
+
+            
             const receipt = await tx.wait();
 
+            onSuccess();
             console.log(receipt);
         } catch (e) { 
             console.error(e); 
+            onError(e);
         }
     }
 
