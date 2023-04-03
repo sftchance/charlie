@@ -42,6 +42,7 @@ const AuthenticationProvider = ({ children }: any) => {
         onLoading: () => setIsLoading(true),
         onSuccess: ({ address }) => {
             setUser(address);
+
             setIsLoading(false)
         },
         onError: () => setIsLoading(false)

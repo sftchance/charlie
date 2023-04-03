@@ -38,7 +38,7 @@ const useAuthenticationSignature = ({
     const authenticate = () => {
         if (!signer || !chain) return;
 
-        const args = { chainId: chain.id, signer }
+        const args = { chainId: chain.id, address, signer }
 
         onLoading(args);
 
