@@ -28,6 +28,7 @@ CORS_ALLOWED_ORIGINS = [
 
 # Application definition
 INSTALLED_APPS = [
+    "siwe_auth.apps.SiweAuthConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -35,6 +36,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "api",
     "button",
     "erc20",
 ]
@@ -105,13 +107,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
 LANGUAGE_CODE = "en-us"
-
 TIME_ZONE = "UTC"
-
 USE_I18N = True
-
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -135,3 +133,19 @@ PROVIDERS = {
     "42161": f"https://arb-mainnet.g.alchemy.com/v2/{os.environ.get('ARBITRUM_ALCHEMY_KEY')}",
     "137": f"https://polygon-mainnet.g.alchemy.com/v2/{os.environ.get('POLYGON_ALCHEMY_KEY')}",
 }
+
+# User settings
+
+AUTH_USER_MODEL = "siwe_auth.Wallet"
+
+AUTHENTICATION_BACKENDS = [
+    "siwe_auth.backend.SiweBackend",
+]
+
+LOGIN_URL = "/"
+
+SESSION_COOKIE_AGE = 3 * 60 * 60  # 3 hours
+
+CREATE_ENS_PROFILE_ON_AUTHN = False
+
+PROVIDER = PROVIDERS["1"]

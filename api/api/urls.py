@@ -23,6 +23,7 @@ urlpatterns = router.urls + [
     path("admin/", admin.site.urls),
     # Authentication urls
     path("api-auth/", include("rest_framework.urls")),
+    path("api/auth/", include("siwe_auth.urls")),
     # Documentation urls
     path(
         "docs/",

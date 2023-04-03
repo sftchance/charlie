@@ -2,6 +2,8 @@ import uuid
 
 from web3 import Web3
 
+from siwe_auth.models import Wallet
+
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models.signals import pre_save
@@ -55,6 +57,15 @@ def validate_hex_color(value):
 
 class Button(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+
+    wallet = models.ForeignKey(
+        Wallet,
+        blank=False,
+        null=False,
+        on_delete=models.CASCADE,
+        related_name="buttons",
+        help_text="Wallet that owns this button",
+    )
 
     ethereum_address = models.CharField(
         max_length=256,
