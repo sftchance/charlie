@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { Error, Input, MultiSelect } from "../components";
 import { useAccount } from "wagmi";
+import { getCSRFToken } from "../utils";
 
 const withToken = (token: any) => ({
     ...token,
@@ -44,7 +45,15 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
         queryKey: ["buttons", buttonId],
         queryFn: () => {
             if (isEdit == true)
-                return fetch(API_URL).then((res) => res.json())
+                return fetch(API_URL, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRFToken": getCSRFToken()
+                    },
+                    credentials: 'include',
+                    mode: 'cors'
+                }).then((res) => res.json())
 
             return null
         },
@@ -91,7 +100,8 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
         e.preventDefault();
 
         const headers = {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCSRFToken()
         }
 
         const body = JSON.stringify({
@@ -106,6 +116,8 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
         }) : fetch(`http://localhost:8000/buttons/`, {
             method: "POST",
             headers,
+            credentials: 'include',
+            mode: 'cors',
             body
         })
 

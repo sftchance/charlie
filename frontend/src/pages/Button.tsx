@@ -30,7 +30,12 @@ const Button = () => {
     } = useQuery({
         queryKey: ["button"],
         queryFn: () =>
-            fetch(`http://localhost:8000/buttons/${buttonId}/`).then((res) => res.json()),
+            fetch(`http://localhost:8000/buttons/${buttonId}/`, {
+                method: "GET",
+                headers: {},
+                credentials: 'include',
+                mode: 'cors'
+            }).then((res) => res.json()),
     });
 
     const textColor = useColor(data?.hex_color);
