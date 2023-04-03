@@ -1,10 +1,12 @@
 import { useAuthentication } from "../hooks";
 
 const ConnectButton = (props: any) => {
-    const { login } = useAuthentication();
+    const { address, login } = useAuthentication();
+
+    const buttonText = address ? "Sign In" : "Connect Wallet";
 
     return <button {...props} onClick={login}>
-        <span className="content">Sign in</span>
+        <span className="content">{buttonText}</span>
     </button>
 }
 

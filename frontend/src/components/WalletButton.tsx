@@ -5,7 +5,7 @@ import { useAuthentication } from "../hooks";
 const WalletButton = (props: any) => {
     const navigate = useNavigate();
 
-    const { address, isAuthenticated } = useAuthentication();
+    const { address, authenticate, isAuthenticated } = useAuthentication();
 
     if (!address) return <></>
 
@@ -17,6 +17,7 @@ const WalletButton = (props: any) => {
             return
         }
 
+        authenticate();
         // prompt signing in
     }
 

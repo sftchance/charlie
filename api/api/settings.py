@@ -8,7 +8,6 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -20,11 +19,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://localhost:5173",
-    "http://localhost:3001",
-]
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Application definition
 INSTALLED_APPS = [
@@ -35,6 +31,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "corsheaders",
     "rest_framework",
     "api",
     "button",
@@ -42,9 +39,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -71,7 +68,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "api.wsgi.application"
-
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -134,15 +130,13 @@ PROVIDERS = {
     "137": f"https://polygon-mainnet.g.alchemy.com/v2/{os.environ.get('POLYGON_ALCHEMY_KEY')}",
 }
 
-# User settings
-
 AUTH_USER_MODEL = "siwe_auth.Wallet"
 
 AUTHENTICATION_BACKENDS = [
     "siwe_auth.backend.SiweBackend",
 ]
 
-LOGIN_URL = "/"
+LOGIN_URL = "/api/auth/login"
 
 SESSION_COOKIE_AGE = 3 * 60 * 60  # 3 hours
 

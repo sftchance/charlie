@@ -1,14 +1,18 @@
 import { createContext, useState } from "react";
 
-import { useAccount, useConnect, useDisconnect } from "wagmi";
+import { useConnect, useDisconnect } from "wagmi";
 
 import { InjectedConnector } from 'wagmi/connectors/injected'
+
+import { useAuthenticationSignature } from "../hooks";
 
 interface AuthenticationContextType {
     address: `0x${string}` | undefined;
     user: any;
     login: (user: any) => void;
+    authenticate: () => void;
     logout: () => void;
+    isLoading: boolean;
     isAuthenticated: boolean;
 }
 
@@ -16,16 +20,16 @@ const AuthenticationContext = createContext<AuthenticationContextType>({
     address: undefined,
     user: null,
     login: () => { },
+    authenticate: () => { },
     logout: () => { },
+    isLoading: false,
     isAuthenticated: false,
 });
 
 const AuthenticationProvider = ({ children }: any) => {
-    const { address } = useAccount();
-
     const [user, setUser] = useState(null);
 
-    const isAuthenticated = user === address;
+    const [isLoading, setIsLoading] = useState(false);
 
     const { connect: login } = useConnect({
         connector: new InjectedConnector(),
@@ -34,18 +38,30 @@ const AuthenticationProvider = ({ children }: any) => {
         }
     })
 
+    const { address, authenticate } = useAuthenticationSignature({
+        onLoading: () => setIsLoading(true),
+        onSuccess: ({ address }) => {
+            setUser(address);
+            setIsLoading(false)
+        }
+    });
+
     const { disconnect: logout } = useDisconnect({
         onSuccess: () => {
             setUser(null);
         }
     });
 
+    const isAuthenticated = !isLoading && user === address;
+
     return (
         <AuthenticationContext.Provider value={{
             address,
             user,
             login,
+            authenticate,
             logout,
+            isLoading,
             isAuthenticated
         }}>
             {children}
