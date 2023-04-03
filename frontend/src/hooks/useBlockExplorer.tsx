@@ -1,7 +1,5 @@
 const useBlockExplorer = (chain: any, address: string): string | undefined => {
-    if (!chain) return;
-
-    console.log(chain.chainId)
+    if (!chain || !chain.id) return;
 
     if (Number(chain?.id) === 1) return `https://etherscan.io/address/${address}`
     if (Number(chain?.id) === 10) return `https://optimistic.etherscan.io/address/${address}`
