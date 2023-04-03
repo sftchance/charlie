@@ -104,8 +104,6 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
             "X-CSRFToken": getCSRFToken()
         }
 
-        console.log('headers', headers)
-
         const body = JSON.stringify({
             ...object,
             tokens: object.tokens.map((token: any) => token.value)

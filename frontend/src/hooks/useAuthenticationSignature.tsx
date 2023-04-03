@@ -21,31 +21,32 @@ const useAuthenticationSignature = ({
 
     const { post } = useAuthenticate();
 
-    const tryAuthentication = async ({ chainId, signer }: any) => {
+    const tryAuthentication = async ({ chain, signer }: any) => {
         const address = signer._address;
 
-        const { message, signature } = await get({ chainId, address });
+        const args = {
+            chainId: chain.id,
+            address,
+            signer
+        }
+
+        onLoading(args);
+
+        const { message, signature } = await get({
+            chainId: args.chainId,
+            address: args.address
+        });
 
         post({ address, message, signature })
-            .then((response) => {
-                console.log(response)
-            })
-            .catch((error) => {
-                onError(error)
+            .then(() => {
+                onSuccess(args)
             })
     };
 
     const authenticate = () => {
-        if (!signer || !chain) return;
+        if (!chain || !signer) return;
 
-        const args = { chainId: chain.id, address, signer }
-
-        onLoading(args);
-
-        tryAuthentication(args)
-            .then(() => {
-                onSuccess(args);
-            })
+        tryAuthentication({ chain, signer })
             .catch((error) => {
                 onError(error)
             })

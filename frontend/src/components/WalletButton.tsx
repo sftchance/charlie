@@ -27,8 +27,6 @@ const WalletButton = (props: any) => {
         authenticate();
     }
 
-    console.log(document.cookie)
-
     return <button {...props} className="primary" onClick={onClick}>
         <span className="content">{buttonText}</span>
     </button>

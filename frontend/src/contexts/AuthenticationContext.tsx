@@ -53,8 +53,6 @@ const AuthenticationProvider = ({ children }: any) => {
 
     const localStorageAddress = localStorage.getItem('address');
 
-    console.table({ localStorageAddress })
-
     const isAuthenticated = !isLoading && user === address && localStorageAddress !== undefined;
 
     return (
