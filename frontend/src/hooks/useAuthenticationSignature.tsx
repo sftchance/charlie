@@ -26,7 +26,7 @@ const useAuthenticationSignature = ({
 
         const { message, signature } = await get({ chainId, address });
 
-        post({ message, signature })
+        post({ address, message, signature })
             .then((response) => {
                 console.log(response)
             })

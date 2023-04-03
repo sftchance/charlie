@@ -60,7 +60,8 @@ const useAuthenticationMessage = ({ signer }: { signer: any }) => {
 const useAuthenticate = () => {
     const csrfToken = getCSRFToken();
 
-    const post = async ({ message, signature }: {
+    const post = async ({ address, message, signature }: {
+        address: `0x${string}`;
         message: SiweMessage;
         signature: `0x${string}`
     }): Promise<{
@@ -87,6 +88,7 @@ const useAuthenticate = () => {
             })
             .then((res) => res.json())
             .then((res) => {
+                localStorage.setItem('address', address);
 
                 return res
             })

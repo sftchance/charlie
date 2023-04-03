@@ -26,7 +26,6 @@ const AuthenticationContext = createContext<AuthenticationContextType>({
 });
 
 const AuthenticationProvider = ({ children }: any) => {
-
     const { openConnectModal: login } = useConnectModal()
 
     const { address, authenticate } = useAuthenticationSignature({
@@ -41,6 +40,8 @@ const AuthenticationProvider = ({ children }: any) => {
 
     const { disconnect: logout } = useDisconnect({
         onSuccess: () => {
+            localStorage.removeItem('address');
+
             setUser(undefined);
             setIsLoading(false)
         }
@@ -50,7 +51,11 @@ const AuthenticationProvider = ({ children }: any) => {
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const isAuthenticated = !isLoading && user === address;
+    const localStorageAddress = localStorage.getItem('address');
+
+    console.table({ localStorageAddress })
+
+    const isAuthenticated = !isLoading && user === address && localStorageAddress !== undefined;
 
     return (
         <AuthenticationContext.Provider value={{

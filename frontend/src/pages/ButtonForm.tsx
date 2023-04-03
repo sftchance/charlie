@@ -104,6 +104,8 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
             "X-CSRFToken": getCSRFToken()
         }
 
+        console.log('headers', headers)
+
         const body = JSON.stringify({
             ...object,
             tokens: object.tokens.map((token: any) => token.value)
@@ -112,6 +114,8 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
         const response = isEdit ? fetch(API_URL, {
             method: "PUT",
             headers,
+            credentials: 'include',
+            mode: 'cors',
             body
         }) : fetch(`http://localhost:8000/buttons/`, {
             method: "POST",
