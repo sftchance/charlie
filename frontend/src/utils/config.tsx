@@ -1,18 +1,17 @@
 import { ethers } from "ethers";
 
-// Alchemy keys
-// Mainnet: gXLumW8PNRWtrmcTIcMXSnMnQY_UnQpY
-// Optimism: NAIFm3fALSbcksgIFr3P4Ku6_SqEeYQJ
-// Polygon: DWAus_nU93LuWr4fefFJR4y1mjD588sf
-// Arbitrum: J2mUvQdzX3p7EwBSoxAbwOMwqQWr4xcT
+const MAINNET = import.meta.env.VITE_MAINNET;
+const OPTIMISM = import.meta.env.VITE_OPTIMISM;
+const POLYGON = import.meta.env.VITE_POLYGON;
+const ARBITRUM = import.meta.env.VITE_ARBITRUM;
 
 const providers: {
-    [chainId: number]: ethers.providers.AlchemyProvider
+    [chainId: number]: ethers.providers.JsonRpcProvider
 } = {
-    1: new ethers.providers.AlchemyProvider(1, "gXLumW8PNRWtrmcTIcMXSnMnQY_UnQpY"),
-    10: new ethers.providers.AlchemyProvider(10, "NAIFm3fALSbcksgIFr3P4Ku6_SqEeYQJ"),
-    137: new ethers.providers.AlchemyProvider(137, "DWAus_nU93LuWr4fefFJR4y1mjD588sf"),
-    42161: new ethers.providers.AlchemyProvider(42161, "J2mUvQdzX3p7EwBSoxAbwOMwqQWr4xcT"),
+    1: new ethers.providers.JsonRpcProvider(`https://eth-mainnet.alchemyapi.io/v2/${MAINNET}`),
+    10: new ethers.providers.JsonRpcProvider(`https://eth-mainnet.alchemyapi.io/v2/${OPTIMISM}`),
+    137: new ethers.providers.JsonRpcProvider(`https://polygon-mainnet.g.alchemy.com/v2/${POLYGON}`),
+    42161: new ethers.providers.JsonRpcProvider(`https://arb-mainnet.g.alchemy.com/v2/${ARBITRUM}`),
 }
 
 const MULTICALL = "0xcA11bde05977b3631167028862bE2a173976CA11"
