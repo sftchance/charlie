@@ -6,7 +6,7 @@
     --charlieGrey: #f0f0f0;
     --charlieGreyHover: rgba(230, 230, 230, 0.95);
     --charlieBlack: #111;
-    --charlieBlackHover: rgba(0, 0, 0, 0.95);
+    --charlieBlackHover: rgba(25, 25, 25, 0.95);
     --charlieSoftBlack: #555;
     --charlieSoftBlackHover: rgba(85, 85, 85, 0.95);
     --charliePink: #ff04c9;
@@ -75,16 +75,29 @@ button,
 button span,
 button .content {
     transition: var(--charlieTransition);
+    color: var(--charlieBlack);
 }
 
-button:hover {
+button:hover,
+button:focus {
     background: var(--charlieBlack);
 }
 
 button:hover,
-button:hover .content {
+button:hover .content,
+button:focus,
+button:focus .content {
     color: var(--charlieWhiteHover);
     text-shadow: var(--charlieGlowingTextShadow);
+}
+
+button:active {
+    background: var(--charlieBlackHover);
+}
+
+button:active,
+button:active .content {
+    color: var(--charlieWhite);
 }
 
 button.primary {
@@ -166,34 +179,7 @@ button.link:hover {
     color: var(--charlieBlackHover);
 }
 
-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 700;
-}
 
-input,
-select {
-    outline: none;
-    width: 100%;
-    border-radius: var(--charlieBorderRadius);
-    padding: var(--charlieButtonPadding);
-    background: var(--charlieWhite);
-    border: 1px solid var(--charlieGrey);
-    color: var(--charlieBlack);
-    transition: var(--charlieTransition);
-    font-size: inherit;
-    margin-bottom: 1rem;
-}
-
-input:hover,
-input:active {
-    border: 1px solid var(--charlieGreyHover);
-}
-
-input:focus {
-    border: 1px solid var(--charlieSoftBlackHover);
-}
 
 .container {
     margin: 0 auto;
@@ -207,19 +193,6 @@ input:focus {
     padding: 1rem;
     margin: 1rem 0;
     transition: all .075s ease-in-out;
-}
-
-button,
-input,
-.card {
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
-    transition: var(--charlieTransition);
-}
-
-button:hover,
-input:hover,
-.card:hover {
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0);
 }
 
 .gradient {
