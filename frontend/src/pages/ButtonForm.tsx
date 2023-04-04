@@ -168,8 +168,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
 
     return (
         <>
-            <h3>{isEdit ? "Edit" : "Create"}</h3>
-            <h1>{isEdit ? data.name : "Delegation Button"}</h1>
+            <h1>{isEdit ? `Edit ${data.name}` : "Create Button"}</h1>
 
             <Link
                 to={isEdit
@@ -226,9 +225,11 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                 <Error error={errors?.detail} />
 
                 {isEdit && <button
-                    type="button"
+                    className="primary danger block"
                     onClick={handleDelete}
-                >Delete</button>}
+                >
+                    <span className="content">Delete</span>
+                </button>}
 
                 <button
                     type="submit"

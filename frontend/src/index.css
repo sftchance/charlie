@@ -133,6 +133,16 @@ button.primary.secondary:focus {
     background: var(--charlieGradientAlt);
 }
 
+button.primary.danger {
+    background: red;
+    color: var(--charlieWhite);
+}
+
+button.primary.danger:hover,
+button.primary.danger:focus {
+    background: red;
+}
+
 button:disabled {
     cursor: auto !important;
     filter: saturate(0.1);

@@ -29,6 +29,8 @@ const Button = () => {
     if (error) return <>{"An error has occurred: " + error.message}</>;
 
     return <>
+        <h1>{data.name}</h1>
+
         <Link to="/account/" children={
             <button>Back</button>
         } />
@@ -43,7 +45,6 @@ const Button = () => {
                 <span className="content">Edit</span>
             </button>} />
 
-        <h1>{data.text}</h1>
 
         <p>{data.description}</p>
     </>
