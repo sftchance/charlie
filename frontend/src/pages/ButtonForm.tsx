@@ -223,10 +223,6 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                     options={options}
                     error={errors?.tokens} />
 
-                {object?.tokens?.length > 0 ? object?.tokens?.map((token: any) =>
-                    <p key={token.label}>{JSON.stringify(token, null, 2)}</p>
-                ) : <p>No tokens targeted...</p>}
-
                 <Error error={errors?.detail} />
 
                 {isEdit && <button
