@@ -33,45 +33,53 @@ const useDelegate = (tokens: VotesToken[], blocking: boolean) => {
         onSign = (token: VotesToken) => { },
         onSuccess = () => { }
     }) => {
-        try {
-            const votesInterface = new ethers.utils.Interface(ERC20_VOTES_ABI);
+        const votesInterface = new ethers.utils.Interface(ERC20_VOTES_ABI);
     
-            // Get the EIP 712 messages for each token
-            const messages = getTypedDelegations(tokens);
+        // Get the EIP 712 messages for each token
+        const messages = getTypedDelegations(tokens);
     
-            messages.forEach(async (message, index) => {
+        for (const [i, message] of messages.entries()) {
+            try {
+                const call: DelegatedCall = {
+                    chainId: tokens[i].chainId,
+                    target: tokens[i].ethereum_address as `0x${string}`,
+                    status: 'pending'
+                }
+
                 // Trigger start effects
-                onStart(tokens[index]);
+                onStart(tokens[i]);
+                setDelegatedCalls((prev) => [...prev, call]);
                 
                 // Sign the message
                 const signature = await signTypedData(message);
-                onSign(tokens[index]);
+                onSign(tokens[i]);
     
                 // Build the call data
                 const { v, r, s } = ethers.utils.splitSignature(signature);
                 const callData = votesInterface.encodeFunctionData("delegateBySig", [
-                    tokens[index].delegatee,
-                    tokens[index].nonce,
-                    tokens[index].expiry,
+                    tokens[i].delegatee,
+                    tokens[i].nonce,
+                    tokens[i].expiry,
                     v,
                     r,
                     s,
                 ]);
     
-                // Add the call to the list of calls
-                const call = {
-                    chainId: tokens[index].chainId,
-                    target: tokens[index].ethereum_address as `0x${string}`,
-                    callData,
-                }
-                setDelegatedCalls((prev) => [...prev, call]);
-            });
-    
-            onSuccess();
-        } catch (e) {
-            console.error(e);
-            onError(e);
+                // Add the calldata and update status of the call
+                setDelegatedCalls((prev) => 
+                    prev.map((call) => call.target === tokens[i].ethereum_address ? 
+                        { ...call, calldata: callData, status: 'signed' } : call));                            
+
+            } catch (e) {
+                console.error(e);
+                onError(e);
+                setDelegatedCalls((prev) =>
+                    prev.map((call) => call.target === tokens[i].ethereum_address ?
+                        { ...call, status: 'error' } : call));
+            }
         }
+
+        onSuccess();
     }
 
     const openDelegationTx = async ({

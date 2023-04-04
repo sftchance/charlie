@@ -43,6 +43,7 @@ const Button = () => {
 
     const { 
         isPrepared,
+        delegatedCalls,
         openDelegationSignatures, 
         openDelegationTx 
     } = useDelegate(
@@ -50,7 +51,7 @@ const Button = () => {
         false
     );
 
-    const onSelect = (token: any) => {        
+    const onSelect = (token: any) => {
         setTokens(tokens => (
             tokens.map((t) => t.ethereum_address === token.ethereum_address ? { ...t, selected: !t.selected } : t)
         ));
@@ -110,14 +111,20 @@ const Button = () => {
                             const chainId = token.chain_id;
                             const previousChainId = data.tokens[data.tokens.indexOf(token) - 1]?.chain_id;
 
+                            const delegateCall = delegatedCalls.find((call) => 
+                                call.target === token.ethereum_address && call.chainId === chainId
+                            );
+
                             return (
                                 <TokenRow
                                     key={`${token.ethereum_address}-${token.chain_id}`} 
+                                    delegateCall={delegateCall}
                                     token={token}
                                     currentDelegate={thisToken?.currentDelegate as string}
                                     newDelegate={data?.ethereum_address}
                                     balance={thisToken?.balance}
                                     first={chainId !== previousChainId}
+                                    isClicked={thisToken?.selected}
                                     onClick={() => onSelect(token)}
                                 />
                             )

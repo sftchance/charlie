@@ -1,0 +1,17 @@
+.status {
+    min-width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.status.signed {
+    background-color: green;
+}
+
+.status.pending {
+    background-color: yellow;
+}
+
+.status.error {
+    background-color: red;
+}

@@ -2,23 +2,28 @@ import { useNetwork } from "wagmi"
 
 import { useBlockExplorer } from "../../hooks"
 
+import { DelegatedCall } from "../../types"
+
+import "./TokenRow.css"
+
+// TODO: break this out it's a monster now i'm sorry
 const TokenRow = ({
     token,
     balance,
+    delegateCall,
     currentDelegate,
     newDelegate,
     first,
-    isPending,
-    isLoading,
+    isClicked,
     onClick
 }: {
     token: any,
     balance?: number,
+    delegateCall?: DelegatedCall,
     currentDelegate?: string,
     newDelegate?: string,
     first: boolean,
-    isPending?: boolean,
-    isLoading?: boolean,
+    isClicked?: boolean,
     onClick?: () => void,
 }) => {
     const { chains } = useNetwork()
@@ -26,6 +31,8 @@ const TokenRow = ({
     const chain = chains.find(chain => chain.id === token.chain_id)
 
     const blockExplorerURL = useBlockExplorer(chain, token?.ethereum_address);
+
+    const actionStatus = delegateCall ? delegateCall.status : "";
 
     return (
         <div className="token">
@@ -36,7 +43,13 @@ const TokenRow = ({
 
             <a href={blockExplorerURL} target="_blank" rel="noreferrer">
                 <h2 style={{display: "flex"}}>
-                    <input type="checkbox" onClick={onClick} />
+                    <div className={`status ${actionStatus}`} />
+
+                    <input 
+                        type="checkbox" 
+                        onClick={onClick}
+                        checked={isClicked}
+                    />
                     <span>(${token.symbol}) {token.name}</span>
                     <span>Balance: {balance}</span>
                     <div>
