@@ -1,5 +1,7 @@
 import { createContext, useState } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import { useDisconnect } from "wagmi";
 import { useConnectModal } from "@rainbow-me/rainbowkit"
 
@@ -26,6 +28,8 @@ const AuthenticationContext = createContext<AuthenticationContextType>({
 });
 
 const AuthenticationProvider = ({ children }: any) => {
+    const navigate = useNavigate();
+
     const { openConnectModal: login } = useConnectModal()
 
     const { address, authenticate } = useAuthenticationSignature({
@@ -34,6 +38,8 @@ const AuthenticationProvider = ({ children }: any) => {
             setUser(address);
 
             setIsLoading(false)
+
+            navigate("/account/")
         },
         onError: () => setIsLoading(false)
     });
@@ -44,6 +50,8 @@ const AuthenticationProvider = ({ children }: any) => {
 
             setUser(undefined);
             setIsLoading(false)
+
+            navigate('/');
         }
     });
 

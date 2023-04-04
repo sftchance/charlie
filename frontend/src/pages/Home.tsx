@@ -1,10 +1,14 @@
 import { useState } from "react"
 
-import { ConnectButton, EasterEgg } from "../components"
+import { useAuthentication } from "../hooks"
+
+import { ConnectButton, WalletButton, EasterEgg } from "../components"
 
 import "./Home.css"
 
 const Home = () => {
+    const { address } = useAuthentication();
+
     const [easterEggFound, setEasterEggFound] = useState(false)
 
     const toggleEasterEgg = () => {
@@ -21,7 +25,7 @@ const Home = () => {
                     <p className="lead">Unleash the power of the social networks surrounding governance tokens with the ability to harvest voting power - no coding needed.</p>
 
                     <div className="buttons">
-                        <ConnectButton />
+                        {address ? <WalletButton /> : <ConnectButton />}
 
                         <button className="primary secondary" type="submit">
                             <span className="content">Delegate to Charlie</span>
