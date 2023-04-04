@@ -42,6 +42,17 @@ const MultiSelect = ({ label, options, value, onChange, error }: {
                         boxShadow: "0 0 4px rgba(0, 0, 0, 0.1)",
                     }),
                 }),
+                option: (provided, state) => ({
+                    ...provided,
+                    color: "#111",
+                    cursor: "pointer",
+                    "&:hover": {
+                        backgroundColor: "rgba(230, 230, 230, 0.95)",
+                    },
+                    ...(state.isFocused && {
+                        backgroundColor: "rgba(230, 230, 230, 0.95)",
+                    }),
+                }),
             }} />
 
         <Error error={error} />

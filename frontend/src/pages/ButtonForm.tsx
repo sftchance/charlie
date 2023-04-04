@@ -90,10 +90,21 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
 
     const options = [...withTokens({ tokens: dataTokens }, object?.tokens || [])?.tokens]
 
-    const handleDelete = () => {
+    const handleDelete = (e: any) => {
+        e.preventDefault()
+
+        console.log('deleting', API_URL)
+
         fetch(API_URL, {
             method: "DELETE",
-        }).then(() => navigate("/account/"))
+            headers: {
+                "X-CSRFToken": getCSRFToken()
+            },
+            credentials: 'include',
+            mode: 'cors'
+        }).then(() => {
+            navigate("/account/")
+        })
     }
 
     const handleSubmit = (e: any) => {
