@@ -1,6 +1,9 @@
 import { getCSRFToken } from './'
 
 const _secure = async (method: string, url: string, body?: any) => {
+    if (body && typeof body !== "string")
+        body = JSON.stringify(body)
+
     return fetch(url, {
         method: method,
         headers: {
@@ -22,6 +25,15 @@ const _secure = async (method: string, url: string, body?: any) => {
 
             return res
         })
+        .then((res) => {
+            if (res.status === 204) return Promise.resolve()
+
+            return res.json()
+        });
+}
+
+const path = (url: string) => {
+    return `${import.meta.env.VITE_API_URL}${url}`
 }
 
 const get = async (url: string) => {
@@ -45,6 +57,7 @@ const del = async (url: string) => {
 }
 
 export {
+    path,
     get,
     post,
     patch,

@@ -4,7 +4,6 @@ import { WagmiConfig, configureChains, createClient } from "wagmi";
 import { avalanche, mainnet, polygon, optimism, arbitrum } from "wagmi/chains";
 
 import { publicProvider } from 'wagmi/providers/public';
-import { alchemyProvider } from 'wagmi/providers/alchemy';
 
 import {
     connectorsForWallets,

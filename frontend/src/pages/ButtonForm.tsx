@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Error, Input, MultiSelect } from "../components";
 import { useAccount } from "wagmi";
 
-import { get, put, post, del, getCSRFToken } from "../utils";
+import { path, get, put, post, del } from "../utils";
 
 const withToken = (token: any) => ({
     ...token,
@@ -30,8 +30,6 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
 
     const { address } = useAccount();
 
-    const API_URL = `http://localhost:8000/buttons/${buttonId}/`
-
     const {
         isLoading: isLoadingButtons,
         error,
@@ -47,8 +45,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
         queryFn: () => {
             if (!isEdit) return null
 
-            return get(API_URL)
-                .then((res) => res.json())
+            return get(path(`buttons/${buttonId}/`))
         },
         refetchOnWindowFocus: true,
         staleTime: 0,
@@ -66,8 +63,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
         data: any;
     } = useQuery({
         queryKey: ["tokens"],
-        queryFn: () => get(`http://localhost:8000/erc20/`)
-            .then((res) => res.json())
+        queryFn: () => get(path("erc20/"))
     });
 
     const [object, setObject] = useState<any>({
@@ -87,9 +83,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
     const handleDelete = (e: any) => {
         e.preventDefault()
 
-        del(API_URL).then(() => {
-            navigate("/account/")
-        })
+        del(path(`buttons/${buttonId}`)).then(() => navigate("/account/"))
     }
 
     const handleSubmit = (e: any) => {
@@ -100,19 +94,11 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
             tokens: object.tokens.map((token: any) => token.value)
         })
 
-        const response = isEdit ? put(API_URL, body) : post(API_URL, body)
+        const response = isEdit
+            ? put(path(`buttons/${buttonId}/`), body)
+            : post(path("buttons/"), body)
 
         response
-            .then((res): any => {
-                if (res.status >= 400) {
-                    return res.json().then((data) => {
-                        return Promise.reject(data)
-                    })
-                }
-
-                return res
-            })
-            .then((res) => res.json())
             .then((data) => {
                 refetch()
 

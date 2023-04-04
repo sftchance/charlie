@@ -1,4 +1,5 @@
 export {
+    path,
     get,
     post,
     patch,

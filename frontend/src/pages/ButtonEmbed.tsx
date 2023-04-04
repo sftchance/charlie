@@ -8,7 +8,7 @@ import { TokenRow } from "../components";
 
 import { useColor } from "../hooks";
 
-import { getBalances } from "../utils";
+import { path, get, getBalances } from "../utils";
 
 import "./ButtonEmbed.css";
 
@@ -30,12 +30,7 @@ const ButtonEmbed = () => {
     } = useQuery({
         queryKey: ["button"],
         queryFn: () =>
-            fetch(`http://localhost:8000/buttons/${buttonId}/`, {
-                method: "GET",
-                headers: {},
-                credentials: 'include',
-                mode: 'cors'
-            }).then((res) => res.json()),
+            get(path(`buttons/${buttonId}/`))
     });
 
     const textColor = useColor(data?.hex_color);

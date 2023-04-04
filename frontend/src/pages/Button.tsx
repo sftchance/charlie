@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { Input } from "../components";
 
-import { get, copy } from "../utils";
+import { path, get, copy } from "../utils";
 
 const Button = () => {
     const { buttonId } = useParams();
@@ -19,8 +19,7 @@ const Button = () => {
         data: any;
     } = useQuery({
         queryKey: ["button"],
-        queryFn: () => get(`http://localhost:8000/buttons/${buttonId}/`)
-            .then((res) => res.json()),
+        queryFn: () => get(path(`buttons/${buttonId}/`))
     });
 
     if (isLoading) return <>{"Loading..."}</>;
