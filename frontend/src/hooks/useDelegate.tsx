@@ -4,7 +4,9 @@ import { useState } from "react";
 
 import { usePrepareContractWrite, useContractWrite } from "wagmi";
 
-import { getSignedDelegations } from "../utils";
+import { signTypedData } from "@wagmi/core";
+
+import { getTypedDelegations } from "../utils";
 
 import { VotesToken, DelegatedCall } from "../types";
 
@@ -13,7 +15,7 @@ import { ERC20_VOTES_ABI } from "../utils";
 const useDelegate = (tokens: VotesToken[], blocking: boolean) => {
     const [delegatedCalls, setDelegatedCalls] = useState<DelegatedCall[]>([]);
 
-    const isReady = false;
+    const isReady = tokens && tokens.length === delegatedCalls.length;
 
     const { config, isSuccess: isPrepared } = usePrepareContractWrite({
         enabled: isReady,
@@ -27,36 +29,49 @@ const useDelegate = (tokens: VotesToken[], blocking: boolean) => {
 
     const openDelegationSignatures = async ({
         onError = (e: any) => { console.error(e) },
-        onLoading = () => { },
+        onStart = (token: VotesToken) => { },
+        onSign = (token: VotesToken) => { },
         onSuccess = () => { }
     }) => {
-        const votesInterface = new ethers.utils.Interface(ERC20_VOTES_ABI);
-
-        const signatures = await getSignedDelegations(tokens);
-
-        console.log('tokens22', tokens)
-
-        signatures.map((signature, index) => {
-            const { v, r, s } = ethers.utils.splitSignature(signature);
-
-            const callData = votesInterface.encodeFunctionData("delegateBySig", [
-                tokens[index].delegatee,
-                tokens[index].nonce,
-                tokens[index].expiry,
-                v,
-                r,
-                s,
-            ]);
-
-            const call = {
-                target: tokens[index].ethereum_address as `0x${string}`,
-                callData,
-            }
-
-            setDelegatedCalls((prev) => [...prev, call]);
-        });
-
-        console.log(signatures);
+        try {
+            const votesInterface = new ethers.utils.Interface(ERC20_VOTES_ABI);
+    
+            // Get the EIP 712 messages for each token
+            const messages = getTypedDelegations(tokens);
+    
+            messages.forEach(async (message, index) => {
+                // Trigger start effects
+                onStart(tokens[index]);
+                
+                // Sign the message
+                const signature = await signTypedData(message);
+                onSign(tokens[index]);
+    
+                // Build the call data
+                const { v, r, s } = ethers.utils.splitSignature(signature);
+                const callData = votesInterface.encodeFunctionData("delegateBySig", [
+                    tokens[index].delegatee,
+                    tokens[index].nonce,
+                    tokens[index].expiry,
+                    v,
+                    r,
+                    s,
+                ]);
+    
+                // Add the call to the list of calls
+                const call = {
+                    chainId: tokens[index].chainId,
+                    target: tokens[index].ethereum_address as `0x${string}`,
+                    callData,
+                }
+                setDelegatedCalls((prev) => [...prev, call]);
+            });
+    
+            onSuccess();
+        } catch (e) {
+            console.error(e);
+            onError(e);
+        }
     }
 
     const openDelegationTx = async ({

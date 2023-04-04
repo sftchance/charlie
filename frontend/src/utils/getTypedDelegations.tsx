@@ -1,9 +1,7 @@
-import { signTypedData } from "@wagmi/core";
-
 import { VotesToken } from "../types";
 
-const getTypedData = (call: VotesToken) => {
-    return {
+const getTypedDelegations = (calls: VotesToken[]) => {
+    return calls.map((call) => ({
         domain: {
             name: "Charlie",
             version: "1",
@@ -22,20 +20,7 @@ const getTypedData = (call: VotesToken) => {
             nonce: call.nonce,
             expiry: call.expiry,
         }
-    }
+    }));
 }
 
-const getSignedDelegations = async (tokens: VotesToken[]) => {
-    let signedTransactions: string[] = [];
-
-    tokens.forEach(async (token) => {
-        const signature = await signTypedData(
-            getTypedData(token)
-        );
-        signedTransactions.push(signature);
-    })
-
-    return signedTransactions;
-}
-
-export { getSignedDelegations }
+export { getTypedDelegations }
