@@ -1,4 +1,4 @@
-import { useAuthentication } from "../hooks";
+import { useAuthentication } from "../../hooks";
 
 const ConnectButton = (props: any) => {
     const { address, login } = useAuthentication();

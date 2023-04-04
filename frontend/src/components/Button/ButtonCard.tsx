@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom'
 
 const ButtonCard = ({ button }: any) => {
-    return (
+    return <Link to={`/account/buttons/${button.id}/`}>
         <div className="card">
-            <Link to={`/account/buttons/${button.id}/`}>{button.text}</Link>
+            <h4>{button.text}</h4>
         </div>
-    )
+    </Link>
 }
 
 export { ButtonCard }

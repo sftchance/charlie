@@ -33,13 +33,15 @@ const Button = () => {
             <button>Back</button>
         } />
 
-        <Link to={`/account/buttons/${buttonId}/edit`} children={
-            <button>Edit</button>
-        } />
-
         <Link to={`/hosted/buttons/${buttonId}/embed`} children={
             <button>Preview</button>
         } />
+
+        <Link
+            to={`/account/buttons/${buttonId}/edit`}
+            children={<button className="primary secondary">
+                <span className="content">Edit</span>
+            </button>} />
 
         <h1>{data.text}</h1>
 

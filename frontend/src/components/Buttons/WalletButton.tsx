@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import { useAuthentication } from "../hooks";
+import { useAuthentication } from "../../hooks";
 
 const WalletButton = (props: any) => {
     const navigate = useNavigate();
@@ -20,7 +20,7 @@ const WalletButton = (props: any) => {
         if (isLoading) return;
 
         if (isAuthenticated) {
-            navigate("/account");
+            navigate("/account/");
             return
         }
 

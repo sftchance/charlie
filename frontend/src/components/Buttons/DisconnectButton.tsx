@@ -1,4 +1,4 @@
-import { useAuthentication } from '../hooks'
+import { useAuthentication } from '../../hooks'
 
 const DisconnectButton = () => {
     const { logout, isAuthenticated } = useAuthentication();

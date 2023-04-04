@@ -168,26 +168,27 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
 
     return (
         <>
-            <h1>Button Form</h1>
+            <h3>{isEdit ? "Edit" : "Create"}</h3>
+            <h1>{isEdit ? data.name : "Delegation Button"}</h1>
 
-            <Link to={isEdit ? `/account/buttons/${buttonId}/` : "/account/"}>
-                <button>Back</button>
-            </Link>
+            <Link
+                to={isEdit
+                    ? `/account/buttons/${buttonId}/`
+                    : "/account/"}
+                children={<button>Back</button>} />
 
             <form onSubmit={handleSubmit}>
-                <p>{JSON.stringify(errors)}</p>
+                <Input
+                    label="Name"
+                    value={object.name}
+                    onChange={(e: any) => setObject({ ...object, name: e.target.value.trim() })}
+                    error={errors?.name} />
 
                 <Input
                     label="Delegate Ethereum Address"
                     value={object.ethereum_address}
                     onChange={(e: any) => setObject({ ...object, ethereum_address: e.target.value.trim() })}
                     error={errors?.ethereum_address} />
-
-                <Input
-                    label="Name"
-                    value={object.name}
-                    onChange={(e: any) => setObject({ ...object, name: e.target.value.trim() })}
-                    error={errors?.name} />
 
                 <Input
                     label="Description"
@@ -233,7 +234,13 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                     onClick={handleDelete}
                 >Delete</button>}
 
-                <button type="submit">Save</button>
+                <button
+                    type="submit"
+                    className={isEdit
+                        ? "primary block"
+                        : "primary secondary block"}>
+                    <span className="content">Save</span>
+                </button>
             </form>
         </>
     )
