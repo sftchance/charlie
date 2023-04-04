@@ -10,9 +10,9 @@ import { TokenRow } from "../components";
 
 import { useColor, useDelegate } from "../hooks";
 
-import { getBalances } from "../utils";
+import { getBalances, getDelegationInfo } from "../utils";
 
-import { Token } from "../types";
+import { VotesToken } from "../types";
 
 import "./Button.css";
 
@@ -23,15 +23,7 @@ const Button = () => {
 
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-    const [balances, setBalances] = useState<any>(null);
-
-    const [selected, setSelected] = useState<Token[]>([]);
-
-    const { 
-        isPrepared, 
-        openDelegationSignatures, 
-        openDelegationTx 
-    } = useDelegate(selected, false);
+    const [tokens, setTokens] = useState<VotesToken[]>([]);
 
     const {
         isLoading,
@@ -49,29 +41,53 @@ const Button = () => {
 
     const textColor = useColor(data?.hex_color);
 
-    const onSelect = (token: any) => {
-        setSelected(selected => (
-            selected.indexOf(token) === -1 ? [...selected, token] : selected.filter((t) => t !== token)
-        ))
+    const { 
+        isPrepared,
+        openDelegationSignatures, 
+        openDelegationTx 
+    } = useDelegate(
+        tokens.filter((t) => t.selected === true), 
+        false
+    );
+
+    const onSelect = (token: any) => {        
+        setTokens(tokens => (
+            tokens.map((t) => t.ethereum_address === token.ethereum_address ? { ...t, selected: !t.selected } : t)
+        ));
+    }
+
+    const onDelegate = async () => {
+        await openDelegationSignatures({
+            onSuccess: () => {
+                console.log('success')
+            }
+        });
     }
 
     useEffect(() => {
         if (!data) return;
 
-        getBalances({
-            address: address as `0x${string}`,
-            tokens: data.tokens,
-            includeZeros: true
-        }).then(({ results }) => {
-            setBalances(results)
-        })
+        const getBalanceInfo = async () => {
+            const { results } = await getBalances({
+                address: address as `0x${string}`,
+                tokens: data.tokens,
+                includeZeros: true
+            });
+
+            const { results: delegation } = await getDelegationInfo({
+                delegatee: data.ethereum_address, 
+                tokens: results
+            });
+
+            setTokens(delegation)
+        }
+
+        getBalanceInfo();
     }, [isLoading])
 
     if (isLoading) return <>{"Loading..."}</>;
 
     if (error) return <>{"An error has occurred: " + error.message}</>;
-
-    console.log('selected', selected)
 
     return (
         <>
@@ -89,24 +105,27 @@ const Button = () => {
                     {data.tokens
                         .sort((a: any, b: any) => b.chain_id - a.chain_id)
                         .map((token: any) => {
-                            const balance = balances?.find((balance: any) => balance.address === token.address)?.balance
+                            const thisToken = tokens.find((t) => t.ethereum_address === token.ethereum_address);
 
                             const chainId = token.chain_id;
                             const previousChainId = data.tokens[data.tokens.indexOf(token) - 1]?.chain_id;
 
                             return (
-                                <div key={`${token.ethereum_address}-${token.chain_id}`} style={{ display: "flex", flexDirection: "row"}}>
-                                    <input type="checkbox" onClick={() => onSelect(token)}/>
-                                    <TokenRow
-                                        token={token}
-                                        balance={balance}
-                                        first={chainId !== previousChainId}
-                                    />
-                                </div>
+                                <TokenRow
+                                    key={`${token.ethereum_address}-${token.chain_id}`} 
+                                    token={token}
+                                    currentDelegate={thisToken?.currentDelegate as string}
+                                    newDelegate={data?.ethereum_address}
+                                    balance={thisToken?.balance}
+                                    first={chainId !== previousChainId}
+                                    onClick={() => onSelect(token)}
+                                />
                             )
                         })}
 
-                    <button className="delegate">Delegate now</button>
+                    <button className="delegate" onClick={onDelegate}>
+                        Delegate now
+                    </button>
 
                     <p>Powered by <strong>Charlie</strong>.</p>
                 </div>

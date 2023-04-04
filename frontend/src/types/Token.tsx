@@ -1,7 +1,7 @@
 interface Token {
     id: number,
     blockchain: string,
-    chain_id: number,
+    chainId: number,
     decimals: number,
     ethereum_address: string,
     name: string,
@@ -9,4 +9,13 @@ interface Token {
     verified: boolean,
 }
 
-export type { Token }
+interface VotesToken extends Token {
+    balance: number,
+    nonce: number,
+    expiry: number,
+    currentDelegate: `0x${string}`,
+    delegatee: `0x${string}`,
+    selected?: boolean,
+}
+
+export type { Token, VotesToken }

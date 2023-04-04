@@ -59,7 +59,7 @@ const getBalances = async ({
                 chainId: Number(chainId),
                 name: token?.name,
                 symbol: token?.symbol,
-                address: token.address,
+                address: token.ethereum_address,
                 balance: `${balance / 10 ** token.decimals}`,
             } as Balance);
         }

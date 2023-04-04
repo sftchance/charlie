@@ -1,3 +1,3 @@
 export type { Balance } from './Balance';
-export type { DelegationCall, DelegatedCall } from './Delegations';
-export type { Token } from './Token';
+export type { DelegatedCall } from './Delegation';
+export type { Token, VotesToken } from './Token';

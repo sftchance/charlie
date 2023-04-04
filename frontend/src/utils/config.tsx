@@ -23,4 +23,10 @@ const ERC20_ABI = [
     "function balanceOf(address owner) view returns (uint)",
 ]
 
-export { providers, MULTICALL, MULTICALL_ABI, ERC20_ABI }
+const ERC20_VOTES_ABI = [
+    "function nonces(address owner) view returns (uint256)",
+    "function delegates(address account) view returns (address)",
+    "function delegateBySig(address delegatee, uint256 nonce, uint256 expiry, uint8 v, bytes32 r, bytes32 s)",
+]
+
+export { providers, MULTICALL, MULTICALL_ABI, ERC20_ABI, ERC20_VOTES_ABI }

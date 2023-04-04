@@ -5,15 +5,21 @@ import { useBlockExplorer } from "../../hooks"
 const TokenRow = ({
     token,
     balance,
+    currentDelegate,
+    newDelegate,
     first,
     isPending,
-    isLoading
+    isLoading,
+    onClick
 }: {
     token: any,
-    balance: number,
+    balance?: number,
+    currentDelegate?: string,
+    newDelegate?: string,
     first: boolean,
     isPending?: boolean,
-    isLoading?: boolean
+    isLoading?: boolean,
+    onClick?: () => void,
 }) => {
     const { chains } = useNetwork()
 
@@ -29,9 +35,15 @@ const TokenRow = ({
             </>}
 
             <a href={blockExplorerURL} target="_blank" rel="noreferrer">
-                <h2>
-                    (${token.symbol}) {token.name}
+                <h2 style={{display: "flex"}}>
+                    <input type="checkbox" onClick={onClick} />
+                    <span>(${token.symbol}) {token.name}</span>
                     <span>Balance: {balance}</span>
+                    <div>
+                        {currentDelegate && (currentDelegate.slice(0, 6) + "..." + currentDelegate.slice(-4))}
+                        --- 
+                        {newDelegate && (newDelegate.slice(0, 6) + "..." + newDelegate.slice(-4))}
+                    </div>
                 </h2>
             </a>
         </div>

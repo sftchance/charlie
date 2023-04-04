@@ -4,32 +4,24 @@ import { useState } from "react";
 
 import { usePrepareContractWrite, useContractWrite } from "wagmi";
 
-import { getSignedTransactions } from "../utils";
+import { getSignedDelegations } from "../utils";
 
-import { Token, DelegatedCall } from "../types";
+import { VotesToken, DelegatedCall } from "../types";
 
-import ERC20Votes from "../abis/ERC20Votes.json";
+import { ERC20_VOTES_ABI } from "../utils";
 
-const useDelegate = (delegate: string, tokens: Token[], blocking: boolean) => {
+const useDelegate = (tokens: VotesToken[], blocking: boolean) => {
     const [delegatedCalls, setDelegatedCalls] = useState<DelegatedCall[]>([]);
 
-    const isReady = delegatedCalls.length > 0 && delegatedCalls.length === tokens.length;
+    const isReady = false;
 
     const { config, isSuccess: isPrepared } = usePrepareContractWrite({
         enabled: isReady,
         address: "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2", // TODO: Contract addresses
-        abi: ERC20Votes,
+        abi: ERC20_VOTES_ABI,
         functionName: "aggregate",
         args: [delegatedCalls, blocking],
     });
-
-    const calls = tokens.map((token) => ({
-        chainId: token.chain_id,
-        contractAddress: token.ethereum_address as `0x${string}`,
-        nonce: 0,
-        delegatee: delegate as `0x${string}`,
-        expiry: 0,
-    }));
 
     const { writeAsync } = useContractWrite(config);
 
@@ -38,24 +30,26 @@ const useDelegate = (delegate: string, tokens: Token[], blocking: boolean) => {
         onLoading = () => { },
         onSuccess = () => { }
     }) => {
-        const votesInterface = new ethers.utils.Interface(ERC20Votes);
+        const votesInterface = new ethers.utils.Interface(ERC20_VOTES_ABI);
 
-        const signatures = await getSignedTransactions(calls);
+        const signatures = await getSignedDelegations(tokens);
+
+        console.log('tokens22', tokens)
 
         signatures.map((signature, index) => {
             const { v, r, s } = ethers.utils.splitSignature(signature);
 
             const callData = votesInterface.encodeFunctionData("delegateBySig", [
-                calls[index].delegatee,
-                calls[index].nonce,
-                calls[index].expiry,
+                tokens[index].delegatee,
+                tokens[index].nonce,
+                tokens[index].expiry,
                 v,
                 r,
                 s,
             ]);
 
             const call = {
-                target: calls[index].contractAddress,
+                target: tokens[index].ethereum_address as `0x${string}`,
                 callData,
             }
 
