@@ -29,19 +29,22 @@ const Button = () => {
     if (error) return <>{"An error has occurred: " + error.message}</>;
 
     return <>
+        <h1>{data.name}</h1>
+
         <Link to="/account/" children={
             <button>Back</button>
-        } />
-
-        <Link to={`/account/buttons/${buttonId}/edit`} children={
-            <button>Edit</button>
         } />
 
         <Link to={`/hosted/buttons/${buttonId}/embed`} children={
             <button>Preview</button>
         } />
 
-        <h1>{data.text}</h1>
+        <Link
+            to={`/account/buttons/${buttonId}/edit`}
+            children={<button className="primary secondary">
+                <span className="content">Edit</span>
+            </button>} />
+
 
         <p>{data.description}</p>
     </>

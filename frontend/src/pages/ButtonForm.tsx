@@ -90,10 +90,21 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
 
     const options = [...withTokens({ tokens: dataTokens }, object?.tokens || [])?.tokens]
 
-    const handleDelete = () => {
+    const handleDelete = (e: any) => {
+        e.preventDefault()
+
+        console.log('deleting', API_URL)
+
         fetch(API_URL, {
             method: "DELETE",
-        }).then(() => navigate("/account/"))
+            headers: {
+                "X-CSRFToken": getCSRFToken()
+            },
+            credentials: 'include',
+            mode: 'cors'
+        }).then(() => {
+            navigate("/account/")
+        })
     }
 
     const handleSubmit = (e: any) => {
@@ -168,26 +179,26 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
 
     return (
         <>
-            <h1>Button Form</h1>
+            <h1>{isEdit ? `Edit ${data.name}` : "Create Button"}</h1>
 
-            <Link to={isEdit ? `/account/buttons/${buttonId}/` : "/account/"}>
-                <button>Back</button>
-            </Link>
+            <Link
+                to={isEdit
+                    ? `/account/buttons/${buttonId}/`
+                    : "/account/"}
+                children={<button>Back</button>} />
 
             <form onSubmit={handleSubmit}>
-                <p>{JSON.stringify(errors)}</p>
+                <Input
+                    label="Name"
+                    value={object.name}
+                    onChange={(e: any) => setObject({ ...object, name: e.target.value.trim() })}
+                    error={errors?.name} />
 
                 <Input
                     label="Delegate Ethereum Address"
                     value={object.ethereum_address}
                     onChange={(e: any) => setObject({ ...object, ethereum_address: e.target.value.trim() })}
                     error={errors?.ethereum_address} />
-
-                <Input
-                    label="Name"
-                    value={object.name}
-                    onChange={(e: any) => setObject({ ...object, name: e.target.value.trim() })}
-                    error={errors?.name} />
 
                 <Input
                     label="Description"
@@ -222,18 +233,22 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                     options={options}
                     error={errors?.tokens} />
 
-                {object?.tokens?.length > 0 ? object?.tokens?.map((token: any) =>
-                    <p key={token.label}>{JSON.stringify(token, null, 2)}</p>
-                ) : <p>No tokens targeted...</p>}
-
                 <Error error={errors?.detail} />
 
                 {isEdit && <button
-                    type="button"
+                    className="primary danger block"
                     onClick={handleDelete}
-                >Delete</button>}
+                >
+                    <span className="content">Delete</span>
+                </button>}
 
-                <button type="submit">Save</button>
+                <button
+                    type="submit"
+                    className={isEdit
+                        ? "primary block"
+                        : "primary secondary block"}>
+                    <span className="content">Save</span>
+                </button>
             </form>
         </>
     )

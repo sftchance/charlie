@@ -1,9 +1,8 @@
 nav {
     display: grid;
-    grid-template-columns: min-content max-content max-content;
+    grid-template-columns: auto max-content max-content;
     align-items: center;
     padding: 1rem 0;
-    column-gap: 1rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
     user-select: none;
 }

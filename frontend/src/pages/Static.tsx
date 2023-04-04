@@ -9,7 +9,7 @@ import { Account, Home, NotFound } from "../pages";
 const Static = () => {
 
     return <AuthenticationProvider>
-        <div className="App">
+        <div className="App container">
             <Navbar />
 
             <Routes>

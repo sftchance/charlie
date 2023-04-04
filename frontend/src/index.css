@@ -1,13 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-    --charlieWhite: #f5f4f3;
-    --charlieGrey: #e5e5e5;
-    --charlieBlack: #000;
+    --charlieWhite: #ffffff;
+    --charlieWhiteHover: rgba(255, 255, 255, 0.95);
+    --charlieGrey: #f0f0f0;
+    --charlieGreyHover: rgba(230, 230, 230, 0.95);
+    --charlieBlack: #111;
+    --charlieBlackHover: rgba(0, 0, 0, 0.95);
+    --charlieSoftBlack: #555;
+    --charlieSoftBlackHover: rgba(85, 85, 85, 0.95);
     --charliePink: #ff04c9;
-    --charlieOrange: #ff6804;
+    --charlieOrange: hsl(24, 100%, 51%);
     --charlieGradient: linear-gradient(-37deg, #ff6804, #ff04c9);
     --charlieGradientAlt: linear-gradient(-37deg, #5243f9, #43f9e1);
+    --charlieBorderRadius: 0.25rem;
+    --charlieButtonPadding: 12px 16px;
+    --charlieGlowingTextShadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+    --charlieTransition: all .15s ease-in-out;
 }
 
 * {
@@ -15,15 +24,26 @@
     margin: 0;
     padding: 0;
     font-family: 'Rubik', sans-serif;
+    color: var(--charlieSoftBlack);
 }
 
 html,
 body {
     background: var(--charlieWhite);
-    color: rgba(0, 0, 0, 0.87);
     height: 100%;
     width: 100vw;
     overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button {
+    color: var(--charlieBlack);
+    font-weight: 700;
 }
 
 table {
@@ -39,30 +59,56 @@ td {
 
 button {
     border: none;
-    border-radius: 2px;
     outline: none;
     cursor: pointer;
-    font-weight: 700;
-    padding: 0.65rem .75rem;
-    transition: all .15s ease-in-out;
+    background: var(--charlieGrey);
+    border-radius: var(--charlieBorderRadius);
+    padding: var(--charlieButtonPadding);
+}
+
+button.block {
+    display: block;
+    width: 100%;
+}
+
+button,
+button span,
+button .content {
+    transition: var(--charlieTransition);
+}
+
+button:hover {
+    background: var(--charlieBlack);
+}
+
+button:hover,
+button:hover .content {
+    color: var(--charlieWhiteHover);
+    text-shadow: var(--charlieGlowingTextShadow);
 }
 
 button.primary {
     background: var(--charlieGradient);
     position: relative;
     background-position: 0 0;
+    z-index: 0;
 }
 
 button.primary .content {
     position: relative;
-    color: var(--charlieWhite);
-    z-index: 5;
+    z-index: 2;
+    color: #fff;
     height: initial;
 }
 
-button.primary:hover,
-button.primary:focus {
-    background: var(--charlieGradient);
+button.primary:hover {
+    background: linear-gradient(-30deg, #ff6804, #ff04c9);
+    text-shadow: var(--charlieGlowingTextShadow);
+    opacity: 0.95;
+}
+
+button.primary:hover .content {
+    color: var(--charlieWhite);
 }
 
 button.primary::before {
@@ -75,37 +121,12 @@ button.primary::before {
     background: url('/noise.png') repeat;
     background-blend-mode: overlay;
     background-size: 200px 200px;
-    transition: all .15s ease-in-out;
-}
-
-button.primary::after {
-    /* Set background of button as soft gradient with white noise on top */
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
-    background: var(--charlieGradient);
-    z-index: -1;
-    filter: blur(10px);
-    opacity: .25;
-    transition: all .15s ease-in-out;
-}
-
-button.primary:hover::after,
-button.primary:focus::after {
-    opacity: 0.35;
-}
-
-button.primary:hover::before,
-button.primary:focus::before {
-    opacity: 0.75;
+    transition: var(--charlieTransition);
 }
 
 button.primary.secondary {
     background: var(--charlieGradientAlt);
-    color: #fff;
+    color: var(--charlieWhite);
 }
 
 button.primary.secondary:hover,
@@ -113,8 +134,14 @@ button.primary.secondary:focus {
     background: var(--charlieGradientAlt);
 }
 
-button.primary.secondary::after {
-    background: var(--charlieGradientAlt);
+button.primary.danger {
+    background: red;
+    color: var(--charlieWhite);
+}
+
+button.primary.danger:hover,
+button.primary.danger:focus {
+    background: red;
 }
 
 button:disabled {
@@ -122,44 +149,77 @@ button:disabled {
     filter: saturate(0.1);
 }
 
+a,
 button.link {
     background: none;
-    color: #000;
+    color: var(--charlieBlack);
     font-size: inherit;
     padding: 0;
+    text-decoration: none;
+    font-weight: 700;
 }
 
 button.link:active,
 button.link:focus,
 button.link:hover {
     background: none;
-    color: rgba(0, 0, 0, 0.75);
+    color: var(--charlieBlackHover);
 }
 
-a {
-    text-decoration: none;
-    color: #000;
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
 }
 
-input {
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 3px;
+input,
+select {
     outline: none;
-    padding: 0.5rem;
     width: 100%;
+    border-radius: var(--charlieBorderRadius);
+    padding: var(--charlieButtonPadding);
+    background: var(--charlieWhite);
+    border: 1px solid var(--charlieGrey);
+    color: var(--charlieBlack);
+    transition: var(--charlieTransition);
+    font-size: inherit;
+    margin-bottom: 1rem;
+}
+
+input:hover,
+input:active {
+    border: 1px solid var(--charlieGreyHover);
+}
+
+input:focus {
+    border: 1px solid var(--charlieSoftBlackHover);
 }
 
 .container {
-    max-width: 1440px;
     margin: 0 auto;
-    padding: 0 1rem;
+    max-width: 68rem;
+    width: 90%;
 }
 
 .card {
-    background: #f5f4f3;
-    border-radius: 3px;
+    background: var(--charlieGrey);
+    border-radius: 0.25rem;
     padding: 1rem;
     margin: 1rem 0;
+    transition: all .075s ease-in-out;
+}
+
+button,
+input,
+.card {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    transition: var(--charlieTransition);
+}
+
+button:hover,
+input:hover,
+.card:hover {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0);
 }
 
 .gradient {

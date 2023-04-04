@@ -29,12 +29,13 @@ const Buttons = () => {
 
     return (
         <>
-            <h2>
-                Delegation Buttons
-                <Link to="/account/buttons/new/">New</Link>
-            </h2>
+            <h2>Buttons</h2>
 
-            <hr />
+            <Link
+                to="/account/buttons/new/"
+                children={<button className="primary secondary">
+                    <span className="content">New</span>
+                </button>} />
 
             <ButtonRow buttons={data} />
         </>
