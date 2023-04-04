@@ -1,10 +1,21 @@
+import {
+    filter,
+    firstValueFrom,
+    merge,
+    retry,
+    share,
+    switchMap,
+    throwError
+} from "rxjs";
+import { fromFetch } from 'rxjs/fetch'
+
 import { getCSRFToken } from './'
 
 const _secure = async (method: string, url: string, body?: any) => {
     if (body && typeof body !== "string")
         body = JSON.stringify(body)
 
-    return fetch(url, {
+    const request = fromFetch(url, {
         method: method,
         headers: {
             "Content-Type": "application/json",
@@ -13,23 +24,20 @@ const _secure = async (method: string, url: string, body?: any) => {
         credentials: 'include',
         mode: 'cors',
         ...(body && { body })
-    })
-        .then((res) => {
-            if (res.status === 401) localStorage.removeItem("address")
+    }).pipe(retry({ count: 3, delay: 500 }), share())
 
-            if (res.status >= 400) {
-                return res.json().then((data) => {
-                    return Promise.reject(data)
-                })
-            }
+    const failure = request.pipe(
+        filter((r: any) => !r.ok),
+        switchMap((r) => r.json() as Promise<{ message: string } | null>),
+        switchMap((r) => throwError(() => new Error(r?.message ?? "Unknown error")))
+    )
 
-            return res
-        })
-        .then((res) => {
-            if (res.status === 204) return Promise.resolve()
+    const success = request.pipe(
+        filter((r: any) => r.ok),
+        switchMap((r) => r.status === 204 ? Promise.resolve() : r.json() as Promise<any>)
+    )
 
-            return res.json()
-        });
+    return firstValueFrom(merge(failure, success))
 }
 
 const path = (url: string) => {
