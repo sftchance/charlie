@@ -91,11 +91,12 @@ button.primary {
     background: var(--charlieGradient);
     position: relative;
     background-position: 0 0;
+    z-index: 0;
 }
 
 button.primary .content {
     position: relative;
-    z-index: 5;
+    z-index: 2;
     color: #fff;
     height: initial;
 }
