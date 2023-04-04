@@ -1,10 +1,10 @@
 import { Routes, Route } from 'react-router-dom'
 
-import { Button } from './'
+import { ButtonEmbed } from './'
 
 const Hosted = () => {
     return <Routes>
-        <Route path="/buttons/:buttonId/" element={<Button />} />
+        <Route path="/buttons/:buttonId/embed/" element={<ButtonEmbed />} />
     </Routes>
 }
 

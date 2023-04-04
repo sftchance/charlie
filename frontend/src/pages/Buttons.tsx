@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 
 import { useQuery } from "@tanstack/react-query";
 
+import { ButtonRow } from "../components/Button";
+
 const Buttons = () => {
     const {
         isLoading,
@@ -34,15 +36,7 @@ const Buttons = () => {
 
             <hr />
 
-            <ul>
-                {data?.length > 0 ? data.map((button: any) => (
-                    <li key={button.id}>
-                        <Link to={`/account/buttons/${button.id}/edit/`}>{button.text}</Link>
-                        <Link to={`/hosted/buttons/${button.id}/`}>View</Link>
-                        <Link to={`/account/buttons/${button.id}/embed/`}>Embed</Link>
-                    </li>
-                )) : <p>No buttons yet!</p>}
-            </ul>
+            <ButtonRow buttons={data} />
         </>
     )
 }
