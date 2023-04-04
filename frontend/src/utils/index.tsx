@@ -1,4 +1,12 @@
 export {
+    get,
+    post,
+    patch,
+    put,
+    del,
+} from './client'
+
+export {
     providers,
     MULTICALL,
     MULTICALL_ABI,
