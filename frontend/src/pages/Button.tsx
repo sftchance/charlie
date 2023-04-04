@@ -2,6 +2,10 @@ import { Link, useParams } from "react-router-dom"
 
 import { useQuery } from "@tanstack/react-query";
 
+import { Input } from "../components";
+
+import { copy } from "../utils";
+
 const Button = () => {
     const { buttonId } = useParams();
 
@@ -45,8 +49,18 @@ const Button = () => {
                 <span className="content">Edit</span>
             </button>} />
 
-
         <p>{data.description}</p>
+
+        <Input
+            label="Button Link"
+            value="http://example.com/hosted/buttons/1/embed"
+            append={<button className="secondary" onClick={() => {
+                copy("http://example.com/hosted/buttons/1/embed")
+            }}>
+                <span className="content">Copy</span>
+            </button>}
+            disabled
+        />
     </>
 }
 
