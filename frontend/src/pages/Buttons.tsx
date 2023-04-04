@@ -4,6 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 
 import { ButtonRow } from "../components/Button";
 
+import { path, get } from "../utils";
+
 const Buttons = () => {
     const {
         isLoading,
@@ -15,12 +17,7 @@ const Buttons = () => {
         data: any;
     } = useQuery({
         queryKey: ["buttons"],
-        queryFn: () => fetch(`http://localhost:8000/buttons/`, {
-            method: "GET",
-            headers: {},
-            credentials: 'include',
-            mode: 'cors'
-        }).then((res) => res.json())
+        queryFn: () => get(path("buttons/"))
     });
 
     if (isLoading) return <p>Loading...</p>;

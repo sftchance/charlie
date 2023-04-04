@@ -6,7 +6,8 @@ import { useQuery } from "@tanstack/react-query";
 
 import { Error, Input, MultiSelect } from "../components";
 import { useAccount } from "wagmi";
-import { getCSRFToken } from "../utils";
+
+import { path, get, put, post, del } from "../utils";
 
 const withToken = (token: any) => ({
     ...token,
@@ -29,8 +30,6 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
 
     const { address } = useAccount();
 
-    const API_URL = `http://localhost:8000/buttons/${buttonId}/`
-
     const {
         isLoading: isLoadingButtons,
         error,
@@ -44,18 +43,9 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
     } = useQuery({
         queryKey: ["buttons", buttonId],
         queryFn: () => {
-            if (isEdit == true)
-                return fetch(API_URL, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "X-CSRFToken": getCSRFToken()
-                    },
-                    credentials: 'include',
-                    mode: 'cors'
-                }).then((res) => res.json())
+            if (!isEdit) return null
 
-            return null
+            return get(path(`buttons/${buttonId}/`))
         },
         refetchOnWindowFocus: true,
         staleTime: 0,
@@ -73,7 +63,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
         data: any;
     } = useQuery({
         queryKey: ["tokens"],
-        queryFn: () => fetch(`http://localhost:8000/erc20/`).then((res) => res.json())
+        queryFn: () => get(path("erc20/"))
     });
 
     const [object, setObject] = useState<any>({
@@ -93,58 +83,22 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
     const handleDelete = (e: any) => {
         e.preventDefault()
 
-        console.log('deleting', API_URL)
-
-        fetch(API_URL, {
-            method: "DELETE",
-            headers: {
-                "X-CSRFToken": getCSRFToken()
-            },
-            credentials: 'include',
-            mode: 'cors'
-        }).then(() => {
-            navigate("/account/")
-        })
+        del(path(`buttons/${buttonId}`)).then(() => navigate("/account/"))
     }
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-
-        const headers = {
-            "Content-Type": "application/json",
-            "X-CSRFToken": getCSRFToken()
-        }
 
         const body = JSON.stringify({
             ...object,
             tokens: object.tokens.map((token: any) => token.value)
         })
 
-        const response = isEdit ? fetch(API_URL, {
-            method: "PUT",
-            headers,
-            credentials: 'include',
-            mode: 'cors',
-            body
-        }) : fetch(`http://localhost:8000/buttons/`, {
-            method: "POST",
-            headers,
-            credentials: 'include',
-            mode: 'cors',
-            body
-        })
+        const response = isEdit
+            ? put(path(`buttons/${buttonId}/`), body)
+            : post(path("buttons/"), body)
 
         response
-            .then((res): any => {
-                if (res.status >= 400) {
-                    return res.json().then((data) => {
-                        return Promise.reject(data)
-                    })
-                }
-
-                return res
-            })
-            .then((res) => res.json())
             .then((data) => {
                 refetch()
 

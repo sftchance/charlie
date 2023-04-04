@@ -1,31 +1,13 @@
 import { SiweMessage } from "siwe";
 
-import { getCSRFToken } from "../utils";
+import { path, get, post } from "../utils";
 
 const useNonce = () => {
-    const get = async () => {
-        return fetch(`http://localhost:8000/api/auth/nonce/`, {
-            method: "GET",
-            headers: {},
-            credentials: 'include',
-            mode: 'cors'
-        })
-            .then((res): any => {
-                if (res.status >= 400) {
-                    return res.json().then((data) => {
-                        return Promise.reject(data)
-                    })
-                }
-
-                return res
-            })
-            .then((res) => res.json())
-            .catch((errors) => {
-                console.log(errors)
-            })
+    const _get = async () => {
+        return get(path(`api/auth/nonce/`))
     };
 
-    return { get }
+    return { get: _get }
 }
 
 const useAuthenticationMessage = ({ signer }: { signer: any }) => {
@@ -58,9 +40,7 @@ const useAuthenticationMessage = ({ signer }: { signer: any }) => {
 }
 
 const useAuthenticate = () => {
-    const csrfToken = getCSRFToken();
-
-    const post = async ({ address, message, signature }: {
+    const _post = async ({ address, message, signature }: {
         address: `0x${string}`;
         message: SiweMessage;
         signature: `0x${string}`
@@ -68,25 +48,7 @@ const useAuthenticate = () => {
         success: boolean;
         message: `0x${string}`
     }> => {
-        return fetch(`http://localhost:8000/api/auth/login`, {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': csrfToken
-            },
-            body: JSON.stringify({ message, signature }),
-            credentials: 'include'
-        })
-            .then((res): any => {
-                if (res.status >= 400) {
-                    return res.json().then((data) => {
-                        return Promise.reject(data)
-                    })
-                }
-
-                return res
-            })
-            .then((res) => res.json())
+        return post(path(`api/auth/login`), { message, signature })
             .then((res) => {
                 localStorage.setItem('address', address);
 
@@ -97,7 +59,7 @@ const useAuthenticate = () => {
             })
     };
 
-    return { post }
+    return { post: _post }
 }
 
 export { useNonce, useAuthenticationMessage, useAuthenticate }

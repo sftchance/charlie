@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { Input } from "../components";
 
-import { copy } from "../utils";
+import { path, get, copy } from "../utils";
 
 const Button = () => {
     const { buttonId } = useParams();
@@ -19,13 +19,7 @@ const Button = () => {
         data: any;
     } = useQuery({
         queryKey: ["button"],
-        queryFn: () =>
-            fetch(`http://localhost:8000/buttons/${buttonId}/`, {
-                method: "GET",
-                headers: {},
-                credentials: 'include',
-                mode: 'cors'
-            }).then((res) => res.json()),
+        queryFn: () => get(path(`buttons/${buttonId}/`))
     });
 
     if (isLoading) return <>{"Loading..."}</>;
@@ -53,9 +47,9 @@ const Button = () => {
 
         <Input
             label="Button Link"
-            value="http://example.com/hosted/buttons/1/embed"
+            value="http://example.com/hosted/buttons/1/embed/"
             append={<button className="secondary" onClick={() => {
-                copy("http://example.com/hosted/buttons/1/embed")
+                copy("http://example.com/hosted/buttons/1/embed/")
             }}>
                 <span className="content">Copy</span>
             </button>}
