@@ -13,7 +13,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    background: linear-gradient(-37deg, #ff6804, #ff04c9);  
+    background: var(--charlieGradient);  
     z-index: 99;
 }
 

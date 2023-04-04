@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { useQuery } from "@tanstack/react-query";
 
@@ -170,7 +170,9 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
         <>
             <h1>Button Form</h1>
 
-            {isEdit && <button onClick={() => navigate(`/account/`)}>Back</button>}
+            <Link to={isEdit ? `/account/buttons/${buttonId}/` : "/account/"}>
+                <button>Back</button>
+            </Link>
 
             <form onSubmit={handleSubmit}>
                 <p>{JSON.stringify(errors)}</p>

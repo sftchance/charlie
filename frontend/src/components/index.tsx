@@ -8,4 +8,6 @@ export { ConnectButton } from './ConnectButton'
 export { DisconnectButton } from './DisconnectButton'
 export { WalletButton } from './WalletButton'
 
+export { ButtonCard } from './Button'
+
 export { EasterEgg } from './EasterEgg/EasterEgg'
