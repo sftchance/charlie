@@ -6,7 +6,7 @@ const ConnectButton = (props: any) => {
     const buttonText = address ? "Sign In" : "Connect Wallet";
 
     return <>
-        <button {...props} onClick={login}>
+        <button className="primary" onClick={login}>
             <span className="content">{buttonText}</span>
         </button>
     </>
