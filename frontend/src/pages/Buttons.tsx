@@ -13,7 +13,12 @@ const Buttons = () => {
         data: any;
     } = useQuery({
         queryKey: ["buttons"],
-        queryFn: () => fetch(`http://localhost:8000/buttons/`).then((res) => res.json())
+        queryFn: () => fetch(`http://localhost:8000/buttons/`, {
+            method: "GET",
+            headers: {},
+            credentials: 'include',
+            mode: 'cors'
+        }).then((res) => res.json())
     });
 
     if (isLoading) return <p>Loading...</p>;

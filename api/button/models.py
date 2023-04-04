@@ -2,9 +2,11 @@ import uuid
 
 from web3 import Web3
 
+from siwe_auth.models import Wallet
+
 from django.core.exceptions import ValidationError
 from django.db import models
-from django.db.models.signals import post_save
+from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
 
@@ -15,32 +17,34 @@ ns = ENSCache()
 
 
 def validate_ethereum_address(value):
-    if not Web3.is_address(value):
-        try:
-            ens_address = ns.address(value)
+    try:
+        checksummed = Web3.to_checksum_address(value)
 
-            if ens_address is None:
-                raise ValidationError(
-                    _("%(value)s is not a valid Ethereum address or ENS name"),
-                    params={"value": value},
-                )
+        return checksummed
+    except ValueError:
+        print("Not a valid Ethereum address")
 
-            return ens_address
-        except ValueError:
+        if ".eth" not in value:
             raise ValidationError(
                 _("%(value)s is not a valid Ethereum address"),
                 params={"value": value},
             )
 
-    try:
-        Web3.to_checksum_address(value)
-    except ValueError:
+        try:
+            ens_address = ns.address(value)
+        except ValueError:
+            raise ValidationError(
+                _("%(value)s is not a valid ENS name"),
+                params={"value": value},
+            )
+
+        if ens_address:
+            return ens_address
+
         raise ValidationError(
-            _("%(value)s is not a valid Ethereum address"),
+            _("%(value)s is not a valid Ethereum address or ENS name"),
             params={"value": value},
         )
-
-    return value
 
 
 def validate_hex_color(value):
@@ -53,6 +57,15 @@ def validate_hex_color(value):
 
 class Button(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+
+    wallet = models.ForeignKey(
+        Wallet,
+        blank=False,
+        null=False,
+        on_delete=models.CASCADE,
+        related_name="buttons",
+        help_text="Wallet that owns this button",
+    )
 
     ethereum_address = models.CharField(
         max_length=256,
@@ -109,9 +122,6 @@ class Button(models.Model):
         ordering = ["-created"]
 
 
-@receiver(post_save, sender=Button)
-def button_post_save(sender, instance, **kwargs):
-    if ".eth" in instance.ethereum_address:
-        instance.ethereum_address = validate_ethereum_address(instance.ethereum_address)
-
-        instance.save()
+@receiver(pre_save, sender=Button)
+def button_pre_save(sender, instance, **kwargs):
+    instance.ethereum_address = validate_ethereum_address(instance.ethereum_address)

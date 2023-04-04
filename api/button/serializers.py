@@ -5,10 +5,11 @@ from erc20.serializers import ERC20Serializer
 from .models import Button
 
 
-class ButtonSerializer (serializers.ModelSerializer):
+class ButtonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Button
-        fields = "__all__"
+        exclude = ("wallet",)
+
 
 class NestedButtonSerializer(serializers.ModelSerializer):
     tokens = ERC20Serializer(many=True, read_only=True)

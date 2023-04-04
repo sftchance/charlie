@@ -1,5 +1,12 @@
-export { providers, MULTICALL, MULTICALL_ABI, ERC20_ABI } from './config'
-export { tokens } from './tokens'
+export {
+    providers,
+    MULTICALL,
+    MULTICALL_ABI,
+    ERC20_ABI
+} from './config'
+
+export { getCSRFToken } from './csrf'
+
 export { getBalances } from './getBalances'
 export { getMultiCall } from './getMultiCall'
 

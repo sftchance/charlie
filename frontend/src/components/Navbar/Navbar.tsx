@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom'
 
 import { useAccount } from 'wagmi';
 
-import { ConnectButton, DisconnectButton} from '../'
+import {
+    ConnectButton,
+    DisconnectButton,
+    WalletButton
+} from '../'
 
 import charlie from "../../assets/charlie.svg";
 
@@ -25,18 +29,8 @@ const Navbar = () => {
                     <div className="line"></div>
                 </div>
 
-                <div className="links">
-                    {/* <Link to="/discover">Discover</Link> */}
-                </div>
-
                 <div className="links right">
-                    {address && <Link to="account/">
-                        <button className="primary">
-                            <span className="content">
-                                {address.slice(0, 6) + "..." + address.slice(-4)}
-                            </span>
-                        </button>
-                    </Link>}
+                    <WalletButton />
 
                     {address ? <DisconnectButton /> : <ConnectButton />}
                 </div>
