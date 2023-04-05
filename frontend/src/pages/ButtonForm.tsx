@@ -10,6 +10,8 @@ import { useAccount } from "wagmi";
 import { path, get, put, post, del } from "../utils";
 import { useNavbar } from "../hooks";
 
+import "./ButtonForm.css";
+
 const withToken = (token: any) => ({
     ...token,
     value: token.id,
@@ -167,7 +169,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                     onChange={(e: any) => setObject({ ...object, text: e.target.value })}
                     error={errors?.text} />
 
-                <div>
+                <div className="colors">
                     <Input
                         label="Primary color"
                         value={object.primary_color}
@@ -190,20 +192,22 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
 
                 <Error error={errors?.detail} />
 
-                {isEdit && <button
-                    className="primary danger block"
-                    onClick={handleDelete}
-                >
-                    <span className="content">Delete</span>
-                </button>}
+                <div className={isEdit ? "buttons" : "buttons create"}>
+                    {isEdit && <button
+                        className="primary danger block"
+                        onClick={handleDelete}
+                    >
+                        <span className="content">Delete</span>
+                    </button>}
 
-                <button
-                    type="submit"
-                    className={isEdit
-                        ? "primary block"
-                        : "primary secondary block"}>
-                    <span className="content">Save</span>
-                </button>
+                    <button
+                        type="submit"
+                        className={isEdit
+                            ? "primary block"
+                            : "primary secondary block"}>
+                        <span className="content">Save</span>
+                    </button>
+                </div>
             </form>
         </>
     )

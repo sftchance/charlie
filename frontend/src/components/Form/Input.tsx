@@ -21,7 +21,7 @@ const Input = ({
     disabled,
     append,
 }: InputProps) => {
-    return <>
+    return <div>
         <label htmlFor={label}>{label}</label>
 
         <div className={`input-group ${!!append && 'append'}`}>
@@ -38,7 +38,7 @@ const Input = ({
         </div >
 
         <Error error={error} />
-    </>
+    </div>
 }
 
 export { Input }

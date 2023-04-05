@@ -1,0 +1,14 @@
+.colors,
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.buttons {
+    grid-template-columns: max-content auto;
+}
+
+.buttons.create {
+    grid-template-columns: 1fr;
+}
