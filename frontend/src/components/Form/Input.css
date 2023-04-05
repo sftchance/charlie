@@ -15,7 +15,7 @@ select {
     color: var(--charlieBlack);
     transition: var(--charlieTransition);
     font-size: inherit;
-    margin-bottom: 1rem;
+    font-style: italic;
 }
 
 input:hover,
@@ -35,7 +35,7 @@ input:disabled {
 .input-group {
     display: flex;
     flex-direction: column;
-    margin-bottom: 1rem;
+    margin-bottom: 20px;
     width: 100%;
 }
 

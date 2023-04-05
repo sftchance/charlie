@@ -42,6 +42,7 @@ h4,
 h5,
 h6,
 button {
+    margin-bottom: 0.25rem;
     color: var(--charlieBlack);
     font-weight: 700;
 }
@@ -64,6 +65,7 @@ button {
     background: var(--charlieGrey);
     border-radius: var(--charlieBorderRadius);
     padding: var(--charlieButtonPadding);
+    margin-bottom: 0px;
 }
 
 button.block {

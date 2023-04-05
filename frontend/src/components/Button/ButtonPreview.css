@@ -1,0 +1,12 @@
+.input-group .card {
+    margin-top: 0px;
+}
+
+.input-group .card .preview {
+    width: 90%;
+    max-width: 400px;
+    min-height: 80px;
+    margin: auto;
+    align-items: center;
+    display: flex;
+}

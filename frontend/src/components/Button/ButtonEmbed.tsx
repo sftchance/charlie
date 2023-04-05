@@ -4,11 +4,11 @@ import { useParams } from "react-router-dom";
 
 import { useQuery } from "@tanstack/react-query";
 
-import { TokenRow } from "../components";
+import { TokenRow } from "../";
 
-import { useColor } from "../hooks";
+import { useColor } from "../../hooks";
 
-import { path, get, getBalances } from "../utils";
+import { path, get, getBalances } from "../../utils";
 
 import "./ButtonEmbed.css";
 
@@ -33,7 +33,10 @@ const ButtonEmbed = () => {
             get(path(`buttons/${buttonId}/`))
     });
 
-    const textColor = useColor(data?.hex_color);
+    const textColor = useColor([
+        data?.primary_color,
+        data?.secondary_color
+    ]);
 
     useEffect(() => {
         if (!data) return;
@@ -90,7 +93,7 @@ const ButtonEmbed = () => {
             <button
                 className="delegation-button"
                 style={{
-                    backgroundColor: data.hex_color,
+                    background: `linear-gradient(-37deg, ${data.primary_color}, ${data.secondary_color})`,
                     color: textColor,
                 }}
                 onClick={() => setIsModalOpen(!isModalOpen)}

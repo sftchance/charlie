@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom"
 
 import { useQuery } from "@tanstack/react-query";
 
-import { Input } from "../components";
+import { ButtonPreview, Input } from "../components";
 
 import { path, get, copy } from "../utils";
 
@@ -27,23 +27,14 @@ const Button = () => {
     if (error) return <>{"An error has occurred: " + error.message}</>;
 
     return <>
-        <h1>{data.name}</h1>
+        <div className="card">
+            <h2>{data.name}</h2>
+            <p>{data.description}</p>
+        </div>
 
-        <Link to="/account/" children={
+        {/* <Link to="/account/" children={
             <button>Back</button>
-        } />
-
-        <Link to={`/hosted/buttons/${buttonId}/embed`} children={
-            <button>Preview</button>
-        } />
-
-        <Link
-            to={`/account/buttons/${buttonId}/edit`}
-            children={<button className="primary secondary">
-                <span className="content">Edit</span>
-            </button>} />
-
-        <p>{data.description}</p>
+        } /> */}
 
         <Input
             label="Button Link"
@@ -55,6 +46,38 @@ const Button = () => {
             </button>}
             disabled
         />
+
+        <Input
+            label="Premade Widget"
+            value="<iframe src='http://example.com/hosted/buttons/1/embed/'></iframe>"
+            append={<button className="secondary" onClick={() => {
+                copy("http://example.com/hosted/buttons/1/embed/")
+            }}>
+                <span className="content">Copy</span>
+            </button>}
+            disabled
+        />
+
+        <label>Live Button Preview</label>
+        <ButtonPreview button={data} />
+
+        <Input
+            label="Premade Button Image"
+            value="https://api.example.com/hosted/buttons/1/embed/"
+            append={<button className="secondary" onClick={() => {
+                copy("http://example.com/hosted/buttons/1/embed/")
+            }}>
+                <span className="content">Copy</span>
+            </button>}
+        disabled
+        />
+
+        <Link
+            to={`/account/buttons/${buttonId}/edit`}
+            children={<button className="primary secondary block">
+                <span className="content">Edit</span>
+            </button>} />
+
     </>
 }
 

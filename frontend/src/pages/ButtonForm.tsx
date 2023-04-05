@@ -71,8 +71,8 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
         name: "Untitled",
         description: "Button description...",
         text: "Delegate",
-        primary_color: "#000000",
-        secondary_color: "#FFFFFF",
+        primary_color: "#FF04C9",
+        secondary_color: "#FF6804",
         tokens: []
     });
 
@@ -145,7 +145,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                 <Input
                     label="Name"
                     value={object.name}
-                    onChange={(e: any) => setObject({ ...object, name: e.target.value.trim() })}
+                    onChange={(e: any) => setObject({ ...object, name: e.target.value })}
                     error={errors?.name} />
 
                 <Input
@@ -157,13 +157,13 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                 <Input
                     label="Description"
                     value={object.description}
-                    onChange={(e: any) => setObject({ ...object, description: e.target.value.trim() })}
+                    onChange={(e: any) => setObject({ ...object, description: e.target.value })}
                     error={errors?.description} />
 
                 <Input
                     label="Button text"
                     value={object.text}
-                    onChange={(e: any) => setObject({ ...object, text: e.target.value.trim() })}
+                    onChange={(e: any) => setObject({ ...object, text: e.target.value })}
                     error={errors?.text} />
 
                 <div>
