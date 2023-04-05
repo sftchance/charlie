@@ -12,8 +12,8 @@ const providers: {
     1: new ethers.providers.AlchemyProvider(1, "gXLumW8PNRWtrmcTIcMXSnMnQY_UnQpY"),
     10: new ethers.providers.AlchemyProvider(10, "NAIFm3fALSbcksgIFr3P4Ku6_SqEeYQJ"),
     137: new ethers.providers.AlchemyProvider(137, "DWAus_nU93LuWr4fefFJR4y1mjD588sf"),
-    42161: new ethers.providers.AlchemyProvider(42161, "J2mUvQdzX3p7EwBSoxAbwOMwqQWr4xcT"),
     420: new ethers.providers.AlchemyProvider(420, "hULNSocFFE_m5F0JPj0kzfzTZhAV6OSf"),
+    42161: new ethers.providers.AlchemyProvider(42161, "J2mUvQdzX3p7EwBSoxAbwOMwqQWr4xcT"),    
 }
 
 const MULTICALL = "0xcA11bde05977b3631167028862bE2a173976CA11"
