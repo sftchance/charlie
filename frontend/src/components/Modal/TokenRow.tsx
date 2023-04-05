@@ -7,10 +7,10 @@ import { DelegatedCall, VotesToken } from "../../types"
 import "./TokenRow.css"
 
 const getAddressOrENS = (address: string) => {
+    // ensname
     return `${address.slice(0, 6)}...${address.slice(-4)}`
 }
 
-// TODO: break this out it's a monster now i'm sorry
 const TokenRow = ({
     token,
     delegateCall,

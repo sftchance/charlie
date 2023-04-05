@@ -14,7 +14,7 @@ const getMultiCall = async (chainId: number) => {
 const submitStaticMultiCall = async (
     multiCallsTargets: `0x${string}`[],
     multiCallsData: string[],
-    provider: ethers.providers.AlchemyProvider
+    provider: ethers.providers.JsonRpcProvider
 ) => {
     const calls = multiCallsTargets.map((target, i) => {
         return {
