@@ -6,7 +6,7 @@ import { useAuthentication } from "../hooks";
 
 import { ButtonRow } from "../components/Button";
 
-import { path, get } from "../utils";
+import { path, get, formatAddress } from "../utils";
 
 const Buttons = () => {
     const { address } = useAuthentication()
@@ -31,7 +31,7 @@ const Buttons = () => {
     return (
         <>
             <div className="card">
-                <h2>{address}</h2>
+                <h2>Delegation Buttons</h2>
             </div>
 
             <Link

@@ -12,7 +12,6 @@ const useNavbar = (navigationLinks: JSX.Element | undefined) => {
         return () => setLinks(null);
     }, []);
 
-
     return { links: _links, setLinks };
 };
 

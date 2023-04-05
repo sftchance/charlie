@@ -54,7 +54,7 @@ const ButtonForm = () => {
         data: any;
         refetch: any;
     } = useQuery({
-        queryKey: ["buttons", `${isEdit}${buttonId}`],
+        queryKey: ["buttons", buttonId],
         queryFn: () => {
             if (!isEdit) return null
 
