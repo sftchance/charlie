@@ -1645,5 +1645,21 @@ export const tokens: {
          symbol: null,
          name: null,
          decimals: null
-      }
+      },
+      {
+         blockchain: "OPG",
+         chainId: 420,
+         address: "0x1943c79151b8758816d36ec43fDc22e57A25f323",
+         symbol: "MKT2",
+         name: "Mock Token 2",
+         decimals: 18
+      },
+      {
+         blockchain: "OPG",
+         chainId: 420,
+         address: "0x3E9509AbE3569481c679138cE884A2f72fAEf469",
+         symbol: "MKT3",
+         name: "Mock Token 3",
+         decimals: 18
+      },
    ]

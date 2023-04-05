@@ -1,8 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 
 import { WagmiConfig, configureChains, createClient } from "wagmi";
-import { avalanche, mainnet, polygon, optimism, arbitrum } from "wagmi/chains";
+import { avalanche, mainnet, polygon, optimism, arbitrum, optimismGoerli } from "wagmi/chains";
 import { publicProvider } from 'wagmi/providers/public';
+import { alchemyProvider } from 'wagmi/providers/alchemy';
 
 import { getDefaultWallets } from '@rainbow-me/rainbowkit';
 
@@ -15,7 +16,7 @@ import "./App.css";
 const queryClient = new QueryClient();
 
 const { chains, provider } = configureChains(
-    [mainnet, polygon, avalanche, optimism, arbitrum],
+    [mainnet, polygon, avalanche, optimism, arbitrum, optimismGoerli],
     [publicProvider()],
 );
 

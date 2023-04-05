@@ -39,7 +39,7 @@ task("deploy", "Deploys Charlie to the network")
       "Charlie Address": charlie.address,
       "Remaining ETH Balance": parseInt((await deployer.getBalance()).toString()) / 1000000000000000000,
     }
-    console.table(charlieDeployment)
+    console.table(charlieDeployment);
 
     if (chainId == '31337' || taskArgs.verify === false) return;
 
@@ -105,6 +105,11 @@ module.exports = {
       accounts: [`0x${process.env.PRIVATE_KEY}`],
       gasPrice: 15000000000,
     },
+    optimismGoerli: {
+      url: `https://opt-goerli.g.alchemy.com/v2/${process.env.OPG_ALCHEMY_KEY}`,
+      accounts: [`0x${process.env.TEST_PRIVATE_KEY}`],
+      chainId: 420,
+    }
   },
   abiExporter: [{
     path: '../frontend/src/abis/',
