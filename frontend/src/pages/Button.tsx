@@ -39,7 +39,7 @@ const Button = () => {
         <Input
             label="Button Link"
             value="http://example.com/hosted/buttons/1/embed/"
-            append={<button className="secondary" onClick={() => {
+            append={<button className="primary secondary" onClick={() => {
                 copy("http://example.com/hosted/buttons/1/embed/")
             }}>
                 <span className="content">Copy</span>
@@ -69,7 +69,7 @@ const Button = () => {
             }}>
                 <span className="content">Copy</span>
             </button>}
-        disabled
+            disabled
         />
 
         <Link
