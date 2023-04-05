@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 
 import { NavbarContext } from "../contexts/NavbarContext";
 
-const useNavbar = (links: JSX.Element) => {
+const useNavbar = (links: JSX.Element | undefined) => {
     const { links: _links, setLinks } = useContext(NavbarContext);
 
     useEffect(() => {

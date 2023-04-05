@@ -9,7 +9,7 @@ import charlie from "../../assets/charlie.svg";
 import "./Navbar.css"
 
 const Navbar = () => {
-    const { links } = useNavbar();
+    const { links } = useNavbar(undefined);
 
     const [collapsed, setCollapsed] = useState(false);
 
