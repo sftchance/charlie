@@ -1,20 +1,15 @@
 import { useState } from 'react'
+
 import { Link } from 'react-router-dom'
 
-import { useAccount } from 'wagmi';
-
-import {
-    ConnectButton,
-    DisconnectButton,
-    WalletButton
-} from '../'
+import { useNavbar } from '../../hooks';
 
 import charlie from "../../assets/charlie.svg";
 
 import "./Navbar.css"
 
 const Navbar = () => {
-    const { address } = useAccount()
+    const { links } = useNavbar();
 
     const [collapsed, setCollapsed] = useState(false);
 
@@ -27,11 +22,7 @@ const Navbar = () => {
             <div className="line"></div>
         </div>
 
-        <div className="links right">
-            <WalletButton />
-
-            {address ? <DisconnectButton /> : <ConnectButton />}
-        </div>
+        <div className="links right">{links}</div>
     </nav>
 }
 

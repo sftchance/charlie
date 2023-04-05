@@ -2,12 +2,18 @@ import { Link, useParams } from "react-router-dom"
 
 import { useQuery } from "@tanstack/react-query";
 
+import { useNavbar } from "../hooks";
+
 import { ButtonPreview, Input } from "../components";
 
 import { path, get, copy } from "../utils";
 
 const Button = () => {
     const { buttonId } = useParams();
+
+    useNavbar(<Link to="/account/" children={
+        <button>Back</button>
+    } />);
 
     const {
         isLoading,
@@ -31,10 +37,6 @@ const Button = () => {
             <h2>{data.name}</h2>
             <p>{data.description}</p>
         </div>
-
-        {/* <Link to="/account/" children={
-            <button>Back</button>
-        } /> */}
 
         <Input
             label="Button Link"

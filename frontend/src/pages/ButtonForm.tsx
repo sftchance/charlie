@@ -8,6 +8,7 @@ import { Error, Input, MultiSelect } from "../components";
 import { useAccount } from "wagmi";
 
 import { path, get, put, post, del } from "../utils";
+import { useNavbar } from "../hooks";
 
 const withToken = (token: any) => ({
     ...token,
@@ -27,6 +28,12 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
     const navigate = useNavigate();
 
     const { buttonId } = useParams<{ buttonId: string }>();
+
+    useNavbar(<Link to={
+        isEdit
+            ? `/account/buttons/${buttonId}/`
+            : "/account/"}
+        children={<button>Back</button>} />)
 
     const { address } = useAccount();
 
@@ -134,12 +141,6 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
     return (
         <>
             <h1>{isEdit ? `Edit ${data.name}` : "Create Button"}</h1>
-
-            <Link
-                to={isEdit
-                    ? `/account/buttons/${buttonId}/`
-                    : "/account/"}
-                children={<button>Back</button>} />
 
             <form onSubmit={handleSubmit}>
                 <Input

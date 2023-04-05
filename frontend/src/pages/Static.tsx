@@ -1,25 +1,26 @@
 import { Routes, Route } from "react-router-dom";
 
-import { AuthenticationProvider } from "../contexts";
+import { AuthenticationProvider, NavbarProvider } from "../contexts";
 
 import { Navbar, Footer } from "../components";
 
 import { Account, Home, NotFound } from "../pages";
 
 const Static = () => {
-
     return <AuthenticationProvider>
         <div className="App container">
-            <Navbar />
+            <NavbarProvider>
+                <Navbar />
 
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/account/*" element={<Account />} />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/account/*" element={<Account />} />
 
-                <Route path="*" element={<NotFound />} />
-            </Routes>
+                    <Route path="*" element={<NotFound />} />
+                </Routes>
 
-            <Footer />
+                <Footer />
+            </NavbarProvider>
         </div>
     </AuthenticationProvider>
 }
