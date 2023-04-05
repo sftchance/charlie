@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 import { useParams } from "react-router-dom";
 
 import { useQuery } from "@tanstack/react-query";
 
-import { useAccount } from "wagmi";
+import { useAccount, useNetwork } from "wagmi";
 
 import { TokenRow } from "../components";
 
@@ -16,8 +16,22 @@ import { VotesToken } from "../types";
 
 import "./Button.css";
 
+const sortByChainId = (a: VotesToken, b: VotesToken, targetChainId: number | undefined) => {
+    const chain = targetChainId ?? 1;
+
+    if (a.chainId === chain) return -1;
+    if (b.chainId === chain) return 1;
+
+    if (a.chainId < b.chainId) return -1;
+    if (a.chainId > b.chainId) return 1;
+
+    return a.symbol > b.symbol ? 1 : -1;
+}
+
 const Button = () => {
     const { address } = useAccount();
+
+    const { chain } = useNetwork();
 
     const { buttonId } = useParams<{ buttonId: string }>();
 
@@ -25,7 +39,11 @@ const Button = () => {
 
     const [tokens, setTokens] = useState<VotesToken[]>([]);
 
-    const selectedTokens = tokens.filter((t) => t.selected === true);
+    const selectedTokens = tokens.filter((t) => t.selected === true)
+
+    const currentChainId = useMemo(() => {
+        return chain?.id ?? 1;
+    }, [chain])
 
     const {
         isLoading,
@@ -49,6 +67,7 @@ const Button = () => {
         openDelegationSignatures, 
         openDelegationTx 
     } = useDelegate(
+        currentChainId,
         selectedTokens, 
         false
     );
@@ -77,12 +96,15 @@ const Button = () => {
                 includeZeros: true
             });
 
-            const { results: delegation } = await getDelegationInfo({
+            const { results: balanceDelegations } = await getDelegationInfo({
                 delegatee: data.ethereum_address, 
                 tokens: results
             });
 
-            setTokens(delegation)
+            // Sort current chain or mainnet to top.
+            const sorted = balanceDelegations.sort((a: any, b: any) => sortByChainId(a, b, chain?.id));
+
+            setTokens(sorted);
         }
 
         getBalanceInfo();
@@ -105,29 +127,24 @@ const Button = () => {
 
                     <h1>{data.text}</h1>
 
-                    {data.tokens
-                        .sort((a: any, b: any) => b.chain_id - a.chain_id)
-                        .map((token: any) => {
-                            const thisToken = tokens.find((t) => t.address === token.ethereum_address);
+                    {tokens.map((token: any) => {
+                        const previousChainId = tokens[tokens.indexOf(token) - 1]?.chainId;
 
-                            const chainId = token.chain_id;
-                            const previousChainId = data.tokens[data.tokens.indexOf(token) - 1]?.chain_id;
+                        const delegateCall = delegatedCalls.find((call) => 
+                            call.target === token.address && call.chainId === token.chainId
+                        );
 
-                            const delegateCall = delegatedCalls.find((call) => 
-                                call.target === token.ethereum_address && call.chainId === chainId
-                            );
-
-                            return (
-                                thisToken && (<TokenRow
-                                    key={`${token.ethereum_address}-${token.chain_id}`} 
-                                    token={thisToken}
-                                    delegateCall={delegateCall}
-                                    first={chainId !== previousChainId}
-                                    isClicked={thisToken.selected}
-                                    onClick={() => onSelect(thisToken)}
-                                />)
-                            )
-                        })}
+                        return (
+                            <TokenRow
+                                key={`${token.address}-${token.chainId}`} 
+                                token={token}
+                                delegateCall={delegateCall}
+                                first={token.chainId !== previousChainId}
+                                isClicked={token.selected}
+                                onClick={() => onSelect(token)}
+                            />
+                        )
+                    })}
 
                     <button className="delegate" onClick={onDelegate}>
                         {selectedTokens && isPrepared ? "Delegate now" : "Sign delegations"}

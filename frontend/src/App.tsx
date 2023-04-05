@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom";
 import { WagmiConfig, configureChains, createClient } from "wagmi";
 import { avalanche, mainnet, polygon, optimism, arbitrum, optimismGoerli } from "wagmi/chains";
 import { publicProvider } from 'wagmi/providers/public';
-import { alchemyProvider } from 'wagmi/providers/alchemy';
 
 import { getDefaultWallets } from '@rainbow-me/rainbowkit';
 

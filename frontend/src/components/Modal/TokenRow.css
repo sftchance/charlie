@@ -1,7 +1,16 @@
+input {
+    min-width: 30px;
+    height: 30px;
+}
+
 .status {
     min-width: 30px;
     height: 30px;
     border-radius: 50%;
+}
+
+.status.queued {
+    background-color: gray;
 }
 
 .status.signed {
