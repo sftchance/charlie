@@ -1,10 +1,13 @@
-.easteregg { 
+.easteregg {
     display: none;
     cursor: pointer;
-    color: #fff;
     align-items: center;
     padding-bottom: 80px;
     padding-top: 120px;
+}
+
+.easteregg * {
+    color: #fff;
 }
 
 .home .easteregg.found {
@@ -13,7 +16,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    background: linear-gradient(-37deg, #ff6804, #ff04c9);  
+    background: var(--charlieGradient);
     z-index: 99;
 }
 
@@ -27,7 +30,7 @@
     transform: rotate(-18deg);
 }
 
-.easteregg .container { 
+.easteregg .container {
     margin-left: 0px;
     max-width: 768px;
     margin: auto;
@@ -47,7 +50,7 @@
     opacity: 1;
 }
 
-.easteregg h1 span { 
+.easteregg h1 span {
     font-size: 9rem;
     font-style: normal;
     line-height: 0.25rem;
@@ -60,17 +63,25 @@
     opacity: 0.45;
 }
 
-.easteregg button { 
+.easteregg button {
     margin-top: 80px;
 }
 
-.easteregg hr { 
+.easteregg button span {
+    color: var(--charlieBlack);
+}
+
+.easteregg button:hover span {
+    color: var(--charlieWhiteHover);
+}
+
+.easteregg hr {
     border: 1px solid #fff;
     opacity: 0.15;
     margin-block: 40px;
 }
 
-.easteregg p.lead { 
+.easteregg p.lead {
     font-size: 1.25rem;
     opacity: 0.85;
     margin-top: 20px;

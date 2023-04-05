@@ -1,10 +1,11 @@
 django-cors-headers==3.14.0
 django-filter==23.1
 django-rest-framework==0.1.0
+django-siwe-auth==0.3.2
 markdown==3.4.3
 pip-chill==1.0.1
 python-dotenv==1.0.0
 pyyaml==6.0
+regex==2023.3.23
 shroomdk==1.0.2
 uritemplate==4.1.1
-web3==6.0.0

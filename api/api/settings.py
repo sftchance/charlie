@@ -8,7 +8,6 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -20,29 +19,31 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://localhost:5173",
-    "http://localhost:3001",
-]
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_ALL_ORIGINS = True
+
+CSRF_TRUSTED_ORIGINS = ["http://localhost:5173", "http://10.0.0.95:5173"]
 
 # Application definition
 INSTALLED_APPS = [
+    "siwe_auth.apps.SiweAuthConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "corsheaders",
     "rest_framework",
+    "api",
     "button",
     "erc20",
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -69,7 +70,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "api.wsgi.application"
-
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -105,13 +105,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
 LANGUAGE_CODE = "en-us"
-
 TIME_ZONE = "UTC"
-
 USE_I18N = True
-
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -135,3 +131,17 @@ PROVIDERS = {
     "42161": f"https://arb-mainnet.g.alchemy.com/v2/{os.environ.get('ARBITRUM_ALCHEMY_KEY')}",
     "137": f"https://polygon-mainnet.g.alchemy.com/v2/{os.environ.get('POLYGON_ALCHEMY_KEY')}",
 }
+
+AUTH_USER_MODEL = "siwe_auth.Wallet"
+
+AUTHENTICATION_BACKENDS = [
+    "siwe_auth.backend.SiweBackend",
+]
+
+LOGIN_URL = "/api/auth/login"
+
+SESSION_COOKIE_AGE = 3 * 60 * 60  # 3 hours
+
+CREATE_ENS_PROFILE_ON_AUTHN = False
+
+PROVIDER = PROVIDERS["1"]

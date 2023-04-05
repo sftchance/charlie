@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { useQuery } from "@tanstack/react-query";
 
 import { Error, Input, MultiSelect } from "../components";
 import { useAccount } from "wagmi";
+
+import { path, get, put, post, del } from "../utils";
 
 const withToken = (token: any) => ({
     ...token,
@@ -28,24 +30,27 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
 
     const { address } = useAccount();
 
-    const API_URL = `http://localhost:8000/buttons/${buttonId}/`
-
     const {
         isLoading: isLoadingButtons,
         error,
         data,
+        refetch,
     }: {
         isLoading: boolean;
         error: any;
         data: any;
+        refetch: any;
     } = useQuery({
         queryKey: ["buttons", buttonId],
         queryFn: () => {
-            if (isEdit == true)
-                return fetch(API_URL).then((res) => res.json())
+            if (!isEdit) return null
 
-            return null
-        }
+            return get(path(`buttons/${buttonId}/`))
+        },
+        refetchOnWindowFocus: true,
+        staleTime: 0,
+        cacheTime: 0,
+        refetchInterval: 0,
     });
 
     const {
@@ -58,7 +63,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
         data: any;
     } = useQuery({
         queryKey: ["tokens"],
-        queryFn: () => fetch(`http://localhost:8000/erc20/`).then((res) => res.json())
+        queryFn: () => get(path("erc20/"))
     });
 
     const [object, setObject] = useState<any>({
@@ -75,51 +80,28 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
 
     const options = [...withTokens({ tokens: dataTokens }, object?.tokens || [])?.tokens]
 
-    const handleDelete = () => {
-        fetch(API_URL, {
-            method: "DELETE",
-        }).then(() => navigate("/account/"))
+    const handleDelete = (e: any) => {
+        e.preventDefault()
+
+        del(path(`buttons/${buttonId}`)).then(() => navigate("/account/"))
     }
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-
-        const headers = {
-            "Content-Type": "application/json"
-        }
 
         const body = JSON.stringify({
             ...object,
             tokens: object.tokens.map((token: any) => token.value)
         })
 
-        const response = isEdit ? fetch(API_URL, {
-            method: "PUT",
-            headers,
-            body
-        }) : fetch(`http://localhost:8000/buttons/`, {
-            method: "POST",
-            headers,
-            body
-        })
+        const response = isEdit
+            ? put(path(`buttons/${buttonId}/`), body)
+            : post(path("buttons/"), body)
 
         response
-            .then((res): any => {
-                if (res.status >= 400) {
-                    return res.json().then((data) => {
-                        return Promise.reject(data)
-                    })
-                }
-
-                return res
-            })
-            .then((res) => res.json())
             .then((data) => {
-                setErrors([])
-                setObject((object: any) => ({
-                    ...object,
-                    ethereum_address: data.ethereum_address,
-                }));
+                refetch()
+
                 navigate(`/account/buttons/${data.id}/edit/`)
             })
             .catch((errors) => {
@@ -130,6 +112,8 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
     useEffect(() => {
         if (!data) return
 
+        setErrors([])
+
         setObject(withTokens({
             ethereum_address: data.ethereum_address,
             name: data.name,
@@ -139,7 +123,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
             secondary_color: data.secondary_color,
             tokens: data.tokens
         }, []))
-    }, [data])
+    }, [data, refetch])
 
     if (isEdit && ((isLoadingButtons || isLoadingTokens) || object === null)) return <p>Loading...</p>;
 
@@ -149,24 +133,26 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
 
     return (
         <>
-            <h1>Button Form</h1>
+            <h1>{isEdit ? `Edit ${data.name}` : "Create Button"}</h1>
 
-            {isEdit && <button onClick={() => navigate(`/account/`)}>Back</button>}
+            <Link
+                to={isEdit
+                    ? `/account/buttons/${buttonId}/`
+                    : "/account/"}
+                children={<button>Back</button>} />
 
             <form onSubmit={handleSubmit}>
-                <p>{JSON.stringify(errors)}</p>
+                <Input
+                    label="Name"
+                    value={object.name}
+                    onChange={(e: any) => setObject({ ...object, name: e.target.value.trim() })}
+                    error={errors?.name} />
 
                 <Input
                     label="Delegate Ethereum Address"
                     value={object.ethereum_address}
                     onChange={(e: any) => setObject({ ...object, ethereum_address: e.target.value.trim() })}
                     error={errors?.ethereum_address} />
-
-                <Input
-                    label="Name"
-                    value={object.name}
-                    onChange={(e: any) => setObject({ ...object, name: e.target.value.trim() })}
-                    error={errors?.name} />
 
                 <Input
                     label="Description"
@@ -201,18 +187,22 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                     options={options}
                     error={errors?.tokens} />
 
-                {object?.tokens?.length > 0 ? object?.tokens?.map((token: any) =>
-                    <p key={token.label}>{JSON.stringify(token, null, 2)}</p>
-                ) : <p>No tokens targeted...</p>}
-
                 <Error error={errors?.detail} />
 
                 {isEdit && <button
-                    type="button"
+                    className="primary danger block"
                     onClick={handleDelete}
-                >Delete</button>}
+                >
+                    <span className="content">Delete</span>
+                </button>}
 
-                <button type="submit">Save</button>
+                <button
+                    type="submit"
+                    className={isEdit
+                        ? "primary block"
+                        : "primary secondary block"}>
+                    <span className="content">Save</span>
+                </button>
             </form>
         </>
     )

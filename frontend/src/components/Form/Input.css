@@ -1,0 +1,57 @@
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+input,
+select {
+    outline: none;
+    width: 100%;
+    border-radius: var(--charlieBorderRadius);
+    padding: var(--charlieButtonPadding);
+    background: var(--charlieWhite);
+    border: 1px solid var(--charlieGrey);
+    color: var(--charlieBlack);
+    transition: var(--charlieTransition);
+    font-size: inherit;
+    margin-bottom: 1rem;
+}
+
+input:hover,
+input:active {
+    border: 1px solid var(--charlieGreyHover);
+}
+
+input:focus {
+    border: 1px solid var(--charlieSoftBlackHover);
+}
+
+input:disabled {
+    border: 1px solid var(--charlieGreyHover);
+    cursor: auto !important;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.input-group.append {
+    flex-direction: row;
+    height: fit-content;
+}
+
+.input-group.append input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-bottom: 0;
+}
+
+.input-group.append button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-left: 0.5rem;
+}

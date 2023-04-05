@@ -4,11 +4,28 @@ import { WagmiConfig, configureChains, createClient } from "wagmi";
 import { avalanche, mainnet, polygon, optimism, arbitrum, optimismGoerli } from "wagmi/chains";
 import { publicProvider } from 'wagmi/providers/public';
 
-import { getDefaultWallets } from '@rainbow-me/rainbowkit';
+import {
+    connectorsForWallets,
+    RainbowKitProvider,
+    DisclaimerComponent,
+} from '@rainbow-me/rainbowkit';
+import {
+    injectedWallet,
+    rainbowWallet,
+    metaMaskWallet,
+    coinbaseWallet,
+    walletConnectWallet,
+    ledgerWallet,
+    trustWallet,
+    dawnWallet,
+    safeWallet
+} from '@rainbow-me/rainbowkit/wallets';
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { Hosted, Static } from "./pages";
+
+import '@rainbow-me/rainbowkit/styles.css';
 
 import "./App.css";
 
@@ -19,10 +36,26 @@ const { chains, provider } = configureChains(
     [publicProvider()],
 );
 
-const { connectors } = getDefaultWallets({
-    appName: 'Charlie',
-    chains
-});
+const connectors = connectorsForWallets([
+    {
+        groupName: "Recommended",
+        wallets: [
+            metaMaskWallet({ chains, shimDisconnect: true }),
+            walletConnectWallet({ chains }),
+            rainbowWallet({ chains }),
+            coinbaseWallet({ appName: "Charlie", chains }),
+        ]
+    }, {
+        groupName: "Other",
+        wallets: [
+            injectedWallet({ chains, shimDisconnect: true }),
+            ledgerWallet({ chains }),
+            trustWallet({ chains }),
+            dawnWallet({ chains }),
+            safeWallet({ chains }),
+        ]
+    }
+]);
 
 const wagmiClient = createClient({
     autoConnect: true,
@@ -30,14 +63,30 @@ const wagmiClient = createClient({
     provider
 })
 
+const Disclaimer: DisclaimerComponent = ({ Text, Link }) => (
+    <Text>
+        By connecting your wallet, you agree to the{' '}
+        <Link href="https://termsofservice.xyz">Terms of Service</Link> and
+        acknowledge you have read and understand the protocol{' '}
+        <Link href="https://disclaimer.xyz">Disclaimer</Link>
+    </Text>
+);
+
 function App() {
     return (
         <QueryClientProvider client={queryClient}>
             <WagmiConfig client={wagmiClient}>
-                <Routes>
-                    <Route path="/hosted/*" element={<Hosted />} />
-                    <Route path="*" element={<Static />} />
-                </Routes>
+                <RainbowKitProvider
+                    appInfo={{
+                        appName: "Charlie",
+                        disclaimer: Disclaimer,
+                    }}
+                    modalSize="compact"
+                    chains={chains}
+                    children={<Routes>
+                        <Route path="/hosted/*" element={<Hosted />} />
+                        <Route path="*" element={<Static />} />
+                    </Routes>} />
             </WagmiConfig>
         </QueryClientProvider >
     );

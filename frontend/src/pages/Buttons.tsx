@@ -2,6 +2,10 @@ import { Link } from "react-router-dom";
 
 import { useQuery } from "@tanstack/react-query";
 
+import { ButtonRow } from "../components/Button";
+
+import { path, get } from "../utils";
+
 const Buttons = () => {
     const {
         isLoading,
@@ -13,7 +17,7 @@ const Buttons = () => {
         data: any;
     } = useQuery({
         queryKey: ["buttons"],
-        queryFn: () => fetch(`http://localhost:8000/buttons/`).then((res) => res.json())
+        queryFn: () => get(path("buttons/"))
     });
 
     if (isLoading) return <p>Loading...</p>;
@@ -22,22 +26,15 @@ const Buttons = () => {
 
     return (
         <>
-            <h2>
-                Delegation Buttons
-                <Link to="/account/buttons/new/">New</Link>
-            </h2>
+            <h2>Buttons</h2>
 
-            <hr />
+            <Link
+                to="/account/buttons/new/"
+                children={<button className="primary secondary">
+                    <span className="content">New</span>
+                </button>} />
 
-            <ul>
-                {data?.length > 0 ? data.map((button: any) => (
-                    <li key={button.id}>
-                        <Link to={`/account/buttons/${button.id}/edit/`}>{button.text}</Link>
-                        <Link to={`/hosted/buttons/${button.id}/`}>View</Link>
-                        <Link to={`/account/buttons/${button.id}/embed/`}>Embed</Link>
-                    </li>
-                )) : <p>No buttons yet!</p>}
-            </ul>
+            <ButtonRow buttons={data} />
         </>
     )
 }

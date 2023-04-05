@@ -1,16 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --charlieWhite: #ffffff;
+    --charlieWhiteHover: rgba(255, 255, 255, 0.95);
+    --charlieGrey: #f0f0f0;
+    --charlieGreyHover: rgba(230, 230, 230, 0.95);
+    --charlieBlack: #111;
+    --charlieBlackHover: rgba(25, 25, 25, 0.95);
+    --charlieSoftBlack: #555;
+    --charlieSoftBlackHover: rgba(85, 85, 85, 0.95);
+    --charliePink: #ff04c9;
+    --charlieOrange: hsl(24, 100%, 51%);
+    --charlieGradient: linear-gradient(-37deg, #ff6804, #ff04c9);
+    --charlieGradientAlt: linear-gradient(-37deg, #5243f9, #43f9e1);
+    --charlieBorderRadius: 0.25rem;
+    --charlieButtonPadding: 12px 16px;
+    --charlieGlowingTextShadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+    --charlieTransition: all .15s ease-in-out;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: monospace;
+    font-family: 'Rubik', sans-serif;
+    color: var(--charlieSoftBlack);
 }
 
 html,
 body {
-    color: rgba(0, 0, 0, 0.87);
+    background: var(--charlieWhite);
     height: 100%;
     width: 100vw;
     overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button {
+    color: var(--charlieBlack);
+    font-weight: 700;
 }
 
 table {
@@ -26,30 +59,69 @@ td {
 
 button {
     border: none;
-    border-radius: 2px;
     outline: none;
     cursor: pointer;
-    font-weight: 700;
-    padding: 1rem;
-    transition: all .15s ease-in-out;
+    background: var(--charlieGrey);
+    border-radius: var(--charlieBorderRadius);
+    padding: var(--charlieButtonPadding);
+}
+
+button.block {
+    display: block;
+    width: 100%;
+}
+
+button,
+button span,
+button .content {
+    transition: var(--charlieTransition);
+    color: var(--charlieBlack);
+}
+
+button:hover,
+button:focus {
+    background: var(--charlieBlack);
+}
+
+button:hover,
+button:hover .content,
+button:focus,
+button:focus .content {
+    color: var(--charlieWhiteHover);
+    text-shadow: var(--charlieGlowingTextShadow);
+}
+
+button:active {
+    background: var(--charlieBlackHover);
+}
+
+button:active,
+button:active .content {
+    color: var(--charlieWhite);
 }
 
 button.primary {
-    background: linear-gradient(-37deg, #ff6804, #ff04c9);
+    background: var(--charlieGradient);
     position: relative;
     background-position: 0 0;
+    z-index: 0;
 }
 
 button.primary .content {
     position: relative;
+    z-index: 2;
     color: #fff;
-    z-index: 5;
     height: initial;
 }
 
-button.primary:hover,
-button.primary:focus {
-    background: linear-gradient(-37deg, #ff6804, #ff04c9);
+button.primary:hover {
+    background: linear-gradient(-30deg, #ff6804, #ff04c9);
+    text-shadow: var(--charlieGlowingTextShadow);
+    opacity: 0.95;
+}
+
+button.primary:hover .content {
+    color: var(--charlieWhite);
 }
 
 button.primary::before {
@@ -62,46 +134,27 @@ button.primary::before {
     background: url('/noise.png') repeat;
     background-blend-mode: overlay;
     background-size: 200px 200px;
-    transition: all .15s ease-in-out;
-}
-
-button.primary::after {
-    /* Set background of button as soft gradient with white noise on top */
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
-    background: linear-gradient(-37deg, #ff6804, #ff04c9);
-    z-index: -1;
-    filter: blur(10px);
-    opacity: .25;
-    transition: all .15s ease-in-out;
-}
-
-button.primary:hover::after,
-button.primary:focus::after {
-    opacity: 0.35;
-}
-
-button.primary:hover::before,
-button.primary:focus::before {
-    opacity: 0.75;
+    transition: var(--charlieTransition);
 }
 
 button.primary.secondary {
-    background: linear-gradient(-37deg, #5243f9, #43f9e1);
-    color: #fff;
+    background: var(--charlieGradientAlt);
+    color: var(--charlieWhite);
 }
 
 button.primary.secondary:hover,
 button.primary.secondary:focus {
-    background: linear-gradient(-37deg, #5243f9, #43f9e1);
+    background: var(--charlieGradientAlt);
 }
 
-button.primary.secondary::after {
-    background: linear-gradient(-37deg, #5243f9, #43f9e1);
+button.primary.danger {
+    background: red;
+    color: var(--charlieWhite);
+}
+
+button.primary.danger:hover,
+button.primary.danger:focus {
+    background: red;
 }
 
 button:disabled {
@@ -109,57 +162,41 @@ button:disabled {
     filter: saturate(0.1);
 }
 
+a,
 button.link {
     background: none;
-    color: #000;
+    color: var(--charlieBlack);
     font-size: inherit;
     padding: 0;
+    text-decoration: none;
+    font-weight: 700;
 }
 
 button.link:active,
 button.link:focus,
 button.link:hover {
     background: none;
-    color: rgba(0, 0, 0, 0.75);
+    color: var(--charlieBlackHover);
 }
 
-a {
-    text-decoration: none;
-    color: #000;
-}
 
-input {
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 3px;
-    outline: none;
-    padding: 0.5rem;
-    width: 100%;
-}
 
 .container {
-    max-width: 1440px;
     margin: 0 auto;
-    padding: 0 1rem;
+    max-width: 68rem;
+    width: 90%;
 }
 
 .card {
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 3px;
-    margin-bottom: 1rem;
-    margin: 1rem;
-}
-
-.card .card-header {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    background: var(--charlieGrey);
+    border-radius: 0.25rem;
     padding: 1rem;
-}
-
-.card .card-body {
-    padding: 1rem;
+    margin: 1rem 0;
+    transition: all .075s ease-in-out;
 }
 
 .gradient {
-    background: linear-gradient(-37deg, #ff6804, #ff04c9);
+    background: var(--charlieGradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     position: relative;
@@ -173,15 +210,14 @@ input {
 }
 
 .gradient::before {
-    content: 'one place';
+    content: 'one click';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(-37deg, #ff6804, #ff04c9);
+    background: var(--charlieGradient);
     z-index: -1;
-
     background-blend-mode: screen;
     -webkit-background-clip: text;
 }
@@ -193,7 +229,7 @@ input {
     left: -2px;
     width: calc(100% + 4px);
     height: calc(100% + 4px);
-    background: linear-gradient(-37deg, #ff6804, #ff04c9);
+    background: var(--charlieGradient);
     z-index: -1;
     filter: blur(50px);
     opacity: .35;

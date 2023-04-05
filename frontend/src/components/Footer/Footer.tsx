@@ -6,21 +6,17 @@ import "./Footer.css"
 
 const Footer = () => {
     return (
-        <div className="container">
-            <div className="footer">
-                <div>
-                    <Link to="/"><img src={charlie} alt="Charlie logo" /></Link>
-                    <p>Harnessing the power of governance tokens across all chains to decentralize your favorite organizations.</p>
-                </div>
-                <div></div>
-                <div></div>
-            </div>
+        <>
+            <footer>
+                <Link to="/"><img src={charlie} alt="Charlie logo" /></Link>
+                <p>Harnessing the power of governance tokens across all chains to decentralize your favorite organizations.</p>
+            </footer>
 
             <div className="copyright">
-                <p>Charlie © 2021</p>
+                <p>Charlie © 2023</p>
                 <p>Made by <a href="https://twitter.com/nftchance" target="_blank" rel="noreferrer">🟠 CHANCE</a></p>
             </div>
-        </div>
+        </>
     )
 }
 

@@ -1,49 +1,13 @@
-import { useEffect, useState, useMemo } from "react";
-
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom"
 
 import { useQuery } from "@tanstack/react-query";
 
-import { useAccount, useNetwork } from "wagmi";
+import { Input } from "../components";
 
-import { TokenRow } from "../components";
-
-import { useColor, useDelegate } from "../hooks";
-
-import { getBalances, getDelegationInfo } from "../utils";
-
-import { VotesToken } from "../types";
-
-import "./Button.css";
-
-const sortByChainId = (a: VotesToken, b: VotesToken, targetChainId: number | undefined) => {
-    const chain = targetChainId ?? 1;
-
-    if (a.chainId === chain) return -1;
-    if (b.chainId === chain) return 1;
-
-    if (a.chainId < b.chainId) return -1;
-    if (a.chainId > b.chainId) return 1;
-
-    return a.symbol > b.symbol ? 1 : -1;
-}
+import { path, get, copy } from "../utils";
 
 const Button = () => {
-    const { address } = useAccount();
-
-    const { chain } = useNetwork();
-
-    const { buttonId } = useParams<{ buttonId: string }>();
-
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-
-    const [tokens, setTokens] = useState<VotesToken[]>([]);
-
-    const selectedTokens = tokens.filter((t) => t.selected === true)
-
-    const currentChainId = useMemo(() => {
-        return chain?.id ?? 1;
-    }, [chain])
+    const { buttonId } = useParams();
 
     const {
         isLoading,
@@ -55,125 +19,43 @@ const Button = () => {
         data: any;
     } = useQuery({
         queryKey: ["button"],
-        queryFn: () =>
-            fetch(`http://localhost:8000/buttons/${buttonId}/`).then((res) => res.json()),
+        queryFn: () => get(path(`buttons/${buttonId}/`))
     });
-
-    const textColor = useColor(data?.hex_color);
-
-    const { 
-        isPrepared,
-        delegatedCalls,
-        openDelegationSignatures, 
-        openDelegationTx 
-    } = useDelegate(
-        currentChainId,
-        selectedTokens, 
-        false
-    );
-
-    const onSelect = (token: any) => {
-        setTokens(tokens => (
-            tokens.map((t) => t.address === token.address ? { ...t, selected: !t.selected } : t)
-        ));
-    }
-
-    const onSign = async () => {
-        await openDelegationSignatures({
-            onSuccess: () => {
-                console.log('success')
-            }
-        });
-    }
-
-    const onDelegate = async () => {
-        await openDelegationTx({
-            onSuccess: () => {
-                console.log('success')
-            }
-        });
-    }
-
-    useEffect(() => {
-        if (!data) return;
-
-        const getBalanceInfo = async () => {
-            const { results } = await getBalances({
-                address: address as `0x${string}`,
-                tokens: data.tokens,
-                includeZeros: true
-            });
-
-            const { results: balanceDelegations } = await getDelegationInfo({
-                delegatee: data.ethereum_address, 
-                tokens: results
-            });
-
-            // Sort current chain or mainnet to top.
-            const sorted = balanceDelegations.sort((a: any, b: any) => sortByChainId(a, b, chain?.id));
-
-            setTokens(sorted);
-        }
-
-        getBalanceInfo();
-    }, [isLoading])
 
     if (isLoading) return <>{"Loading..."}</>;
 
     if (error) return <>{"An error has occurred: " + error.message}</>;
 
-    return (
-        <>
-            <div
-                className={isModalOpen ? "modal" : "modal hidden"}
-                onClick={() => setIsModalOpen(false)}
-            >
-                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                    <span className="close" onClick={() => setIsModalOpen(false)}>
-                        &times;
-                    </span>
+    return <>
+        <h1>{data.name}</h1>
 
-                    <h1>{data.text}</h1>
+        <Link to="/account/" children={
+            <button>Back</button>
+        } />
 
-                    {tokens.map((token: any) => {
-                        const previousChainId = tokens[tokens.indexOf(token) - 1]?.chainId;
+        <Link to={`/hosted/buttons/${buttonId}/embed`} children={
+            <button>Preview</button>
+        } />
 
-                        const delegateCall = delegatedCalls.find((call) => 
-                            call.target === token.address && call.chainId === token.chainId
-                        );
+        <Link
+            to={`/account/buttons/${buttonId}/edit`}
+            children={<button className="primary secondary">
+                <span className="content">Edit</span>
+            </button>} />
 
-                        return (
-                            <TokenRow
-                                key={`${token.address}-${token.chainId}`} 
-                                token={token}
-                                delegateCall={delegateCall}
-                                first={token.chainId !== previousChainId}
-                                isClicked={token.selected}
-                                onClick={() => onSelect(token)}
-                            />
-                        )
-                    })}
+        <p>{data.description}</p>
 
-                    <button className="delegate" onClick={isPrepared ? onDelegate : onSign}>
-                        {selectedTokens && isPrepared ? "Delegate now" : "Sign delegations"}
-                    </button>
+        <Input
+            label="Button Link"
+            value="http://example.com/hosted/buttons/1/embed/"
+            append={<button className="secondary" onClick={() => {
+                copy("http://example.com/hosted/buttons/1/embed/")
+            }}>
+                <span className="content">Copy</span>
+            </button>}
+            disabled
+        />
+    </>
+}
 
-                    <p>Powered by <strong>Charlie</strong>.</p>
-                </div>
-            </div >
-
-            <button
-                className="delegation-button"
-                style={{
-                    backgroundColor: data.hex_color,
-                    color: textColor,
-                }}
-                onClick={() => setIsModalOpen(!isModalOpen)}
-            >
-                {data.text}
-            </button>
-        </>
-    );
-};
-
-export { Button };
+export { Button }
