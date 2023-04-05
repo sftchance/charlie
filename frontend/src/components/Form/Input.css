@@ -32,6 +32,28 @@ input:disabled {
     cursor: auto !important;
 }
 
+.input-group .color {
+    position: relative;
+    border-radius: var(--charlieBorderRadius);
+}
+
+.input-group .color::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 1.5rem;
+    transform: translate(-50%, -50%);
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background: inherit;
+    border: 1px solid var(--charlieGrey);
+}
+
+.input-group .color input {
+    padding-left: 2.75rem;
+}
+
 .input-group {
     display: flex;
     flex-direction: column;

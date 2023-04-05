@@ -37,7 +37,7 @@ const Buttons = () => {
             <Link
                 to="/account/buttons/new/"
                 children={<button className="primary secondary block">
-                    <span className="content">Create new button</span>
+                    <span className="content">Create button</span>
                 </button>} />
 
             <ButtonRow buttons={data} />

@@ -2,43 +2,45 @@ import { Error } from './'
 
 import "./Input.css"
 
-interface InputProps {
-    value: any,
-    label?: string,
-    placeholder?: string,
-    onChange?: any,
-    error?: any,
-    disabled?: boolean,
-    append?: any,
-}
-
-const Input = ({
+const StaticInput = ({
     value,
     label,
     placeholder,
     onChange,
-    error,
     disabled,
-    append,
-}: InputProps) => {
+}: {
+    value: any,
+    label?: string,
+    placeholder?: string,
+    onChange?: any,
+    disabled?: boolean,
+}) => {
+    return <input
+        type="text"
+        name={label}
+        id={label}
+        placeholder={placeholder || `${label}...` || undefined}
+        value={value}
+        onChange={onChange}
+        disabled={disabled} />
+}
+
+const Input = (props: any) => {
+    const { append, color, label, value, error, } = props;
+
     return <div>
         <label htmlFor={label}>{label}</label>
 
         <div className={`input-group ${!!append && 'append'}`}>
-            <input
-                type="text"
-                name={label}
-                id={label}
-                placeholder={placeholder || `${label}...` || undefined}
-                value={value}
-                onChange={onChange}
-                disabled={disabled} />
+            {color ? <div className="color" style={{ backgroundColor: value }}>
+                <StaticInput {...props} />
+            </div> : <StaticInput {...props} />}
 
             {append && append}
         </div >
 
         <Error error={error} />
-    </div>
+    </div >
 }
 
 export { Input }

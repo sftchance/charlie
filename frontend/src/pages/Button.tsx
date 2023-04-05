@@ -38,10 +38,17 @@ const Button = () => {
             <p>{data.description}</p>
         </div>
 
+        <Link
+            className="input-group"
+            to={`/account/buttons/${buttonId}/edit`}
+            children={<button className="primary secondary block">
+                <span className="content">Edit button</span>
+            </button>} />
+
         <Input
             label="Button Link"
             value="http://example.com/hosted/buttons/1/embed/"
-            append={<button className="primary secondary" onClick={() => {
+            append={<button className="secondary" onClick={() => {
                 copy("http://example.com/hosted/buttons/1/embed/")
             }}>
                 <span className="content">Copy</span>
@@ -73,13 +80,6 @@ const Button = () => {
             </button>}
             disabled
         />
-
-        <Link
-            to={`/account/buttons/${buttonId}/edit`}
-            children={<button className="primary secondary block">
-                <span className="content">Edit</span>
-            </button>} />
-
     </>
 }
 

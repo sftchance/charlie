@@ -26,10 +26,14 @@ const withTokens = (button: any, excludeTokens: any) => ({
         || []
 })
 
-const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
+const ButtonForm = () => {
     const navigate = useNavigate();
 
     const { buttonId } = useParams<{ buttonId: string }>();
+
+    const isEdit = !!buttonId;
+
+    console.log(buttonId, isEdit)
 
     useNavbar(<Link to={
         isEdit
@@ -50,16 +54,12 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
         data: any;
         refetch: any;
     } = useQuery({
-        queryKey: ["buttons", buttonId],
+        queryKey: ["buttons", `${isEdit}${buttonId}`],
         queryFn: () => {
             if (!isEdit) return null
 
             return get(path(`buttons/${buttonId}/`))
-        },
-        refetchOnWindowFocus: true,
-        staleTime: 0,
-        cacheTime: 0,
-        refetchInterval: 0,
+        }
     });
 
     const {
@@ -111,7 +111,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
             .then((data) => {
                 refetch()
 
-                navigate(`/account/buttons/${data.id}/edit/`)
+                navigate(`/account/buttons/${data.id}/`)
             })
             .catch((errors) => {
                 setErrors(errors)
@@ -142,7 +142,10 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
 
     return (
         <>
-            <h1>{isEdit ? `Edit ${data.name}` : "Create Button"}</h1>
+            <div className="card">
+                <h2>{isEdit ? data.name : "Create button"}</h2>
+                <p>{isEdit ? data.description : "Setup your button now and start collecting delegations like the pro you are."}</p>
+            </div>
 
             <form onSubmit={handleSubmit}>
                 <Input
@@ -174,13 +177,15 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                         label="Primary color"
                         value={object.primary_color}
                         onChange={(e: any) => setObject({ ...object, primary_color: e.target.value.trim() })}
-                        error={errors?.primary_color} />
+                        error={errors?.primary_color}
+                        color />
 
                     <Input
                         label="Secondary color"
                         value={object.secondary_color}
                         onChange={(e: any) => setObject({ ...object, secondary_color: e.target.value.trim() })}
-                        error={errors?.secondary_color} />
+                        error={errors?.secondary_color}
+                        color />
                 </div>
 
                 <MultiSelect
@@ -194,17 +199,15 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
 
                 <div className={isEdit ? "buttons" : "buttons create"}>
                     {isEdit && <button
-                        className="primary danger block"
+                        className="danger block"
                         onClick={handleDelete}
-                    >
-                        <span className="content">Delete</span>
-                    </button>}
+                    >Delete</button>}
 
                     <button
                         type="submit"
                         className={isEdit
-                            ? "primary block"
-                            : "primary secondary block"}>
+                            ? "primary secondary block"
+                            : "primary block"}>
                         <span className="content">Save</span>
                     </button>
                 </div>
