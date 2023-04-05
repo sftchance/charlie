@@ -2,35 +2,43 @@ import { useNetwork } from "wagmi"
 
 import { useBlockExplorer } from "../../hooks"
 
-import { DelegatedCall } from "../../types"
+import { DelegatedCall, VotesToken } from "../../types"
 
 import "./TokenRow.css"
+
+const getAddressOrENS = (address: string) => {
+    return `${address.slice(0, 6)}...${address.slice(-4)}`
+}
 
 // TODO: break this out it's a monster now i'm sorry
 const TokenRow = ({
     token,
-    balance,
     delegateCall,
-    currentDelegate,
-    newDelegate,
     first,
     isClicked,
     onClick
 }: {
-    token: any,
-    balance?: number,
+    token: VotesToken,
     delegateCall?: DelegatedCall,
-    currentDelegate?: string,
-    newDelegate?: string,
     first: boolean,
     isClicked?: boolean,
     onClick?: () => void,
 }) => {
-    const { chains } = useNetwork()
+    const { chains } = useNetwork();
 
-    const chain = chains.find(chain => chain.id === token.chain_id)
+    const { 
+        chainId,
+        address, 
+        name,
+        symbol,
+        balance,
+        currentDelegate,
+        delegatee,
+    } = token;
 
-    const blockExplorerURL = useBlockExplorer(chain, token?.ethereum_address);
+    const chain = chains.find(chain => chain.id === chainId)
+
+    const blockExplorerURL = useBlockExplorer(chain, address);
 
     const actionStatus = delegateCall ? delegateCall.status : "";
 
@@ -47,15 +55,15 @@ const TokenRow = ({
 
                     <input 
                         type="checkbox" 
-                        onClick={onClick}
-                        checked={isClicked}
+                        onChange={onClick}
+                        checked={isClicked || false}
                     />
-                    <span>(${token.symbol}) {token.name}</span>
+                    <span>(${symbol}) {name}</span>
                     <span>Balance: {balance}</span>
                     <div>
-                        {currentDelegate && (currentDelegate.slice(0, 6) + "..." + currentDelegate.slice(-4))}
+                        {currentDelegate && (getAddressOrENS(currentDelegate))}
                         --- 
-                        {newDelegate && (newDelegate.slice(0, 6) + "..." + newDelegate.slice(-4))}
+                        {delegatee && (getAddressOrENS(delegatee))}
                     </div>
                 </h2>
             </a>

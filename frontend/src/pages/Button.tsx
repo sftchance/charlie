@@ -25,6 +25,8 @@ const Button = () => {
 
     const [tokens, setTokens] = useState<VotesToken[]>([]);
 
+    const selectedTokens = tokens.filter((t) => t.selected === true);
+
     const {
         isLoading,
         error,
@@ -47,13 +49,13 @@ const Button = () => {
         openDelegationSignatures, 
         openDelegationTx 
     } = useDelegate(
-        tokens.filter((t) => t.selected === true), 
+        selectedTokens, 
         false
     );
 
     const onSelect = (token: any) => {
         setTokens(tokens => (
-            tokens.map((t) => t.ethereum_address === token.ethereum_address ? { ...t, selected: !t.selected } : t)
+            tokens.map((t) => t.address === token.address ? { ...t, selected: !t.selected } : t)
         ));
     }
 
@@ -94,10 +96,10 @@ const Button = () => {
         <>
             <div
                 className={isModalOpen ? "modal" : "modal hidden"}
-                // onClick={() => setIsModalOpen(false)}
+                onClick={() => setIsModalOpen(false)}
             >
-                <div className="modal-content">
-                    <span className="close">
+                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                    <span className="close" onClick={() => setIsModalOpen(false)}>
                         &times;
                     </span>
 
@@ -106,7 +108,7 @@ const Button = () => {
                     {data.tokens
                         .sort((a: any, b: any) => b.chain_id - a.chain_id)
                         .map((token: any) => {
-                            const thisToken = tokens.find((t) => t.ethereum_address === token.ethereum_address);
+                            const thisToken = tokens.find((t) => t.address === token.ethereum_address);
 
                             const chainId = token.chain_id;
                             const previousChainId = data.tokens[data.tokens.indexOf(token) - 1]?.chain_id;
@@ -116,22 +118,19 @@ const Button = () => {
                             );
 
                             return (
-                                <TokenRow
+                                thisToken && (<TokenRow
                                     key={`${token.ethereum_address}-${token.chain_id}`} 
+                                    token={thisToken}
                                     delegateCall={delegateCall}
-                                    token={token}
-                                    currentDelegate={thisToken?.currentDelegate as string}
-                                    newDelegate={data?.ethereum_address}
-                                    balance={thisToken?.balance}
                                     first={chainId !== previousChainId}
-                                    isClicked={thisToken?.selected}
-                                    onClick={() => onSelect(token)}
-                                />
+                                    isClicked={thisToken.selected}
+                                    onClick={() => onSelect(thisToken)}
+                                />)
                             )
                         })}
 
                     <button className="delegate" onClick={onDelegate}>
-                        Delegate now
+                        {selectedTokens && isPrepared ? "Delegate now" : "Sign delegations"}
                     </button>
 
                     <p>Powered by <strong>Charlie</strong>.</p>

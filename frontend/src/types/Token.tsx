@@ -3,7 +3,7 @@ interface Token {
     blockchain: string,
     chainId: number,
     decimals: number,
-    ethereum_address: string,
+    address: string,
     name: string,
     symbol: string,
     verified: boolean,
