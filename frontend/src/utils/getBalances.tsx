@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 
 import { providers, ERC20_ABI } from "./config";
-import { getMultiCall } from "./getMultiCall";
+import { submitStaticMultiCall } from "./getMultiCall";
 
 import { Balance } from "../types";
 
@@ -71,26 +71,6 @@ const getBalances = async ({
         results: balances,
         hasNextPage
     }
-}
-
-const submitStaticMultiCall = async (
-    multiCallsTargets: `0x${string}`[],
-    multiCallsData: string[],
-    provider: ethers.providers.AlchemyProvider
-) => {
-    const calls = multiCallsTargets.map((target, i) => {
-        return {
-            target,
-            allowFailure: true,
-            callData: multiCallsData[i],
-        };
-    });
-
-    const multiCallContract = await getMultiCall(provider.network.chainId);
-
-    const multiCallResult = await multiCallContract.callStatic.aggregate3(calls);
-
-    return multiCallResult;
 }
 
 export { getBalances }
