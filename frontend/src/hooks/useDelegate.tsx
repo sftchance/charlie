@@ -45,8 +45,6 @@ const useDelegate = (preferredChainId: number, tokens: VotesToken[], blocking: b
             call.target === token.address;
     }
 
-    console.log('rerender?')
-
     const openDelegationSignatures = async ({
         onError = (e: any) => { console.error(e) },
         onStart = (token: VotesToken) => { },
@@ -156,7 +154,7 @@ const useDelegate = (preferredChainId: number, tokens: VotesToken[], blocking: b
     }
 
     return { 
-        isPrepared,
+        isPrepared: isPrepared && isReady,
         delegatedCalls,
         openDelegationSignatures,
         openDelegationTx,

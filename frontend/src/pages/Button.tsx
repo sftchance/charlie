@@ -78,8 +78,16 @@ const Button = () => {
         ));
     }
 
-    const onDelegate = async () => {
+    const onSign = async () => {
         await openDelegationSignatures({
+            onSuccess: () => {
+                console.log('success')
+            }
+        });
+    }
+
+    const onDelegate = async () => {
+        await openDelegationTx({
             onSuccess: () => {
                 console.log('success')
             }
@@ -146,7 +154,7 @@ const Button = () => {
                         )
                     })}
 
-                    <button className="delegate" onClick={onDelegate}>
+                    <button className="delegate" onClick={isPrepared ? onDelegate : onSign}>
                         {selectedTokens && isPrepared ? "Delegate now" : "Sign delegations"}
                     </button>
 
