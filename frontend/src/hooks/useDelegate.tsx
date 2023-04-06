@@ -17,9 +17,10 @@ import CharlieABI from "../abis/Charlie.json";
 const useDelegate = (preferredChainId: number, tokens: VotesToken[], blocking: boolean) => {
     const [delegatedCalls, setDelegatedCalls] = useState<DelegatedCall[]>([]);
 
-    const isSigningNeeded = Boolean(delegatedCalls.some((call) => call.status !== 'signed'));
-
-    const isReady = Boolean(tokens.length && tokens.length === delegatedCalls.length && !isSigningNeeded);
+    const isSigningNeeded = Boolean(
+        tokens.length !== delegatedCalls.length ||
+        delegatedCalls.some((call) => call.status !== 'signed')
+    );
 
     const { chain } = useNetwork();
 
@@ -31,7 +32,7 @@ const useDelegate = (preferredChainId: number, tokens: VotesToken[], blocking: b
     }));
 
     const { config, isSuccess: isPrepared } = usePrepareContractWrite({
-        enabled: isReady,
+        enabled: !isSigningNeeded,
         chainId: preferredChainId,
         address: "0xbD8488016B3A84647c1230f934A6EDF522Cbd0d9", // TODO: Contract addresses
         abi: CharlieABI,
@@ -155,7 +156,7 @@ const useDelegate = (preferredChainId: number, tokens: VotesToken[], blocking: b
     }
 
     return { 
-        isPrepared: isPrepared && isReady,
+        isPrepared: isPrepared && !isSigningNeeded,
         isSigningNeeded: isSigningNeeded,
         delegatedCalls,
         openDelegationSignatures,
