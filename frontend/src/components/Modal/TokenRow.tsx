@@ -43,31 +43,51 @@ const TokenRow = ({
     const actionStatus = delegateCall ? delegateCall.status : "";
 
     return (
-        <div className="token">
-            {first && <>
-                <h1>{chain?.name}</h1>
+        <>
+            {first && <div className="chain">
+                <div className="name">
+                    <span className="img" />
+                    <h1>{chain?.name}</h1>
+                </div>
                 <hr />
-            </>}
+            </div>}
 
-            <a href={blockExplorerURL} target="_blank" rel="noreferrer">
-                <h2 style={{display: "flex"}}>
-                    <div className={`status ${actionStatus}`} />
-
+            <div className="token">
+                <div className="status">
+                    <div className={`signature ${actionStatus}`} />
+                    
                     <input 
-                        type="checkbox" 
+                        type="checkbox"
                         onChange={onClick}
                         checked={isClicked || false}
                     />
-                    <span>(${symbol}) {name}</span>
-                    <span>Balance: {balance}</span>
-                    <div>
-                        {currentDelegate && (getAddressOrENS(currentDelegate))}
-                        --- 
-                        {delegatee && (getAddressOrENS(delegatee))}
+                </div>
+
+                <a href={blockExplorerURL} target="_blank" rel="noreferrer">
+                    <div className="name">
+                        <span className="img" />
+                        <h3>{name}</h3>
+                        <span className="symbol">{`($${symbol})`}</span>
                     </div>
-                </h2>
-            </a>
-        </div>
+                </a>
+
+                <div className="balance">
+                    <h3>{Number(balance).toFixed(3)}</h3>
+                </div>
+
+                <div className="delegations">
+                    <div className="delegation">
+                        <span className="img" />
+                        <span>{getAddressOrENS(currentDelegate)}</span>
+                    </div>
+                    <div className="arrow" />
+                    <div className="delegation">
+                        <span className="img" />
+                        <span>{getAddressOrENS(delegatee)}</span>
+                    </div>
+                </div>
+            </div>
+        </>
     )
 }
 

@@ -1,26 +1,114 @@
-input {
-    min-width: 30px;
-    height: 30px;
+.chain {
+    margin-block: 20px;
 }
 
-.status {
-    min-width: 30px;
-    height: 30px;
+.chain .name {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.chain h1 {
+    font-size: 20px;
+    margin-bottom: 0 !important;
+}
+
+.chain .img {
+    height: 24px;
+    width: 24px;
+}
+
+.token {
+    display: grid;
+    grid-template-areas: "status name balance"
+                "delegations delegations delegations";
+    grid-template-columns: 1fr 8fr 1fr;
+    align-items: center;
+    column-gap: 12px;
+    row-gap: 8px;
+    margin-bottom: 20px;
+}
+
+.token h3 {
+    font-size: 20px;
+    margin: 0;
+}
+
+.token div {
+    align-items: center;
+}
+
+.token input {
+    min-width: 20px;
+    height: 20px;
+    grid-area: checkbox;
+}
+
+.token .name {
+    grid-area: name;
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+}
+
+.img {
+    display: inline-flex;
+    height: 20px;
+    width: 20px;
+    background-color: lightgray;
     border-radius: 50%;
 }
 
-.status.queued {
+.token .name .symbol {
+    margin-bottom: 20px;
+    font-size: 10px;
+    color: rgba(0,0,0,0.35);
+    font-weight: 600;
+}
+
+.token .balance {
+    grid-area: balance;
+}
+
+.token .delegations {
+    grid-area: delegations;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.delegations .delegation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.status {
+    grid-area: status;
+    display: flex;
+    flex-direction: row;
+}
+
+.signature {
+    min-width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.signature.queued {
     background-color: gray;
 }
 
-.status.signed {
+.signature.signed {
     background-color: green;
 }
 
-.status.pending {
+.signature.pending {
     background-color: yellow;
 }
 
-.status.error {
+.signature.error {
     background-color: red;
 }

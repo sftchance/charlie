@@ -23,11 +23,6 @@ const useDelegate = ({
  }) => {
     const [delegatedCalls, setDelegatedCalls] = useState<DelegatedCall[]>([]);
 
-    const isSigningNeeded = Boolean(
-        tokens.length !== delegatedCalls.length ||
-        delegatedCalls.some((call) => call.status !== 'signed')
-    );
-
     const { chain } = useNetwork();
 
     const { switchNetworkAsync } = useSwitchNetwork();
@@ -37,6 +32,11 @@ const useDelegate = ({
         callData: call.callData as `0x${string}`,
     }));
 
+    const isSigningNeeded = Boolean(
+        tokens.length !== delegatedCalls.length ||
+        delegatedCalls.some((call) => call.status !== 'signed')
+    );
+
     const { config, isSuccess: isPrepared } = usePrepareContractWrite({
         enabled: !isSigningNeeded,
         chainId: chain?.id ?? 1,
@@ -45,8 +45,6 @@ const useDelegate = ({
         functionName: "aggregate",
         args: [args, blocking],
     });
-
-    console.log('config', config)
 
     const { writeAsync } = useContractWrite(config);
 
@@ -61,6 +59,7 @@ const useDelegate = ({
         setDelegatedCalls((prev) => prev.filter((call) => !isTokenCall(call, token)));
     }
 
+    // Initiate the signature queue
     const openDelegationSignatures = async ({
         onError = (e: any) => { console.error(e) },
         onStart = (token: VotesToken) => { },
@@ -147,6 +146,7 @@ const useDelegate = ({
         onSuccess();
     }
 
+    // Send the multicall tx.
     const openDelegationTx = async ({
         onError = (e: any) => { console.error(e) },
         onStart = () => { },
