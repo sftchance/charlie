@@ -31,11 +31,13 @@ const formatBalance = (balance: number) => {
 
 const TokenRow = ({
     token,
+    delegate,
     delegateCall,
     isClicked,
     onClick
 }: {
     token: VotesToken,
+    delegate: any,
     delegateCall?: DelegatedCall,
     isClicked?: boolean,
     onClick?: () => void,
@@ -49,7 +51,6 @@ const TokenRow = ({
         symbol,
         balance,
         currentDelegate,
-        delegatee,
     } = token;
 
     const chain = chains.find(chain => chain.id === chainId)
@@ -86,8 +87,10 @@ const TokenRow = ({
                     </div>
                     <div className="arrow" />
                     <div className="delegation">
-                        <span className="img" />
-                        <span>{getAddressOrENS(delegatee)}</span>
+                        {delegate.ensAvatar ? 
+                            <img src={delegate.ensAvatar} alt="avatar" /> :
+                            <span className="img" />}
+                        <span>{delegate.ensName}</span>
                     </div>
                 </div>
             </div>

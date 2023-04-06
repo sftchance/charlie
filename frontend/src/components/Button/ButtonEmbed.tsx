@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, Fragment } from "react";
 
 import { useParams } from "react-router-dom";
 
@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { useAccount, useNetwork } from "wagmi";
 
-import { useClient, useColor, useDelegate } from "../../hooks";
+import { useClient, useColor, useDelegate, useENS } from "../../hooks";
 
 import { TokenRow } from "../";
 
@@ -41,7 +41,7 @@ const ButtonEmbed = () => {
 
     const [tokens, setTokens] = useState<VotesToken[]>([]);
 
-    const selectedTokens = tokens.filter((t) => t.selected === true)
+    const selectedTokens = tokens.filter((t) => t.selected === true);
 
     const {
         isLoading,
@@ -56,6 +56,8 @@ const ButtonEmbed = () => {
         queryFn: () =>
             get(path(`buttons/${buttonId}/`))
     });
+
+    const { ensName, ensAvatar } = useENS(data?.ethereum_address);
 
     const textColor = useColor([
         data?.primary_color,
@@ -152,7 +154,7 @@ const ButtonEmbed = () => {
                             const firstOfChain = token.chainId !== previousChainId;
 
                             return (
-                                <>
+                                <Fragment key={`${token.address}-${token.chainId}`}>
                                     {firstOfChain && <div className="chain">
                                         <div className="name">
                                             <span className="img" />
@@ -160,14 +162,15 @@ const ButtonEmbed = () => {
                                         </div>
                                         <hr />
                                     </div>}
+                                    
                                     <TokenRow
-                                        key={`${token.address}-${token.chainId}`}
                                         token={token}
+                                        delegate={{ ensName: ensName, ensAvatar: ensAvatar }}
                                         delegateCall={delegateCall}
                                         isClicked={token.selected}
                                         onClick={() => onSelect(token)}
                                     />
-                                </>
+                                </Fragment>
                             )
                         })}
                     </div>

@@ -38,7 +38,7 @@
     background: var(--charlieGradientAlt);
 }
 
-.check:after {
+/* .check:after {
     content: "";
     position: absolute;
     display: none;
@@ -58,4 +58,4 @@
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
-}
+} */
