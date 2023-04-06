@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 
 import { providers, ERC20_VOTES_ABI } from "./config";
 
-import { submitStaticMultiCall } from "./getMultiCall";
+import { submitStaticMultiCalls } from "./getMultiCall";
 
 import { VotesToken } from "../types";
 
@@ -15,53 +15,65 @@ const getDelegationInfo = async ({
 }): Promise<{
     results: VotesToken[],
 }> => {
-    const delegations: any[] = [];
+    const results: any[] = [];
 
     const votesInterface = new ethers.utils.Interface(ERC20_VOTES_ABI);
 
     for (const chainId of Object.keys(providers)) {
-        const chainTargets: `0x${string}`[] = []
-        const chainDatas: string[] = []
-
         const provider: ethers.providers.JsonRpcProvider = providers[Number(chainId)];
 
-        for (const token of tokens.filter(token => token.chainId === Number(chainId))) {
-            chainTargets.push(token.address);
-            chainDatas.push(votesInterface.encodeFunctionData("nonces", [delegatee]));
-            chainTargets.push(token.address);
-            chainDatas.push(votesInterface.encodeFunctionData("delegates", [delegatee]));
+        const calls: {
+            target: `0x${string}`,
+            allowFailure: boolean,
+            callData: string,
+        }[] = []
+
+        const chainTokens = tokens.filter(token => token.chainId === Number(chainId));
+
+        for (const token of chainTokens) {
+            calls.push({
+                target: token.address,
+                allowFailure: true,
+                callData: votesInterface.encodeFunctionData("nonces", [delegatee])
+            })
+
+            calls.push({
+                target: token.address,
+                allowFailure: true,
+                callData: votesInterface.encodeFunctionData("delegates", [delegatee])
+            })
         }
 
-        if (chainTargets.length + chainDatas.length == 0) continue;
+        if (calls.length === 0) continue;
 
-        const multiCallResult = await submitStaticMultiCall(
-            chainTargets,
-            chainDatas,
+        const multiCallResult = await submitStaticMultiCalls({
+            calls,
             provider
-        );
+        });
 
         for (let i = 0; i < multiCallResult.length; i += 2) {
-            const token = tokens.find(token => token.address === chainTargets[i]);
+            const token = tokens.find(token => token.address === calls[i].target);
 
             if (token === undefined) continue;
 
-            const nonce = multiCallResult[i].returnData;
+            const nonce = Number(multiCallResult[i].returnData);
+
             const currentDelegate = multiCallResult[i + 1].returnData;
 
-            delegations.push({
+            const expiry = Math.floor(Date.now() / 1000) + 300;
+
+            results.push({
                 ...token,
                 delegatee,
                 selected: false,
-                nonce: Number(nonce),
-                currentDelegate: currentDelegate,
-                expiry: Math.floor(Date.now() / 1000) + 300 /// ~5 minutes from now
+                nonce,
+                currentDelegate,
+                expiry
             });
         }
     }
 
-    return {
-        results: delegations
-    }
+    return { results }
 }
 
 export { getDelegationInfo }

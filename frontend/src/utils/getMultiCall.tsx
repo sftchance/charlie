@@ -11,19 +11,7 @@ const getMultiCall = async (chainId: number) => {
     return multiCallContract;
 }
 
-const submitStaticMultiCall = async (
-    multiCallsTargets: `0x${string}`[],
-    multiCallsData: string[],
-    provider: ethers.providers.JsonRpcProvider
-) => {
-    const calls = multiCallsTargets.map((target, i) => {
-        return {
-            target,
-            allowFailure: true,
-            callData: multiCallsData[i],
-        };
-    });
-
+const submitStaticMultiCalls = async ({ calls, provider }: { calls: any[], provider: ethers.providers.JsonRpcProvider }) => {
     const multiCallContract = await getMultiCall(provider.network.chainId);
 
     const multiCallResult = await multiCallContract.callStatic.aggregate3(calls);
@@ -31,4 +19,4 @@ const submitStaticMultiCall = async (
     return multiCallResult;
 }
 
-export { getMultiCall, submitStaticMultiCall }
+export { getMultiCall, submitStaticMultiCalls }
