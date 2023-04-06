@@ -42,6 +42,7 @@ h4,
 h5,
 h6,
 button {
+    margin-bottom: 0.25rem;
     color: var(--charlieBlack);
     font-weight: 700;
 }
@@ -57,6 +58,16 @@ td {
     text-align: left;
 }
 
+a,
+button.link {
+    background: none;
+    color: var(--charlieBlack);
+    font-size: inherit;
+    padding: 0;
+    text-decoration: none;
+    font-weight: 700;
+}
+
 button {
     border: none;
     outline: none;
@@ -64,6 +75,7 @@ button {
     background: var(--charlieGrey);
     border-radius: var(--charlieBorderRadius);
     padding: var(--charlieButtonPadding);
+    margin-bottom: 0px;
 }
 
 button.block {
@@ -147,14 +159,16 @@ button.primary.secondary:focus {
     background: var(--charlieGradientAlt);
 }
 
-button.primary.danger {
-    background: red;
-    color: var(--charlieWhite);
+button.danger {
+    background: transparent;
+    color: red;
+    border: 1px solid red;
 }
 
-button.primary.danger:hover,
-button.primary.danger:focus {
+button.danger:hover,
+button.danger:focus {
     background: red;
+    color: var(--charlieWhite);
 }
 
 button:disabled {
@@ -162,15 +176,6 @@ button:disabled {
     filter: saturate(0.1);
 }
 
-a,
-button.link {
-    background: none;
-    color: var(--charlieBlack);
-    font-size: inherit;
-    padding: 0;
-    text-decoration: none;
-    font-weight: 700;
-}
 
 button.link:active,
 button.link:focus,
@@ -178,8 +183,6 @@ button.link:hover {
     background: none;
     color: var(--charlieBlackHover);
 }
-
-
 
 .container {
     margin: 0 auto;

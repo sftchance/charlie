@@ -23,7 +23,7 @@ const Account = () => {
         <Route path="/" element={<Buttons />} />
         <Route path="/buttons/new/" element={<ButtonForm />} />
         <Route path="/buttons/:buttonId/" element={<Button />} />
-        <Route path="/buttons/:buttonId/edit/" element={<ButtonForm isEdit={true} />} />
+        <Route path="/buttons/:buttonId/edit/" element={<ButtonForm />} />
     </Routes>
 }
 

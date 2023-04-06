@@ -1,8 +1,10 @@
 import { SiweMessage } from "siwe";
 
-import { path, get, post } from "../utils";
+import { useClient } from "./";
 
 const useNonce = () => {
+    const { path, get } = useClient()
+
     const _get = async () => {
         return get(path(`api/auth/nonce/`))
     };
@@ -40,6 +42,8 @@ const useAuthenticationMessage = ({ signer }: { signer: any }) => {
 }
 
 const useAuthenticate = () => {
+    const { path, post } = useClient()
+
     const _post = async ({ address, message, signature }: {
         address: `0x${string}`;
         message: SiweMessage;
