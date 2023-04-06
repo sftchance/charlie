@@ -70,15 +70,17 @@ const ButtonEmbed = () => {
         isPrepared,
         isSigningNeeded,
         delegatedCalls,
+        onRemoveCall,
         openDelegationSignatures,
         openDelegationTx
-    } = useDelegate(
-        currentChainId,
-        selectedTokens,
-        false
-    );
+    } = useDelegate({
+        tokens: selectedTokens,
+        blocking: true
+    });
 
     const onSelect = (token: any) => {
+        if (token.selected) onRemoveCall(token);
+        
         setTokens(tokens => (
             tokens.map((t) => t.address === token.address ? { ...t, selected: !t.selected } : t)
         ));

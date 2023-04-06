@@ -14,7 +14,13 @@ import { ERC20_VOTES_ABI } from "../utils";
 
 import CharlieABI from "../abis/Charlie.json";
 
-const useDelegate = (preferredChainId: number, tokens: VotesToken[], blocking: boolean) => {
+const useDelegate = ({
+    tokens,
+    blocking,
+ } : { 
+    tokens: VotesToken[], 
+    blocking: boolean
+ }) => {
     const [delegatedCalls, setDelegatedCalls] = useState<DelegatedCall[]>([]);
 
     const isSigningNeeded = Boolean(
@@ -33,18 +39,26 @@ const useDelegate = (preferredChainId: number, tokens: VotesToken[], blocking: b
 
     const { config, isSuccess: isPrepared } = usePrepareContractWrite({
         enabled: !isSigningNeeded,
-        chainId: preferredChainId,
+        chainId: chain?.id ?? 1,
         address: "0xbD8488016B3A84647c1230f934A6EDF522Cbd0d9", // TODO: Contract addresses
         abi: CharlieABI,
         functionName: "aggregate",
         args: [args, blocking],
     });
 
+    console.log('config', config)
+
     const { writeAsync } = useContractWrite(config);
 
+    // Does a call exist for this token?
     const isTokenCall = (call: DelegatedCall, token: VotesToken) => {
         return call.chainId === token.chainId &&
             call.target === token.address;
+    }
+
+    // Remove a call for a token
+    const onRemoveCall = (token: VotesToken) => {
+        setDelegatedCalls((prev) => prev.filter((call) => !isTokenCall(call, token)));
     }
 
     const openDelegationSignatures = async ({
@@ -72,6 +86,8 @@ const useDelegate = (preferredChainId: number, tokens: VotesToken[], blocking: b
         
         // Get the EIP 712 messages for each token
         const { messages } = getTypedDelegations(tokens);
+
+        console.log('messages', messages)
         
         // Queue the signing of each message
         for (const [i, message] of messages.entries()) {
@@ -159,6 +175,7 @@ const useDelegate = (preferredChainId: number, tokens: VotesToken[], blocking: b
         isPrepared: isPrepared && !isSigningNeeded,
         isSigningNeeded: isSigningNeeded,
         delegatedCalls,
+        onRemoveCall,
         openDelegationSignatures,
         openDelegationTx,
     }
