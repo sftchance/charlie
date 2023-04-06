@@ -1,11 +1,6 @@
 import { useEnsName, useEnsAvatar } from "wagmi";
 
 const useENS = (address: string | undefined) => {
-    if (!address) return {
-        ensName: undefined,
-        ensAvatar: undefined
-    }
-
     const { data: ensName } = useEnsName({
         enabled: !!address,
         address: address as `0x${string}`,
@@ -18,8 +13,10 @@ const useENS = (address: string | undefined) => {
         chainId: 1
     })
 
+    const name = ensName ? ensName : address ? `${address.slice(0, 6)}...${address.slice(-4)}` : ""
+
     return {
-        ensName: ensName ?? address,
+        ensName: name,
         ensAvatar
     }
 }
