@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
 
@@ -42,10 +42,6 @@ const ButtonEmbed = () => {
     const [tokens, setTokens] = useState<VotesToken[]>([]);
 
     const selectedTokens = tokens.filter((t) => t.selected === true)
-
-    const currentChainId = useMemo(() => {
-        return chain?.id ?? 1;
-    }, [chain])
 
     const {
         isLoading,
