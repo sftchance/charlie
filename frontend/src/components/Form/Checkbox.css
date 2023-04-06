@@ -1,0 +1,61 @@
+.checkbox {
+    min-width: 18px;
+    height: 18px;
+    text-decoration: none;
+    background: none;
+    cursor: pointer;
+    display: block;
+    position: relative;
+    grid-area: checkbox;
+}
+
+.checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.check {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border: 1px solid var(--charlieGrey);
+    border-radius: var(--charlieBorderRadius);
+    background: var(--charlieWhite);
+}
+
+.check:hover,
+.check:active,
+.check:focus {
+    background: var(--charlieGreyHover);
+}
+
+.check.checked {
+    background: var(--charlieGradientAlt);
+}
+
+.check:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+  
+.check.checked:after {
+    display: block;
+}
+  
+.check:after {
+    left: 4px;
+    top: 0px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}

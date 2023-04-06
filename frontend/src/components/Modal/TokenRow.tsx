@@ -4,6 +4,8 @@ import { useBlockExplorer } from "../../hooks"
 
 import { DelegatedCall, VotesToken } from "../../types"
 
+import { Checkbox } from "../Form"
+
 import "./TokenRow.css"
 
 const getAddressOrENS = (address: string) => {
@@ -11,16 +13,30 @@ const getAddressOrENS = (address: string) => {
     return `${address.slice(0, 6)}...${address.slice(-4)}`
 }
 
+const formatBalance = (balance: number) => {
+    const bal = Number(balance)
+    if (bal < 0.01)
+        return "<0.01"
+    if (bal > 1000000000)
+        return `${(Math.round(balance / 100000000) / 10).toLocaleString()}b`
+    if (bal > 10000000)
+        return `${(Math.round(balance / 100000) / 10)}m`
+    if (bal > 10000)
+        return `${(Math.round(balance / 1000)) / 10}k`
+    if (bal % 1 === 0)
+        return bal
+
+    return bal.toFixed(2)
+}
+
 const TokenRow = ({
     token,
     delegateCall,
-    first,
     isClicked,
     onClick
 }: {
     token: VotesToken,
     delegateCall?: DelegatedCall,
-    first: boolean,
     isClicked?: boolean,
     onClick?: () => void,
 }) => {
@@ -40,27 +56,15 @@ const TokenRow = ({
 
     const blockExplorerURL = useBlockExplorer(chain, address);
 
-    const actionStatus = delegateCall ? delegateCall.status : "";
+    const actionStatus = delegateCall ? delegateCall.status : "hidden";
 
     return (
         <>
-            {first && <div className="chain">
-                <div className="name">
-                    <span className="img" />
-                    <h1>{chain?.name}</h1>
-                </div>
-                <hr />
-            </div>}
-
             <div className="token">
                 <div className="status">
                     <div className={`signature ${actionStatus}`} />
                     
-                    <input 
-                        type="checkbox"
-                        onChange={onClick}
-                        checked={isClicked || false}
-                    />
+                    <Checkbox checked={isClicked} onChange={onClick} />
                 </div>
 
                 <a href={blockExplorerURL} target="_blank" rel="noreferrer">
@@ -72,7 +76,7 @@ const TokenRow = ({
                 </a>
 
                 <div className="balance">
-                    <h3>{Number(balance).toFixed(3)}</h3>
+                    <h3>{formatBalance(balance)}</h3>
                 </div>
 
                 <div className="delegations">

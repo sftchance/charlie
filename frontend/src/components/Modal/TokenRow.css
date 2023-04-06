@@ -1,25 +1,3 @@
-.chain {
-    margin-block: 20px;
-}
-
-.chain .name {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.chain h1 {
-    font-size: 20px;
-    margin-bottom: 0 !important;
-}
-
-.chain .img {
-    height: 24px;
-    width: 24px;
-}
-
 .token {
     display: grid;
     grid-template-areas: "status name balance"
@@ -40,10 +18,11 @@
     align-items: center;
 }
 
-.token input {
-    min-width: 20px;
-    height: 20px;
-    grid-area: checkbox;
+.token .status {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
 }
 
 .token .name {
@@ -62,7 +41,7 @@
 }
 
 .token .name .symbol {
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     font-size: 10px;
     color: rgba(0,0,0,0.35);
     font-weight: 600;
@@ -81,6 +60,7 @@
 .delegations .delegation {
     display: flex;
     flex-direction: row;
+    justify-content: end;
     align-items: center;
     gap: 8px;
 }
@@ -95,6 +75,10 @@
     min-width: 10px;
     height: 10px;
     border-radius: 50%;
+}
+
+.signature.hidden {
+    visibility: hidden;
 }
 
 .signature.queued {

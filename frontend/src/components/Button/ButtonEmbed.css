@@ -61,3 +61,29 @@
     font-size: 20px;
     cursor: pointer;
 }
+
+.modal .tokens {
+    margin-top: 40px;
+}
+
+.chain {
+    margin-block: 10px;
+}
+
+.chain .name {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.chain h1 {
+    font-size: 20px;
+    margin-bottom: 0 !important;
+}
+
+.chain .img {
+    height: 24px;
+    width: 24px;
+}

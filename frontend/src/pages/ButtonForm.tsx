@@ -37,8 +37,6 @@ const ButtonForm = () => {
 
     const isEdit = !!buttonId;
 
-    console.log(buttonId, isEdit)
-
     useNavbar(<Link to={
         isEdit
             ? `/account/buttons/${buttonId}/`

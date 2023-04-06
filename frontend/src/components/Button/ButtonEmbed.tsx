@@ -80,7 +80,7 @@ const ButtonEmbed = () => {
 
     const onSelect = (token: any) => {
         if (token.selected) onRemoveCall(token);
-        
+
         setTokens(tokens => (
             tokens.map((t) => t.address === token.address ? { ...t, selected: !t.selected } : t)
         ));
@@ -143,24 +143,38 @@ const ButtonEmbed = () => {
 
                     <h1>{data.text}</h1>
 
-                    {tokens.map((token: any) => {
-                        const previousChainId = tokens[tokens.indexOf(token) - 1]?.chainId;
+                    <p>{data.description}</p>
 
-                        const delegateCall = delegatedCalls.find((call) =>
-                            call.target === token.address && call.chainId === token.chainId
-                        );
+                    <div className="tokens">
+                        {tokens.map((token: any) => {
+                            const previousChainId = tokens[tokens.indexOf(token) - 1]?.chainId;
 
-                        return (
-                            <TokenRow
-                                key={`${token.address}-${token.chainId}`}
-                                token={token}
-                                delegateCall={delegateCall}
-                                first={token.chainId !== previousChainId}
-                                isClicked={token.selected}
-                                onClick={() => onSelect(token)}
-                            />
-                        )
-                    })}
+                            const delegateCall = delegatedCalls.find((call) =>
+                                call.target === token.address && call.chainId === token.chainId
+                            );
+
+                            const firstOfChain = token.chainId !== previousChainId;
+
+                            return (
+                                <>
+                                    {firstOfChain && <div className="chain">
+                                        <div className="name">
+                                            <span className="img" />
+                                            <h1>{chain?.name}</h1>
+                                        </div>
+                                        <hr />
+                                    </div>}
+                                    <TokenRow
+                                        key={`${token.address}-${token.chainId}`}
+                                        token={token}
+                                        delegateCall={delegateCall}
+                                        isClicked={token.selected}
+                                        onClick={() => onSelect(token)}
+                                    />
+                                </>
+                            )
+                        })}
+                    </div>
 
                     <button className="delegate" disabled={!isPrepared && !isSigningNeeded} onClick={isPrepared ? onDelegate : onSign}>
                         {isSigningNeeded ? "Sign delegations" : "Delegate now"}
