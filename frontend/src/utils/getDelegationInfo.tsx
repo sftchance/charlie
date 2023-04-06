@@ -23,7 +23,7 @@ const getDelegationInfo = async ({
         const chainTargets: `0x${string}`[] = []
         const chainDatas: string[] = []
 
-        const provider: ethers.providers.AlchemyProvider = providers[Number(chainId)];
+        const provider: ethers.providers.JsonRpcProvider = providers[Number(chainId)];
 
         for (const token of tokens.filter(token => token.chainId === Number(chainId))) {
             chainTargets.push(token.address);
@@ -40,7 +40,7 @@ const getDelegationInfo = async ({
             provider
         );
 
-        for (let i = 0; i < multiCallResult.length; i+=2) {
+        for (let i = 0; i < multiCallResult.length; i += 2) {
             const token = tokens.find(token => token.address === chainTargets[i]);
 
             if (token === undefined) continue;
