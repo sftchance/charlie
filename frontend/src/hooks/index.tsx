@@ -5,3 +5,6 @@ export { useNavbar } from "./useNavbar";
 export { useBlockExplorer } from "./useBlockExplorer";
 export { useClient } from "./useClient";
 export { useColor } from "./useColor";
+export { useDelegate } from "./useDelegate";
+export { useENS } from "./useENS";
+export { useENSMulticall } from "./useENSMulticall";

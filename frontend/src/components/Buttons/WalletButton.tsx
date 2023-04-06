@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import { useAuthentication } from "../../hooks";
+import { useAuthentication, useENS } from "../../hooks";
 
 const WalletButton = (props: any) => {
     const navigate = useNavigate();
@@ -11,10 +11,12 @@ const WalletButton = (props: any) => {
         isLoading,
         isAuthenticated
     } = useAuthentication();
+    
+    const { ensName } = useENS(address);
 
-    if (!address) return <></>
+    if (!address) return <></>;
 
-    const buttonText = isAuthenticated ? address.slice(0, 6) + "..." + address.slice(-4) : "Authenticate";
+    const buttonText = isAuthenticated ? ensName : "Authenticate";
 
     const onClick = () => {
         if (isLoading) return;

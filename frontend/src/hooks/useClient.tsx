@@ -26,8 +26,6 @@ const useClient = () => {
     }
 
     const _secure = async (method: string, url: string, body?: any) => {
-        // const { logout } = useAuthentication()
-
         if (body && typeof body !== "string")
             body = JSON.stringify(body)
 

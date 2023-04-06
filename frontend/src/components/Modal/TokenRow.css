@@ -1,0 +1,98 @@
+.token {
+    display: grid;
+    grid-template-areas: "status name balance"
+                "delegations delegations delegations";
+    grid-template-columns: 1fr 8fr 1fr;
+    align-items: center;
+    column-gap: 12px;
+    row-gap: 8px;
+    margin-bottom: 20px;
+}
+
+.token h3 {
+    font-size: 20px;
+    margin: 0;
+}
+
+.token div {
+    align-items: center;
+}
+
+.token .status {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+}
+
+.token .name {
+    grid-area: name;
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+}
+
+.img {
+    display: inline-flex;
+    height: 20px;
+    width: 20px;
+    background-color: lightgray;
+    border-radius: 50%;
+}
+
+.token .name .symbol {
+    margin-bottom: 12px;
+    font-size: 10px;
+    color: rgba(0,0,0,0.35);
+    font-weight: 600;
+}
+
+.token .balance {
+    grid-area: balance;
+}
+
+.token .delegations {
+    grid-area: delegations;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.delegations .delegation {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    gap: 8px;
+}
+
+.status {
+    grid-area: status;
+    display: flex;
+    flex-direction: row;
+}
+
+.signature {
+    min-width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.signature.hidden {
+    visibility: hidden;
+}
+
+.signature.queued {
+    background-color: gray;
+}
+
+.signature.signed {
+    background-color: green;
+}
+
+.signature.pending {
+    background-color: yellow;
+}
+
+.signature.error {
+    background-color: red;
+}

@@ -10,5 +10,8 @@
     "hardhat-gas-reporter": "^1.0.9",
     "solidity-coverage": "^0.8.2",
     "solmate": "^6.6.1"
+  },
+  "dependencies": {
+    "hardhat-abi-exporter": "^2.10.1"
   }
 }

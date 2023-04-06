@@ -1,15 +1,13 @@
 import { ethers } from "ethers";
 
 import { providers, ERC20_ABI } from "./config";
-import { getMultiCall } from "./getMultiCall";
+import { submitStaticMultiCalls } from "./getMultiCall";
 
 import { Balance } from "../types";
 
 const getBalances = async ({
     address,
     tokens,
-    size,
-    offset,
     includeZeros
 }: {
     address: `0x${string}`
@@ -18,79 +16,58 @@ const getBalances = async ({
     offset?: number,
     includeZeros?: boolean,
 }): Promise<{
-    results: Balance[],
-    hasNextPage: boolean,
+    results: Balance[]
 }> => {
-    const balances: Balance[] = []
+    const results: Balance[] = []
 
-    for (const chainId of Object.keys(providers)) {
-        const multiCallsTargets: `0x${string}`[] = []
-        const multiCallsDatas: string[] = []
+    const erc20Interface = new ethers.utils.Interface(ERC20_ABI);
 
-        const provider: ethers.providers.JsonRpcProvider = providers[Number(chainId)];
+    for (const chain of Object.keys(providers)) {
+        const chainId = Number(chain);
 
-        for (const token of tokens.filter(token => token.chain_id === Number(chainId))) {
-            const tokenContract = new ethers.Contract(token.ethereum_address, ERC20_ABI, provider);
+        const calls: {
+            target: `0x${string}`,
+            allowFailure: boolean,
+            callData: string,
+        }[] = []
 
-            // if (token.symbol === 'null' || token.symbol === null || token.decimals === null) continue;
+        const chainTokens = tokens.filter(token => token.chain_id === chainId);
 
-            multiCallsTargets.push(token.ethereum_address)
-            multiCallsDatas.push(tokenContract.interface.encodeFunctionData("balanceOf", [address]))
+        for (const token of chainTokens) {
+            calls.push({
+                target: token.ethereum_address,
+                allowFailure: true,
+                callData: erc20Interface.encodeFunctionData("balanceOf", [address])
+            })
         }
 
-        if (multiCallsTargets.length + multiCallsDatas.length == 0) continue;
+        if (calls.length == 0) continue;
 
-        const multiCallResult = await submitStaticMultiCall(
-            multiCallsTargets,
-            multiCallsDatas,
-            provider
-        );
+        const multiCallResult = await submitStaticMultiCalls({
+            calls,
+            chainId
+        });
 
         for (let i = 0; i < multiCallResult.length; i++) {
-            const token = tokens.find(token => token.ethereum_address === multiCallsTargets[i]);
+            const token = tokens.find(token => token.ethereum_address === calls[i].target);
 
-            // if (token === undefined || token.decimals === null) continue;
+            if (token === undefined) continue;
 
-            const balance = parseInt(multiCallResult[i].returnData.slice(2), 16);
+            const balance = Number(multiCallResult[i].returnData);
 
             if (!includeZeros && balance === 0) continue;
 
-            balances.push({
-                chainId: Number(chainId),
+            results.push({
+                chainId,
                 name: token?.name,
                 symbol: token?.symbol,
-                address: token.address,
+                address: token.ethereum_address,
                 balance: `${balance / 10 ** token.decimals}`,
             } as Balance);
         }
     }
 
-    const hasNextPage = offset && size ? offset + size < balances.length : false
-
-    return {
-        results: balances,
-        hasNextPage
-    }
-}
-
-const submitStaticMultiCall = async (
-    multiCallsTargets: `0x${string}`[],
-    multiCallsData: string[],
-    provider: ethers.providers.JsonRpcProvider
-) => {
-    const calls = multiCallsTargets.map((target, i) => {
-        return {
-            target,
-            allowFailure: true,
-            callData: multiCallsData[i],
-        };
-    });
-
-    const multiCallContract = await getMultiCall(provider.network.chainId);
-
-    const multiCallResult = await multiCallContract.callStatic.aggregate3(calls);
-
-    return multiCallResult;
+    return { results }
 }
 
 export { getBalances }

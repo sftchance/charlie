@@ -11,4 +11,12 @@ const getMultiCall = async (chainId: number) => {
     return multiCallContract;
 }
 
-export { getMultiCall }
+const submitStaticMultiCalls = async ({ calls, chainId }: { calls: any[], chainId: number }) => {
+    const multiCallContract = await getMultiCall(chainId);
+
+    const multiCallResult = await multiCallContract.callStatic.aggregate3(calls);
+
+    return multiCallResult;
+}
+
+export { getMultiCall, submitStaticMultiCalls }
