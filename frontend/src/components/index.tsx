@@ -6,6 +6,6 @@ export { Error, Input, MultiSelect } from './Form'
 
 export { ConnectButton, DisconnectButton, WalletButton } from './Buttons'
 
-export { ButtonCard } from './Button'
+export { ButtonCard, ButtonRow, ButtonEmbed, ButtonPreview } from './Button'
 
 export { EasterEgg } from './EasterEgg/EasterEgg'
