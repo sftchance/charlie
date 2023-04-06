@@ -9,7 +9,7 @@ const providers: {
     [chainId: number]: ethers.providers.JsonRpcProvider
 } = {
     1: new ethers.providers.JsonRpcProvider(`https://eth-mainnet.alchemyapi.io/v2/${MAINNET}`),
-    10: new ethers.providers.JsonRpcProvider(`https://eth-mainnet.alchemyapi.io/v2/${OPTIMISM}`),
+    10: new ethers.providers.JsonRpcProvider(`https://opt-mainnet.g.alchemy.com/v2/${OPTIMISM}`),
     137: new ethers.providers.JsonRpcProvider(`https://polygon-mainnet.g.alchemy.com/v2/${POLYGON}`),
     42161: new ethers.providers.JsonRpcProvider(`https://arb-mainnet.g.alchemy.com/v2/${ARBITRUM}`),
 }
