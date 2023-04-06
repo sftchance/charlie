@@ -6,14 +6,16 @@ import { useQuery } from "@tanstack/react-query";
 
 import { TokenRow } from "../";
 
-import { useColor } from "../../hooks";
+import { useClient, useColor } from "../../hooks";
 
-import { path, get, getBalances } from "../../utils";
+import { getBalances } from "../../utils";
 
 import "./ButtonEmbed.css";
 
 const ButtonEmbed = () => {
     const { buttonId } = useParams<{ buttonId: string }>();
+
+    const { get, path } = useClient();
 
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 

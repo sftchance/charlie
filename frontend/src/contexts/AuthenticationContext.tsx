@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -59,9 +59,15 @@ const AuthenticationProvider = ({ children }: any) => {
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const localStorageAddress = localStorage.getItem('address');
+    const localStorageAddress = localStorage.getItem('address') as `0x${string}` | undefined;
 
-    const isAuthenticated = !isLoading && user === address && localStorageAddress !== undefined;
+    const isAuthenticated = !isLoading && user === address && localStorageAddress === address;
+
+    useEffect(() => {
+        if (localStorageAddress && !user) {
+            setUser(localStorageAddress);
+        }
+    }, [])
 
     return (
         <AuthenticationContext.Provider value={{

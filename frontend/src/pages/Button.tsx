@@ -2,14 +2,16 @@ import { Link, useParams } from "react-router-dom"
 
 import { useQuery } from "@tanstack/react-query";
 
-import { useNavbar } from "../hooks";
+import { useClient, useNavbar } from "../hooks";
 
 import { ButtonPreview, Input } from "../components";
 
-import { path, get, copy } from "../utils";
+import { copy } from "../utils";
 
 const Button = () => {
     const { buttonId } = useParams();
+
+    const { path, get } = useClient();
 
     useNavbar(<Link to="/account/" children={
         <button>Back</button>

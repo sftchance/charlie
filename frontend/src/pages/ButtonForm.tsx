@@ -4,10 +4,12 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { useQuery } from "@tanstack/react-query";
 
-import { Error, Input, MultiSelect } from "../components";
 import { useAccount } from "wagmi";
 
-import { path, get, put, post, del } from "../utils";
+import { useClient } from "../hooks";
+
+import { Error, Input, MultiSelect } from "../components";
+
 import { useNavbar } from "../hooks";
 
 import "./ButtonForm.css";
@@ -30,6 +32,8 @@ const ButtonForm = () => {
     const navigate = useNavigate();
 
     const { buttonId } = useParams<{ buttonId: string }>();
+
+    const { path, get, post, put } = useClient();
 
     const isEdit = !!buttonId;
 

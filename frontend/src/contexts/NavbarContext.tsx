@@ -9,18 +9,18 @@ const NavbarContext = createContext({
     setLinks: (links: any) => { }
 });
 
-const DefaultLinks = ({ address }: any) => <>
+const DefaultLinks = ({ isAuthenticated }: any) => <>
     <WalletButton />
 
-    {address ? <DisconnectButton /> : <ConnectButton />}
+    {isAuthenticated ? <DisconnectButton /> : <ConnectButton />}
 </>
 
 const NavbarProvider = ({ children }: any) => {
-    const { address } = useAuthentication();
+    const { isAuthenticated } = useAuthentication();
 
     const [links, setLinks] = useState(null);
 
-    const navbarLinks = links || <DefaultLinks address={address} />;
+    const navbarLinks = links || <DefaultLinks isAuthenticated={isAuthenticated} />;
 
     return (
         <NavbarContext.Provider value={{
