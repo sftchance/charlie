@@ -33,7 +33,7 @@ const ButtonForm = () => {
 
     const { buttonId } = useParams<{ buttonId: string }>();
 
-    const { path, get, post, put } = useClient();
+    const { path, get, post, put, del } = useClient();
 
     const isEdit = !!buttonId;
 
