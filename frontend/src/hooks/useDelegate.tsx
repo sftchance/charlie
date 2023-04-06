@@ -4,15 +4,11 @@ import { useState } from "react";
 
 import { usePrepareContractWrite, useContractWrite, useNetwork, useSwitchNetwork } from "wagmi";
 
-import { signTypedData, SignTypedDataArgs } from "@wagmi/core";
-
-import { getTypedDelegations } from "../utils";
+import { signTypedData } from "@wagmi/core";
 
 import { VotesToken, DelegatedCall } from "../types";
 
-import { ERC20_VOTES_ABI } from "../utils";
-
-import CharlieABI from "../abis/Charlie.json";
+import { getTypedDelegations, ERC20_VOTES_ABI, MULTICALL, MULTICALL_ABI } from "../utils";
 
 const useDelegate = ({
     tokens,
@@ -29,7 +25,8 @@ const useDelegate = ({
 
     const args = delegatedCalls.map((call) => ({
         target: call.target,
-        callData: call.callData as `0x${string}`,
+        allowFailure: true,
+        callData: call.callData as `0x${string}`
     }));
 
     const isSigningNeeded = Boolean(
@@ -40,10 +37,10 @@ const useDelegate = ({
     const { config, isSuccess: isPrepared } = usePrepareContractWrite({
         enabled: !isSigningNeeded,
         chainId: chain?.id ?? 1,
-        address: "0xbD8488016B3A84647c1230f934A6EDF522Cbd0d9", // TODO: Contract addresses
-        abi: CharlieABI,
-        functionName: "aggregate",
-        args: [args, blocking],
+        address: MULTICALL,
+        abi: MULTICALL_ABI,
+        functionName: "aggregate3",
+        args: [args],
     });
 
     const { writeAsync } = useContractWrite(config);
@@ -85,8 +82,6 @@ const useDelegate = ({
         
         // Get the EIP 712 messages for each token
         const { messages } = getTypedDelegations(tokens);
-
-        console.log('messages', messages)
         
         // Queue the signing of each message
         for (const [i, message] of messages.entries()) {

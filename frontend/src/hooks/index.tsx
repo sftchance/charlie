@@ -7,3 +7,4 @@ export { useClient } from "./useClient";
 export { useColor } from "./useColor";
 export { useDelegate } from "./useDelegate";
 export { useENS } from "./useENS";
+export { useENSMulticall } from "./useENSMulticall";
