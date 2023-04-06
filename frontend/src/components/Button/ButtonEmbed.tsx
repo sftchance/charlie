@@ -33,7 +33,7 @@ const ButtonEmbed = () => {
 
     const { chain } = useNetwork();
 
-    const { buttonId } = useParams<{ buttonId: string }>();
+    const { buttonId } = useParams();
 
     const { get, path } = useClient();
 
@@ -104,7 +104,6 @@ const ButtonEmbed = () => {
         if (!data || !data.tokens) return;
 
         const getBalanceInfo = async () => {
-            console.log('data', data)
             const { results } = await getBalances({
                 address: address as `0x${string}`,
                 tokens: data.tokens,

@@ -22,8 +22,8 @@ const getBalances = async ({
 
     const erc20Interface = new ethers.utils.Interface(ERC20_ABI);
 
-    for (const chainId of Object.keys(providers)) {
-        const provider: ethers.providers.JsonRpcProvider = providers[Number(chainId)];
+    for (const chain of Object.keys(providers)) {
+        const chainId = Number(chain);
 
         const calls: {
             target: `0x${string}`,
@@ -31,11 +31,11 @@ const getBalances = async ({
             callData: string,
         }[] = []
 
-        const chainTokens = tokens.filter(token => token.chainId === Number(chainId));
+        const chainTokens = tokens.filter(token => token.chain_id === chainId);
 
         for (const token of chainTokens) {
             calls.push({
-                target: token.address,
+                target: token.ethereum_address,
                 allowFailure: true,
                 callData: erc20Interface.encodeFunctionData("balanceOf", [address])
             })
@@ -45,20 +45,20 @@ const getBalances = async ({
 
         const multiCallResult = await submitStaticMultiCalls({
             calls,
-            provider
+            chainId
         });
 
-        for (const result of multiCallResult) {
-            const token = tokens.find(token => token.ethereum_address === result.target);
+        for (let i = 0; i < multiCallResult.length; i++) {
+            const token = tokens.find(token => token.ethereum_address === calls[i].target);
 
             if (token === undefined) continue;
 
-            const balance = Number(result.returnData);
+            const balance = Number(multiCallResult[i].returnData);
 
             if (!includeZeros && balance === 0) continue;
 
             results.push({
-                chainId: Number(chainId),
+                chainId,
                 name: token?.name,
                 symbol: token?.symbol,
                 address: token.ethereum_address,

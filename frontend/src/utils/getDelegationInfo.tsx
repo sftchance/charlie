@@ -48,7 +48,7 @@ const getDelegationInfo = async ({
 
         const multiCallResult = await submitStaticMultiCalls({
             calls,
-            provider
+            chainId: Number(chainId)
         });
 
         for (let i = 0; i < multiCallResult.length; i += 2) {

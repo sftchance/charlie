@@ -11,8 +11,8 @@ const getMultiCall = async (chainId: number) => {
     return multiCallContract;
 }
 
-const submitStaticMultiCalls = async ({ calls, provider }: { calls: any[], provider: ethers.providers.JsonRpcProvider }) => {
-    const multiCallContract = await getMultiCall(provider.network.chainId);
+const submitStaticMultiCalls = async ({ calls, chainId }: { calls: any[], chainId: number }) => {
+    const multiCallContract = await getMultiCall(chainId);
 
     const multiCallResult = await multiCallContract.callStatic.aggregate3(calls);
 
