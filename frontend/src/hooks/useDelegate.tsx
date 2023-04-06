@@ -17,8 +17,9 @@ import CharlieABI from "../abis/Charlie.json";
 const useDelegate = (preferredChainId: number, tokens: VotesToken[], blocking: boolean) => {
     const [delegatedCalls, setDelegatedCalls] = useState<DelegatedCall[]>([]);
 
-    const isReady = tokens && tokens.length === delegatedCalls.length &&
-        delegatedCalls.every((call) => call.status === 'signed');
+    const isSigningNeeded = Boolean(delegatedCalls.some((call) => call.status !== 'signed'));
+
+    const isReady = Boolean(tokens.length && tokens.length === delegatedCalls.length && !isSigningNeeded);
 
     const { chain } = useNetwork();
 
@@ -155,6 +156,7 @@ const useDelegate = (preferredChainId: number, tokens: VotesToken[], blocking: b
 
     return { 
         isPrepared: isPrepared && isReady,
+        isSigningNeeded: isSigningNeeded,
         delegatedCalls,
         openDelegationSignatures,
         openDelegationTx,

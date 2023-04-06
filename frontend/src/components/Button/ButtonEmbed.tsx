@@ -68,6 +68,7 @@ const ButtonEmbed = () => {
 
     const {
         isPrepared,
+        isSigningNeeded,
         delegatedCalls,
         openDelegationSignatures,
         openDelegationTx
@@ -160,8 +161,8 @@ const ButtonEmbed = () => {
                         )
                     })}
 
-                    <button className="delegate" onClick={isPrepared ? onDelegate : onSign}>
-                        {selectedTokens && isPrepared ? "Delegate now" : "Sign delegations"}
+                    <button className="delegate" disabled={!isPrepared && !isSigningNeeded} onClick={isPrepared ? onDelegate : onSign}>
+                        {isSigningNeeded ? "Sign delegations" : "Delegate now"}
                     </button>
 
                     <p>Powered by <strong>Charlie</strong>.</p>
