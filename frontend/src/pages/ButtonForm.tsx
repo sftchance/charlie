@@ -4,10 +4,15 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { useQuery } from "@tanstack/react-query";
 
-import { Error, Input, MultiSelect } from "../components";
 import { useAccount } from "wagmi";
 
-import { path, get, put, post, del } from "../utils";
+import { useClient } from "../hooks";
+
+import { Error, Input, MultiSelect } from "../components";
+
+import { useNavbar } from "../hooks";
+
+import "./ButtonForm.css";
 
 const withToken = (token: any) => ({
     ...token,
@@ -23,10 +28,22 @@ const withTokens = (button: any, excludeTokens: any) => ({
         || []
 })
 
-const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
+const ButtonForm = () => {
     const navigate = useNavigate();
 
     const { buttonId } = useParams<{ buttonId: string }>();
+
+    const { path, get, post, put, del } = useClient();
+
+    const isEdit = !!buttonId;
+
+    console.log(buttonId, isEdit)
+
+    useNavbar(<Link to={
+        isEdit
+            ? `/account/buttons/${buttonId}/`
+            : "/account/"}
+        children={<button>Back</button>} />)
 
     const { address } = useAccount();
 
@@ -46,11 +63,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
             if (!isEdit) return null
 
             return get(path(`buttons/${buttonId}/`))
-        },
-        refetchOnWindowFocus: true,
-        staleTime: 0,
-        cacheTime: 0,
-        refetchInterval: 0,
+        }
     });
 
     const {
@@ -71,8 +84,8 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
         name: "Untitled",
         description: "Button description...",
         text: "Delegate",
-        primary_color: "#000000",
-        secondary_color: "#FFFFFF",
+        primary_color: "#FF04C9",
+        secondary_color: "#FF6804",
         tokens: []
     });
 
@@ -102,7 +115,7 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
             .then((data) => {
                 refetch()
 
-                navigate(`/account/buttons/${data.id}/edit/`)
+                navigate(`/account/buttons/${data.id}/`)
             })
             .catch((errors) => {
                 setErrors(errors)
@@ -133,19 +146,16 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
 
     return (
         <>
-            <h1>{isEdit ? `Edit ${data.name}` : "Create Button"}</h1>
-
-            <Link
-                to={isEdit
-                    ? `/account/buttons/${buttonId}/`
-                    : "/account/"}
-                children={<button>Back</button>} />
+            <div className="card">
+                <h2>{isEdit ? data.name : "Create button"}</h2>
+                <p>{isEdit ? data.description : "Setup your button now and start collecting delegations like the pro you are."}</p>
+            </div>
 
             <form onSubmit={handleSubmit}>
                 <Input
                     label="Name"
                     value={object.name}
-                    onChange={(e: any) => setObject({ ...object, name: e.target.value.trim() })}
+                    onChange={(e: any) => setObject({ ...object, name: e.target.value })}
                     error={errors?.name} />
 
                 <Input
@@ -157,27 +167,29 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
                 <Input
                     label="Description"
                     value={object.description}
-                    onChange={(e: any) => setObject({ ...object, description: e.target.value.trim() })}
+                    onChange={(e: any) => setObject({ ...object, description: e.target.value })}
                     error={errors?.description} />
 
                 <Input
                     label="Button text"
                     value={object.text}
-                    onChange={(e: any) => setObject({ ...object, text: e.target.value.trim() })}
+                    onChange={(e: any) => setObject({ ...object, text: e.target.value })}
                     error={errors?.text} />
 
-                <div>
+                <div className="colors">
                     <Input
                         label="Primary color"
                         value={object.primary_color}
                         onChange={(e: any) => setObject({ ...object, primary_color: e.target.value.trim() })}
-                        error={errors?.primary_color} />
+                        error={errors?.primary_color}
+                        color />
 
                     <Input
                         label="Secondary color"
                         value={object.secondary_color}
                         onChange={(e: any) => setObject({ ...object, secondary_color: e.target.value.trim() })}
-                        error={errors?.secondary_color} />
+                        error={errors?.secondary_color}
+                        color />
                 </div>
 
                 <MultiSelect
@@ -189,20 +201,20 @@ const ButtonForm = ({ isEdit }: { isEdit?: boolean }) => {
 
                 <Error error={errors?.detail} />
 
-                {isEdit && <button
-                    className="primary danger block"
-                    onClick={handleDelete}
-                >
-                    <span className="content">Delete</span>
-                </button>}
+                <div className={isEdit ? "buttons" : "buttons create"}>
+                    {isEdit && <button
+                        className="danger block"
+                        onClick={handleDelete}
+                    >Delete</button>}
 
-                <button
-                    type="submit"
-                    className={isEdit
-                        ? "primary block"
-                        : "primary secondary block"}>
-                    <span className="content">Save</span>
-                </button>
+                    <button
+                        type="submit"
+                        className={isEdit
+                            ? "primary secondary block"
+                            : "primary block"}>
+                        <span className="content">Save</span>
+                    </button>
+                </div>
             </form>
         </>
     )

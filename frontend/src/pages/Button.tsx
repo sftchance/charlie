@@ -2,12 +2,20 @@ import { Link, useParams } from "react-router-dom"
 
 import { useQuery } from "@tanstack/react-query";
 
-import { Input } from "../components";
+import { useClient, useNavbar } from "../hooks";
 
-import { path, get, copy } from "../utils";
+import { ButtonPreview, Input } from "../components";
+
+import { copy } from "../utils";
 
 const Button = () => {
     const { buttonId } = useParams();
+
+    const { path, get } = useClient();
+
+    useNavbar(<Link to="/account/" children={
+        <button>Back</button>
+    } />);
 
     const {
         isLoading,
@@ -27,27 +35,46 @@ const Button = () => {
     if (error) return <>{"An error has occurred: " + error.message}</>;
 
     return <>
-        <h1>{data.name}</h1>
-
-        <Link to="/account/" children={
-            <button>Back</button>
-        } />
-
-        <Link to={`/hosted/buttons/${buttonId}/embed`} children={
-            <button>Preview</button>
-        } />
+        <div className="card">
+            <h2>{data.name}</h2>
+            <p>{data.description}</p>
+        </div>
 
         <Link
+            className="input-group"
             to={`/account/buttons/${buttonId}/edit`}
-            children={<button className="primary secondary">
-                <span className="content">Edit</span>
+            children={<button className="primary secondary block">
+                <span className="content">Edit button</span>
             </button>} />
-
-        <p>{data.description}</p>
 
         <Input
             label="Button Link"
             value="http://example.com/hosted/buttons/1/embed/"
+            append={<button className="secondary" onClick={() => {
+                copy("http://example.com/hosted/buttons/1/embed/")
+            }}>
+                <span className="content">Copy</span>
+            </button>}
+            disabled
+        />
+
+        <Input
+            label="Premade Widget"
+            value="<iframe src='http://example.com/hosted/buttons/1/embed/'></iframe>"
+            append={<button className="secondary" onClick={() => {
+                copy("http://example.com/hosted/buttons/1/embed/")
+            }}>
+                <span className="content">Copy</span>
+            </button>}
+            disabled
+        />
+
+        <label>Live Button Preview</label>
+        <ButtonPreview button={data} />
+
+        <Input
+            label="Premade Button Image"
+            value="https://api.example.com/hosted/buttons/1/embed/"
             append={<button className="secondary" onClick={() => {
                 copy("http://example.com/hosted/buttons/1/embed/")
             }}>

@@ -2,11 +2,13 @@ import { Link } from "react-router-dom";
 
 import { useQuery } from "@tanstack/react-query";
 
+import { useClient } from "../hooks";
+
 import { ButtonRow } from "../components/Button";
 
-import { path, get } from "../utils";
-
 const Buttons = () => {
+    const { path, get } = useClient()
+
     const {
         isLoading,
         error,
@@ -28,12 +30,14 @@ const Buttons = () => {
 
     return (
         <>
-            <h2>Buttons</h2>
+            <div className="card">
+                <h2>Delegation Buttons</h2>
+            </div>
 
             <Link
                 to="/account/buttons/new/"
-                children={<button className="primary secondary">
-                    <span className="content">New</span>
+                children={<button className="primary secondary block">
+                    <span className="content">Create button</span>
                 </button>} />
 
             <ButtonRow buttons={data} />
