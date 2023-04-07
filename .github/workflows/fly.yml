@@ -2,7 +2,10 @@ name: Fly Deploy
 on:
   push:
     branches:
-      - *
+      - "**"
+  pull_request:
+    branches:
+      - "**"
 
 defaults:
   run:
