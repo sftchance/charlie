@@ -39,8 +39,10 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173", 
     "http://10.0.0.95:5173",
     "http://trycharlie.xyz",
-    "https://trycharlie.xyz",
-    "https://charlie-api.fly.dev"
+    "http://*.trycharlie.xyz",
+    "https://*.trycharlie.xyz",
+    "http://*.fly.dev"
+    "https://*.fly.dev"
 ]
 
 # Application definition
