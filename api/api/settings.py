@@ -1,28 +1,47 @@
+import environ
 import os
 
-from dotenv import load_dotenv
 from pathlib import Path
 
-load_dotenv()
+from django.core.management.utils import get_random_secret_key
+
+# TODO: Handle the DATABASE_URL
+
+env = environ.Env(
+    DEBUG=(bool, False),
+    SECRET_KEY=(str, get_random_secret_key()),
+    DATABASE_URL=(str, "sqlite:///db.sqlite3"),
+    SHROOMDK_KEY=(str, ""),
+    ALCHEMY_KEY=(str, ""),
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
+# Take environment variables from .env file
+environ.Env.read_env(BASE_DIR / ".env")
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-rix(93kvmt!p0qz+5p#p4rh8xe7)rzca6^6r9&x!tia=239bvq"
+SECRET_KEY = env("SECRET_KEY")
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ["*"]
+DEBUG = env("DEBUG")
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_ALL_ORIGINS = True
 
-CSRF_TRUSTED_ORIGINS = ["http://localhost:5173", "http://10.0.0.95:5173"]
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    ".fly.dev",
+    ".trycharlie.xyz",
+] 
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:5173", 
+    "http://10.0.0.95:5173",
+    "http://trycharlie.xyz",
+    "https://trycharlie.xyz",
+    "https://charlie-api.fly.dev"
+]
 
 # Application definition
 INSTALLED_APPS = [
@@ -32,6 +51,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     "corsheaders",
     "rest_framework",
@@ -43,6 +63,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -75,12 +96,8 @@ WSGI_APPLICATION = "api.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    "default": env.db("DATABASE_URL", default="sqlite:///db.sqlite3")
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -100,7 +117,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -114,24 +130,19 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # ShroomDK settings enabling Blockchain data fixtures
-
-SHROOMDK_KEY = os.environ.get("SHROOMDK_KEY")
+SHROOMDK_KEY = env("SHROOMDK_KEY")
 
 # Blockchain Data Providers
-
-PROVIDERS = {
-    "1": f"https://eth-mainnet.g.alchemy.com/v2/{os.environ.get('ETH_ALCHEMY_KEY')}",
-    "10": f"https://opt-mainnet.g.alchemy.com/v2/{os.environ.get('OPTIMISM_ALCHEMY_KEY')}",
-    "42161": f"https://arb-mainnet.g.alchemy.com/v2/{os.environ.get('ARBITRUM_ALCHEMY_KEY')}",
-    "137": f"https://polygon-mainnet.g.alchemy.com/v2/{os.environ.get('POLYGON_ALCHEMY_KEY')}",
-}
-
 AUTH_USER_MODEL = "siwe_auth.Wallet"
 
 AUTHENTICATION_BACKENDS = [
@@ -144,4 +155,4 @@ SESSION_COOKIE_AGE = 3 * 60 * 60  # 3 hours
 
 CREATE_ENS_PROFILE_ON_AUTHN = False
 
-PROVIDER = PROVIDERS["1"]
+PROVIDER = f"https://eth-mainnet.g.alchemy.com/v2/{env('ALCHEMY_KEY')}"
