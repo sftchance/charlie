@@ -28,7 +28,7 @@ jobs:
         uses: SebRollen/toml-action@v1.0.2
         id: app_name
         with:
-          file: "fly.toml"
+          file: "api/fly.toml"
           field: "app"
 
       - name: 🚀 Deploy Staging
