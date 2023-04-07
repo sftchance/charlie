@@ -61,7 +61,10 @@ const useClient = () => {
     }
 
     const path = (url: string) => {
-        return `${import.meta.env.VITE_API_URL}${url}`
+        if (import.meta.env.VERCEL_ENV === "production")
+            return `${import.meta.env.VITE_API_URL}${url}`
+
+        return `${import.meta.env.VITE_STAGING_API_URL}${url}`
     }
 
     const get = async (url: string) => {
