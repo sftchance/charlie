@@ -3,7 +3,7 @@ from web3 import Web3
 
 from django.conf import settings
 
-mainnet_w3 = Web3(Web3.HTTPProvider(settings.PROVIDERS["1"]))
+mainnet_w3 = Web3(Web3.HTTPProvider(settings.PROVIDER))
 ns = ENS.from_web3(mainnet_w3)
 
 

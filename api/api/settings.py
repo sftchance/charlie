@@ -7,7 +7,13 @@ from django.core.management.utils import get_random_secret_key
 
 # TODO: Handle the DATABASE_URL
 
-env = environ.Env(DEBUG=(bool, False))
+env = environ.Env(
+    DEBUG=(bool, False),
+    SECRET_KEY=(str, get_random_secret_key()),
+    DATABASE_URL=(str, "sqlite:///db.sqlite3"),
+    SHROOMDK_KEY=(str, ""),
+    ALCHEMY_KEY=(str, ""),
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -15,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Take environment variables from .env file
 environ.Env.read_env(BASE_DIR / ".env")
 
-SECRET_KEY = env("SECRET_KEY", get_random_secret_key())
+SECRET_KEY = env("SECRET_KEY")
 
 DEBUG = env("DEBUG")
 
@@ -25,12 +31,15 @@ CORS_ALLOW_ALL_ORIGINS = True
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    ".fly.dev"
+    ".fly.dev",
+    ".trycharlie.xyz",
 ] 
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173", 
     "http://10.0.0.95:5173",
+    "http://trycharlie.xyz",
+    "https://trycharlie.xyz",
     "https://charlie-api.fly.dev"
 ]
 
@@ -87,7 +96,7 @@ WSGI_APPLICATION = "api.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    "default": env.db(),
+    "default": env.db("DATABASE_URL", default="sqlite:///db.sqlite3")
 }
 
 # Password validation
@@ -107,7 +116,6 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
@@ -132,18 +140,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # ShroomDK settings enabling Blockchain data fixtures
-
 SHROOMDK_KEY = env("SHROOMDK_KEY")
 
 # Blockchain Data Providers
-
-PROVIDERS = {
-    "1": f"https://eth-mainnet.g.alchemy.com/v2/{env('ETH_ALCHEMY_KEY')}",
-    "10": f"https://opt-mainnet.g.alchemy.com/v2/{env('OPTIMISM_ALCHEMY_KEY')}",
-    "42161": f"https://arb-mainnet.g.alchemy.com/v2/{env('ARBITRUM_ALCHEMY_KEY')}",
-    "137": f"https://polygon-mainnet.g.alchemy.com/v2/{env('POLYGON_ALCHEMY_KEY')}",
-}
-
 AUTH_USER_MODEL = "siwe_auth.Wallet"
 
 AUTHENTICATION_BACKENDS = [
@@ -156,4 +155,4 @@ SESSION_COOKIE_AGE = 3 * 60 * 60  # 3 hours
 
 CREATE_ENS_PROFILE_ON_AUTHN = False
 
-PROVIDER = PROVIDERS["1"]
+PROVIDER = f"https://eth-mainnet.g.alchemy.com/v2/{env('ALCHEMY_KEY')}"
