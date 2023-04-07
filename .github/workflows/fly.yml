@@ -30,11 +30,11 @@ jobs:
 
       - name: 🚀 Deploy
         if: ${{ github.ref == 'refs/heads/staging' }}
-      - uses: actions/checkout@v3
-      - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl deploy --remote-only -a charlie-api-staging
-        env:
-          FLY_API_TOKEN: ${{ secrets.FLY_STAGING_API_TOKEN }}
+        uses: actions/checkout@v3
+        uses: superfly/flyctl-actions/setup-flyctl@master
+        run: flyctl deploy --remote-only -a charlie-api-staging
+          env:
+            FLY_API_TOKEN: ${{ secrets.FLY_STAGING_API_TOKEN }}
 
   production_deploy:
     name: 🚀 Deploy Production
