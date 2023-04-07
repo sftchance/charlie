@@ -21,8 +21,10 @@ jobs:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v3
 
-      - name: ☁️ Deploy
-      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: ☁️ Build Fly
+        uses: superfly/flyctl-actions/setup-flyctl@master
+
+      - name: 🚀 Deploy
       - run: flyctl deploy --remote-only -a charlie-api-staging
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_STAGING_API_TOKEN }}
