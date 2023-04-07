@@ -15,7 +15,7 @@ jobs:
   staging_deploy:
     name: 🚀 Deploy Staging
     runs-on: ubuntu-latest
-    if: ${{ github.ref == 'refs/heads/master' && github.event_name == 'push' }}
+    if: ${{ github.ref == 'refs/heads/staging' && github.event_name == 'push' }}
 
     steps:
       - name: 🛑 Cancel Previous Runs
