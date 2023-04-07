@@ -21,8 +21,10 @@ jobs:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v3
 
-      - name: 🚀 Deploy
+      - name: 🏗️ Prepare Fly
       - uses: superfly/flyctl-actions/setup-flyctl@master
+
+      - name: 🚀 Deploy
       - run: flyctl deploy --remote-only -a charlie-api-staging
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_STAGING_API_TOKEN }}
@@ -38,6 +40,13 @@ jobs:
 
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v3
+
+      - name: 👀 Read app name
+        uses: SebRollen/toml-action@v1.0.2
+        id: app_name
+        with:
+          file: "api/fly.toml"
+          field: "app"
 
       - name: 🚀 Deploy
         uses: superfly/flyctl-actions@1.3
