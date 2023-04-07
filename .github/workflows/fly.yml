@@ -28,11 +28,11 @@ jobs:
           file: "api/fly.toml"
           field: "app"
 
-      - name: 🚀 Deploy
-        uses: superfly/flyctl-actions/setup-flyctl@master
-        run: flyctl deploy --remote-only -a charlie-api-staging
-          env:
-            FLY_API_TOKEN: ${{ secrets.FLY_STAGING_API_TOKEN }}
+      - name: ☁️ Deploy to
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 
   production_deploy:
     name: 🚀 Deploy Production
