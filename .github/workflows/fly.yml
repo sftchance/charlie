@@ -3,6 +3,11 @@ on:
   push:
     branches:
       - *
+
+defaults:
+  run:
+    working-directory: api/
+
 jobs:
   deploy:
     name: Deploy app
