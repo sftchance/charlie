@@ -35,15 +35,23 @@ ALLOWED_HOSTS = [
     ".trycharlie.xyz",
 ] 
 
-CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:5173", 
-    "http://10.0.0.95:5173",
-    "http://trycharlie.xyz",
-    "http://*.trycharlie.xyz",
-    "https://*.trycharlie.xyz",
-    "http://*.fly.dev"
-    "https://*.fly.dev"
-]
+if DEBUG:
+    CSRF_TRUSTED_ORIGINS = [
+        "http://localhost:5173", 
+        "http://10.0.0.95:5173",
+        "http://*.vercel.app",
+        "https://*.vercel.app",
+        "http://*.fly.dev",
+        "https://*.fly.dev",
+    ]
+else:
+    CSRF_TRUSTED_ORIGINS = [
+        "http://trycharlie.xyz",
+        "http://*.trycharlie.xyz",
+        "https://*.trycharlie.xyz",
+        "http://*.fly.dev"
+        "https://*.fly.dev"
+    ]
 
 # Application definition
 INSTALLED_APPS = [
