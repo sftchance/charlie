@@ -64,6 +64,8 @@ const ButtonEmbed = () => {
         data?.secondary_color
     ]);
 
+    console.log('color', textColor)
+
     const {
         isPrepared,
         isSigningNeeded,
@@ -162,7 +164,7 @@ const ButtonEmbed = () => {
                                         </div>
                                         <hr />
                                     </div>}
-                                    
+
                                     <TokenRow
                                         token={token}
                                         delegate={{ ensName: ensName, ensAvatar: ensAvatar }}
