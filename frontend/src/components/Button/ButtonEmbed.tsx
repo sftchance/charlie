@@ -159,7 +159,9 @@ const ButtonEmbed = () => {
                                 <Fragment key={`${token.address}-${token.chainId}`}>
                                     {firstOfChain && <div className="chain">
                                         <div className="name">
-                                            <span className="img" />
+                                            <span className="img">
+                                                <img src={`/logos/${token.blockchain}`} alt={token.blockchain} />
+                                            </span>
                                             <h1>{chain?.name}</h1>
                                         </div>
                                         <hr />
