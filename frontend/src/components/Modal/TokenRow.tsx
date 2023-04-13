@@ -44,9 +44,9 @@ const TokenRow = ({
 }) => {
     const { chains } = useNetwork();
 
-    const { 
+    const {
         chainId,
-        address, 
+        address,
         name,
         symbol,
         balance,
@@ -63,36 +63,36 @@ const TokenRow = ({
         <>
             <div className="token">
                 <div className="status">
-                    <div className={`signature ${actionStatus}`} />
-                    
                     <Checkbox checked={isClicked} onChange={onClick} />
+
+                    {/* <div className={`signature ${actionStatus}`} /> */}
                 </div>
 
                 <a href={blockExplorerURL} target="_blank" rel="noreferrer">
                     <div className="name">
                         <span className="img" />
-                        <h3>{name}</h3>
-                        <span className="symbol">{`($${symbol})`}</span>
+                        <h5>{name}</h5>
+                        {/* <p className="symbol">{`($${symbol})`}</p> */}
                     </div>
                 </a>
 
                 <div className="balance">
-                    <h3>{formatBalance(balance)}</h3>
+                    <h5>{formatBalance(balance)}</h5>
                 </div>
 
-                <div className="delegations">
+                {/* <div className="delegations">
                     <div className="delegation">
                         <span className="img" />
-                        <span>{getAddressOrENS(currentDelegate)}</span>
+                        <p>{getAddressOrENS(currentDelegate)}</p>
                     </div>
                     <div className="arrow" />
                     <div className="delegation">
-                        {delegate.ensAvatar ? 
+                        {delegate.ensAvatar ?
                             <img src={delegate.ensAvatar} alt="avatar" /> :
                             <span className="img" />}
-                        <span>{delegate.ensName}</span>
+                        <p>{delegate.ensName}</p>
                     </div>
-                </div>
+                </div> */}
             </div>
         </>
     )

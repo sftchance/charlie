@@ -30,10 +30,10 @@
 }
 
 .modal .modal-content {
-    width: 540px;
+    width: 720px;
     background-color: #fff;
     border-radius: 4px;
-    margin: 80px;
+    margin: 20px;
     padding: 20px;
     position: relative;
 }
@@ -51,8 +51,7 @@
 }
 
 .modal .modal-content p {
-    font-size: 14px;
-    margin-top: 10px;
+    font-size: 12px;
 }
 
 .modal .modal-content .close {
