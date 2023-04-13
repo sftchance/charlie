@@ -118,6 +118,8 @@ const ButtonEmbed = () => {
             // Sort current chain or mainnet to top.
             const sorted = balanceDelegations.sort((a: any, b: any) => sortByChainId(a, b, chain?.id));
 
+            console.log('sorted', sorted)
+
             setTokens(sorted);
         }
 
@@ -158,7 +160,7 @@ const ButtonEmbed = () => {
                                     {firstOfChain && <div className="chain">
                                         <div className="name">
                                             <span className="img">
-                                                <img src={`/logos/${token.blockchain}`} alt={token.blockchain} />
+                                                <img src={`/logos/${token.blockchain}.png`} alt={token.blockchain} />
                                             </span>
                                             <h1>{chain?.name}</h1>
                                         </div>
