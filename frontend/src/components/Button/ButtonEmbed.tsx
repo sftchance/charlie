@@ -154,7 +154,6 @@ const ButtonEmbed = () => {
                                 <TokenRow
                                     key={`${token.address}-${token.chainId}`}
                                     token={token}
-                                    delegate={{ ensName: ensName, ensAvatar: ensAvatar }}
                                     delegateCall={delegateCall}
                                     isClicked={token.selected}
                                     onClick={() => onSelect(token)}

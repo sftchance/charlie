@@ -8,12 +8,9 @@ import { truncate } from "../../utils"
 
 import { DelegatedCall, VotesToken } from "../../types"
 
-import "./TokenRow.css"
+import { ENSName, ENSAvatar, ENSNameAvatar } from "../Wallet"
 
-const getAddressOrENS = (address: string) => {
-    // ensname
-    return `${address.slice(0, 6)}...${address.slice(-4)}`
-}
+import "./TokenRow.css"
 
 const formatBalance = (balance: number) => {
     const bal = Number(balance)
@@ -33,13 +30,11 @@ const formatBalance = (balance: number) => {
 
 const TokenRow = ({
     token,
-    delegate,
     delegateCall,
     isClicked,
     onClick
 }: {
     token: VotesToken,
-    delegate: any,
     delegateCall?: DelegatedCall,
     isClicked?: boolean,
     onClick?: () => void,
@@ -50,6 +45,7 @@ const TokenRow = ({
         chainId,
         address,
         name,
+        delegatee,
         symbol,
         balance,
         currentDelegate,
@@ -85,19 +81,17 @@ const TokenRow = ({
                     <p>{formatBalance(balance)}</p>
                 </div>
 
-                {/* <div className="delegations">
+                <div className="delegations">
                     <div className="delegation">
-                        <span className="img" />
-                        <p>{getAddressOrENS(currentDelegate)}</p>
+                        <ENSNameAvatar address={currentDelegate} />
+                        {/* <ENSName address={currentDelegate} /> */}
                     </div>
                     <div className="arrow" />
                     <div className="delegation">
-                        {delegate.ensAvatar ?
-                            <img src={delegate.ensAvatar} alt="avatar" /> :
-                            <span className="img" />}
-                        <p>{delegate.ensName}</p>
+                        <ENSNameAvatar address={delegatee} />
+                        {/* <ENSName address={delegatee} /> */}
                     </div>
-                </div> */}
+                </div>
             </div>
         </>
     )

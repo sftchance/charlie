@@ -16,8 +16,6 @@ const useColor = (color: string | string[] | undefined) => {
             if (isLight) lights++;
         }
 
-        console.log(lights, color.length)
-
         if (lights <= color.length / 2) textColor = "#FFFFFF";
 
         return textColor;
