@@ -4,14 +4,13 @@ const useColor = (color: string | string[] | undefined) => {
     let textColor = "#000000";
     let lights = 0;
 
-    console.log(color)
-
     if (Array.isArray(color)) {
         for (let i = 0; i < color.length; i++) {
+            const col = color[i] ?? "#000000";
             const isLight =
-                0.2126 * parseInt(color[i].slice(1, 3), 16) +
-                0.7152 * parseInt(color[i].slice(3, 5), 16) +
-                0.0722 * parseInt(color[i].slice(5, 7), 16) >
+                0.2126 * parseInt(col.slice(1, 3), 16) +
+                0.7152 * parseInt(col.slice(3, 5), 16) +
+                0.0722 * parseInt(col.slice(5, 7), 16) >
                 255 / 2;
 
             if (isLight) lights++;
