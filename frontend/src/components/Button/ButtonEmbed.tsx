@@ -64,8 +64,6 @@ const ButtonEmbed = () => {
         data?.secondary_color
     ]);
 
-    console.log('color', textColor)
-
     const {
         isPrepared,
         isSigningNeeded,
@@ -188,14 +186,14 @@ const ButtonEmbed = () => {
             </div >
 
             <button
-                className="delegation-button"
+                className="delegation-button primary"
                 style={{
                     background: `linear-gradient(-37deg, ${data.primary_color}, ${data.secondary_color})`,
                     color: textColor,
                 }}
                 onClick={() => setIsModalOpen(!isModalOpen)}
             >
-                {data.text}
+                <span className="content">{data.text}</span>
             </button>
         </>
     );
