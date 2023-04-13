@@ -70,14 +70,17 @@ const TokenRow = ({
 
                 <a href={blockExplorerURL} target="_blank" rel="noreferrer">
                     <div className="name">
-                        <span className="img" />
-                        <h5>{name}</h5>
-                        {/* <p className="symbol">{`($${symbol})`}</p> */}
+                        <div className="token-img">
+                            <span className="token img" />
+                            <img className="chain img" src={`/logos/${token.blockchain}.png`} alt={token.blockchain} />
+                        </div>
+
+                        <p>{name} <span className="symbol">{`($${symbol})`}</span></p>
                     </div>
                 </a>
 
                 <div className="balance">
-                    <h5>{formatBalance(balance)}</h5>
+                    <p>{formatBalance(balance)}</p>
                 </div>
 
                 {/* <div className="delegations">

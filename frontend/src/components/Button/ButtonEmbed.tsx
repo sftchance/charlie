@@ -141,8 +141,7 @@ const ButtonEmbed = () => {
                         &times;
                     </span>
 
-                    <h1>{data.text}</h1>
-
+                    <h1>{data.name}</h1>
                     <p>{data.description}</p>
 
                     <div className="tokens">
@@ -156,25 +155,14 @@ const ButtonEmbed = () => {
                             const firstOfChain = token.chainId !== previousChainId;
 
                             return (
-                                <Fragment key={`${token.address}-${token.chainId}`}>
-                                    {firstOfChain && <div className="chain">
-                                        <div className="name">
-                                            <span className="img">
-                                                <img src={`/logos/${token.blockchain}.png`} alt={token.blockchain} />
-                                            </span>
-                                            <h1>{chain?.name}</h1>
-                                        </div>
-                                        <hr />
-                                    </div>}
-
-                                    <TokenRow
-                                        token={token}
-                                        delegate={{ ensName: ensName, ensAvatar: ensAvatar }}
-                                        delegateCall={delegateCall}
-                                        isClicked={token.selected}
-                                        onClick={() => onSelect(token)}
-                                    />
-                                </Fragment>
+                                <TokenRow
+                                    key={`${token.address}-${token.chainId}`}
+                                    token={token}
+                                    delegate={{ ensName: ensName, ensAvatar: ensAvatar }}
+                                    delegateCall={delegateCall}
+                                    isClicked={token.selected}
+                                    onClick={() => onSelect(token)}
+                                />
                             )
                         })}
                     </div>
