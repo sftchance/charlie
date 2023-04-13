@@ -6,6 +6,7 @@
     align-items: center;
     column-gap: 12px;
     row-gap: 8px;
+    margin-bottom: 10px;
 }
 
 .token h3 {
@@ -73,7 +74,7 @@
 .token .delegations {
     grid-area: delegations;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 12px 1fr 1fr;
 }
 
 .delegations .delegation {
@@ -84,23 +85,13 @@
     gap: 8px;
 }
 
-.status {
-    grid-area: status;
-    display: flex;
-    flex-direction: row;
-}
-
 .signature {
     min-width: 10px;
     height: 10px;
     border-radius: 50%;
 }
 
-.signature.hidden {
-    visibility: hidden;
-}
-
-.signature.queued {
+.signature {
     background-color: gray;
 }
 

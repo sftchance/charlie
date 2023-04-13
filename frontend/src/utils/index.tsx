@@ -12,7 +12,7 @@ export { getBalances } from './getBalances'
 export { getDelegationInfo } from './getDelegationInfo'
 export { getMultiCall, submitStaticMultiCalls } from './getMultiCall'
 export { getTypedDelegations } from './getTypedDelegations'
-export { formatAddress, formatBalance } from './format'
+export { formatAddress, formatBalance, truncate } from './format'
 
 export const copy = (address: string | undefined) => {
     if (!address || address === undefined) return;

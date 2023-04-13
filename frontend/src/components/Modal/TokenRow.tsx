@@ -2,9 +2,11 @@ import { useNetwork } from "wagmi"
 
 import { useBlockExplorer } from "../../hooks"
 
-import { DelegatedCall, VotesToken } from "../../types"
-
 import { Checkbox } from "../Form"
+
+import { truncate } from "../../utils"
+
+import { DelegatedCall, VotesToken } from "../../types"
 
 import "./TokenRow.css"
 
@@ -57,7 +59,7 @@ const TokenRow = ({
 
     const blockExplorerURL = useBlockExplorer(chain, address);
 
-    const actionStatus = delegateCall ? delegateCall.status : "hidden";
+    const actionStatus = delegateCall ? delegateCall.status : "";
 
     return (
         <>
@@ -65,7 +67,7 @@ const TokenRow = ({
                 <div className="status">
                     <Checkbox checked={isClicked} onChange={onClick} />
 
-                    {/* <div className={`signature ${actionStatus}`} /> */}
+                    <div className={`signature ${actionStatus}`} />
                 </div>
 
                 <a href={blockExplorerURL} target="_blank" rel="noreferrer">
@@ -75,7 +77,7 @@ const TokenRow = ({
                             <img className="chain img" src={`/logos/${token.blockchain}.png`} alt={token.blockchain} />
                         </div>
 
-                        <p>{name} <span className="symbol">{`($${symbol})`}</span></p>
+                        <p>{truncate(name, 18)}</p>
                     </div>
                 </a>
 

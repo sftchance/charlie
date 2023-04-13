@@ -10,7 +10,7 @@ import { useClient, useColor, useDelegate, useENS } from "../../hooks";
 
 import { TokenRow } from "../";
 
-import { getBalances, getDelegationInfo } from "../../utils";
+import { getBalances, getDelegationInfo, truncate } from "../../utils";
 
 import { VotesToken } from "../../types";
 
