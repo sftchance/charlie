@@ -171,7 +171,11 @@ const ButtonEmbed = () => {
                         {isSigningNeeded ? "Sign delegations" : "Delegate now"}
                     </button>
 
-                    <p>Powered by <strong>Charlie</strong>.</p>
+                    <p className="branding">Powered by <strong>
+                        <a href="https://trycharlie.xyz" target="_blank" rel="noreferrer">
+                            Charlie
+                        </a>
+                    </strong>.</p>
                 </div>
             </div >
 
