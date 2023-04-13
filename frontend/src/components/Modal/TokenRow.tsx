@@ -10,11 +10,6 @@ import { DelegatedCall, VotesToken } from "../../types"
 
 import "./TokenRow.css"
 
-const getAddressOrENS = (address: string) => {
-    // ensname
-    return `${address.slice(0, 6)}...${address.slice(-4)}`
-}
-
 const formatBalance = (balance: number) => {
     const bal = Number(balance)
     if (bal < 0.01)
@@ -46,18 +41,9 @@ const TokenRow = ({
 }) => {
     const { chains } = useNetwork();
 
-    const {
-        chainId,
-        address,
-        name,
-        symbol,
-        balance,
-        currentDelegate,
-    } = token;
+    const chain = chains.find(chain => chain.id === token.chainId)
 
-    const chain = chains.find(chain => chain.id === chainId)
-
-    const blockExplorerURL = useBlockExplorer(chain, address);
+    const blockExplorerURL = useBlockExplorer(chain, token.address);
 
     const actionStatus = delegateCall ? delegateCall.status : "";
 
@@ -73,16 +59,16 @@ const TokenRow = ({
                 <a href={blockExplorerURL} target="_blank" rel="noreferrer">
                     <div className="name">
                         <div className="token-img">
-                            <span className="token img" />
+                            <img className="token img" src={`https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${token.blockchain}/assets/${token.address}/logo.png`} />
                             <img className="chain img" src={`/logos/${token.blockchain}.png`} alt={token.blockchain} />
                         </div>
 
-                        <p>{truncate(name, 18)}</p>
+                        <p>{truncate(token.name, 18)}</p>
                     </div>
                 </a>
 
                 <div className="balance">
-                    <p>{formatBalance(balance)}</p>
+                    <p>{formatBalance(token.balance)}</p>
                 </div>
 
                 {/* <div className="delegations">
