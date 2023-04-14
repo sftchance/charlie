@@ -86,7 +86,7 @@
 .token .delegations {
     grid-area: delegations;
     display: grid;
-    grid-template-columns: 12px 1fr 1fr;
+    grid-template-columns: min-content 1fr 1fr;
 }
 
 .delegations .delegation {
@@ -95,6 +95,14 @@
     justify-content: end;
     align-items: center;
     gap: 8px;
+}
+
+.delegation .img {
+    height: 20px;
+    width: 20px;
+    min-width: 20px;
+    border-radius: 50%;
+    background: var(--charlieGradient);
 }
 
 .signature {

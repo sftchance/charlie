@@ -5,9 +5,8 @@ from pathlib import Path
 
 from django.core.management.utils import get_random_secret_key
 
-# TODO: Handle the DATABASE_URL
-
 env = environ.Env(
+    LOCAL=(bool, False),
     DEBUG=(bool, False),
     SECRET_KEY=(str, get_random_secret_key()),
     DATABASE_URL=(str, "sqlite:///db.sqlite3"),
@@ -15,18 +14,16 @@ env = environ.Env(
     ALCHEMY_KEY=(str, ""),
 )
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# Take environment variables from .env file
 environ.Env.read_env(BASE_DIR / ".env")
 
 SECRET_KEY = env("SECRET_KEY")
 
 DEBUG = env("DEBUG")
+LOCAL = env("LOCAL")
 
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOW_ALL_ORIGINS = True
 
 ALLOWED_HOSTS = [
     "localhost",
@@ -35,23 +32,16 @@ ALLOWED_HOSTS = [
     ".trycharlie.xyz",
 ] 
 
-SECURE_CONTENT_TYPE_NOSNIFF = True
-SECURE_BROWSER_XSS_FILTER = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-
-CORS_ORIGIN_ALLOW_ALL = True
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173", 
-    "http://127.0.0.1:5173", 
+    "http://10.0.0.95:5173",
+    "http://*.vercel.app",
     "https://*.vercel.app",
-    "https://www.trycharlie.xyz",
-    "https://staging.trycharlie.xyz",
+    "http://*.fly.dev",
+    "https://*.fly.dev",
+    "http://*.trycharlie.xyz",
     "https://*.trycharlie.xyz",
 ]
-
-CSRF_COOKIE_DOMAIN = ".trycharlie.xyz"
-SESSION_COOKIE_DOMAIN = ".trycharlie.xyz"
 
 # Application definition
 INSTALLED_APPS = [
