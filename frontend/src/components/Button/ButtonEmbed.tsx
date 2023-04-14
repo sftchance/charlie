@@ -76,6 +76,7 @@ const ButtonEmbed = () => {
         openDelegationSignatures,
         openDelegationTx
     } = useDelegate({
+        chainId: chain?.id ?? 1,
         tokens: selectedTokens,
         blocking: true
     });
@@ -127,7 +128,8 @@ const ButtonEmbed = () => {
             });
 
             const { results: balanceDelegations } = await getDelegationInfo({
-                delegatee: data.ethereum_address,
+                delegatee: data.ethereum_address as `0x${string}`,
+                delegator: address as `0x${string}`,
                 tokens: results
             });
 

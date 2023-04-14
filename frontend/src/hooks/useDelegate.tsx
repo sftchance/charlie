@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 
 import { useState } from "react";
 
-import { usePrepareContractWrite, useContractWrite, useNetwork, useSwitchNetwork } from "wagmi";
+import { usePrepareContractWrite, useContractWrite, useSwitchNetwork } from "wagmi";
 
 import { signTypedData } from "@wagmi/core";
 
@@ -11,15 +11,15 @@ import { VotesToken, DelegatedCall } from "../types";
 import { getTypedDelegations, ERC20_VOTES_ABI, MULTICALL, MULTICALL_ABI } from "../utils";
 
 const useDelegate = ({
+    chainId,
     tokens,
     blocking = false,
  } : { 
-    tokens: VotesToken[], 
+    chainId: number,
+    tokens: VotesToken[],
     blocking: boolean
  }) => {
     const [delegatedCalls, setDelegatedCalls] = useState<DelegatedCall[]>([]);
-
-    const { chain } = useNetwork();
 
     const { switchNetworkAsync } = useSwitchNetwork();
 
@@ -36,7 +36,7 @@ const useDelegate = ({
 
     const { config, isSuccess: isPrepared } = usePrepareContractWrite({
         enabled: !isSigningNeeded,
-        chainId: chain?.id ?? 1,
+        chainId: chainId ?? 1,
         address: MULTICALL,
         abi: MULTICALL_ABI,
         functionName: "aggregate3",
@@ -108,7 +108,7 @@ const useDelegate = ({
                 });
                 
                 // Switch network if necessary
-                if (chain && chain.id !== token.chainId && switchNetworkAsync)
+                if (chainId !== token.chainId && switchNetworkAsync)
                     await switchNetworkAsync(token.chainId);
                 
                 // Sign the message

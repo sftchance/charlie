@@ -8,9 +8,11 @@ import { VotesToken } from "../types";
 
 const getDelegationInfo = async ({
     delegatee,
+    delegator,
     tokens,
 }: {
-    delegatee: `0x${string}`
+    delegatee: `0x${string}`,
+    delegator: `0x${string}`,
     tokens: any[],
 }): Promise<{
     results: VotesToken[],
@@ -32,13 +34,13 @@ const getDelegationInfo = async ({
             calls.push({
                 target: token.address,
                 allowFailure: true,
-                callData: votesInterface.encodeFunctionData("nonces", [delegatee])
+                callData: votesInterface.encodeFunctionData("nonces", [delegator])
             })
 
             calls.push({
                 target: token.address,
                 allowFailure: true,
-                callData: votesInterface.encodeFunctionData("delegates", [delegatee])
+                callData: votesInterface.encodeFunctionData("delegates", [delegator])
             })
         }
 
@@ -62,8 +64,8 @@ const getDelegationInfo = async ({
 
             results.push({
                 ...token,
-                delegatee,
                 selected: false,
+                delegatee,
                 nonce,
                 currentDelegate,
                 expiry
