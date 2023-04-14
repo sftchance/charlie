@@ -1,3 +1,5 @@
+import { ethers } from "ethers"
+
 import { useNetwork } from "wagmi"
 
 import { useBlockExplorer } from "../../hooks"
@@ -8,7 +10,7 @@ import { truncate } from "../../utils"
 
 import { DelegatedCall, VotesToken } from "../../types"
 
-import { ENSName, ENSAvatar, ENSNameAvatar } from "../Wallet"
+import { ENSNameAvatar } from "../Wallet"
 
 import "./TokenRow.css"
 
@@ -51,11 +53,11 @@ const TokenRow = ({
         currentDelegate,
     } = token;
 
-    const chain = chains.find(chain => chain.id === chainId)
-
-    const blockExplorerURL = useBlockExplorer(chain, address);
+    const blockExplorerURL = useBlockExplorer(chain, token.address);
 
     const actionStatus = delegateCall ? delegateCall.status : "";
+
+    const checksummedAddress = ethers.utils.getAddress(token.address)
 
     return (
         <>
@@ -69,27 +71,25 @@ const TokenRow = ({
                 <a href={blockExplorerURL} target="_blank" rel="noreferrer">
                     <div className="name">
                         <div className="token-img">
-                            <span className="token img" />
+                            <img className="token img" src={`https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${token.blockchain}/assets/${checksummedAddress}/logo.png`} />
                             <img className="chain img" src={`/logos/${token.blockchain}.png`} alt={token.blockchain} />
                         </div>
 
-                        <p>{truncate(name, 18)}</p>
+                        <p>{truncate(token.name, 22)}</p>
                     </div>
                 </a>
 
                 <div className="balance">
-                    <p>{formatBalance(balance)}</p>
+                    <p>{formatBalance(token.balance)}</p>
                 </div>
 
                 <div className="delegations">
                     <div className="delegation">
                         <ENSNameAvatar address={currentDelegate} />
-                        {/* <ENSName address={currentDelegate} /> */}
                     </div>
                     <div className="arrow" />
                     <div className="delegation">
                         <ENSNameAvatar address={delegatee} />
-                        {/* <ENSName address={delegatee} /> */}
                     </div>
                 </div>
             </div>
