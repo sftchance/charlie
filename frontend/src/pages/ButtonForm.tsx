@@ -10,7 +10,7 @@ import { useClient } from "../hooks";
 
 import { Error, Input, MultiSelect } from "../components";
 
-import { useNavbar } from "../hooks";
+import { useColor, useNavbar } from "../hooks";
 
 import "./ButtonForm.css";
 
@@ -90,6 +90,11 @@ const ButtonForm = () => {
     const [errors, setErrors] = useState<any>([]);
 
     const options = [...withTokens({ tokens: dataTokens }, object?.tokens || [])?.tokens]
+
+    const textColor = useColor([
+        object?.primary_color,
+        object?.secondary_color
+    ]);
 
     const handleDelete = (e: any) => {
         e.preventDefault()
@@ -209,8 +214,14 @@ const ButtonForm = () => {
                         type="submit"
                         className={isEdit
                             ? "primary secondary block"
-                            : "primary block"}>
-                        <span className="content">Save</span>
+                            : "primary block"}
+                        style={{
+                            background: `linear-gradient(-37deg, ${object.secondary_color}, ${object.primary_color})`,
+                            color: textColor
+                        }}>
+                        <span className="content" style={{
+                            color: textColor
+                        }}>Save</span>
                     </button>
                 </div>
             </form>

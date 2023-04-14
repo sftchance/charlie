@@ -1,33 +1,17 @@
+import { useState } from "react"
+
+import { ethers } from "ethers"
 import { useNetwork } from "wagmi"
 
 import { useBlockExplorer } from "../../hooks"
 
-import { DelegatedCall, VotesToken } from "../../types"
-
 import { Checkbox } from "../Form"
 
+import { formatBalance, truncate } from "../../utils"
+
+import { DelegatedCall, VotesToken } from "../../types"
+
 import "./TokenRow.css"
-
-const getAddressOrENS = (address: string) => {
-    // ensname
-    return `${address.slice(0, 6)}...${address.slice(-4)}`
-}
-
-const formatBalance = (balance: number) => {
-    const bal = Number(balance)
-    if (bal < 0.01)
-        return "<0.01"
-    if (bal > 1000000000)
-        return `${(Math.round(balance / 100000000) / 10).toLocaleString()}b`
-    if (bal > 10000000)
-        return `${(Math.round(balance / 100000) / 10)}m`
-    if (bal > 10000)
-        return `${(Math.round(balance / 1000)) / 10}k`
-    if (bal % 1 === 0)
-        return bal
-
-    return bal.toFixed(2)
-}
 
 const TokenRow = ({
     token,
@@ -44,55 +28,62 @@ const TokenRow = ({
 }) => {
     const { chains } = useNetwork();
 
-    const { 
-        chainId,
-        address, 
-        name,
-        symbol,
-        balance,
-        currentDelegate,
-    } = token;
+    const [noTokenImage, setNoTokenImage] = useState<boolean>(false);
 
-    const chain = chains.find(chain => chain.id === chainId)
+    const chain = chains.find(chain => chain.id === token.chainId)
 
-    const blockExplorerURL = useBlockExplorer(chain, address);
+    const blockExplorerURL = useBlockExplorer(chain, token.address);
 
-    const actionStatus = delegateCall ? delegateCall.status : "hidden";
+    const actionStatus = delegateCall?.status;
 
     return (
         <>
             <div className="token">
                 <div className="status">
+                    <Checkbox
+                        checked={isClicked}
+                        onChange={onClick}
+                        disabled={token.balance <= 0.001 || actionStatus === "pending"} />
+
                     <div className={`signature ${actionStatus}`} />
-                    
-                    <Checkbox checked={isClicked} onChange={onClick} />
                 </div>
 
                 <a href={blockExplorerURL} target="_blank" rel="noreferrer">
                     <div className="name">
-                        <span className="img" />
-                        <h3>{name}</h3>
-                        <span className="symbol">{`($${symbol})`}</span>
+                        <div className="token-img">
+                            <img
+                                className="token img"
+                                src={!noTokenImage ? `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${token.blockchain}/assets/${ethers.utils.getAddress(token.address)}/logo.png` : `/logos/${token.blockchain}.png`}
+                                alt={token.name}
+                                onError={() => setNoTokenImage(true)} />
+
+                            {!noTokenImage && <img
+                                className="chain img"
+                                src={`/logos/${token.blockchain}.png`}
+                                alt={token.blockchain} />}
+                        </div>
+
+                        <p><span className="name">{truncate(token.name, 22)}</span> <span className="symbol"> ${token.symbol}</span></p>
                     </div>
                 </a>
 
-                <div className="balance">
-                    <h3>{formatBalance(balance)}</h3>
-                </div>
+                <p className="balance">
+                    <span>{formatBalance(token.balance as unknown as string)}</span>
+                </p>
 
-                <div className="delegations">
+                {/* <div className="delegations">
                     <div className="delegation">
                         <span className="img" />
-                        <span>{getAddressOrENS(currentDelegate)}</span>
+                        <p>{getAddressOrENS(currentDelegate)}</p>
                     </div>
                     <div className="arrow" />
                     <div className="delegation">
-                        {delegate.ensAvatar ? 
+                        {delegate.ensAvatar ?
                             <img src={delegate.ensAvatar} alt="avatar" /> :
                             <span className="img" />}
-                        <span>{delegate.ensName}</span>
+                        <p>{delegate.ensName}</p>
                     </div>
-                </div>
+                </div> */}
             </div>
         </>
     )

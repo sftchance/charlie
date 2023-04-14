@@ -17,6 +17,12 @@
     width: 0;
 }
 
+.checkbox input:disabled,
+.checkbox input:disabled+.check {
+    cursor: not-allowed;
+    background: var(--charlieGrey);
+}
+
 .check {
     position: absolute;
     top: 0;
@@ -38,24 +44,24 @@
     background: var(--charlieGradientAlt);
 }
 
-/* .check:after {
+.check:after {
     content: "";
     position: absolute;
     display: none;
 }
-  
+
 .check.checked:after {
     display: block;
 }
-  
+
 .check:after {
-    left: 4px;
-    top: 0px;
-    width: 5px;
-    height: 10px;
+    left: 6px;
+    top: 4px;
+    width: 2px;
+    height: 5px;
     border: solid white;
-    border-width: 0 3px 3px 0;
+    border-width: 0 2px 2px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
-} */
+}

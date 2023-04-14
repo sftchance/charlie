@@ -20,8 +20,6 @@ const getDelegationInfo = async ({
     const votesInterface = new ethers.utils.Interface(ERC20_VOTES_ABI);
 
     for (const chainId of Object.keys(providers)) {
-        const provider: ethers.providers.JsonRpcProvider = providers[Number(chainId)];
-
         const calls: {
             target: `0x${string}`,
             allowFailure: boolean,

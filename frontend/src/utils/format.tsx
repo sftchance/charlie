@@ -1,7 +1,15 @@
+const truncate = (str: string, length: number, tail?: boolean | undefined) => {
+    if (str.length <= length) return str;
+
+    if (tail) return `${str.slice(0, length)}...${str.slice(-length)}`;
+
+    return `${str.slice(0, length)}...`;
+}
+
 const formatAddress = (address: `0x${string}` | undefined) => {
     if (!address) return address;
 
-    return `${address.slice(0, 6)}...${address.slice(-4)}`
+    return `${address.slice(0, 8).trim()}...${address.slice(-8)}`
 }
 
 const formatBalance = (balance: string) => {
@@ -21,4 +29,4 @@ const formatBalance = (balance: string) => {
     return `${(number / 1000000000000).toFixed(1)}t`;
 }
 
-export { formatAddress, formatBalance }
+export { formatAddress, formatBalance, truncate }

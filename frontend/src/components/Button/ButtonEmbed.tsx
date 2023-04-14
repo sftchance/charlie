@@ -10,7 +10,7 @@ import { useClient, useColor, useDelegate, useENS } from "../../hooks";
 
 import { TokenRow } from "../";
 
-import { getBalances, getDelegationInfo } from "../../utils";
+import { getBalances, getDelegationInfo, truncate } from "../../utils";
 
 import { VotesToken } from "../../types";
 
@@ -118,6 +118,8 @@ const ButtonEmbed = () => {
             // Sort current chain or mainnet to top.
             const sorted = balanceDelegations.sort((a: any, b: any) => sortByChainId(a, b, chain?.id));
 
+            console.log('sorted', sorted)
+
             setTokens(sorted);
         }
 
@@ -139,8 +141,7 @@ const ButtonEmbed = () => {
                         &times;
                     </span>
 
-                    <h1>{data.text}</h1>
-
+                    <h1>{data.name}</h1>
                     <p>{data.description}</p>
 
                     <div className="tokens">
@@ -154,23 +155,14 @@ const ButtonEmbed = () => {
                             const firstOfChain = token.chainId !== previousChainId;
 
                             return (
-                                <Fragment key={`${token.address}-${token.chainId}`}>
-                                    {firstOfChain && <div className="chain">
-                                        <div className="name">
-                                            <span className="img" />
-                                            <h1>{chain?.name}</h1>
-                                        </div>
-                                        <hr />
-                                    </div>}
-                                    
-                                    <TokenRow
-                                        token={token}
-                                        delegate={{ ensName: ensName, ensAvatar: ensAvatar }}
-                                        delegateCall={delegateCall}
-                                        isClicked={token.selected}
-                                        onClick={() => onSelect(token)}
-                                    />
-                                </Fragment>
+                                <TokenRow
+                                    key={`${token.address}-${token.chainId}`}
+                                    token={token}
+                                    delegate={{ ensName: ensName, ensAvatar: ensAvatar }}
+                                    delegateCall={delegateCall}
+                                    isClicked={token.selected}
+                                    onClick={() => onSelect(token)}
+                                />
                             )
                         })}
                     </div>
@@ -179,19 +171,23 @@ const ButtonEmbed = () => {
                         {isSigningNeeded ? "Sign delegations" : "Delegate now"}
                     </button>
 
-                    <p>Powered by <strong>Charlie</strong>.</p>
+                    <p className="branding">Powered by <strong>
+                        <a href="https://trycharlie.xyz" target="_blank" rel="noreferrer">
+                            Charlie
+                        </a>
+                    </strong>.</p>
                 </div>
             </div >
 
             <button
-                className="delegation-button"
+                className="delegation-button primary"
                 style={{
                     background: `linear-gradient(-37deg, ${data.primary_color}, ${data.secondary_color})`,
                     color: textColor,
                 }}
                 onClick={() => setIsModalOpen(!isModalOpen)}
             >
-                {data.text}
+                <span className="content">{data.text}</span>
             </button>
         </>
     );
