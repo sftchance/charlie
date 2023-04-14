@@ -50,6 +50,9 @@ CSRF_TRUSTED_ORIGINS = [
     "https://*.trycharlie.xyz",
 ]
 
+CSRF_COOKIE_DOMAIN = ".trycharlie.xyz"
+SESSION_COOKIE_DOMAIN = ".trycharlie.xyz"
+
 # Application definition
 INSTALLED_APPS = [
     "siwe_auth.apps.SiweAuthConfig",
