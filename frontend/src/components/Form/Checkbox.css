@@ -17,6 +17,12 @@
     width: 0;
 }
 
+.checkbox input:disabled,
+.checkbox input:disabled+.check {
+    cursor: not-allowed;
+    background: var(--charlieGrey);
+}
+
 .check {
     position: absolute;
     top: 0;

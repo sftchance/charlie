@@ -1,18 +1,24 @@
 import "./Checkbox.css";
 
-const Checkbox = ({ 
-    checked, onChange 
-}: { 
-    checked: boolean | undefined, onChange: (() => void) | undefined
+const Checkbox = ({
+    checked = false,
+    disabled,
+    onChange = () => { },
+}: {
+    checked: boolean | undefined,
+    disabled: boolean | undefined,
+    onChange: (() => void) | undefined
 }) => {
     return (
-        <div className="checkbox" onClick={onChange}>
+        <div className="checkbox">
             <input
                 type="checkbox"
                 onChange={onChange}
                 onClick={onChange}
+                disabled={disabled}
                 checked={checked}
             />
+
             <span className={`check${checked ? " checked" : ""}`} />
         </div>
     )

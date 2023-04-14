@@ -1,34 +1,19 @@
-import { ethers } from "ethers"
+import { useState } from "react"
 
+import { ethers } from "ethers"
 import { useNetwork } from "wagmi"
 
 import { useBlockExplorer } from "../../hooks"
 
 import { Checkbox } from "../Form"
 
-import { truncate } from "../../utils"
+import { formatBalance, truncate } from "../../utils"
 
 import { DelegatedCall, VotesToken } from "../../types"
 
 import { ENSNameAvatar } from "../Wallet"
 
 import "./TokenRow.css"
-
-const formatBalance = (balance: number) => {
-    const bal = Number(balance)
-    if (bal < 0.01)
-        return "<0.01"
-    if (bal > 1000000000)
-        return `${(Math.round(balance / 100000000) / 10).toLocaleString()}b`
-    if (bal > 10000000)
-        return `${(Math.round(balance / 100000) / 10)}m`
-    if (bal > 10000)
-        return `${(Math.round(balance / 1000)) / 10}k`
-    if (bal % 1 === 0)
-        return bal
-
-    return bal.toFixed(2)
-}
 
 const TokenRow = ({
     token,
@@ -43,6 +28,8 @@ const TokenRow = ({
 }) => {
     const { chains } = useNetwork();
 
+    const [noTokenImage, setNoTokenImage] = useState<boolean>(false);
+
     const {
         chainId,
         address,
@@ -55,15 +42,16 @@ const TokenRow = ({
 
     const blockExplorerURL = useBlockExplorer(chain, token.address);
 
-    const actionStatus = delegateCall ? delegateCall.status : "";
-
-    const checksummedAddress = ethers.utils.getAddress(token.address)
+    const actionStatus = delegateCall?.status;
 
     return (
         <>
             <div className="token">
                 <div className="status">
-                    <Checkbox checked={isClicked} onChange={onClick} />
+                    <Checkbox
+                        checked={isClicked}
+                        onChange={onClick}
+                        disabled={token.balance <= 0.001 || actionStatus === "pending"} />
 
                     <div className={`signature ${actionStatus}`} />
                 </div>
@@ -71,25 +59,33 @@ const TokenRow = ({
                 <a href={blockExplorerURL} target="_blank" rel="noreferrer">
                     <div className="name">
                         <div className="token-img">
-                            <img className="token img" src={`https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${token.blockchain}/assets/${checksummedAddress}/logo.png`} />
-                            <img className="chain img" src={`/logos/${token.blockchain}.png`} alt={token.blockchain} />
+                            <img
+                                className="token img"
+                                src={!noTokenImage ? `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${token.blockchain}/assets/${ethers.utils.getAddress(token.address)}/logo.png` : `/logos/${token.blockchain}.png`}
+                                alt={token.name}
+                                onError={() => setNoTokenImage(true)} />
+
+                            {!noTokenImage && <img
+                                className="chain img"
+                                src={`/logos/${token.blockchain}.png`}
+                                alt={token.blockchain} />}
                         </div>
 
-                        <p>{truncate(token.name, 22)}</p>
+                        <p><span className="name">{truncate(token.name, 22)}</span> <span className="symbol"> ${token.symbol}</span></p>
                     </div>
                 </a>
 
-                <div className="balance">
-                    <p>{formatBalance(token.balance)}</p>
-                </div>
+                <p className="balance">
+                    <span>{formatBalance(token.balance as unknown as string)}</span>
+                </p>
 
                 <div className="delegations">
                     <div className="delegation">
-                        <ENSNameAvatar address={currentDelegate} />
+                        <ENSNameAvatar address={token.currentDelegate} />
                     </div>
                     <div className="arrow" />
                     <div className="delegation">
-                        <ENSNameAvatar address={delegatee} />
+                        <ENSNameAvatar address={token.delegatee} />
                     </div>
                 </div>
             </div>

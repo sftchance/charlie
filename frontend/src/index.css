@@ -42,7 +42,7 @@ h4,
 h5,
 h6,
 button {
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
     color: var(--charlieBlack);
     font-weight: 700;
 }

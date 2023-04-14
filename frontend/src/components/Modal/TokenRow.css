@@ -2,10 +2,10 @@
     display: grid;
     grid-template-areas: "status name balance"
         "delegations delegations delegations";
-    grid-template-columns: 1fr 8fr 1fr;
+    grid-template-columns: 1fr 8fr max-content;
     align-items: center;
-    column-gap: 12px;
-    row-gap: 8px;
+    column-gap: 5px;
+    row-gap: 10px;
     margin-bottom: 10px;
 }
 
@@ -21,7 +21,6 @@
 .token .status {
     display: flex;
     flex-direction: row;
-    gap: 8px;
     align-items: center;
 }
 
@@ -30,6 +29,25 @@
     display: flex;
     flex-direction: row;
     gap: .5rem;
+}
+
+.token .name p {
+    padding-block: 5px;
+}
+
+.token .name p .symbol,
+.token .name p:hover .name {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.15s ease-in-out;
+}
+
+.token .name p:hover .symbol {
+    display: inline;
+    opacity: 0.65;
+    background: linear-gradient(0deg, #000, rgba(0, 0, 0, .65));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .token-img {
@@ -60,16 +78,9 @@
     position: absolute;
 }
 
-.token .name .symbol {
-    font-size: 10px;
-    color: rgba(0, 0, 0, 0.35);
-    font-weight: 600;
-    margin-left: 5px;
-}
-
 .token .balance {
     grid-area: balance;
-    font-weight: 600;
+    display: flex;
 }
 
 .token .delegations {
@@ -98,6 +109,7 @@
     min-width: 10px;
     height: 10px;
     border-radius: 50%;
+    margin-left: 10px;
 }
 
 .signature {

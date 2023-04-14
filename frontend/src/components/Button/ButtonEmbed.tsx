@@ -29,15 +29,23 @@ const sortByChainId = (a: VotesToken, b: VotesToken, targetChainId: number | und
 }
 
 const ButtonEmbed = () => {
+    const { buttonId } = useParams();
+
+    const urlParams = new URLSearchParams(window.location.search);
+
+    const config = urlParams.get('c') || null;
+
+    const isModalForcedOpen = (config && config[0] === '1') ? true : false;
+
     const { address } = useAccount();
 
     const { chain } = useNetwork();
 
-    const { buttonId } = useParams();
-
     const { get, path } = useClient();
 
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const [isModalOpen, setIsModalOpen] = useState(isModalForcedOpen);
+
+    console.log(isModalForcedOpen, isModalOpen)
 
     const [tokens, setTokens] = useState<VotesToken[]>([]);
 
@@ -115,10 +123,7 @@ const ButtonEmbed = () => {
                 tokens: results
             });
 
-            // Sort current chain or mainnet to top.
             const sorted = balanceDelegations.sort((a: any, b: any) => sortByChainId(a, b, chain?.id));
-
-            console.log('sorted', sorted)
 
             setTokens(sorted);
         }
@@ -133,7 +138,7 @@ const ButtonEmbed = () => {
     return (
         <>
             <div
-                className={isModalOpen ? "modal" : "modal hidden"}
+                className={`modal ${isModalOpen ? "open" : "hidden"} ${isModalForcedOpen ? "forced" : ""}`}
                 onClick={() => setIsModalOpen(false)}
             >
                 <div className="modal-content" onClick={(e) => e.stopPropagation()}>
