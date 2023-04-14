@@ -26,21 +26,9 @@ const TokenRow = ({
     isClicked?: boolean,
     onClick?: () => void,
 }) => {
-    const { chains } = useNetwork();
-
     const [noTokenImage, setNoTokenImage] = useState<boolean>(false);
 
-    const {
-        chainId,
-        address,
-        name,
-        delegatee,
-        symbol,
-        balance,
-        currentDelegate,
-    } = token;
-
-    const blockExplorerURL = useBlockExplorer(chain, token.address);
+    const blockExplorerURL = useBlockExplorer({ id: token.chainId }, token.address);
 
     const actionStatus = delegateCall?.status;
 
