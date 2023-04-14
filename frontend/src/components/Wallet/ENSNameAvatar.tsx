@@ -3,10 +3,6 @@ import { useEnsName } from "wagmi";
 
 import { providers } from "../../utils";
 
-const trimAddress = (address: string) => {
-    return `${address.slice(0, 6)}...${address.slice(-4)}`
-}
-
 // Wagmi useENSAvatar did not work, so we use the wagmi useEnsName hook to get the ens name
 // and then a useEffect to get the avatar if they have a name.
 const ENSNameAvatar = ({ address }: any) => {
@@ -42,7 +38,7 @@ const ENSNameAvatar = ({ address }: any) => {
                 <span>{ensName}</span> :
                 <span>
                     {typeof(address) === "string" ? 
-                        trimAddress(address) : 
+                        `${address.slice(0, 6)}...${address.slice(-4)}` : 
                         "0x0000...0000"
                     }
                 </span>

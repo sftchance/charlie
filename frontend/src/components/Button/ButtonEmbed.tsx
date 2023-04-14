@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { useAccount, useNetwork } from "wagmi";
 
-import { useClient, useColor, useDelegate, useENS } from "../../hooks";
+import { useClient, useColor, useDelegate } from "../../hooks";
 
 import { TokenRow } from "../";
 
@@ -62,8 +62,6 @@ const ButtonEmbed = () => {
         queryFn: () =>
             get(path(`buttons/${buttonId}/`))
     });
-
-    const { ensName, ensAvatar } = useENS(data?.ethereum_address);
 
     const textColor = useColor([
         data?.primary_color,

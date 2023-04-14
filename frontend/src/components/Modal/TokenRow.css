@@ -2,9 +2,9 @@
     display: grid;
     grid-template-areas: "status name balance"
         "delegations delegations delegations";
-    grid-template-columns: 1fr 8fr max-content;
+    grid-template-columns: min-content 1fr min-content;
     align-items: center;
-    column-gap: 5px;
+    column-gap: 16px;
     row-gap: 10px;
     margin-bottom: 10px;
 }
