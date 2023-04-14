@@ -37,12 +37,9 @@ ALLOWED_HOSTS = [
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173", 
-    "http://10.0.0.95:5173",
-    "http://*.vercel.app",
+    "http://127.0.0.1:5173", 
     "https://*.vercel.app",
-    "http://*.fly.dev",
     "https://*.fly.dev",
-    "http://*.trycharlie.xyz",
     "https://*.trycharlie.xyz",
 ]
 
