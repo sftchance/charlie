@@ -56,7 +56,7 @@ const getDelegationInfo = async ({
 
             const nonce = Number(multiCallResult[i].returnData);
 
-            const currentDelegate = multiCallResult[i + 1].returnData;
+            const currentDelegate = `0x${multiCallResult[i + 1].returnData.slice(26)}`;
 
             const expiry = Math.floor(Date.now() / 1000) + 300;
 

@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
+
 import { useEnsName } from "wagmi";
+
+import { ethers } from "ethers";
 
 import { providers } from "../../utils";
 
@@ -9,10 +12,16 @@ const ENSNameAvatar = ({ address }: any) => {
     const [ avatar, setAvatar ] = useState<string | undefined>(undefined)
 
     const disabled = !!address || address === "0x0000000000000000000000000000000000000000000000000000000000000000";
+
+    // The call to get current delegate is returning all lowercase addresses,
+    // and apparently wagmi needs proper checksum...
+    const checkSum = (address: string) => {
+        return ethers.utils.getAddress(address) as `0x${string}`
+    }
     
     const { data: ensName } = useEnsName({
         enabled: !disabled,
-        address: address as `0x${string}`,
+        address: checkSum(address),
         chainId: 1
     })
 
