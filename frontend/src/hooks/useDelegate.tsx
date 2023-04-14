@@ -12,7 +12,7 @@ import { getTypedDelegations, ERC20_VOTES_ABI, MULTICALL, MULTICALL_ABI } from "
 
 const useDelegate = ({
     tokens,
-    blocking,
+    blocking = false,
  } : { 
     tokens: VotesToken[], 
     blocking: boolean
@@ -25,7 +25,7 @@ const useDelegate = ({
 
     const args = delegatedCalls.map((call) => ({
         target: call.target,
-        allowFailure: true,
+        allowFailure: blocking,
         callData: call.callData as `0x${string}`
     }));
 

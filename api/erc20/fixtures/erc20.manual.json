@@ -1,1 +1,18 @@
-[]
+[
+    {
+        "ethereum_address": "0x36f43BEb312EB9fd50c3B3c7f0c9b79835aD7B39",
+        "blockchain": "polygon",
+        "chain_id": 137,
+        "symbol": "T20",
+        "name": "Test 20",
+        "decimals": 18
+    },
+    {
+        "ethereum_address": "0x60c9106E305374Ff97A4D1510A049940967b1D9D",
+        "blockchain": "polygon",
+        "chain_id": 137,
+        "symbol": "MT",
+        "name": "MyToken",
+        "decimals": 18
+    }
+]
