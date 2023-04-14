@@ -1,3 +1,5 @@
+import { ethers } from "ethers"
+
 import { useNetwork } from "wagmi"
 
 import { useBlockExplorer } from "../../hooks"
@@ -47,6 +49,8 @@ const TokenRow = ({
 
     const actionStatus = delegateCall ? delegateCall.status : "";
 
+    const checksummedAddress = ethers.utils.getAddress(token.address)
+
     return (
         <>
             <div className="token">
@@ -59,11 +63,11 @@ const TokenRow = ({
                 <a href={blockExplorerURL} target="_blank" rel="noreferrer">
                     <div className="name">
                         <div className="token-img">
-                            <img className="token img" src={`https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${token.blockchain}/assets/${token.address}/logo.png`} />
+                            <img className="token img" src={`https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${token.blockchain}/assets/${checksummedAddress}/logo.png`} />
                             <img className="chain img" src={`/logos/${token.blockchain}.png`} alt={token.blockchain} />
                         </div>
 
-                        <p>{truncate(token.name, 18)}</p>
+                        <p>{truncate(token.name, 22)}</p>
                     </div>
                 </a>
 
