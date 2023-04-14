@@ -1,4 +1,4 @@
-import { useEffect, useState, Fragment } from "react";
+import { useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
 
@@ -10,7 +10,7 @@ import { useClient, useColor, useDelegate, useENS } from "../../hooks";
 
 import { TokenRow } from "../";
 
-import { getBalances, getDelegationInfo, truncate } from "../../utils";
+import { getBalances, getDelegationInfo } from "../../utils";
 
 import { VotesToken } from "../../types";
 
@@ -44,8 +44,6 @@ const ButtonEmbed = () => {
     const { get, path } = useClient();
 
     const [isModalOpen, setIsModalOpen] = useState(isModalForcedOpen);
-
-    console.log(isModalForcedOpen, isModalOpen)
 
     const [tokens, setTokens] = useState<VotesToken[]>([]);
 
@@ -151,19 +149,14 @@ const ButtonEmbed = () => {
 
                     <div className="tokens">
                         {tokens.map((token: any) => {
-                            const previousChainId = tokens[tokens.indexOf(token) - 1]?.chainId;
-
                             const delegateCall = delegatedCalls.find((call) =>
                                 call.target === token.address && call.chainId === token.chainId
                             );
-
-                            const firstOfChain = token.chainId !== previousChainId;
 
                             return (
                                 <TokenRow
                                     key={`${token.address}-${token.chainId}`}
                                     token={token}
-                                    delegate={{ ensName: ensName, ensAvatar: ensAvatar }}
                                     delegateCall={delegateCall}
                                     isClicked={token.selected}
                                     onClick={() => onSelect(token)}

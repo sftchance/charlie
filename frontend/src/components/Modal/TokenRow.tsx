@@ -11,28 +11,24 @@ import { formatBalance, truncate } from "../../utils"
 
 import { DelegatedCall, VotesToken } from "../../types"
 
+import { ENSNameAvatar } from "../Wallet"
+
 import "./TokenRow.css"
 
 const TokenRow = ({
     token,
-    delegate,
     delegateCall,
     isClicked,
     onClick
 }: {
     token: VotesToken,
-    delegate: any,
     delegateCall?: DelegatedCall,
     isClicked?: boolean,
     onClick?: () => void,
 }) => {
-    const { chains } = useNetwork();
-
     const [noTokenImage, setNoTokenImage] = useState<boolean>(false);
 
-    const chain = chains.find(chain => chain.id === token.chainId)
-
-    const blockExplorerURL = useBlockExplorer(chain, token.address);
+    const blockExplorerURL = useBlockExplorer({ id: token.chainId }, token.address);
 
     const actionStatus = delegateCall?.status;
 
@@ -71,19 +67,15 @@ const TokenRow = ({
                     <span>{formatBalance(token.balance as unknown as string)}</span>
                 </p>
 
-                {/* <div className="delegations">
+                <div className="delegations">
                     <div className="delegation">
-                        <span className="img" />
-                        <p>{getAddressOrENS(currentDelegate)}</p>
+                        <ENSNameAvatar address={token.currentDelegate} />
                     </div>
                     <div className="arrow" />
                     <div className="delegation">
-                        {delegate.ensAvatar ?
-                            <img src={delegate.ensAvatar} alt="avatar" /> :
-                            <span className="img" />}
-                        <p>{delegate.ensName}</p>
+                        <ENSNameAvatar address={token.delegatee} />
                     </div>
-                </div> */}
+                </div>
             </div>
         </>
     )
