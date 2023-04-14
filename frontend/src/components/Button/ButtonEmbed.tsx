@@ -80,6 +80,13 @@ const ButtonEmbed = () => {
         blocking: true
     });
 
+    console.log('selectedTokens.length', selectedTokens.length)
+    console.log('isPrepared', isPrepared)
+    console.log('isSigningNeeded', isSigningNeeded)
+    
+    const isDisabled = selectedTokens.length === 0 || (!isPrepared && !isSigningNeeded);
+    console.log('isDisabled', isDisabled)
+
     const onSelect = (token: any) => {
         if (token.selected) onRemoveCall(token);
 
@@ -173,7 +180,11 @@ const ButtonEmbed = () => {
                         })}
                     </div>
 
-                    <button className="delegate" disabled={!isPrepared && !isSigningNeeded} onClick={isPrepared ? onDelegate : onSign}>
+                    <button 
+                        className="delegate" 
+                        disabled={isDisabled} 
+                        onClick={isPrepared ? onDelegate : onSign}
+                    >
                         {isSigningNeeded ? "Sign delegations" : "Delegate now"}
                     </button>
 
