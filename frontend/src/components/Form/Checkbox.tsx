@@ -14,12 +14,11 @@ const Checkbox = ({
             <input
                 type="checkbox"
                 onChange={onChange}
-                onClick={onChange}
                 disabled={disabled}
                 checked={checked}
             />
 
-            <span className={`check${checked ? " checked" : ""}`} />
+            <span onClick={onChange} className={`check${checked ? " checked" : ""}`} />
         </div>
     )
 }
