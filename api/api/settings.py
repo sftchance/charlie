@@ -43,6 +43,8 @@ CSRF_TRUSTED_ORIGINS = [
     "https://*.trycharlie.xyz",
 ]
 
+CORS_ALLOWED_ORIGINS = CSRF_TRUSTED_ORIGINS
+
 # Application definition
 INSTALLED_APPS = [
     "siwe_auth.apps.SiweAuthConfig",
