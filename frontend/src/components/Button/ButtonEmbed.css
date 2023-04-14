@@ -5,7 +5,7 @@
 
 .delegate {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .modal {
@@ -21,6 +21,11 @@
     background-color: rgba(0, 0, 0, 0.5);
     transition: opacity 0.25s ease-in-out;
     opacity: 1;
+    z-index: 10;
+}
+
+.modal.forced {
+    background: var(--charlieWhite);
 }
 
 .modal.hidden {
@@ -29,37 +34,41 @@
 }
 
 .modal .modal-content {
-    width: 540px;
+    width: 720px;
     background-color: #fff;
     border-radius: 4px;
-    margin: 80px;
+    margin: 20px;
     padding: 20px;
     position: relative;
 }
 
-.modal .modal-content h1 {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 20px;
+.modal.forced .modal-content {
+    border: 1px solid var(--charlieGrey);
+    box-shadow: 0 0 10px 0 var(--charlieGrey);
 }
 
-.modal .modal-content h2 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 10px;
+.modal .modal-content h1 {
+    font-size: 24px;
 }
 
 .modal .modal-content p {
-    font-size: 14px;
-    margin-top: 10px;
+    max-width: 920px;
 }
 
 .modal .modal-content .close {
+    color: var(--charlieBlack);
     position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 20px;
+    top: 20px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
     cursor: pointer;
+    background: var(--charlieGrey);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .modal .tokens {
@@ -84,6 +93,11 @@
 }
 
 .chain .img {
-    height: 24px;
-    width: 24px;
+    height: 14px;
+    width: 14px;
+}
+
+.branding {
+    margin-top: 10px;
+    font-size: 12px;
 }

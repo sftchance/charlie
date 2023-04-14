@@ -1,12 +1,12 @@
 .token {
     display: grid;
     grid-template-areas: "status name balance"
-                "delegations delegations delegations";
-    grid-template-columns: 1fr 8fr 1fr;
+        "delegations delegations delegations";
+    grid-template-columns: 1fr 8fr max-content;
     align-items: center;
-    column-gap: 12px;
-    row-gap: 8px;
-    margin-bottom: 20px;
+    column-gap: 5px;
+    row-gap: 10px;
+    margin-bottom: 10px;
 }
 
 .token h3 {
@@ -21,7 +21,6 @@
 .token .status {
     display: flex;
     flex-direction: row;
-    gap: 8px;
     align-items: center;
 }
 
@@ -32,29 +31,62 @@
     gap: .5rem;
 }
 
-.img {
-    display: inline-flex;
-    height: 20px;
-    width: 20px;
-    background-color: lightgray;
-    border-radius: 50%;
+.token .name p {
+    padding-block: 5px;
 }
 
-.token .name .symbol {
-    margin-bottom: 12px;
-    font-size: 10px;
-    color: rgba(0,0,0,0.35);
-    font-weight: 600;
+.token .name p .symbol,
+.token .name p:hover .name {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.15s ease-in-out;
+}
+
+.token .name p:hover .symbol {
+    display: inline;
+    opacity: 0.65;
+    background: linear-gradient(0deg, #000, rgba(0, 0, 0, .65));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.token-img {
+    height: 25px;
+    width: 25px;
+    min-width: 15px;
+    position: relative;
+    margin-right: 10px;
+}
+
+.img {
+    background: red;
+    border-radius: 50%;
+    background-color: lightgray;
+}
+
+.img.token {
+    height: 30px;
+    width: 30px;
+    right: 0px;
+}
+
+.img.chain {
+    height: 15px;
+    width: 15px;
+    right: -10px;
+    top: 5px;
+    position: absolute;
 }
 
 .token .balance {
     grid-area: balance;
+    display: flex;
 }
 
 .token .delegations {
     grid-area: delegations;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 12px 1fr 1fr;
 }
 
 .delegations .delegation {
@@ -65,23 +97,14 @@
     gap: 8px;
 }
 
-.status {
-    grid-area: status;
-    display: flex;
-    flex-direction: row;
-}
-
 .signature {
     min-width: 10px;
     height: 10px;
     border-radius: 50%;
+    margin-left: 10px;
 }
 
-.signature.hidden {
-    visibility: hidden;
-}
-
-.signature.queued {
+.signature {
     background-color: gray;
 }
 

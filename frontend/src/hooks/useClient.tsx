@@ -29,6 +29,8 @@ const useClient = () => {
         if (body && typeof body !== "string")
             body = JSON.stringify(body)
 
+        console.log('getCSRFToken', getCSRFToken())
+
         const request = fromFetch(url, {
             method: method,
             headers: {
@@ -61,6 +63,9 @@ const useClient = () => {
     }
 
     const path = (url: string) => {
+        if (import.meta.env.VERCEL_ENV === "production")
+            return `${import.meta.env.VITE_PROD_API_URL}${url}`
+
         return `${import.meta.env.VITE_API_URL}${url}`
     }
 

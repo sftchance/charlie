@@ -35,13 +35,23 @@ ALLOWED_HOSTS = [
     ".trycharlie.xyz",
 ] 
 
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+CORS_ORIGIN_ALLOW_ALL = True
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173", 
-    "http://10.0.0.95:5173",
-    "http://trycharlie.xyz",
-    "https://trycharlie.xyz",
-    "https://charlie-api.fly.dev"
+    "http://127.0.0.1:5173", 
+    "https://*.vercel.app",
+    "https://www.trycharlie.xyz",
+    "https://staging.trycharlie.xyz",
+    "https://*.trycharlie.xyz",
 ]
+
+CSRF_COOKIE_DOMAIN = ".trycharlie.xyz"
+SESSION_COOKIE_DOMAIN = ".trycharlie.xyz"
 
 # Application definition
 INSTALLED_APPS = [

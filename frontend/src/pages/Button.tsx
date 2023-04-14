@@ -49,9 +49,9 @@ const Button = () => {
 
         <Input
             label="Button Link"
-            value="http://example.com/hosted/buttons/1/embed/"
+            value={`${window.location.origin}/hosted/buttons/${buttonId}/embed/`}
             append={<button className="secondary" onClick={() => {
-                copy("http://example.com/hosted/buttons/1/embed/")
+                copy(`${window.location.origin}/hosted/buttons/${buttonId}/embed/`)
             }}>
                 <span className="content">Copy</span>
             </button>}
@@ -59,10 +59,10 @@ const Button = () => {
         />
 
         <Input
-            label="Premade Widget"
-            value="<iframe src='http://example.com/hosted/buttons/1/embed/'></iframe>"
+            label="Button Widget"
+            value={`<iframe src='${window.location.origin}/hosted/buttons/${buttonId}/embed/?c=1'></iframe>`}
             append={<button className="secondary" onClick={() => {
-                copy("http://example.com/hosted/buttons/1/embed/")
+                copy(`<iframe src='${window.location.origin}/hosted/buttons/${buttonId}/embed/?c=1'></iframe>`)
             }}>
                 <span className="content">Copy</span>
             </button>}
@@ -71,17 +71,6 @@ const Button = () => {
 
         <label>Live Button Preview</label>
         <ButtonPreview button={data} />
-
-        <Input
-            label="Premade Button Image"
-            value="https://api.example.com/hosted/buttons/1/embed/"
-            append={<button className="secondary" onClick={() => {
-                copy("http://example.com/hosted/buttons/1/embed/")
-            }}>
-                <span className="content">Copy</span>
-            </button>}
-            disabled
-        />
     </>
 }
 

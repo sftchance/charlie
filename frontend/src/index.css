@@ -42,7 +42,7 @@ h4,
 h5,
 h6,
 button {
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
     color: var(--charlieBlack);
     font-weight: 700;
 }
@@ -203,12 +203,9 @@ button.link:hover {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     position: relative;
-
-    /* Add the noise texture to text with the gradient effect and mask it to the text */
     background-image: url('/noise.png');
     background-blend-mode: overlay;
     background-size: 200px 200px;
-
     opacity: 0.75;
 }
 
