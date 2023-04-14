@@ -90,16 +90,26 @@ const ButtonEmbed = () => {
 
     const onSign = async () => {
         await openDelegationSignatures({
-            onSuccess: () => {
-                console.log('success')
-            }
+            onSuccess: () => { }
         });
     }
 
     const onDelegate = async () => {
         await openDelegationTx({
             onSuccess: () => {
-                console.log('success')
+                // Update the currentDelegate for the selected tokens.
+                const curr = [...tokens];
+                delegatedCalls.forEach((call) => {
+                    const index = curr.findIndex((t) => t.address === call.target && t.chainId === call.chainId);
+
+                    curr[index] = {
+                        ...curr[index],
+                        selected: false,
+                        currentDelegate: data.ethereum_address
+                    }
+                });
+                
+                setTokens(curr);
             }
         });
     }
