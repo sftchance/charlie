@@ -6,19 +6,22 @@
     cursor: pointer;
     display: block;
     position: relative;
+    margin: 0;
     grid-area: checkbox;
 }
 
-.checkbox input {
+input[type="checkbox"] {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
     position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
+    white-space: nowrap;
+    width: 1px;
 }
 
-.checkbox input:disabled,
-.checkbox input:disabled+.check {
+input[type="checkbox"]:disabled,
+input[type="checkbox"]:disabled+.check {
     cursor: not-allowed;
     background: var(--charlieGrey);
 }
