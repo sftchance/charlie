@@ -1,57 +1,27 @@
-import { useEffect, useState } from "react";
+import { useEnsName, useEnsAvatar } from "wagmi";
 
-import { useEnsName } from "wagmi";
-
-import { ethers } from "ethers";
-
-import { providers } from "../../utils";
-
-// Wagmi useENSAvatar did not work, so we use the wagmi useEnsName hook to get the ens name
-// and then a useEffect to get the avatar if they have a name.
 const ENSNameAvatar = ({ address }: any) => {
-    const [ avatar, setAvatar ] = useState<string | undefined>(undefined)
-
-    const disabled = !!address || address === "0x0000000000000000000000000000000000000000000000000000000000000000";
-
-    // The call to get current delegate is returning all lowercase addresses,
-    // and apparently wagmi needs proper checksum...
-    const checkSum = (address: string) => {
-        return ethers.utils.getAddress(address) as `0x${string}`
-    }
-    
     const { data: ensName } = useEnsName({
-        enabled: !disabled,
-        address: checkSum(address),
+        enabled: !!address,
+        address: address as `0x${string}`,
         chainId: 1
     })
 
-    useEffect(() => {
-        if(!ensName) return;
+    const { data: ensAvatar } = useEnsAvatar({
+        enabled: !!address,
+        address: ensName as `0x${string}`,
+        chainId: 1
+    })
 
-        async function getAvatar(ensName: string) {
-            const avatar = await providers[1].getAvatar(ensName)
-            
-            setAvatar(avatar ? avatar : undefined)
-        }
-
-        getAvatar(ensName);
-    }, [ensName])
+    const name = ensName ? ensName : address ? `${address.slice(0, 6)}...${address.slice(-4)}` : ""
 
     return (
         <>
-            {avatar ?
-                <img className="img" src={avatar} alt="avatar" /> :
+            {ensAvatar ?
+                <img className="img" src={ensAvatar} alt="avatar" /> :
                 <span className="img" />
             }
-            {ensName ?
-                <span>{ensName}</span> :
-                <span>
-                    {typeof(address) === "string" ? 
-                        `${address.slice(0, 6)}...${address.slice(-4)}` : 
-                        "0x0000...0000"
-                    }
-                </span>
-            }
+            <span>{name}</span>
         </>
     )
 }
