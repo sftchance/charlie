@@ -45,8 +45,6 @@ const ButtonEmbed = () => {
 
     const [isModalOpen, setIsModalOpen] = useState(isModalForcedOpen);
 
-    console.log(isModalForcedOpen, isModalOpen)
-
     const [tokens, setTokens] = useState<VotesToken[]>([]);
 
     const selectedTokens = tokens.filter((t) => t.selected === true);

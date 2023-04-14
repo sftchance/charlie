@@ -29,8 +29,6 @@ const useClient = () => {
         if (body && typeof body !== "string")
             body = JSON.stringify(body)
 
-        console.log('getCSRFToken', getCSRFToken())
-
         const request = fromFetch(url, {
             method: method,
             headers: {
