@@ -35,6 +35,16 @@ ALLOWED_HOSTS = [
     ".trycharlie.xyz",
 ] 
 
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:5173", 
+    "http://127.0.0.1:5173", 
+    "https://*.vercel.app",
+    "https://www.trycharlie.xyz",
+    "https://staging.trycharlie.xyz",
+]
+
+CORS_ALLOWED_ORIGINS = CSRF_TRUSTED_ORIGINS
+
 # Application definition
 INSTALLED_APPS = [
     "siwe_auth.apps.SiweAuthConfig",
