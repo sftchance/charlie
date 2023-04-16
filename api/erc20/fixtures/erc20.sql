@@ -92,6 +92,8 @@ SELECT * FROM (
     AND decimals IS NOT NULL
     AND decimals <> 0
  UNION ALL 
+
+ 
     SELECT  'optimism' AS BLOCKCHAIN
            ,10 AS CHAIN_ID
            ,address
