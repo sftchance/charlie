@@ -25,7 +25,7 @@ const useDelegate = ({
 
     const args = delegatedCalls.map((call) => ({
         target: call.target,
-        allowFailure: blocking,
+        allowFailure: !blocking,
         callData: call.callData as `0x${string}`
     }));
 
@@ -114,7 +114,7 @@ const useDelegate = ({
                 // Sign the message
                 const signature = await signTypedData(message);
                 onSign(token);
-    
+   
                 // Build the call data
                 const { v, r, s } = ethers.utils.splitSignature(signature);
                 const callData = votesInterface.encodeFunctionData("delegateBySig", [
