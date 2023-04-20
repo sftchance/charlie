@@ -6,7 +6,7 @@ const getTypedDelegations = (calls: VotesToken[]) => {
             name: "Charlie",
             version: "1",
             chainId: call.chainId,
-            verifyingContract: "0xbD8488016B3A84647c1230f934A6EDF522Cbd0d9" as `0x${string}`,
+            verifyingContract: call.address as `0x${string}`,
         },
         types: {
             Delegation: [

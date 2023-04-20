@@ -10,17 +10,16 @@ const Checkbox = ({
     onChange: (() => void) | undefined
 }) => {
     return (
-        <div className="checkbox">
+        <label className="checkbox">
             <input
                 type="checkbox"
                 onChange={onChange}
-                onClick={onChange}
                 disabled={disabled}
                 checked={checked}
             />
 
             <span className={`check${checked ? " checked" : ""}`} />
-        </div>
+        </label>
     )
 }
 
