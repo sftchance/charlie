@@ -6,12 +6,13 @@ nav {
     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
     user-select: none;
     margin-bottom: 1rem;
+    height: 65px;
 }
 
 nav.fixed {
     position: fixed;
     z-index: 6;
-    margin-inline: 60px;
+    margin-inline: 40px;
     width: calc(100% - 80px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
