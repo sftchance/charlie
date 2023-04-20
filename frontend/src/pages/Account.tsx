@@ -17,7 +17,7 @@ const Account = () => {
             <h2>Connect your wallet.</h2>
             <p>Your Charlie with charlie is automatically created when you connect and authenticate your wallet.</p>
 
-            <ConnectButton className="secondary" />
+            <ConnectButton className="secondary" buttonText="Connect to continue" />
         </Card>
     }
 

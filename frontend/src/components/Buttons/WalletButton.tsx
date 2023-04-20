@@ -20,7 +20,7 @@ const WalletButton = ({ buttonText, className, ...props }: WalletButtonProps) =>
 
     if (!address) return <></>;
 
-    const text = isAuthenticated ? ensName : buttonText || "Authenticate Wallet";
+    const text = isAuthenticated ? ensName : buttonText || "Authenticate your wallet";
 
     const onClick = () => {
         if (isLoading) return;

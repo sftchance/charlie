@@ -29,7 +29,7 @@ const Home = () => {
                         <p className="lead">Imagine if growing your delegation power in onchain governance was simple as pressing a button... Oh wait... you can right now!</p>
 
                         <div className="buttons">
-                            <button onClick={() => { navigate('/account/') }}>Enter App</button>
+                            <button onClick={() => { navigate('/account/') }}>Create a button now</button>
                         </div>
                     </div>
                 </div>

@@ -1,9 +1,15 @@
 import { useAuthentication } from "../../hooks";
 
-const ConnectButton = ({ className, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
+interface ConnectButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    buttonText?: string;
+}
+
+const ConnectButton = ({ buttonText, className, ...props }: ConnectButtonProps) => {
     const { address, login } = useAuthentication();
 
     if (address) return <></>
+
+    const text = buttonText || "Connect Wallet";
 
     return <>
         <button
@@ -11,7 +17,7 @@ const ConnectButton = ({ className, ...props }: React.ButtonHTMLAttributes<HTMLB
             onClick={login}
             {...props}
         >
-            <span className="content">Connect Wallet</span>
+            <span className="content">{text}</span>
         </button>
     </>
 }
