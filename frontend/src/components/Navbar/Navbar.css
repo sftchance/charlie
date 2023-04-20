@@ -8,10 +8,19 @@ nav {
     margin-bottom: 1rem;
 }
 
+nav.fixed {
+    position: fixed;
+    z-index: 6;
+    margin-inline: 60px;
+    width: calc(100% - 80px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
 nav img {
     display: flex;
     align-items: center;
-    height: 24px;
+    height: 18px;
+    padding-block: 2px;
 }
 
 nav .links {
@@ -50,4 +59,9 @@ nav .hamburger .line {
 
 nav .hamburger.active .line {
     background-color: #000;
+}
+
+nav.fixed .hamburger .line,
+nav.fixed .hamburger.active .line {
+    background-color: #fff;
 }

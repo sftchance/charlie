@@ -4,17 +4,18 @@ import { Link } from 'react-router-dom'
 
 import { useNavbar } from '../../hooks';
 
-import charlie from "../../assets/charlie.svg";
-
 import "./Navbar.css"
 
-const Navbar = () => {
+const Navbar = ({ className = "" }: { className?: string }) => {
     const { links } = useNavbar(undefined);
 
     const [collapsed, setCollapsed] = useState(false);
 
-    return <nav className={`${collapsed ? "collapsed" : ""}`}>
-        <Link to="/"><img src={charlie} alt="Charlie" /></Link>
+    return <nav className={`${collapsed ? "collapsed" : ""} ${className}`}>
+        <Link to="/">
+            <img src={className === "" ? "/black-logo-word.png" : "/white-logo-word.png"}
+                alt="Charlie" />
+        </Link>
 
         <div className="hamburger" onClick={() => setCollapsed(!collapsed)}>
             <div className="line"></div>
