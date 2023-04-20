@@ -6,12 +6,22 @@ nav {
     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
     user-select: none;
     margin-bottom: 1rem;
+    height: 65px;
+}
+
+nav.fixed {
+    position: fixed;
+    z-index: 6;
+    margin-inline: 40px;
+    width: calc(100% - 80px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 nav img {
     display: flex;
     align-items: center;
-    height: 24px;
+    height: 18px;
+    padding-block: 2px;
 }
 
 nav .links {
@@ -50,4 +60,9 @@ nav .hamburger .line {
 
 nav .hamburger.active .line {
     background-color: #000;
+}
+
+nav.fixed .hamburger .line,
+nav.fixed .hamburger.active .line {
+    background-color: #fff;
 }

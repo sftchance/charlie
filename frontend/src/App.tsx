@@ -23,7 +23,7 @@ import {
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { Hosted, Static } from "./pages";
+import { Home, Hosted, Static } from "./pages";
 
 import '@rainbow-me/rainbowkit/styles.css';
 
@@ -84,6 +84,7 @@ function App() {
                     modalSize="compact"
                     chains={chains}
                     children={<Routes>
+                        <Route path="/" element={<Home />} />
                         <Route path="/hosted/*" element={<Hosted />} />
                         <Route path="*" element={<Static />} />
                     </Routes>} />

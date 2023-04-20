@@ -191,7 +191,7 @@ button.link:hover {
 }
 
 .card {
-    background: var(--charlieGrey);
+    background: rgba(25, 25, 25, 0.02);
     border-radius: 0.25rem;
     padding: 1rem;
     margin: 1rem 0;

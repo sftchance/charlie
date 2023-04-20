@@ -1,13 +1,12 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
-import { useAuthentication } from "../hooks"
-
-import { ConnectButton, WalletButton, EasterEgg } from "../components"
+import { Navbar, EasterEgg } from "../components"
 
 import "./Home.css"
 
 const Home = () => {
-    const { address } = useAuthentication();
+    const navigate = useNavigate()
 
     const [easterEggFound, setEasterEggFound] = useState(false)
 
@@ -17,19 +16,21 @@ const Home = () => {
 
     return (
         <div className="home">
+            <Navbar className="fixed" />
+
             <EasterEgg found={easterEggFound} toggle={toggleEasterEgg} />
 
             <div className="hero">
                 <div className="content">
-                    <h1>Transform Your Social Influence into Delegation Power with <span className="gradient" onClick={toggleEasterEgg}>one click</span>.</h1>
-                    <p className="lead">Unleash the power of the social networks surrounding governance tokens with the ability to harvest voting power - no coding needed.</p>
+                    <img src="/white-logo-fancy.png" alt="Charlie Logo" className="logo" onClick={toggleEasterEgg} />
 
-                    <div className="buttons">
-                        {address ? <WalletButton /> : <ConnectButton />}
+                    <div>
+                        <h1>A single button for governance token delegation.</h1>
+                        <p className="lead">Imagine if growing your delegation power in onchain governance was simple as pressing a button... Oh wait... you can right now!</p>
 
-                        <button className="primary secondary" type="submit">
-                            <span className="content">Delegate to Charlie</span>
-                        </button>
+                        <div className="buttons">
+                            <button onClick={() => { navigate('/account/') }}>Enter App</button>
+                        </div>
                     </div>
                 </div>
             </div>
