@@ -8,9 +8,11 @@ import { VotesToken } from "../types";
 
 const getDelegationInfo = async ({
     delegatee,
+    delegator,
     tokens,
 }: {
-    delegatee: `0x${string}`
+    delegatee: `0x${string}`,
+    delegator: `0x${string}`,
     tokens: any[],
 }): Promise<{
     results: VotesToken[],
@@ -32,13 +34,13 @@ const getDelegationInfo = async ({
             calls.push({
                 target: token.address,
                 allowFailure: true,
-                callData: votesInterface.encodeFunctionData("nonces", [delegatee])
+                callData: votesInterface.encodeFunctionData("nonces", [delegator])
             })
 
             calls.push({
                 target: token.address,
                 allowFailure: true,
-                callData: votesInterface.encodeFunctionData("delegates", [delegatee])
+                callData: votesInterface.encodeFunctionData("delegates", [delegator])
             })
         }
 
@@ -56,14 +58,14 @@ const getDelegationInfo = async ({
 
             const nonce = Number(multiCallResult[i].returnData);
 
-            const currentDelegate = multiCallResult[i + 1].returnData;
+            const currentDelegate = `0x${multiCallResult[i + 1].returnData.slice(26)}`;
 
             const expiry = Math.floor(Date.now() / 1000) + 300;
 
             results.push({
                 ...token,
-                delegatee,
                 selected: false,
+                delegatee,
                 nonce,
                 currentDelegate,
                 expiry

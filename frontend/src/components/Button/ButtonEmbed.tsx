@@ -76,9 +76,12 @@ const ButtonEmbed = () => {
         openDelegationSignatures,
         openDelegationTx
     } = useDelegate({
+        chainId: chain?.id ?? 1,
         tokens: selectedTokens,
         blocking: true
     });
+    
+    const isDisabled = selectedTokens.length === 0 || (!isPrepared && !isSigningNeeded);
 
     const onSelect = (token: any) => {
         if (token.selected) onRemoveCall(token);
@@ -90,16 +93,26 @@ const ButtonEmbed = () => {
 
     const onSign = async () => {
         await openDelegationSignatures({
-            onSuccess: () => {
-                console.log('success')
-            }
+            onSuccess: () => { }
         });
     }
 
     const onDelegate = async () => {
         await openDelegationTx({
             onSuccess: () => {
-                console.log('success')
+                // Update the currentDelegate for the selected tokens.
+                const curr = [...tokens];
+                delegatedCalls.forEach((call) => {
+                    const index = curr.findIndex((t) => t.address === call.target && t.chainId === call.chainId);
+
+                    curr[index] = {
+                        ...curr[index],
+                        selected: false,
+                        currentDelegate: data.ethereum_address
+                    }
+                });
+                
+                setTokens(curr);
             }
         });
     }
@@ -115,7 +128,8 @@ const ButtonEmbed = () => {
             });
 
             const { results: balanceDelegations } = await getDelegationInfo({
-                delegatee: data.ethereum_address,
+                delegatee: data.ethereum_address as `0x${string}`,
+                delegator: address as `0x${string}`,
                 tokens: results
             });
 
@@ -163,7 +177,11 @@ const ButtonEmbed = () => {
                         })}
                     </div>
 
-                    <button className="delegate" disabled={!isPrepared && !isSigningNeeded} onClick={isPrepared ? onDelegate : onSign}>
+                    <button 
+                        className="delegate" 
+                        disabled={isDisabled} 
+                        onClick={isPrepared ? onDelegate : onSign}
+                    >
                         {isSigningNeeded ? "Sign delegations" : "Delegate now"}
                     </button>
 
