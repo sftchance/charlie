@@ -10,7 +10,7 @@ const NavbarContext = createContext({
 });
 
 const DefaultLinks = ({ address }: any) => <>
-    <WalletButton buttonText="Log in" />
+    <WalletButton />
 
     {address ? <DisconnectButton /> : <ConnectButton />}
 </>

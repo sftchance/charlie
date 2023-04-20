@@ -16,7 +16,7 @@ const WalletButton = (props: any) => {
 
     if (!address) return <></>;
 
-    const buttonText = props.buttonText ? props.buttonText : isAuthenticated ? ensName : "Authenticate";
+    const buttonText = isAuthenticated ? ensName : "Authenticate";
 
     const onClick = () => {
         if (isLoading) return;
