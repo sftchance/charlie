@@ -1,13 +1,23 @@
 import { useAuthentication } from "../../hooks";
 
-const ConnectButton = (props: any) => {
+interface ConnectButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    buttonText?: string;
+}
+
+const ConnectButton = ({ buttonText, className, ...props }: ConnectButtonProps) => {
     const { address, login } = useAuthentication();
 
     if (address) return <></>
 
+    const text = buttonText || "Connect Wallet";
+
     return <>
-        <button className="primary" onClick={login}>
-            <span className="content">Connect Wallet</span>
+        <button
+            className={`primary ${className}`}
+            onClick={login}
+            {...props}
+        >
+            <span className="content">{text}</span>
         </button>
     </>
 }

@@ -198,15 +198,29 @@ button.link:hover {
     transition: all .075s ease-in-out;
 }
 
+.card.hero {
+    text-align: center;
+}
+
+.card.hero p {
+    max-width: 520px;
+    margin: auto;
+}
+
+.card.hero button {
+    margin-top: 30px;
+}
+
 .gradient {
     background: var(--charlieGradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     position: relative;
     background-image: url('/noise.png');
-    background-blend-mode: overlay;
+    background-blend-mode: color-dodge;
     background-size: 200px 200px;
     opacity: 0.75;
+
 }
 
 .gradient::before {
@@ -218,7 +232,7 @@ button.link:hover {
     height: 100%;
     background: var(--charlieGradient);
     z-index: -1;
-    background-blend-mode: screen;
+    background-blend-mode: color-dodge;
     -webkit-background-clip: text;
 }
 
@@ -233,4 +247,22 @@ button.link:hover {
     z-index: -1;
     filter: blur(50px);
     opacity: .35;
+}
+
+.fadeInUp {
+    animation-name: fadeInUp;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
