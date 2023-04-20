@@ -17,7 +17,7 @@ const Account = () => {
             <h2>Connect your wallet.</h2>
             <p>Your Charlie with charlie is automatically created when you connect and authenticate your wallet.</p>
 
-            <ConnectButton />
+            <ConnectButton className="secondary" />
         </Card>
     }
 
@@ -26,7 +26,7 @@ const Account = () => {
             <h2>Log in to Charlie!</h2>
             <p>The last step to sign in to your account is authenticating your wallet. Once you've done this you will never have to worry about remembering another password!</p>
 
-            <WalletButton />
+            <WalletButton className="secondary" />
         </Card>
     }
 

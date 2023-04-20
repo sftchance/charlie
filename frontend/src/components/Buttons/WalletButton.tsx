@@ -2,7 +2,11 @@ import { useNavigate } from "react-router-dom";
 
 import { useAuthentication, useENS } from "../../hooks";
 
-const WalletButton = (props: any) => {
+interface WalletButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    buttonText?: string;
+}
+
+const WalletButton = ({ buttonText, className, ...props }: WalletButtonProps) => {
     const navigate = useNavigate();
 
     const {
@@ -16,7 +20,7 @@ const WalletButton = (props: any) => {
 
     if (!address) return <></>;
 
-    const buttonText = isAuthenticated ? ensName : "Authenticate";
+    const text = isAuthenticated ? ensName : buttonText || "Authenticate Wallet";
 
     const onClick = () => {
         if (isLoading) return;
@@ -29,8 +33,12 @@ const WalletButton = (props: any) => {
         authenticate();
     }
 
-    return <button {...props} className="primary" onClick={onClick}>
-        <span className="content">{buttonText}</span>
+    return <button
+        className={`primary ${className}`}
+        onClick={onClick}
+        {...props}
+    >
+        <span className="content">{text}</span>
     </button>
 }
 
