@@ -30,6 +30,8 @@ const Buttons = () => {
 
     return (
         <>
+            <ProfileCard address={address} />
+
             <Link
                 to="/account/buttons/new/"
                 children={<button className="primary secondary block">

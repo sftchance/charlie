@@ -16,11 +16,11 @@ const WalletButton = ({ buttonText, className, ...props }: WalletButtonProps) =>
         isAuthenticated
     } = useAuthentication();
 
-    const { ensName } = useENS(address);
+    const { ensName, ensAvatar } = useENS(address);
 
     if (!address) return <></>;
 
-    const text = isAuthenticated ? ensName : buttonText || "Authenticate your wallet";
+    const text = isAuthenticated ? "Account" : buttonText || "Authenticate your wallet";
 
     const onClick = () => {
         if (isLoading) return;
