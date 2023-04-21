@@ -5,6 +5,7 @@
     background-repeat: no-repeat;
     position: relative;
     height: 100vh;
+    min-height: 100%;
     overflow: hidden;
 }
 
@@ -102,6 +103,11 @@
     .home .hero div.content {
         grid-template-columns: 1fr;
         padding-top: 0px;
+        padding-inline: 30px;
+    }
+
+    .home .hero h1 {
+        font-size: 3.5rem;
     }
 }
 
