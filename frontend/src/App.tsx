@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { WagmiConfig, configureChains, createClient } from "wagmi";
 import { avalanche, mainnet, polygon, optimism, arbitrum } from "wagmi/chains";
 import { publicProvider } from 'wagmi/providers/public';
+import { alchemyProvider } from 'wagmi/providers/alchemy';
 
 import {
     connectorsForWallets,
@@ -33,7 +34,10 @@ const queryClient = new QueryClient();
 
 const { chains, provider } = configureChains(
     [mainnet, polygon, avalanche, optimism, arbitrum],
-    [publicProvider()],
+    [
+        alchemyProvider({ apiKey: import.meta.env.VITE_MAINNET }),
+        publicProvider(),
+    ],
 );
 
 const connectors = connectorsForWallets([
