@@ -9,8 +9,8 @@
     --charlieBlackHover: rgba(25, 25, 25, 0.95);
     --charlieSoftBlack: #555;
     --charlieSoftBlackHover: rgba(85, 85, 85, 0.95);
-    --charliePink: #ff04c9;
-    --charlieOrange: hsl(24, 100%, 51%);
+    --charliePink: #04ff3f;
+    --charlieOrange: #ff6905;
     --charlieGradient: linear-gradient(-37deg, #ff6804, #ff04c9);
     --charlieGradientAlt: linear-gradient(-37deg, #5243f9, #43f9e1);
     --charlieBorderRadius: 0.25rem;
