@@ -11,7 +11,7 @@ const useColor = (color: string | string[] | undefined) => {
                 0.2126 * parseInt(col.slice(1, 3), 16) +
                 0.7152 * parseInt(col.slice(3, 5), 16) +
                 0.0722 * parseInt(col.slice(5, 7), 16) >
-                255 / 2;
+                255 / 1.5;
 
             if (isLight) lights++;
         }
@@ -24,7 +24,7 @@ const useColor = (color: string | string[] | undefined) => {
             0.2126 * parseInt(color.slice(1, 3), 16) +
             0.7152 * parseInt(color.slice(3, 5), 16) +
             0.0722 * parseInt(color.slice(5, 7), 16) >
-            255 / 2;
+            255 / 1.5;
 
         if (isLight) textColor = "#FFFFFF";
     }
