@@ -101,13 +101,18 @@
 
 @media (max-width: 768px) {
     .home .hero div.content {
+        margin-top: 40px;
         grid-template-columns: 1fr;
         padding-top: 0px;
         padding-inline: 30px;
     }
 
     .home .hero h1 {
-        font-size: 3.5rem;
+        font-size: 3rem;
+    }
+
+    .home .hero .lead {
+        font-size: 18px;
     }
 }
 
