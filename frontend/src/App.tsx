@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { WagmiConfig, configureChains, createClient } from "wagmi";
 import { avalanche, mainnet, polygon, optimism, arbitrum } from "wagmi/chains";
 import { publicProvider } from 'wagmi/providers/public';
+import { alchemyProvider } from 'wagmi/providers/alchemy';
 
 import {
     connectorsForWallets,
@@ -23,7 +24,7 @@ import {
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { Hosted, Static } from "./pages";
+import { Home, Hosted, Static } from "./pages";
 
 import '@rainbow-me/rainbowkit/styles.css';
 
@@ -33,7 +34,10 @@ const queryClient = new QueryClient();
 
 const { chains, provider } = configureChains(
     [mainnet, polygon, avalanche, optimism, arbitrum],
-    [publicProvider()],
+    [
+        alchemyProvider({ apiKey: import.meta.env.VITE_MAINNET }),
+        publicProvider(),
+    ],
 );
 
 const connectors = connectorsForWallets([
@@ -84,6 +88,7 @@ function App() {
                     modalSize="compact"
                     chains={chains}
                     children={<Routes>
+                        <Route path="/" element={<Home />} />
                         <Route path="/hosted/*" element={<Hosted />} />
                         <Route path="*" element={<Static />} />
                     </Routes>} />
