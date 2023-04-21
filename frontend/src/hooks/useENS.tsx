@@ -8,8 +8,8 @@ const useENS = (address: string | undefined) => {
     })
 
     const { data: ensAvatar } = useEnsAvatar({
-        enabled: !!address,
-        address: address as `0x${string}`,
+        enabled: !!ensName,
+        address: ensName as `0x${string}`,
         chainId: 1
     })
 
