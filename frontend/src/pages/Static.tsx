@@ -4,7 +4,7 @@ import { AuthenticationProvider, NavbarProvider } from "../contexts";
 
 import { Navbar, Footer } from "../components";
 
-import { Account, Home, NotFound } from "../pages";
+import { Account, NotFound } from "../pages";
 
 const Static = () => {
     return <AuthenticationProvider>
@@ -13,7 +13,6 @@ const Static = () => {
                 <Navbar />
 
                 <Routes>
-                    <Route path="/" element={<Home />} />
                     <Route path="/account/*" element={<Account />} />
 
                     <Route path="*" element={<NotFound />} />
