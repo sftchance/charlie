@@ -1,3 +1,5 @@
+import { BlockPicker } from 'react-color';
+
 import { Error } from './'
 
 import "./Input.css"

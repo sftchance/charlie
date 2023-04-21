@@ -1,15 +1,12 @@
 import { Link } from "react-router-dom";
-
 import { useQuery } from "@tanstack/react-query";
 
-import { useAuthentication, useClient } from "../hooks";
+import { useClient } from "../hooks";
 
-import { ButtonRow, ProfileCard } from "../components";
+import { ButtonRow } from "../components";
 
 const Buttons = () => {
     const { path, get } = useClient()
-
-    const { address } = useAuthentication()
 
     const {
         isLoading,
