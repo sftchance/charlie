@@ -1,3 +1,4 @@
-.card h2 {
+.profile.card h2 {
     display: flex;
+    margin-bottom: 0px;
 }

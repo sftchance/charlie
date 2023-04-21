@@ -11,7 +11,7 @@ const ProfileCard = ({ address }: { address: `0x${string}` | undefined }) => {
 
     const formattedAddress = formatAddress(address)
 
-    return <div className="card">
+    return <div className="profile card">
         <h2>
             <ProfileImage image={ensAvatar} />
             {ensName || formattedAddress}
